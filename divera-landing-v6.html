@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Divera — Life, understood underwater. Log dives, identify species with AI, explore marine life. Coming March 2026.">
+<title>Divera — Life, understood underwater</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Galano Grotesque — self-hosted OTF files */
+  @font-face {
+    font-family: 'Galano Grotesque';
+    src: url('galano-grotesque-medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Galano Grotesque';
+    src: url('galano-grotesque-alt-bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Galano Grotesque';
+    src: url('galano-grotesque-alt-extra-bold.otf') format('opentype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* Geist — loaded via CDN */
+  @font-face {
+    font-family: 'Geist';
+    src: url('https://cdn.jsdelivr.net/gh/nicholasgasior/geist-font@1.2.1/woff2/Geist-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Geist';
+    src: url('https://cdn.jsdelivr.net/gh/nicholasgasior/geist-font@1.2.1/woff2/Geist-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Geist';
+    src: url('https://cdn.jsdelivr.net/gh/nicholasgasior/geist-font@1.2.1/woff2/Geist-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Geist';
+    src: url('https://cdn.jsdelivr.net/gh/nicholasgasior/geist-font@1.2.1/woff2/Geist-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  :root {
+    /* Surface colors */
+    --bg: #050505;
+    --surface: #111113;
+    --surface-2: #1A1A1C;
+
+    /* Text */
+    --text-primary: #EBEBEB;
+    --text-secondary: #7A7A7E;
+    --text-dim: #444448;
+
+    /* Accent */
+    --coral: #FF5A62;
+    --coral-soft: rgba(255, 90, 98, 0.12);
+    --coral-glow: rgba(255, 90, 98, 0.25);
+    --positive: #0FBA82;
+
+    /* Typography */
+    --font-display: 'Galano Grotesque', 'DM Sans', sans-serif;
+    --font-body: 'Geist', 'Instrument Sans', sans-serif;
+
+    /* Motion */
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Grain */
+  body::after {
+    content: '';
+    position: fixed; inset: 0; z-index: 9998;
+    pointer-events: none; opacity: 0.25;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 256px;
+  }
+
+  /* ============================================ */
+  /* DEPTH METER — Right edge                     */
+  /* ============================================ */
+  .depth-meter {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.6s;
+  }
+  .depth-meter.visible { opacity: 1; }
+  .depth-track {
+    width: 1.5px;
+    height: 160px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 1px;
+    position: relative;
+  }
+  .depth-indicator {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px; height: auto;
+    transition: top 0.15s ease-out;
+    filter: drop-shadow(0 0 6px var(--coral-glow));
+  }
+  .depth-indicator img {
+    width: 100%; height: auto;
+    display: block;
+  }
+  .depth-label {
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-dim);
+    letter-spacing: 0.5px;
+    writing-mode: horizontal-tb;
+  }
+  .depth-label-top { order: -1; }
+  @media (max-width: 900px) { .depth-meter { display: none; } }
+
+  /* ============================================ */
+  /* SCROLL REVEAL — Blur to focus (surfacing)    */
+  /* ============================================ */
+  /* Scroll reveal — inspired by Yakushev's staggered choreography */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(6px);
+    transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform, filter;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  .reveal-d1 { transition-delay: 0.12s; }
+  .reveal-d2 { transition-delay: 0.24s; }
+  .reveal-d3 { transition-delay: 0.38s; }
+  .reveal-d4 { transition-delay: 0.52s; }
+  .reveal-d5 { transition-delay: 0.66s; }
+
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(0.88) translateY(20px);
+    filter: blur(5px);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform, filter;
+  }
+  .reveal-scale.visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+
+  /* Horizontal slide-in variant */
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    filter: blur(4px);
+    transition: opacity 1s var(--ease-out),
+                transform 1.1s var(--ease-out),
+                filter 1s var(--ease-out);
+  }
+  .reveal-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(50px);
+    filter: blur(4px);
+    transition: opacity 1s var(--ease-out),
+                transform 1.1s var(--ease-out),
+                filter 1s var(--ease-out);
+  }
+  .reveal-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+
+  /* ============================================ */
+  /* NAV                                          */
+  /* ============================================ */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 48px; height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(5,5,5,0.6);
+    backdrop-filter: blur(40px) saturate(1.5);
+    -webkit-backdrop-filter: blur(40px) saturate(1.5);
+    border-bottom: 0.5px solid rgba(255,255,255,0.04);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-wordmark {
+    font-family: var(--font-display);
+    font-size: 20px; font-weight: 500; letter-spacing: -0.3px;
+  }
+  .nav-right { display: flex; align-items: center; gap: 28px; }
+  .nav-right a {
+    font-size: 13px; color: var(--text-secondary); text-decoration: none;
+    font-weight: 500; transition: color 0.3s; letter-spacing: -0.2px;
+  }
+  .nav-right a:hover { color: var(--text-primary); }
+  .nav-cta {
+    padding: 9px 22px; border-radius: 100px;
+    background: rgba(255,255,255,0.08); color: var(--text-primary);
+    font-size: 13px; font-weight: 600; text-decoration: none;
+    border: 0.5px solid rgba(255,255,255,0.08);
+    transition: all 0.3s var(--ease-out); letter-spacing: -0.2px;
+  }
+  .nav-cta:hover {
+    background: var(--coral); border-color: var(--coral);
+    box-shadow: 0 6px 28px var(--coral-glow);
+    transform: translateY(-1px);
+  }
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-right a:not(.nav-cta) { display: none; }
+  }
+
+  /* ============================================ */
+  /* HERO                                         */
+  /* ============================================ */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 140px 24px 60px;
+    position: relative; z-index: 1;
+    background: url('hero-diver.jpg') center 30% / cover no-repeat;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(5,5,5,0.55) 0%,
+      rgba(5,5,5,0.7) 35%,
+      rgba(5,5,5,0.88) 65%,
+      var(--bg) 100%
+    );
+    z-index: 0;
+  }
+
+  .ambient-orb {
+    position: absolute; border-radius: 50%;
+    filter: blur(120px); pointer-events: none;
+  }
+  .orb-1 {
+    width: 600px; height: 600px;
+    top: -10%; left: 20%;
+    background: radial-gradient(circle, rgba(255,90,98,0.07), transparent 70%);
+    animation: drift 30s ease-in-out infinite;
+  }
+  .orb-2 {
+    width: 400px; height: 400px;
+    bottom: 10%; right: 10%;
+    background: radial-gradient(circle, rgba(15,186,130,0.04), transparent 70%);
+    animation: drift 25s ease-in-out infinite reverse;
+  }
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(40px, -30px) scale(1.05); }
+    66% { transform: translate(-30px, 20px) scale(0.95); }
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 680px; }
+
+  .launch-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 16px; border-radius: 100px;
+    background: rgba(255,255,255,0.04);
+    border: 0.5px solid rgba(255,255,255,0.06);
+    font-size: 12px; font-weight: 500; color: var(--text-secondary);
+    margin-bottom: 36px; letter-spacing: -0.2px;
+    backdrop-filter: blur(10px);
+  }
+  .launch-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--coral);
+    animation: breathe 3s ease-in-out infinite;
+  }
+  @keyframes breathe {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 6.5vw, 68px);
+    font-weight: 800; letter-spacing: -3px; line-height: 1.02;
+    margin-bottom: 24px;
+  }
+  .hero h1 .accent {
+    background: linear-gradient(135deg, var(--coral), #FF8A6C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: clamp(15px, 2vw, 18px);
+    color: var(--text-secondary); line-height: 1.65;
+    max-width: 460px; margin: 0 auto 44px; letter-spacing: -0.3px;
+  }
+
+  .hero-actions { display: flex; align-items: center; gap: 14px; justify-content: center; }
+
+  .btn-primary {
+    padding: 15px 34px; border-radius: 100px;
+    background: var(--coral); color: white;
+    font-size: 15px; font-weight: 600; text-decoration: none;
+    transition: all 0.4s var(--ease-out); border: none; cursor: pointer;
+    font-family: var(--font-body); letter-spacing: -0.3px;
+    position: relative; overflow: hidden;
+  }
+  .btn-primary::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent, rgba(255,255,255,0.15));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 16px 48px var(--coral-glow), 0 0 0 0.5px var(--coral);
+  }
+  .btn-primary:hover::after { opacity: 1; }
+
+  .btn-ghost {
+    padding: 15px 34px; border-radius: 100px;
+    background: transparent; color: var(--text-secondary);
+    font-size: 15px; font-weight: 500; text-decoration: none;
+    border: 0.5px solid rgba(255,255,255,0.1);
+    transition: all 0.4s var(--ease-out);
+    font-family: var(--font-body); letter-spacing: -0.3px;
+  }
+  .btn-ghost:hover {
+    color: var(--text-primary);
+    border-color: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.04);
+    transform: translateY(-2px);
+  }
+
+  /* Phones */
+  .hero-phones {
+    margin-top: 72px;
+    position: relative; z-index: 2;
+    perspective: 1400px;
+  }
+  .phones-row { display: flex; justify-content: center; align-items: flex-end; }
+  .phone {
+    width: 240px; border-radius: 32px;
+    background: var(--surface-2);
+    border: 1.5px solid rgba(255,255,255,0.06);
+    overflow: hidden;
+    transition: transform 0.6s var(--ease-out), box-shadow 0.6s var(--ease-out);
+  }
+  .phone img {
+    width: 100%; display: block;
+  }
+  .phone .screen {
+    width: 100%; aspect-ratio: 9/19.5;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .phone .screen-label {
+    font-size: 10px; color: var(--text-dim);
+    font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px;
+  }
+  .phone-center {
+    z-index: 3;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 0.5px rgba(255,255,255,0.05);
+  }
+  .phone-left {
+    transform: rotateY(12deg) translateX(20px) scale(0.88);
+    z-index: 1; opacity: 0.5;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  }
+  .phone-right {
+    transform: rotateY(-12deg) translateX(-20px) scale(0.88);
+    z-index: 1; opacity: 0.5;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  }
+  @media (max-width: 768px) {
+    .phone-left, .phone-right { display: none; }
+    .phone-center { width: 220px; }
+  }
+
+  /* ============================================ */
+  /* DIVIDER                                      */
+  /* ============================================ */
+  .divider {
+    width: 100%; height: 1px; position: relative; overflow: hidden;
+    background: rgba(255,255,255,0.03);
+  }
+  .divider::after {
+    content: '';
+    position: absolute; top: 0;
+    left: -100%; width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent 0%, var(--coral) 40%, transparent 100%);
+    opacity: 0.4;
+    animation: shimmer 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+  @keyframes shimmer { 0% { left: -60%; } 100% { left: 100%; } }
+
+  /* ============================================ */
+  /* STATS                                        */
+  /* ============================================ */
+  .stats {
+    padding: 56px 48px;
+    display: flex; justify-content: center; gap: 80px; flex-wrap: wrap;
+    position: relative; z-index: 1;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 32px; font-weight: 800; letter-spacing: -1.5px;
+  }
+  .stat-accent { color: var(--coral); }
+  .stat-label {
+    font-size: 12px; color: var(--text-dim); margin-top: 4px;
+    font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase;
+  }
+  @media (max-width: 768px) { .stats { gap: 40px; padding: 40px 24px; } }
+
+  /* ============================================ */
+  /* SECTIONS                                     */
+  /* ============================================ */
+  .section {
+    padding: 140px 48px;
+    max-width: 1200px; margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+  @media (max-width: 768px) { .section { padding: 80px 20px; } }
+
+  .section-label {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 2.5px; color: var(--coral);
+    margin-bottom: 20px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 800; letter-spacing: -1.8px; line-height: 1.08;
+  }
+  .section-sub {
+    font-size: 17px; color: var(--text-secondary); max-width: 440px;
+    line-height: 1.65; letter-spacing: -0.3px; margin-top: 16px;
+  }
+
+  /* ============================================ */
+  /* FEATURES                                     */
+  /* ============================================ */
+  .features-header { text-align: center; margin-bottom: 72px; }
+  .features-header .section-sub { margin: 16px auto 0; }
+
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  @media (max-width: 900px) { .features-grid { grid-template-columns: 1fr; } }
+
+  .f-card {
+    background: var(--surface);
+    border-radius: 24px; padding: 44px 36px 40px;
+    border: 0.5px solid rgba(255,255,255,0.04);
+    position: relative; overflow: hidden;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.5s ease,
+                box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: default;
+  }
+  .f-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(
+      600px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(255,90,98,0.07) 0%,
+      rgba(255,90,98,0.02) 30%,
+      transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+  }
+  .f-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 40%);
+    pointer-events: none;
+  }
+  .f-card:hover::before { opacity: 1; }
+  .f-card:hover {
+    border-color: rgba(255,90,98,0.12);
+    transform: translateY(-6px);
+    box-shadow: 0 24px 48px -12px rgba(0,0,0,0.4),
+                0 0 0 0.5px rgba(255,90,98,0.08);
+  }
+  .f-icon {
+    width: 52px; height: 52px; border-radius: 16px;
+    background: linear-gradient(135deg, rgba(255,90,98,0.12), rgba(255,90,98,0.06));
+    border: 0.5px solid rgba(255,90,98,0.08);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 28px;
+    color: var(--coral);
+    transition: transform 0.5s var(--ease-out), background 0.5s;
+  }
+  .f-card:hover .f-icon {
+    transform: scale(1.08) translateY(-2px);
+    background: linear-gradient(135deg, rgba(255,90,98,0.18), rgba(255,90,98,0.08));
+  }
+  .f-icon svg { width: 22px; height: 22px; }
+  .f-title {
+    font-family: var(--font-display);
+    font-size: 20px; font-weight: 700; letter-spacing: -0.5px;
+    margin-bottom: 10px;
+  }
+  .f-desc {
+    font-size: 14px; color: var(--text-secondary); line-height: 1.65;
+    letter-spacing: -0.2px;
+  }
+
+  /* ============================================ */
+  /* SHOWCASE                                     */
+  /* ============================================ */
+  .showcase-wrap {
+    padding: 0 48px; max-width: 1200px;
+    margin: 0 auto 140px; position: relative; z-index: 1;
+  }
+  .showcase {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: start;
+  }
+  @media (max-width: 900px) {
+    .showcase { grid-template-columns: 1fr; gap: 40px; }
+    .showcase-wrap { padding: 0 20px; margin-bottom: 80px; }
+  }
+
+  .showcase-text { padding-top: 80px; }
+  .showcase-text p {
+    font-size: 16px; color: var(--text-secondary);
+    line-height: 1.7; margin-top: 20px; letter-spacing: -0.2px;
+  }
+  .showcase-metrics {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px; margin-top: 36px;
+  }
+  .metric {
+    padding: 22px; border-radius: 18px;
+    background: var(--surface);
+    border: 0.5px solid rgba(255,255,255,0.04);
+    transition: transform 0.5s var(--ease-out),
+                border-color 0.4s ease,
+                box-shadow 0.5s ease;
+  }
+  .metric:hover {
+    border-color: rgba(255,255,255,0.08);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px -8px rgba(0,0,0,0.3);
+  }
+  .metric-num {
+    font-family: var(--font-display);
+    font-size: 26px; font-weight: 800; letter-spacing: -1px;
+    color: var(--coral);
+  }
+  .metric-label {
+    font-size: 12px; color: var(--text-dim); margin-top: 2px;
+    font-weight: 500; letter-spacing: 0.3px;
+  }
+
+  .showcase-visual {
+    position: sticky; top: 120px;
+    display: flex; justify-content: center; padding: 40px 0;
+  }
+  .showcase-phone {
+    width: 280px; border-radius: 36px;
+    background: var(--surface-2);
+    border: 1.5px solid rgba(255,255,255,0.06);
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.4), 0 0 120px rgba(255,90,98,0.04);
+    transition: transform 0.6s var(--ease-out);
+  }
+  .showcase-phone:hover {
+    transform: translateY(-6px) scale(1.015);
+    box-shadow: 0 50px 100px rgba(0,0,0,0.5), 0 0 140px rgba(255,90,98,0.06);
+  }
+  .showcase-phone .screen { width: 100%; aspect-ratio: 9/19.5; display: flex; align-items: center; justify-content: center; }
+
+  /* Reversed showcase — phone left, text right */
+  .showcase.showcase-reverse { direction: rtl; }
+  .showcase.showcase-reverse > * { direction: ltr; }
+  @media (max-width: 900px) {
+    .showcase.showcase-reverse { direction: ltr; }
+  }
+
+  /* ============================================ */
+  /* HOW IT WORKS                                 */
+  /* ============================================ */
+  .how { text-align: center; }
+  .how-header { margin-bottom: 72px; }
+  .how-header .section-sub { margin: 16px auto 0; }
+  .how-steps {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 32px; position: relative;
+  }
+  .how-steps::before {
+    content: '';
+    position: absolute; top: 36px; left: 12%; right: 12%;
+    height: 0.5px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  }
+  @media (max-width: 768px) {
+    .how-steps { grid-template-columns: 1fr; gap: 40px; }
+    .how-steps::before { display: none; }
+  }
+  .step { position: relative; }
+  .step-num {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: var(--surface);
+    border: 0.5px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px; position: relative; z-index: 2;
+    transition: transform 0.6s var(--ease-out),
+                border-color 0.4s ease,
+                box-shadow 0.6s ease;
+  }
+  .step:hover .step-num {
+    border-color: rgba(255,90,98,0.25);
+    box-shadow: 0 0 50px rgba(255,90,98,0.10), 0 8px 24px -8px rgba(0,0,0,0.3);
+    transform: scale(1.06);
+  }
+  .step-num span {
+    font-family: var(--font-display);
+    font-size: 24px; font-weight: 800;
+    color: var(--coral);
+  }
+  .step-title {
+    font-family: var(--font-display);
+    font-size: 18px; font-weight: 700; letter-spacing: -0.3px;
+    margin-bottom: 8px;
+  }
+  .step-desc {
+    font-size: 14px; color: var(--text-secondary); line-height: 1.6;
+    max-width: 260px; margin: 0 auto; letter-spacing: -0.2px;
+  }
+
+  /* ============================================ */
+  /* CTA — The "dive torch" moment                */
+  /* ============================================ */
+  .cta {
+    text-align: center;
+    padding: 120px 48px 80px;
+    position: relative; z-index: 1;
+  }
+  .cta::before {
+    content: '';
+    position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(255,90,98,0.05) 0%, transparent 60%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .cta-content { position: relative; z-index: 2; }
+  .cta .section-title { margin-bottom: 16px; }
+  .cta .section-sub { margin: 0 auto 44px; text-align: center; }
+
+  /* CTA Button */
+  .torch-btn {
+    padding: 18px 40px; border-radius: 100px;
+    background: var(--coral);
+    color: white;
+    font-size: 16px; font-weight: 600; text-decoration: none;
+    font-family: var(--font-body); letter-spacing: -0.3px;
+    border: none; cursor: pointer;
+    transition: all 0.4s var(--ease-out);
+    position: relative;
+    box-shadow: 0 0 40px rgba(255,90,98,0.2), 0 0 80px rgba(255,90,98,0.08);
+  }
+  .torch-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 0 70px rgba(255,90,98,0.35), 0 16px 48px rgba(255,90,98,0.2);
+  }
+
+  .store-row {
+    display: flex; justify-content: center; gap: 16px;
+    margin-bottom: 28px; flex-wrap: wrap;
+  }
+  .store-badge {
+    padding: 14px 28px; border-radius: 16px;
+    background: var(--surface);
+    border: 0.5px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; gap: 12px;
+    transition: border-color 0.3s;
+  }
+  .store-badge:hover { border-color: rgba(255,255,255,0.12); }
+  .store-badge svg { width: 22px; height: 22px; fill: var(--text-primary); }
+  .store-text { text-align: left; }
+  .store-text .small { font-size: 10px; color: var(--text-dim); font-weight: 500; display: block; text-transform: uppercase; letter-spacing: 0.5px; }
+  .store-text .name { font-size: 16px; font-weight: 600; letter-spacing: -0.3px; }
+
+  .social-row {
+    display: flex; justify-content: center; gap: 28px; margin-top: 40px;
+  }
+  .social-row a {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 13px; color: var(--text-dim); text-decoration: none;
+    font-weight: 500; transition: color 0.3s;
+  }
+  .social-row a:hover { color: #FF5A62; }
+  .social-row a svg { width: 16px; height: 16px; }
+
+  /* ============================================ */
+  /* FOOTER                                       */
+  /* ============================================ */
+  footer {
+    padding: 32px 48px;
+    border-top: 0.5px solid rgba(255,255,255,0.04);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+    position: relative; z-index: 1;
+  }
+  .foot-left { display: flex; align-items: center; gap: 8px; }
+  .foot-left span {
+    font-family: var(--font-display);
+    font-size: 15px; font-weight: 500; color: var(--text-secondary);
+  }
+  .foot-right { font-size: 12px; color: var(--text-dim); letter-spacing: -0.2px; }
+  @media (max-width: 768px) {
+    footer { padding: 24px 20px; flex-direction: column; text-align: center; }
+  }
+
+  .nav-manta { height: 24px; width: auto; display: block; }
+</style>
+</head>
+<body>
+
+<!-- DEPTH METER -->
+<div class="depth-meter" id="depthMeter">
+  <span class="depth-label depth-label-top" id="depthTop">0m</span>
+  <div class="depth-track">
+    <div class="depth-indicator" id="depthDot">
+      <img src="diver-icon-coral.png" alt="">
+    </div>
+  </div>
+  <span class="depth-label" id="depthBottom">40m</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img class="nav-manta" src="divera-logo.png" alt="Divera">
+    <span class="nav-wordmark">Divera</span>
+  </div>
+  <div class="nav-right">
+    <a href="#features" data-i18n="navFeatures">Features</a>
+    <a href="#species" data-i18n="navSpecies">Marine Life</a>
+    <a href="#cta" class="nav-cta" data-i18n="navCta">Early Access</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="ambient-orb orb-1"></div>
+  <div class="ambient-orb orb-2"></div>
+  <div class="hero-content">
+    <div class="launch-badge reveal">
+      <span class="launch-dot"></span>
+      <span data-i18n="heroBadge">Launching March 2026</span>
+    </div>
+    <h1 class="reveal reveal-d1" data-i18n="heroTitle">Discovery feels better when it makes <span class="accent">sense</span></h1>
+    <p class="hero-sub reveal reveal-d2" data-i18n="heroSub">Passive observation becomes clear understanding. Understanding becomes intentional care. Log dives, identify species, and discover life underwater.</p>
+    <div class="hero-actions reveal reveal-d3">
+      <a href="#cta" class="btn-primary" data-i18n="heroBtn1">Get Early Access</a>
+      <a href="#features" class="btn-ghost" data-i18n="heroBtn2">Learn More</a>
+    </div>
+  </div>
+  <div class="hero-phones reveal-scale reveal-d4">
+    <div class="phones-row">
+      <div class="phone phone-left">
+        <img src="screen-dive.png" alt="Dive Detail" style="width:100%;display:block;">
+      </div>
+      <div class="phone phone-center">
+        <img src="screen-library.png" alt="Species Library" style="width:100%;display:block;">
+      </div>
+      <div class="phone phone-right">
+        <img src="screen-fish.png" alt="Fish Detail" style="width:100%;display:block;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat reveal"><div class="stat-num">500<span class="stat-accent">+</span></div><div class="stat-label" data-i18n="s1l">Species</div></div>
+  <div class="stat reveal reveal-d1"><div class="stat-num">100<span class="stat-accent">+</span></div><div class="stat-label" data-i18n="s2l">Dive Sites</div></div>
+  <div class="stat reveal reveal-d2"><div class="stat-num stat-accent">AI</div><div class="stat-label" data-i18n="s3l">Identification</div></div>
+  <div class="stat reveal reveal-d3"><div class="stat-num">iOS</div><div class="stat-label" data-i18n="s4l">Native</div></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="features-header">
+    <div class="section-label reveal" data-i18n="fLabel">Features</div>
+    <h2 class="section-title reveal reveal-d1" data-i18n="fTitle">Turn observation into understanding</h2>
+    <p class="section-sub reveal reveal-d2" data-i18n="fSub">Built by divers, for those who want to look closer and learn deeper.</p>
+  </div>
+  <div class="features-grid">
+    <div class="f-card reveal">
+      <div class="f-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg></div>
+      <h3 class="f-title" data-i18n="f1t">Log & Relive</h3>
+      <p class="f-desc" data-i18n="f1d">Every dive holds knowledge. Stats, photos, conditions, and the species you encountered — every dive tells a complete story.</p>
+    </div>
+    <div class="f-card reveal reveal-d1">
+      <div class="f-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6"/><path d="M8 11h6"/></svg></div>
+      <h3 class="f-title" data-i18n="f2t">Identify & Discover</h3>
+      <p class="f-desc" data-i18n="f2d">Point your camera at any species. AI identifies it instantly. What you observe can matter — 500+ species with fun facts, diver tips, and conservation data.</p>
+    </div>
+    <div class="f-card reveal reveal-d2">
+      <div class="f-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <h3 class="f-title" data-i18n="f3t">Connect & Share</h3>
+      <p class="f-desc" data-i18n="f3d">Follow other divers, explore dive sites, share your sightings. A community built around discovery, not exhibition.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE -->
+<div class="showcase-wrap" id="species">
+  <div class="showcase">
+    <div class="showcase-text">
+      <div class="section-label reveal-left" data-i18n="shLabel">Life Beyond What's Visible</div>
+      <h2 class="section-title reveal-left reveal-d1" data-i18n="shTitle">Every species has a story</h2>
+      <p class="reveal-left reveal-d2" data-i18n="shDesc">Knowledge, beneath the surface. Conservation status, depth ranges, behavior, fun facts, and practical diver tips — learning begins below the surface.</p>
+      <div class="showcase-metrics reveal-left reveal-d3">
+        <div class="metric"><div class="metric-num">500+</div><div class="metric-label" data-i18n="m1">Species</div></div>
+        <div class="metric"><div class="metric-num">7</div><div class="metric-label" data-i18n="m2">IUCN Categories</div></div>
+        <div class="metric"><div class="metric-num">∞</div><div class="metric-label" data-i18n="m3">Fun Facts</div></div>
+        <div class="metric"><div class="metric-num">✓</div><div class="metric-label" data-i18n="m4">Diver Tips</div></div>
+      </div>
+    </div>
+    <div class="showcase-visual">
+      <div class="showcase-phone reveal-right">
+        <img src="screen-fish.png" alt="Species Detail" style="width:100%;display:block;border-radius:34px;">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SHOWCASE: DIVE LOG -->
+<div class="showcase-wrap">
+  <div class="showcase showcase-reverse">
+    <div class="showcase-text">
+      <div class="section-label reveal-right" data-i18n="shDiveLabel">Your Dive, Fully Captured</div>
+      <h2 class="section-title reveal-right reveal-d1" data-i18n="shDiveTitle">Every detail from every dive</h2>
+      <p class="reveal-right reveal-d2" data-i18n="shDiveDesc">Depth, time, temperature, visibility — your dive stats recorded alongside photos and the species you encountered. Every dive becomes a complete, searchable record you can relive.</p>
+      <div class="showcase-metrics reveal-right reveal-d3">
+        <div class="metric"><div class="metric-num">40m</div><div class="metric-label" data-i18n="md1">Max Depth</div></div>
+        <div class="metric"><div class="metric-num">48'</div><div class="metric-label" data-i18n="md2">Bottom Time</div></div>
+        <div class="metric"><div class="metric-num">☀︎</div><div class="metric-label" data-i18n="md3">Conditions</div></div>
+        <div class="metric"><div class="metric-num">★</div><div class="metric-label" data-i18n="md4">Dive Rating</div></div>
+      </div>
+    </div>
+    <div class="showcase-visual">
+      <div class="showcase-phone reveal-left">
+        <img src="screen-dive-detail.png" alt="Dive Log Detail" style="width:100%;display:block;border-radius:34px;">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SHOWCASE: DIVE SITES -->
+<div class="showcase-wrap">
+  <div class="showcase">
+    <div class="showcase-text">
+      <div class="section-label reveal-left" data-i18n="shSiteLabel">Explore the World Below</div>
+      <h2 class="section-title reveal-left reveal-d1" data-i18n="shSiteTitle">Dive sites worth discovering</h2>
+      <p class="reveal-left reveal-d2" data-i18n="shSiteDesc">Browse dive sites with descriptions, conditions, and community activity. See what others have spotted, plan your next dive, and share your own sightings from each location.</p>
+      <div class="showcase-metrics reveal-left reveal-d3">
+        <div class="metric"><div class="metric-num">100+</div><div class="metric-label" data-i18n="ms1">Dive Sites</div></div>
+        <div class="metric"><div class="metric-num">📍</div><div class="metric-label" data-i18n="ms2">Map View</div></div>
+        <div class="metric"><div class="metric-num">🤿</div><div class="metric-label" data-i18n="ms3">Community Sightings</div></div>
+        <div class="metric"><div class="metric-num">✦</div><div class="metric-label" data-i18n="ms4">Site Details</div></div>
+      </div>
+    </div>
+    <div class="showcase-visual">
+      <div class="showcase-phone reveal-right">
+        <img src="screen-dive-site.png" alt="Dive Site Profile" style="width:100%;display:block;border-radius:34px;">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section how">
+  <div class="how-header">
+    <div class="section-label reveal" data-i18n="hLabel">How It Works</div>
+    <h2 class="section-title reveal reveal-d1" data-i18n="hTitle">Look closer. Learn deeper.</h2>
+  </div>
+  <div class="how-steps">
+    <div class="step reveal">
+      <div class="step-num"><span>1</span></div>
+      <h3 class="step-title" data-i18n="h1t">Dive</h3>
+      <p class="step-desc" data-i18n="h1d">Go diving and photograph everything you see underwater.</p>
+    </div>
+    <div class="step reveal reveal-d1">
+      <div class="step-num"><span>2</span></div>
+      <h3 class="step-title" data-i18n="h2t">Log</h3>
+      <p class="step-desc" data-i18n="h2d">Record your dive with AI‑powered species identification. Observation becomes knowledge.</p>
+    </div>
+    <div class="step reveal reveal-d2">
+      <div class="step-num"><span>3</span></div>
+      <h3 class="step-title" data-i18n="h3t">Discover</h3>
+      <p class="step-desc" data-i18n="h3d">Learn about every species, track sightings, and contribute to marine conservation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="cta">
+  <div class="cta-content">
+    <h2 class="section-title reveal" data-i18n="ctaTitle">A more conscious way to learn the ocean</h2>
+    <p class="section-sub reveal reveal-d1" data-i18n="ctaSub">Launching March 2026 on iOS. Follow us for updates.</p>
+    <div class="store-row reveal reveal-d2">
+      <div class="store-badge">
+        <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <div class="store-text">
+          <span class="small" data-i18n="storeSmall">Coming Soon</span>
+          <span class="name">App Store</span>
+        </div>
+      </div>
+    </div>
+
+    <a href="#" class="torch-btn reveal reveal-d2" data-i18n="heroBtn1">Get Early Access</a>
+
+    <div class="social-row reveal reveal-d3">
+      <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>Instagram</a>
+      <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-left">
+    <img class="nav-manta" src="divera-logo.png" alt="Divera" style="height:18px;">
+    <span>Divera</span>
+  </div>
+  <div class="foot-right" data-i18n="footerR">© 2026 Divera. All rights reserved.</div>
+</footer>
+
+<script>
+  // ============================================
+  // DEPTH METER
+  // ============================================
+  const depthMeter = document.getElementById('depthMeter');
+  const depthDot   = document.getElementById('depthDot');
+  const depthTop   = document.getElementById('depthTop');
+  const MAX_DEPTH  = 40;
+
+  function updateDepthMeter(scrollPercent) {
+    const t = Math.max(0, Math.min(1, scrollPercent));
+    const depth = Math.round(t * MAX_DEPTH);
+
+    depthDot.style.top = (t * 100) + '%';
+    depthTop.textContent = depth + 'm';
+
+    if (t > 0.02) {
+      depthMeter.classList.add('visible');
+    } else {
+      depthMeter.classList.remove('visible');
+    }
+  }
+
+
+
+  // ============================================
+  // SCROLL HANDLER — Unified
+  // ============================================
+  function onScroll() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = docHeight > 0 ? scrollTop / docHeight : 0;
+
+    updateDepthMeter(scrollPercent);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // initial
+
+  // ============================================
+  // SCROLL REVEAL — Intersection Observer
+  // ============================================
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right').forEach(el => revealObserver.observe(el));
+
+  // ============================================
+  // CARD GLOW — Mouse tracking
+  // ============================================
+  document.querySelectorAll('.f-card').forEach(card => {
+    let mx = 50, my = 50, tx = 50, ty = 50;
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      tx = (e.clientX - rect.left) / rect.width * 100;
+      ty = (e.clientY - rect.top) / rect.height * 100;
+    });
+    card.addEventListener('mouseleave', () => { tx = 50; ty = 50; });
+    // Smooth interpolation for fluid glow movement
+    (function animate() {
+      mx += (tx - mx) * 0.12;
+      my += (ty - my) * 0.12;
+      card.style.setProperty('--mx', mx + '%');
+      card.style.setProperty('--my', my + '%');
+      requestAnimationFrame(animate);
+    })();
+  });
+
+  // ============================================
+  // i18n
+  // ============================================
+  const lang = (navigator.language || 'en').slice(0, 2);
+  const es = lang === 'es';
+
+  const tx = {
+    navFeatures: es ? 'Funciones' : 'Features',
+    navSpecies: es ? 'Vida Marina' : 'Marine Life',
+    navCta: es ? 'Acceso Anticipado' : 'Early Access',
+    heroBadge: es ? 'Lanzamiento marzo 2026' : 'Launching March 2026',
+    heroTitle: es
+      ? 'El descubrimiento se disfruta más cuando tiene <span class="accent">sentido</span>'
+      : 'Discovery feels better when it makes <span class="accent">sense</span>',
+    heroSub: es
+      ? 'La observación pasiva se convierte en comprensión. La comprensión, en cuidado intencional. Registra inmersiones, identifica especies y descubre la vida bajo el agua.'
+      : 'Passive observation becomes clear understanding. Understanding becomes intentional care. Log dives, identify species, and discover life underwater.',
+    heroBtn1: es ? 'Acceso Anticipado' : 'Get Early Access',
+    heroBtn2: es ? 'Saber Más' : 'Learn More',
+    s1l: es ? 'Especies' : 'Species',
+    s2l: es ? 'Sitios de buceo' : 'Dive Sites',
+    s3l: es ? 'Identificación' : 'Identification',
+    s4l: es ? 'Nativa' : 'Native',
+    fLabel: es ? 'FUNCIONES' : 'FEATURES',
+    fTitle: es ? 'De la observación a la comprensión' : 'Turn observation into understanding',
+    fSub: es ? 'Creada por buceadores, para quienes quieren mirar más de cerca y aprender más profundo.' : 'Built by divers, for those who want to look closer and learn deeper.',
+    f1t: es ? 'Registra y Revive' : 'Log & Relive',
+    f1d: es ? 'Cada inmersión guarda conocimiento. Estadísticas, fotos, condiciones y las especies que encontraste — todo cuenta una historia completa.' : 'Every dive holds knowledge. Stats, photos, conditions, and the species you encountered — every dive tells a complete story.',
+    f2t: es ? 'Identifica y Descubre' : 'Identify & Discover',
+    f2d: es ? 'Apunta tu cámara a cualquier especie. La IA la identifica al instante. Lo que observás puede importar — 500+ especies con datos, consejos y estado de conservación.' : 'Point your camera at any species. AI identifies it instantly. What you observe can matter — 500+ species with fun facts, diver tips, and conservation data.',
+    f3t: es ? 'Conecta y Comparte' : 'Connect & Share',
+    f3d: es ? 'Sigue a otros buceadores, explora sitios, comparte avistamientos. Una comunidad orientada al descubrimiento, no a la exhibición.' : 'Follow other divers, explore dive sites, share your sightings. A community built around discovery, not exhibition.',
+    shLabel: es ? 'VIDA MÁS ALLÁ DE LO VISIBLE' : 'LIFE BEYOND WHAT\'S VISIBLE',
+    shTitle: es ? 'Cada especie tiene una historia' : 'Every species has a story',
+    shDesc: es ? 'Conocimiento bajo la superficie. Estado de conservación, profundidad, comportamiento, datos curiosos y consejos prácticos — aprender empieza bajo la superficie.' : 'Knowledge, beneath the surface. Conservation status, depth ranges, behavior, fun facts, and practical diver tips — learning begins below the surface.',
+    m1: es ? 'Especies' : 'Species',
+    m2: es ? 'Categorías UICN' : 'IUCN Categories',
+    m3: es ? 'Datos curiosos' : 'Fun Facts',
+    m4: es ? 'Consejos' : 'Diver Tips',
+    // Dive Log showcase
+    shDiveLabel: es ? 'TU INMERSIÓN, COMPLETAMENTE CAPTURADA' : 'YOUR DIVE, FULLY CAPTURED',
+    shDiveTitle: es ? 'Cada detalle de cada inmersión' : 'Every detail from every dive',
+    shDiveDesc: es ? 'Profundidad, tiempo, temperatura, visibilidad — tus estadísticas de inmersión registradas junto con fotos y las especies que encontraste. Cada inmersión se convierte en un registro completo que puedes revivir.' : 'Depth, time, temperature, visibility — your dive stats recorded alongside photos and the species you encountered. Every dive becomes a complete, searchable record you can relive.',
+    md1: es ? 'Prof. Máxima' : 'Max Depth',
+    md2: es ? 'Tiempo Fondo' : 'Bottom Time',
+    md3: es ? 'Condiciones' : 'Conditions',
+    md4: es ? 'Valoración' : 'Dive Rating',
+    // Dive Sites showcase
+    shSiteLabel: es ? 'EXPLORA EL MUNDO SUBMARINO' : 'EXPLORE THE WORLD BELOW',
+    shSiteTitle: es ? 'Sitios de buceo por descubrir' : 'Dive sites worth discovering',
+    shSiteDesc: es ? 'Explora sitios de buceo con descripciones, condiciones y actividad de la comunidad. Mira qué han avistado otros, planifica tu próxima inmersión y comparte tus propios avistamientos.' : 'Browse dive sites with descriptions, conditions, and community activity. See what others have spotted, plan your next dive, and share your own sightings from each location.',
+    ms1: es ? 'Sitios de buceo' : 'Dive Sites',
+    ms2: es ? 'Vista Mapa' : 'Map View',
+    ms3: es ? 'Avistamientos' : 'Community Sightings',
+    ms4: es ? 'Detalles del Sitio' : 'Site Details',
+    hLabel: es ? 'CÓMO FUNCIONA' : 'HOW IT WORKS',
+    hTitle: es ? 'Mirá más de cerca. Aprendé más profundo.' : 'Look closer. Learn deeper.',
+    h1t: es ? 'Bucea' : 'Dive',
+    h1d: es ? 'Haz tu inmersión y fotografía todo lo que veas bajo el agua.' : 'Go diving and photograph everything you see underwater.',
+    h2t: es ? 'Registra' : 'Log',
+    h2d: es ? 'Registra tu inmersión con identificación de especies por IA. La observación se vuelve conocimiento.' : 'Record your dive with AI‑powered species identification. Observation becomes knowledge.',
+    h3t: es ? 'Descubre' : 'Discover',
+    h3d: es ? 'Aprende sobre cada especie, sigue avistamientos y contribuye a la conservación marina.' : 'Learn about every species, track sightings, and contribute to marine conservation.',
+    ctaTitle: es ? 'Una forma más consciente de conocer el océano' : 'A more conscious way to learn the ocean',
+    ctaSub: es ? 'Lanzamiento marzo 2026 en iOS. Síguenos para novedades.' : 'Launching March 2026 on iOS. Follow us for updates.',
+    storeSmall: es ? 'Próximamente' : 'Coming Soon',
+    footerR: es ? '© 2026 Divera. Todos los derechos reservados.' : '© 2026 Divera. All rights reserved.',
+    scrFeed: es ? 'Feed' : 'Activity Feed',
+    scrDive: es ? 'Inmersión' : 'Dive Log',
+    scrSpecies: es ? 'Vida Marina' : 'Marine Life',
+    scrFish: es ? 'Detalle Especie' : 'Species Detail',
+  };
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (tx[k]) el.innerHTML = tx[k];
+  });
+  if (es) document.documentElement.lang = 'es';
+</script>
+</body>
+</html>
