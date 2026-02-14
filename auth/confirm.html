@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Divera — Email confirmed. Open the app to sign in.">
+  <title>Email confirmed — Divera</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050505;
+      --surface: #111113;
+      --text-primary: #EBEBEB;
+      --text-secondary: #7A7A7E;
+      --coral: #FF5A62;
+      --coral-soft: rgba(255, 90, 98, 0.12);
+      --positive: #0FBA82;
+      --font-body: 'Geist', 'Instrument Sans', sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .card {
+      max-width: 420px;
+      width: 100%;
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 40px 32px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 24px;
+      background: var(--coral-soft);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .icon svg {
+      width: 36px;
+      height: 36px;
+      stroke: var(--positive);
+    }
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    p {
+      color: var(--text-secondary);
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      background: var(--coral);
+      color: #fff;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+        <polyline points="22 4 12 14.01 9 11.01"/>
+      </svg>
+    </div>
+    <h1>Email confirmed</h1>
+    <p>You can now open the Divera app and sign in. If the app didn’t open automatically, tap the button below.</p>
+    <a href="#" id="open-app" class="btn">Open Divera app</a>
+  </div>
+  <script>
+    (function() {
+      var hash = window.location.hash;
+      var appUrl = 'divera://auth/callback' + (hash || '');
+      var link = document.getElementById('open-app');
+      link.href = appUrl;
+
+      // Try to redirect to the app immediately (works on mobile if app is installed)
+      if (hash && /#(.+)/.test(hash)) {
+        window.location.replace(appUrl);
+      }
+    })();
+  </script>
+</body>
+</html>
