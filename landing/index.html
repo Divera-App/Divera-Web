@@ -519,45 +519,40 @@
   }
 
   /* ============================================ */
-  /* DIVIDER                                      */
-  /* ============================================ */
-  .divider {
-    width: 100%; height: 1px; position: relative; overflow: hidden;
-    background: rgba(255,255,255,0.03);
-  }
-  .divider::after {
-    content: '';
-    position: absolute; top: 0;
-    left: -100%; width: 60%; height: 100%;
-    background: linear-gradient(90deg, transparent 0%, var(--coral) 40%, transparent 100%);
-    opacity: 0.4;
-    animation: shimmer 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  }
-  @keyframes shimmer { 0% { left: -60%; } 100% { left: 100%; } }
-
-  /* ============================================ */
   /* STATS                                        */
   /* ============================================ */
   .stats {
-    padding: 56px 48px;
-    display: flex; justify-content: center; gap: 80px; flex-wrap: wrap;
+    padding: 72px 48px;
+    display: flex; justify-content: center; align-items: baseline;
+    gap: 0; flex-wrap: wrap;
     position: relative; z-index: 1;
   }
-  .stat { text-align: center; }
+  .stat {
+    text-align: center;
+    display: flex; align-items: baseline; gap: 10px;
+    padding: 0 40px;
+    border-left: 1px solid rgba(255,255,255,0.06);
+  }
+  .stat:first-child { border-left: none; }
   .stat-num {
     font-family: var(--font-display);
-    font-size: 32px; font-weight: 800; letter-spacing: -1.5px;
+    font-size: 42px; font-weight: 800; letter-spacing: -2px;
   }
   .stat-accent { color: var(--coral); }
   .stat-label {
-    font-size: 12px; color: var(--text-dim); margin-top: 4px;
-    font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase;
+    font-size: 13px; color: var(--text-dim);
+    font-weight: 500; letter-spacing: 0.3px; text-transform: uppercase;
   }
   @media (max-width: 768px) {
     .stats {
-      gap: 24px 40px; padding: 40px 24px;
+      gap: 28px 0; padding: 48px 24px;
       display: grid; grid-template-columns: 1fr 1fr;
     }
+    .stat {
+      padding: 0 20px;
+      justify-content: center;
+    }
+    .stat:nth-child(odd) { border-left: none; }
   }
 
   /* ============================================ */
@@ -591,70 +586,44 @@
   .features-header { text-align: center; margin-bottom: 72px; }
   .features-header .section-sub { margin: 16px auto 0; }
 
-  .features-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  .features-list {
+    border-top: 1px solid rgba(255,255,255,0.06);
   }
-  @media (max-width: 900px) { .features-grid { grid-template-columns: 1fr; } }
-
-  .f-card {
-    background: var(--surface);
-    border-radius: 24px; padding: 44px 36px 40px;
-    border: 0.5px solid rgba(255,255,255,0.04);
-    position: relative; overflow: hidden;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-                border-color 0.5s ease,
-                box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  .f-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 1fr;
+    gap: 24px;
+    align-items: baseline;
+    padding: 48px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: color 0.4s ease;
     cursor: default;
   }
-  .f-card::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(
-      600px circle at var(--mx, 50%) var(--my, 50%),
-      rgba(255,90,98,0.07) 0%,
-      rgba(255,90,98,0.02) 30%,
-      transparent 60%
-    );
-    opacity: 0;
-    transition: opacity 0.6s ease;
-    pointer-events: none;
+  .f-row:hover .f-title { color: var(--coral); }
+  .f-index {
+    font-family: var(--font-body);
+    font-size: 14px; font-weight: 500;
+    color: var(--text-dim);
+    letter-spacing: -0.3px;
   }
-  .f-card::after {
-    content: '';
-    position: absolute; inset: 0;
-    border-radius: 24px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 40%);
-    pointer-events: none;
-  }
-  .f-card:hover::before { opacity: 1; }
-  .f-card:hover {
-    border-color: rgba(255,90,98,0.12);
-    transform: translateY(-6px);
-    box-shadow: 0 24px 48px -12px rgba(0,0,0,0.4),
-                0 0 0 0.5px rgba(255,90,98,0.08);
-  }
-  .f-icon {
-    width: 52px; height: 52px; border-radius: 16px;
-    background: linear-gradient(135deg, rgba(255,90,98,0.12), rgba(255,90,98,0.06));
-    border: 0.5px solid rgba(255,90,98,0.08);
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 28px;
-    color: var(--coral);
-    transition: transform 0.5s var(--ease-out), background 0.5s;
-  }
-  .f-card:hover .f-icon {
-    transform: scale(1.08) translateY(-2px);
-    background: linear-gradient(135deg, rgba(255,90,98,0.18), rgba(255,90,98,0.08));
-  }
-  .f-icon svg { width: 22px; height: 22px; }
   .f-title {
     font-family: var(--font-display);
-    font-size: 20px; font-weight: 700; letter-spacing: -0.5px;
-    margin-bottom: 10px;
+    font-size: 24px; font-weight: 700; letter-spacing: -0.8px;
+    transition: color 0.4s ease;
   }
   .f-desc {
-    font-size: 14px; color: var(--text-secondary); line-height: 1.65;
+    font-size: 15px; color: var(--text-secondary); line-height: 1.7;
     letter-spacing: -0.2px;
+  }
+  @media (max-width: 900px) {
+    .f-row {
+      grid-template-columns: 40px 1fr;
+      gap: 12px 16px;
+      padding: 36px 0;
+    }
+    .f-desc {
+      grid-column: 1 / -1;
+    }
   }
 
   /* ============================================ */
@@ -683,29 +652,30 @@
   }
   .showcase-metrics {
     display: grid; grid-template-columns: 1fr 1fr;
-    gap: 12px; margin-top: 36px;
+    gap: 16px; margin-top: 36px;
   }
   .metric {
-    padding: 22px; border-radius: 18px;
-    background: var(--surface);
-    border: 0.5px solid rgba(255,255,255,0.04);
-    transition: transform 0.5s var(--ease-out),
-                border-color 0.4s ease,
-                box-shadow 0.5s ease;
+    padding-left: 16px;
+    border-left: 2px solid rgba(255,90,98,0.25);
   }
-  .metric:hover {
-    border-color: rgba(255,255,255,0.08);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 24px -8px rgba(0,0,0,0.3);
+  .metric-icon {
+    color: var(--coral);
+    line-height: 0;
+    margin-bottom: 4px;
+  }
+  .metric-icon svg {
+    width: 20px; height: 20px;
   }
   .metric-num {
     font-family: var(--font-display);
-    font-size: 26px; font-weight: 800; letter-spacing: -1px;
+    font-size: 22px; font-weight: 800; letter-spacing: -0.5px;
     color: var(--coral);
+    line-height: 1.2;
   }
   .metric-label {
-    font-size: 12px; color: var(--text-dim); margin-top: 2px;
-    font-weight: 500; letter-spacing: 0.3px;
+    font-size: 13px; color: var(--text-secondary);
+    font-weight: 500; letter-spacing: 0.2px;
+    line-height: 1.4;
   }
 
   .showcase-visual {
@@ -713,16 +683,11 @@
     display: flex; justify-content: center; padding: 40px 0;
   }
   .showcase-phone {
-    width: 280px; border-radius: 36px;
+    width: 280px; border-radius: 28px;
     background: var(--surface-2);
     border: 1.5px solid rgba(255,255,255,0.06);
     overflow: hidden;
-    box-shadow: 0 40px 80px rgba(0,0,0,0.4), 0 0 120px rgba(255,90,98,0.04);
-    transition: transform 0.6s var(--ease-out);
-  }
-  .showcase-phone:hover {
-    transform: translateY(-6px) scale(1.015);
-    box-shadow: 0 50px 100px rgba(0,0,0,0.5), 0 0 140px rgba(255,90,98,0.06);
+    box-shadow: 0 32px 64px rgba(0,0,0,0.35);
   }
   .showcase-phone .screen { width: 100%; aspect-ratio: 9/19.5; display: flex; align-items: center; justify-content: center; }
 
@@ -783,46 +748,26 @@
   .how-header .section-sub { margin: 16px auto 0; }
   .how-steps {
     display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 32px; position: relative;
-  }
-  .how-steps::before {
-    content: '';
-    position: absolute; top: 36px; left: 12%; right: 12%;
-    height: 0.5px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    gap: 48px; position: relative;
   }
   @media (max-width: 768px) {
-    .how-steps { grid-template-columns: 1fr; gap: 40px; }
-    .how-steps::before { display: none; }
+    .how-steps { grid-template-columns: 1fr; gap: 48px; }
   }
   .step { position: relative; }
   .step-num {
-    width: 72px; height: 72px; border-radius: 50%;
-    background: var(--surface);
-    border: 0.5px solid rgba(255,255,255,0.06);
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 24px; position: relative; z-index: 2;
-    transition: transform 0.6s var(--ease-out),
-                border-color 0.4s ease,
-                box-shadow 0.6s ease;
-  }
-  .step:hover .step-num {
-    border-color: rgba(255,90,98,0.25);
-    box-shadow: 0 0 50px rgba(255,90,98,0.10), 0 8px 24px -8px rgba(0,0,0,0.3);
-    transform: scale(1.06);
-  }
-  .step-num span {
     font-family: var(--font-display);
-    font-size: 24px; font-weight: 800;
+    font-size: 48px; font-weight: 800;
     color: var(--coral);
+    line-height: 1;
+    margin-bottom: 16px;
   }
   .step-title {
     font-family: var(--font-display);
-    font-size: 18px; font-weight: 700; letter-spacing: -0.3px;
-    margin-bottom: 8px;
+    font-size: 20px; font-weight: 700; letter-spacing: -0.3px;
+    margin-bottom: 10px;
   }
   .step-desc {
-    font-size: 14px; color: var(--text-secondary); line-height: 1.6;
+    font-size: 14px; color: var(--text-secondary); line-height: 1.65;
     max-width: 260px; margin: 0 auto; letter-spacing: -0.2px;
   }
 
@@ -833,13 +778,6 @@
     text-align: center;
     padding: 120px 48px 80px;
     position: relative; z-index: 1;
-  }
-  .cta::before {
-    content: '';
-    position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(255,90,98,0.05) 0%, transparent 60%);
-    border-radius: 50%; pointer-events: none;
   }
   .cta-content { position: relative; z-index: 2; }
   .cta .section-title { margin-bottom: 16px; }
@@ -867,13 +805,11 @@
     margin-bottom: 28px; flex-wrap: wrap;
   }
   .store-badge {
-    padding: 14px 28px; border-radius: 16px;
-    background: var(--surface);
-    border: 0.5px solid rgba(255,255,255,0.06);
+    padding: 14px 0;
+    background: none;
+    border: none;
     display: flex; align-items: center; gap: 12px;
-    transition: border-color 0.3s;
   }
-  .store-badge:hover { border-color: rgba(255,255,255,0.12); }
   .store-badge svg { width: 22px; height: 22px; fill: var(--text-primary); }
   .store-text { text-align: left; }
   .store-text .small { font-size: 10px; color: var(--text-dim); font-weight: 500; display: block; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -893,7 +829,7 @@
   @media (max-width: 768px) {
     .cta { padding: 80px 20px 60px; }
     .store-row { flex-direction: column; align-items: center; }
-    .store-badge { width: 100%; max-width: 280px; justify-content: center; }
+    .store-badge { justify-content: center; }
     .social-row { gap: 20px; }
   }
 
@@ -924,12 +860,10 @@
     .hero-actions { flex-direction: column; width: 100%; }
     .hero-actions .btn-primary,
     .hero-actions .btn-ghost { width: 100%; text-align: center; }
-    .stat-num { font-size: 26px; }
+    .stat-num { font-size: 32px; }
     .section-title { letter-spacing: -1px; }
-    .showcase-metrics { grid-template-columns: 1fr 1fr; gap: 8px; }
-    .metric { padding: 16px; }
-    .metric-num { font-size: 22px; }
-    .f-card { padding: 32px 24px 28px; }
+    .showcase-metrics { gap: 12px; }
+    .metric-num { font-size: 18px; }
     .torch-btn { padding: 16px 32px; font-size: 15px; }
   }
 </style>
@@ -1002,8 +936,6 @@
   </div>
 </section>
 
-<div class="divider"></div>
-
 <!-- STATS -->
 <div class="stats">
   <div class="stat reveal"><div class="stat-num">500<span class="stat-accent">+</span></div><div class="stat-label" data-i18n="s1l">Species</div></div>
@@ -1012,8 +944,6 @@
   <div class="stat reveal reveal-d3"><div class="stat-num">iOS</div><div class="stat-label" data-i18n="s4l">Native</div></div>
 </div>
 
-<div class="divider"></div>
-
 <!-- FEATURES -->
 <section class="section" id="features">
   <div class="features-header">
@@ -1021,19 +951,19 @@
     <h2 class="section-title reveal reveal-d1" data-i18n="fTitle">Turn observation into understanding</h2>
     <p class="section-sub reveal reveal-d2" data-i18n="fSub">Built by divers, for those who want to look closer and learn deeper.</p>
   </div>
-  <div class="features-grid">
-    <div class="f-card reveal">
-      <div class="f-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg></div>
+  <div class="features-list">
+    <div class="f-row reveal">
+      <span class="f-index">01</span>
       <h3 class="f-title" data-i18n="f1t">Log & Relive</h3>
       <p class="f-desc" data-i18n="f1d">Every dive holds knowledge. Stats, photos, conditions, and the species you encountered — every dive tells a complete story.</p>
     </div>
-    <div class="f-card reveal reveal-d1">
-      <div class="f-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6"/><path d="M8 11h6"/></svg></div>
+    <div class="f-row reveal reveal-d1">
+      <span class="f-index">02</span>
       <h3 class="f-title" data-i18n="f2t">Identify & Discover</h3>
       <p class="f-desc" data-i18n="f2d">Point your camera at any species. AI identifies it instantly. What you observe can matter — 500+ species with fun facts, diver tips, and conservation data.</p>
     </div>
-    <div class="f-card reveal reveal-d2">
-      <div class="f-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+    <div class="f-row reveal reveal-d2">
+      <span class="f-index">03</span>
       <h3 class="f-title" data-i18n="f3t">Connect & Share</h3>
       <p class="f-desc" data-i18n="f3d">Follow other divers, explore dive sites, share your sightings. A community built around discovery, not exhibition.</p>
     </div>
@@ -1048,10 +978,10 @@
       <h2 class="section-title reveal-right reveal-d1" data-i18n="shFeedTitle">Every dive is a story worth sharing</h2>
       <p class="reveal-right reveal-d2" data-i18n="shFeedDesc">A social feed built for divers. See what your community is discovering, like and comment on dives, follow your favorite divers, and share your own underwater experiences.</p>
       <div class="showcase-metrics reveal-right reveal-d3">
-        <div class="metric"><div class="metric-num">♥</div><div class="metric-label" data-i18n="mf1">Likes & Comments</div></div>
-        <div class="metric"><div class="metric-num">👥</div><div class="metric-label" data-i18n="mf2">Follow Divers</div></div>
-        <div class="metric"><div class="metric-num">📸</div><div class="metric-label" data-i18n="mf3">Photo Sharing</div></div>
-        <div class="metric"><div class="metric-num">∞</div><div class="metric-label" data-i18n="mf4">Activity Feed</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div class="metric-label" data-i18n="mf1">Likes & Comments</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="metric-label" data-i18n="mf2">Follow Divers</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div><div class="metric-label" data-i18n="mf3">Photo Sharing</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="metric-label" data-i18n="mf4">Activity Feed</div></div>
       </div>
     </div>
     <div class="showcase-visual">
@@ -1080,8 +1010,8 @@
       <div class="showcase-metrics reveal-left reveal-d3">
         <div class="metric"><div class="metric-num">500+</div><div class="metric-label" data-i18n="m1">Species</div></div>
         <div class="metric"><div class="metric-num">7</div><div class="metric-label" data-i18n="m2">IUCN Categories</div></div>
-        <div class="metric"><div class="metric-num">∞</div><div class="metric-label" data-i18n="m3">Fun Facts</div></div>
-        <div class="metric"><div class="metric-num">✓</div><div class="metric-label" data-i18n="m4">Diver Tips</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><div class="metric-label" data-i18n="m3">Fun Facts</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="16 12 12 8 8 12"/><line x1="12" y1="16" x2="12" y2="8"/></svg></div><div class="metric-label" data-i18n="m4">Diver Tips</div></div>
       </div>
     </div>
     <div class="showcase-visual">
@@ -1102,8 +1032,8 @@
       <div class="showcase-metrics reveal-right reveal-d3">
         <div class="metric"><div class="metric-num">40m</div><div class="metric-label" data-i18n="md1">Max Depth</div></div>
         <div class="metric"><div class="metric-num">48'</div><div class="metric-label" data-i18n="md2">Bottom Time</div></div>
-        <div class="metric"><div class="metric-num">☀︎</div><div class="metric-label" data-i18n="md3">Conditions</div></div>
-        <div class="metric"><div class="metric-num">★</div><div class="metric-label" data-i18n="md4">Dive Rating</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></div><div class="metric-label" data-i18n="md3">Conditions</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="metric-label" data-i18n="md4">Dive Rating</div></div>
       </div>
     </div>
     <div class="showcase-visual">
@@ -1122,10 +1052,10 @@
       <h2 class="section-title reveal-left reveal-d1" data-i18n="shAiTitle">See it. Know it. Instantly.</h2>
       <p class="reveal-left reveal-d2" data-i18n="shAiDesc">Our CoreML model runs live on your device while you dive. Point your camera at any species and get real-time identification — no internet needed. After your dive, AI helps you tag every species you captured in your photos.</p>
       <div class="showcase-metrics reveal-left reveal-d3">
-        <div class="metric"><div class="metric-num">⚡</div><div class="metric-label" data-i18n="ma1">Real-Time Detection</div></div>
-        <div class="metric"><div class="metric-num">📱</div><div class="metric-label" data-i18n="ma2">On-Device CoreML</div></div>
-        <div class="metric"><div class="metric-num">📷</div><div class="metric-label" data-i18n="ma3">Post-Dive AI</div></div>
-        <div class="metric"><div class="metric-num">🔒</div><div class="metric-label" data-i18n="ma4">No Internet Needed</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="metric-label" data-i18n="ma1">Real-Time Detection</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div><div class="metric-label" data-i18n="ma2">On-Device CoreML</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="metric-label" data-i18n="ma3">Post-Dive AI</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.56 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></div><div class="metric-label" data-i18n="ma4">No Internet Needed</div></div>
       </div>
     </div>
     <div class="showcase-visual">
@@ -1146,9 +1076,9 @@
       <p class="reveal-right reveal-d2" data-i18n="shSiteDesc">Browse dive sites with descriptions, conditions, and community activity. See what others have spotted, plan your next dive, and share your own sightings from each location.</p>
       <div class="showcase-metrics reveal-right reveal-d3">
         <div class="metric"><div class="metric-num">100+</div><div class="metric-label" data-i18n="ms1">Dive Sites</div></div>
-        <div class="metric"><div class="metric-num">📍</div><div class="metric-label" data-i18n="ms2">Map View</div></div>
-        <div class="metric"><div class="metric-num">🤿</div><div class="metric-label" data-i18n="ms3">Community Sightings</div></div>
-        <div class="metric"><div class="metric-num">✦</div><div class="metric-label" data-i18n="ms4">Site Details</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="metric-label" data-i18n="ms2">Map View</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="metric-label" data-i18n="ms3">Community Sightings</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><div class="metric-label" data-i18n="ms4">Site Details</div></div>
       </div>
     </div>
     <div class="showcase-visual">
@@ -1175,17 +1105,17 @@
   </div>
   <div class="how-steps">
     <div class="step reveal">
-      <div class="step-num"><span>1</span></div>
+      <div class="step-num">01</div>
       <h3 class="step-title" data-i18n="h1t">Dive</h3>
       <p class="step-desc" data-i18n="h1d">Go diving and photograph everything you see underwater.</p>
     </div>
     <div class="step reveal reveal-d1">
-      <div class="step-num"><span>2</span></div>
+      <div class="step-num">02</div>
       <h3 class="step-title" data-i18n="h2t">Log</h3>
       <p class="step-desc" data-i18n="h2d">Record your dive with AI‑powered species identification. Observation becomes knowledge.</p>
     </div>
     <div class="step reveal reveal-d2">
-      <div class="step-num"><span>3</span></div>
+      <div class="step-num">03</div>
       <h3 class="step-title" data-i18n="h3t">Discover</h3>
       <p class="step-desc" data-i18n="h3d">Learn about every species, track sightings, and contribute to marine conservation.</p>
     </div>
@@ -1273,27 +1203,6 @@
   }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
 
   document.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right').forEach(el => revealObserver.observe(el));
-
-  // ============================================
-  // CARD GLOW — Mouse tracking
-  // ============================================
-  document.querySelectorAll('.f-card').forEach(card => {
-    let mx = 50, my = 50, tx = 50, ty = 50;
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      tx = (e.clientX - rect.left) / rect.width * 100;
-      ty = (e.clientY - rect.top) / rect.height * 100;
-    });
-    card.addEventListener('mouseleave', () => { tx = 50; ty = 50; });
-    // Smooth interpolation for fluid glow movement
-    (function animate() {
-      mx += (tx - mx) * 0.12;
-      my += (ty - my) * 0.12;
-      card.style.setProperty('--mx', mx + '%');
-      card.style.setProperty('--my', my + '%');
-      requestAnimationFrame(animate);
-    })();
-  });
 
   // ============================================
   // i18n — EN / ES / FR with manual switcher
