@@ -82,6 +82,13 @@
     }
     .btn:hover { opacity: 0.9; transform: translateY(-1px); }
     .btn:active { transform: translateY(0); }
+
+    @media (max-width: 480px) {
+      body { padding: 16px; }
+      .card { padding: 32px 20px; }
+      h1 { font-size: 1.25rem; }
+      .btn { width: 100%; text-align: center; padding: 14px 20px; }
+    }
   </style>
 </head>
 <body>
@@ -93,20 +100,16 @@
       </svg>
     </div>
     <h1>Email confirmed</h1>
-    <p>You can now open the Divera app and sign in. If the app didn’t open automatically, tap the button below.</p>
+    <p>You can now sign in. Tap the button below to open the Divera app.</p>
     <a href="#" id="open-app" class="btn">Open Divera app</a>
   </div>
   <script>
     (function() {
+      // Pass token fragment to the app when user taps "Open Divera app"
       var hash = window.location.hash;
-      var appUrl = 'divera://auth/callback' + (hash || '');
+      var deepLink = 'divera://auth/callback' + (hash || '');
       var link = document.getElementById('open-app');
-      link.href = appUrl;
-
-      // Try to redirect to the app immediately (works on mobile if app is installed)
-      if (hash && /#(.+)/.test(hash)) {
-        window.location.replace(appUrl);
-      }
+      link.href = deepLink;
     })();
   </script>
 </body>
