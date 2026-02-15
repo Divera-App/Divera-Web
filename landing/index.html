@@ -718,19 +718,81 @@
     .showcase-phones-row .showcase-phone.side { width: 120px; }
   }
 
-  /* AI Detection showcase — special emphasis */
-  .showcase-ai .showcase-visual {
+  /* AI Detection — Full-width hero moment (distinct from showcases) */
+  .ai-hero {
     position: relative;
+    padding: 140px 48px;
+    overflow: hidden;
   }
-  .ai-glow {
-    position: absolute;
-    width: 300px; height: 300px;
-    top: 50%; left: 50%;
+  .ai-hero-glow {
+    position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    background: radial-gradient(circle, rgba(255,90,98,0.08) 0%, transparent 70%);
-    border-radius: 50%;
+    width: 800px; height: 500px;
+    background: radial-gradient(circle, rgba(255,90,98,0.05) 0%, transparent 70%);
+    border-radius: 50%; filter: blur(100px);
     pointer-events: none;
-    animation: drift 20s ease-in-out infinite;
+  }
+  .ai-hero-content {
+    position: relative; z-index: 2;
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .ai-hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 800; letter-spacing: -2px; line-height: 1.06;
+    margin-bottom: 24px;
+  }
+  .ai-hero-title .accent {
+    background: linear-gradient(135deg, var(--coral), #FF8A6C);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .ai-hero-desc {
+    font-size: 17px; color: var(--text-secondary); line-height: 1.65;
+    max-width: 440px; letter-spacing: -0.3px; margin-bottom: 32px;
+  }
+  .ai-capabilities {
+    display: flex; flex-wrap: wrap; gap: 8px 16px;
+    font-size: 13px; color: var(--text-dim);
+  }
+  .ai-capabilities .cap-dot { opacity: 0.3; }
+  .ai-hero-visual {
+    display: flex; justify-content: center;
+  }
+  .ai-hero-visual .showcase-phone {
+    width: 280px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 0.5px rgba(255,255,255,0.05);
+  }
+  @media (max-width: 900px) {
+    .ai-hero { padding: 80px 20px; }
+    .ai-hero-content { grid-template-columns: 1fr; gap: 48px; }
+    .ai-hero-visual .showcase-phone { width: 240px; }
+  }
+
+  /* Centered showcase — text above, phones below */
+  .showcase-centered {
+    padding: 0 48px; max-width: 1200px;
+    margin: 0 auto 140px; position: relative; z-index: 1;
+    text-align: center;
+  }
+  .showcase-centered .section-sub { margin: 16px auto 0; }
+  .showcase-centered .showcase-metrics {
+    display: flex; justify-content: center; gap: 32px;
+    margin-top: 28px;
+  }
+  .showcase-centered .metric {
+    border-left: none; padding-left: 0;
+    text-align: center;
+  }
+  .showcase-centered .phones-fan {
+    display: flex; align-items: flex-end; justify-content: center;
+    gap: 0; perspective: 1000px; margin-top: 56px;
+  }
+  @media (max-width: 900px) {
+    .showcase-centered { padding: 0 20px; margin-bottom: 80px; }
+    .showcase-centered .showcase-metrics { gap: 20px; flex-wrap: wrap; justify-content: center; }
   }
 
   /* Reversed showcase — phone left, text right */
@@ -970,6 +1032,29 @@
   </div>
 </section>
 
+<!-- AI RECOGNITION — Full-width hero moment (distinct from showcases) -->
+<section class="ai-hero">
+  <div class="ai-hero-glow"></div>
+  <div class="ai-hero-content">
+    <div>
+      <div class="section-label reveal" data-i18n="shAiLabel">AI-Powered Recognition</div>
+      <h2 class="ai-hero-title reveal reveal-d1" data-i18n="shAiTitle">See it. Know it. <span class="accent">Instantly.</span></h2>
+      <p class="ai-hero-desc reveal reveal-d2" data-i18n="shAiDesc">Our CoreML model runs live on your device while you dive. Point your camera at any species and get real-time identification — no internet needed. After your dive, AI helps you tag every species you captured in your photos.</p>
+      <div class="ai-capabilities reveal reveal-d3">
+        <span data-i18n="ma1">Real-Time Detection</span><span class="cap-dot">·</span>
+        <span data-i18n="ma2">On-Device CoreML</span><span class="cap-dot">·</span>
+        <span data-i18n="ma3">Post-Dive AI</span><span class="cap-dot">·</span>
+        <span data-i18n="ma4">No Internet Needed</span>
+      </div>
+    </div>
+    <div class="ai-hero-visual">
+      <div class="showcase-phone reveal-right">
+        <img src="screen-ai-detection.png" alt="AI Fish Detection" style="width:100%;display:block;border-radius:34px;">
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SHOWCASE: SOCIAL FEED -->
 <div class="showcase-wrap">
   <div class="showcase showcase-reverse">
@@ -1044,55 +1129,26 @@
   </div>
 </div>
 
-<!-- SHOWCASE: AI DETECTION -->
-<div class="showcase-wrap showcase-ai">
-  <div class="showcase">
-    <div class="showcase-text">
-      <div class="section-label reveal-left" data-i18n="shAiLabel">AI-Powered Recognition</div>
-      <h2 class="section-title reveal-left reveal-d1" data-i18n="shAiTitle">See it. Know it. Instantly.</h2>
-      <p class="reveal-left reveal-d2" data-i18n="shAiDesc">Our CoreML model runs live on your device while you dive. Point your camera at any species and get real-time identification — no internet needed. After your dive, AI helps you tag every species you captured in your photos.</p>
-      <div class="showcase-metrics reveal-left reveal-d3">
-        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="metric-label" data-i18n="ma1">Real-Time Detection</div></div>
-        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div><div class="metric-label" data-i18n="ma2">On-Device CoreML</div></div>
-        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="metric-label" data-i18n="ma3">Post-Dive AI</div></div>
-        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.56 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></div><div class="metric-label" data-i18n="ma4">No Internet Needed</div></div>
-      </div>
-    </div>
-    <div class="showcase-visual">
-      <div class="ai-glow"></div>
-      <div class="showcase-phone reveal-right">
-        <img src="screen-ai-detection.png" alt="AI Fish Detection" style="width:100%;display:block;border-radius:34px;">
-      </div>
-    </div>
+<!-- DIVE SITES — Centered layout (distinct from side-by-side showcases) -->
+<div class="showcase-centered">
+  <div class="section-label reveal" data-i18n="shSiteLabel">Explore the World Below</div>
+  <h2 class="section-title reveal reveal-d1" data-i18n="shSiteTitle">Dive sites worth discovering</h2>
+  <p class="section-sub reveal reveal-d2" data-i18n="shSiteDesc">Browse dive sites with descriptions, conditions, and community activity. See what others have spotted, plan your next dive, and share your own sightings from each location.</p>
+  <div class="showcase-metrics reveal reveal-d3">
+    <div class="metric"><div class="metric-num">100+</div><div class="metric-label" data-i18n="ms1">Dive Sites</div></div>
+    <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="metric-label" data-i18n="ms2">Map View</div></div>
+    <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="metric-label" data-i18n="ms3">Community Sightings</div></div>
+    <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><div class="metric-label" data-i18n="ms4">Site Details</div></div>
   </div>
-</div>
-
-<!-- SHOWCASE: DIVE SITES -->
-<div class="showcase-wrap">
-  <div class="showcase showcase-reverse">
-    <div class="showcase-text">
-      <div class="section-label reveal-right" data-i18n="shSiteLabel">Explore the World Below</div>
-      <h2 class="section-title reveal-right reveal-d1" data-i18n="shSiteTitle">Dive sites worth discovering</h2>
-      <p class="reveal-right reveal-d2" data-i18n="shSiteDesc">Browse dive sites with descriptions, conditions, and community activity. See what others have spotted, plan your next dive, and share your own sightings from each location.</p>
-      <div class="showcase-metrics reveal-right reveal-d3">
-        <div class="metric"><div class="metric-num">100+</div><div class="metric-label" data-i18n="ms1">Dive Sites</div></div>
-        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="metric-label" data-i18n="ms2">Map View</div></div>
-        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="metric-label" data-i18n="ms3">Community Sightings</div></div>
-        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><div class="metric-label" data-i18n="ms4">Site Details</div></div>
-      </div>
+  <div class="phones-fan reveal-scale reveal-d4">
+    <div class="showcase-phone side side-left">
+      <img src="screen-dive-site.png" alt="Dive Site Detail" style="width:100%;display:block;border-radius:34px;">
     </div>
-    <div class="showcase-visual">
-      <div class="showcase-phones-row reveal-left">
-        <div class="showcase-phone side side-left">
-          <img src="screen-dive-site.png" alt="Dive Site Detail" style="width:100%;display:block;border-radius:34px;">
-        </div>
-        <div class="showcase-phone center">
-          <img src="screen-dive-sites-map.png" alt="Dive Sites Map" style="width:100%;display:block;border-radius:34px;">
-        </div>
-        <div class="showcase-phone side side-right">
-          <img src="screen-dive-site-2.png" alt="Dive Site" style="width:100%;display:block;border-radius:34px;">
-        </div>
-      </div>
+    <div class="showcase-phone center">
+      <img src="screen-dive-sites-map.png" alt="Dive Sites Map" style="width:100%;display:block;border-radius:34px;">
+    </div>
+    <div class="showcase-phone side side-right">
+      <img src="screen-dive-site-2.png" alt="Dive Site" style="width:100%;display:block;border-radius:34px;">
     </div>
   </div>
 </div>
@@ -1242,7 +1298,7 @@
       md1: 'Max Depth', md2: 'Bottom Time', md3: 'Conditions', md4: 'Dive Rating',
       // AI Detection
       shAiLabel: 'AI-POWERED RECOGNITION',
-      shAiTitle: 'See it. Know it. Instantly.',
+      shAiTitle: 'See it. Know it. <span class="accent">Instantly.</span>',
       shAiDesc: 'Our CoreML model runs live on your device while you dive. Point your camera at any species and get real-time identification \u2014 no internet needed. After your dive, AI helps you tag every species you captured in your photos.',
       ma1: 'Real-Time Detection', ma2: 'On-Device CoreML', ma3: 'Post-Dive AI', ma4: 'No Internet Needed',
       shSiteLabel: 'EXPLORE THE WORLD BELOW',
@@ -1292,7 +1348,7 @@
       shDiveDesc: 'Profundidad, tiempo, temperatura, visibilidad \u2014 tus estad\u00edsticas de inmersi\u00f3n registradas junto con fotos y las especies que encontraste. Cada inmersi\u00f3n se convierte en un registro completo que puedes revivir.',
       md1: 'Prof. M\u00e1xima', md2: 'Tiempo Fondo', md3: 'Condiciones', md4: 'Valoraci\u00f3n',
       shAiLabel: 'RECONOCIMIENTO CON IA',
-      shAiTitle: 'Mir\u00e1lo. Conoc\u00e9lo. Al instante.',
+      shAiTitle: 'Mir\u00e1lo. Conoc\u00e9lo. <span class="accent">Al instante.</span>',
       shAiDesc: 'Nuestro modelo CoreML funciona en vivo en tu dispositivo mientras buce\u00e1s. Apunt\u00e1 la c\u00e1mara a cualquier especie y obt\u00e9n identificaci\u00f3n en tiempo real \u2014 sin internet. Despu\u00e9s de tu inmersi\u00f3n, la IA te ayuda a etiquetar cada especie en tus fotos.',
       ma1: 'Detecci\u00f3n en Tiempo Real', ma2: 'CoreML en Dispositivo', ma3: 'IA Post-Inmersi\u00f3n', ma4: 'Sin Internet',
       shSiteLabel: 'EXPLORA EL MUNDO SUBMARINO',
@@ -1342,7 +1398,7 @@
       shDiveDesc: 'Profondeur, dur\u00e9e, temp\u00e9rature, visibilit\u00e9 \u2014 vos statistiques de plong\u00e9e enregistr\u00e9es avec photos et esp\u00e8ces rencontr\u00e9es. Chaque plong\u00e9e devient un journal complet et consultable.',
       md1: 'Prof. Max', md2: 'Temps au Fond', md3: 'Conditions', md4: '\u00c9valuation',
       shAiLabel: 'RECONNAISSANCE PAR IA',
-      shAiTitle: 'Voyez-le. Identifiez-le. Instantan\u00e9ment.',
+      shAiTitle: 'Voyez-le. Identifiez-le. <span class="accent">Instantan\u00e9ment.</span>',
       shAiDesc: 'Notre mod\u00e8le CoreML fonctionne en direct sur votre appareil pendant la plong\u00e9e. Pointez votre cam\u00e9ra vers n\u2019importe quelle esp\u00e8ce pour une identification en temps r\u00e9el \u2014 sans internet. Apr\u00e8s la plong\u00e9e, l\u2019IA vous aide \u00e0 identifier chaque esp\u00e8ce dans vos photos.',
       ma1: 'D\u00e9tection en Temps R\u00e9el', ma2: 'CoreML sur Appareil', ma3: 'IA Post-Plong\u00e9e', ma4: 'Sans Internet',
       shSiteLabel: 'EXPLOREZ LE MONDE SOUS-MARIN',
