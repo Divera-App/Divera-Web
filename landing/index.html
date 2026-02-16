@@ -759,16 +759,28 @@
   }
   .ai-capabilities .cap-dot { opacity: 0.3; }
   .ai-hero-visual {
-    display: flex; justify-content: center;
+    position: relative;
+    display: flex; justify-content: center; align-items: flex-start;
+  }
+  .ai-detection-photo {
+    width: 380px; border-radius: 18px;
+    box-shadow: 0 32px 64px rgba(0,0,0,0.45), 0 0 0 0.5px rgba(255,255,255,0.06);
+    overflow: hidden;
+  }
+  .ai-detection-photo img {
+    width: 100%; display: block;
   }
   .ai-hero-visual .showcase-phone {
-    width: 280px;
+    position: absolute;
+    right: -30px; bottom: -40px;
+    width: 220px; z-index: 2;
     box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 0.5px rgba(255,255,255,0.05);
   }
   @media (max-width: 900px) {
     .ai-hero { padding: 80px 20px; }
     .ai-hero-content { grid-template-columns: 1fr; gap: 48px; }
-    .ai-hero-visual .showcase-phone { width: 240px; }
+    .ai-detection-photo { width: 300px; }
+    .ai-hero-visual .showcase-phone { width: 180px; right: -20px; bottom: -30px; }
   }
 
   /* Centered showcase — text above, phones below */
@@ -1048,6 +1060,9 @@
       </div>
     </div>
     <div class="ai-hero-visual">
+      <div class="ai-detection-photo reveal reveal-d2">
+        <img src="ai-detection-underwater.png" alt="Underwater AI species detection — Diplodus Sargus identified with 0.95 confidence">
+      </div>
       <div class="showcase-phone reveal-right">
         <img src="screen-ai-detection.png" alt="AI Fish Detection" style="width:100%;display:block;border-radius:34px;">
       </div>
