@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Divera — Life, understood underwater. Log dives, identify species with AI, explore marine life. Coming March 2026.">
-<title>Divera — Life, understood underwater</title>
+<meta name="description" content="Divera — Log dives, identify 1200+ marine species with AI, discover dive sites, and find dive centers near you. iOS app launching March 2026.">
+<title>Divera — Dive Logging, Species ID & Dive Centers | iOS App</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -346,7 +346,7 @@
     text-align: center;
     padding: 140px 24px 60px;
     position: relative; z-index: 1;
-    background: url('hero-diver.jpg') center 30% / cover no-repeat;
+    background: url('hero-coral-bg.jpg') center 55% / cover no-repeat;
     overflow: hidden;
   }
   .hero::before {
@@ -855,7 +855,8 @@
   }
   .cta-content { position: relative; z-index: 2; }
   .cta .section-title { margin-bottom: 16px; }
-  .cta .section-sub { margin: 0 auto 44px; text-align: center; }
+  .cta .section-sub { margin: 0 auto 36px; text-align: center; }
+  .cta .torch-btn { display: inline-block; margin-bottom: 8px; }
 
   /* CTA Button */
   .torch-btn {
@@ -906,6 +907,80 @@
     .store-badge { justify-content: center; }
     .social-row { gap: 20px; }
   }
+
+  /* ============================================ */
+  /* EMAIL FORM + CTA EXTRAS                      */
+  /* ============================================ */
+  .cta-divider {
+    display: flex; align-items: center; gap: 16px;
+    max-width: 360px; margin: 24px auto 20px;
+    color: var(--text-dim); font-size: 12px; letter-spacing: 0.3px;
+  }
+  .cta-divider::before, .cta-divider::after {
+    content: ''; flex: 1; height: 0.5px;
+    background: rgba(255,255,255,0.08);
+  }
+  .email-form {
+    display: flex; gap: 8px;
+    max-width: 440px; margin: 0 auto 12px;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .email-input {
+    flex: 1; min-width: 200px;
+    padding: 13px 20px; border-radius: 100px;
+    background: rgba(255,255,255,0.06);
+    border: 0.5px solid rgba(255,255,255,0.1);
+    color: var(--text-primary);
+    font-size: 14px; font-family: var(--font-body);
+    outline: none; transition: border-color 0.3s;
+    letter-spacing: -0.2px;
+  }
+  .email-input::placeholder { color: var(--text-dim); }
+  .email-input:focus { border-color: rgba(255,90,98,0.4); }
+  .email-submit {
+    padding: 13px 26px; border-radius: 100px;
+    background: rgba(255,255,255,0.08);
+    border: 0.5px solid rgba(255,255,255,0.1);
+    color: var(--text-primary);
+    font-size: 14px; font-weight: 600;
+    font-family: var(--font-body); letter-spacing: -0.2px;
+    cursor: pointer; transition: all 0.3s var(--ease-out);
+  }
+  .email-submit:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.16);
+    transform: translateY(-1px);
+  }
+  .email-note {
+    font-size: 12px; color: var(--text-dim);
+    margin-bottom: 40px; letter-spacing: -0.1px;
+  }
+  .email-success {
+    font-size: 14px; color: var(--positive);
+    margin-bottom: 40px; letter-spacing: -0.2px;
+  }
+  @media (max-width: 600px) {
+    .email-form { flex-direction: column; align-items: center; }
+    .email-input { min-width: auto; width: 100%; max-width: 300px; }
+    .email-submit { width: 100%; max-width: 300px; }
+  }
+
+  /* ============================================ */
+  /* DIVE CENTERS CTA LINE                        */
+  /* ============================================ */
+  .center-cta {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 0.5px solid rgba(255,255,255,0.06);
+  }
+  .center-cta p {
+    font-size: 14px; color: var(--text-secondary); letter-spacing: -0.2px;
+  }
+  .center-cta-link {
+    color: var(--coral); text-decoration: none;
+    font-weight: 600; transition: opacity 0.2s;
+  }
+  .center-cta-link:hover { opacity: 0.8; }
 
   /* ============================================ */
   /* FOOTER                                       */
@@ -988,8 +1063,8 @@
       <span class="launch-dot"></span>
       <span data-i18n="heroBadge">Launching March 2026</span>
     </div>
-    <h1 class="reveal reveal-d1" data-i18n="heroTitle">Discovery feels better when it makes <span class="accent">sense</span></h1>
-    <p class="hero-sub reveal reveal-d2" data-i18n="heroSub">Passive observation becomes clear understanding. Understanding becomes intentional care. Log dives, identify species, and discover life underwater.</p>
+    <h1 class="reveal reveal-d1" data-i18n="heroTitle">The dive app that knows <span class="accent">what you saw.</span></h1>
+    <p class="hero-sub reveal reveal-d2" data-i18n="heroSub">Log dives, identify marine species with AI, and discover dive centers near your favorite spots. Discovery feels better when it makes sense.</p>
     <div class="hero-actions reveal reveal-d3">
       <a href="#cta" class="btn-primary" data-i18n="heroBtn1">Get Early Access</a>
       <a href="#features" class="btn-ghost" data-i18n="heroBtn2">Learn More</a>
@@ -1010,13 +1085,31 @@
   </div>
 </section>
 
-<!-- STATS -->
-<div class="stats">
-  <div class="stat reveal"><div class="stat-num">500<span class="stat-accent">+</span></div><div class="stat-label" data-i18n="s1l">Species</div></div>
-  <div class="stat reveal reveal-d1"><div class="stat-num">100<span class="stat-accent">+</span></div><div class="stat-label" data-i18n="s2l">Dive Sites</div></div>
-  <div class="stat reveal reveal-d2"><div class="stat-num stat-accent">AI</div><div class="stat-label" data-i18n="s3l">Identification</div></div>
-  <div class="stat reveal reveal-d3"><div class="stat-num">iOS</div><div class="stat-label" data-i18n="s4l">Native</div></div>
-</div>
+<!-- AI RECOGNITION — Lead differentiator, right after hero -->
+<section class="ai-hero">
+  <div class="ai-hero-glow"></div>
+  <div class="ai-hero-content">
+    <div>
+      <div class="section-label reveal" data-i18n="shAiLabel">AI-Powered Recognition</div>
+      <h2 class="ai-hero-title reveal reveal-d1" data-i18n="shAiTitle">Photograph it. <span class="accent">Know what it is.</span></h2>
+      <p class="ai-hero-desc reveal reveal-d2" data-i18n="shAiDesc">After your dive, our AI analyzes your underwater photos and identifies every species you captured. No expertise needed — just photograph what you see. Basic identification also works offline.</p>
+      <div class="ai-capabilities reveal reveal-d3">
+        <span data-i18n="ma1">Photo Analysis</span><span class="cap-dot">·</span>
+        <span data-i18n="ma2">AI Identification</span><span class="cap-dot">·</span>
+        <span data-i18n="ma3">Post-Dive Tagging</span><span class="cap-dot">·</span>
+        <span data-i18n="ma4">1200+ Species</span>
+      </div>
+    </div>
+    <div class="ai-hero-visual">
+      <div class="ai-detection-photo reveal reveal-d2">
+        <img src="ai-detection-underwater.png" alt="Underwater AI species detection — Diplodus Sargus identified with 0.95 confidence">
+      </div>
+      <div class="showcase-phone reveal-right">
+        <img src="screen-ai-detection.png" alt="AI Fish Detection" style="width:100%;display:block;border-radius:34px;">
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- FEATURES -->
 <section class="section" id="features">
@@ -1034,38 +1127,12 @@
     <div class="f-row reveal reveal-d1">
       <span class="f-index">02</span>
       <h3 class="f-title" data-i18n="f2t">Identify & Discover</h3>
-      <p class="f-desc" data-i18n="f2d">Point your camera at any species. AI identifies it instantly. What you observe can matter — 500+ species with fun facts, diver tips, and conservation data.</p>
+      <p class="f-desc" data-i18n="f2d">Point your camera at any species. AI identifies it instantly. What you observe can matter — 1200+ species with fun facts, diver tips, and conservation data.</p>
     </div>
     <div class="f-row reveal reveal-d2">
       <span class="f-index">03</span>
-      <h3 class="f-title" data-i18n="f3t">Connect & Share</h3>
-      <p class="f-desc" data-i18n="f3d">Follow other divers, explore dive sites, share your sightings. A community built around discovery, not exhibition.</p>
-    </div>
-  </div>
-</section>
-
-<!-- AI RECOGNITION — Full-width hero moment (distinct from showcases) -->
-<section class="ai-hero">
-  <div class="ai-hero-glow"></div>
-  <div class="ai-hero-content">
-    <div>
-      <div class="section-label reveal" data-i18n="shAiLabel">AI-Powered Recognition</div>
-      <h2 class="ai-hero-title reveal reveal-d1" data-i18n="shAiTitle">See it. Know it. <span class="accent">Instantly.</span></h2>
-      <p class="ai-hero-desc reveal reveal-d2" data-i18n="shAiDesc">Our CoreML model runs live on your device while you dive. Point your camera at any species and get real-time identification — no internet needed. After your dive, AI helps you tag every species you captured in your photos.</p>
-      <div class="ai-capabilities reveal reveal-d3">
-        <span data-i18n="ma1">Real-Time Detection</span><span class="cap-dot">·</span>
-        <span data-i18n="ma2">On-Device CoreML</span><span class="cap-dot">·</span>
-        <span data-i18n="ma3">Post-Dive AI</span><span class="cap-dot">·</span>
-        <span data-i18n="ma4">No Internet Needed</span>
-      </div>
-    </div>
-    <div class="ai-hero-visual">
-      <div class="ai-detection-photo reveal reveal-d2">
-        <img src="ai-detection-underwater.png" alt="Underwater AI species detection — Diplodus Sargus identified with 0.95 confidence">
-      </div>
-      <div class="showcase-phone reveal-right">
-        <img src="screen-ai-detection.png" alt="AI Fish Detection" style="width:100%;display:block;border-radius:34px;">
-      </div>
+      <h3 class="f-title" data-i18n="f3t">Explore & Connect</h3>
+      <p class="f-desc" data-i18n="f3d">Browse dive sites and dive centers on the map, follow other divers, and share your sightings. A community built around discovery, not exhibition.</p>
     </div>
   </div>
 </section>
@@ -1108,43 +1175,29 @@
       <h2 class="section-title reveal-left reveal-d1" data-i18n="shTitle">Every species has a story</h2>
       <p class="reveal-left reveal-d2" data-i18n="shDesc">Knowledge, beneath the surface. Conservation status, depth ranges, behavior, fun facts, and practical diver tips — learning begins below the surface.</p>
       <div class="showcase-metrics reveal-left reveal-d3">
-        <div class="metric"><div class="metric-num">500+</div><div class="metric-label" data-i18n="m1">Species</div></div>
+        <div class="metric"><div class="metric-num">1200+</div><div class="metric-label" data-i18n="m1">Species</div></div>
         <div class="metric"><div class="metric-num">7</div><div class="metric-label" data-i18n="m2">IUCN Categories</div></div>
         <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><div class="metric-label" data-i18n="m3">Fun Facts</div></div>
         <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="16 12 12 8 8 12"/><line x1="12" y1="16" x2="12" y2="8"/></svg></div><div class="metric-label" data-i18n="m4">Diver Tips</div></div>
       </div>
     </div>
     <div class="showcase-visual">
-      <div class="showcase-phone reveal-right">
-        <img src="screen-fish.png" alt="Species Detail" style="width:100%;display:block;border-radius:34px;">
+      <div class="showcase-phones-row reveal-right">
+        <div class="showcase-phone side side-left">
+          <img src="screen-library.png" alt="Species Library" style="width:100%;display:block;border-radius:34px;">
+        </div>
+        <div class="showcase-phone center">
+          <img src="screen-fish.png" alt="Species Detail" style="width:100%;display:block;border-radius:34px;">
+        </div>
+        <div class="showcase-phone side side-right">
+          <img src="screen-fish-detail-2.png" alt="Species Info" style="width:100%;display:block;border-radius:34px;">
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- SHOWCASE: DIVE LOG -->
-<div class="showcase-wrap">
-  <div class="showcase showcase-reverse">
-    <div class="showcase-text">
-      <div class="section-label reveal-right" data-i18n="shDiveLabel">Your Dive, Fully Captured</div>
-      <h2 class="section-title reveal-right reveal-d1" data-i18n="shDiveTitle">Every detail from every dive</h2>
-      <p class="reveal-right reveal-d2" data-i18n="shDiveDesc">Depth, time, temperature, visibility — your dive stats recorded alongside photos and the species you encountered. Every dive becomes a complete, searchable record you can relive.</p>
-      <div class="showcase-metrics reveal-right reveal-d3">
-        <div class="metric"><div class="metric-num">40m</div><div class="metric-label" data-i18n="md1">Max Depth</div></div>
-        <div class="metric"><div class="metric-num">48'</div><div class="metric-label" data-i18n="md2">Bottom Time</div></div>
-        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></div><div class="metric-label" data-i18n="md3">Conditions</div></div>
-        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="metric-label" data-i18n="md4">Dive Rating</div></div>
-      </div>
-    </div>
-    <div class="showcase-visual">
-      <div class="showcase-phone reveal-left">
-        <img src="screen-dive-detail.png" alt="Dive Log Detail" style="width:100%;display:block;border-radius:34px;">
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- DIVE SITES — Centered layout (distinct from side-by-side showcases) -->
+<!-- DIVE SITES — Centered layout -->
 <div class="showcase-centered">
   <div class="section-label reveal" data-i18n="shSiteLabel">Explore the World Below</div>
   <h2 class="section-title reveal reveal-d1" data-i18n="shSiteTitle">Dive sites worth discovering</h2>
@@ -1168,37 +1221,61 @@
   </div>
 </div>
 
-<!-- HOW IT WORKS -->
-<section class="section how">
-  <div class="how-header">
-    <div class="section-label reveal" data-i18n="hLabel">How It Works</div>
-    <h2 class="section-title reveal reveal-d1" data-i18n="hTitle">Look closer. Learn deeper.</h2>
+<!-- DIVE CENTERS -->
+<div class="showcase-wrap" id="dive-centers">
+  <div class="showcase showcase-reverse">
+    <div class="showcase-text">
+      <div class="section-label reveal-right" data-i18n="shCenterLabel">Dive Centers</div>
+      <h2 class="section-title reveal-right reveal-d1" data-i18n="shCenterTitle">Find dive centers near every site</h2>
+      <p class="reveal-right reveal-d2" data-i18n="shCenterDesc">Every dive site shows nearby dive centers with ratings, contact info, and opening hours. Switch between dive sites and centers on the map — everything you need to plan your next immersion in one place.</p>
+      <div class="showcase-metrics reveal-right reveal-d3">
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="metric-label" data-i18n="mc1">Nearby Centers</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="metric-label" data-i18n="mc2">Ratings & Reviews</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.49 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.4 1.26h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.65a16 16 0 0 0 6 6l.76-.76a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.03z"/></svg></div><div class="metric-label" data-i18n="mc3">Contact Info</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="metric-label" data-i18n="mc4">Opening Hours</div></div>
+      </div>
+      <div class="center-cta reveal-right reveal-d4">
+        <p data-i18n="centerCtaText">Are you a dive center? <a href="mailto:divera.app@gmail.com?subject=Dive Center Listing" class="center-cta-link" data-i18n="centerCtaLink">Get listed on Divera →</a></p>
+      </div>
+    </div>
+    <div class="showcase-visual">
+      <div class="showcase-phones-row reveal-left">
+        <div class="showcase-phone side side-left">
+          <img src="screen-dive-centers-map.png" alt="Dive Centers Map" style="width:100%;display:block;border-radius:34px;">
+        </div>
+        <div class="showcase-phone center">
+          <img src="screen-dive-site-centers.png" alt="Dive site with nearby centers" style="width:100%;display:block;border-radius:34px;">
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="how-steps">
-    <div class="step reveal">
-      <div class="step-num">01</div>
-      <h3 class="step-title" data-i18n="h1t">Dive</h3>
-      <p class="step-desc" data-i18n="h1d">Go diving and photograph everything you see underwater.</p>
-    </div>
-    <div class="step reveal reveal-d1">
-      <div class="step-num">02</div>
-      <h3 class="step-title" data-i18n="h2t">Log</h3>
-      <p class="step-desc" data-i18n="h2d">Record your dive with AI‑powered species identification. Observation becomes knowledge.</p>
-    </div>
-    <div class="step reveal reveal-d2">
-      <div class="step-num">03</div>
-      <h3 class="step-title" data-i18n="h3t">Discover</h3>
-      <p class="step-desc" data-i18n="h3d">Learn about every species, track sightings, and contribute to marine conservation.</p>
-    </div>
-  </div>
-</section>
+</div>
+
+<!-- STATS — hits harder after seeing all features -->
+<div class="stats">
+  <div class="stat reveal"><div class="stat-num">1200<span class="stat-accent">+</span></div><div class="stat-label" data-i18n="s1l">Species</div></div>
+  <div class="stat reveal reveal-d1"><div class="stat-num">100<span class="stat-accent">+</span></div><div class="stat-label" data-i18n="s2l">Dive Sites</div></div>
+  <div class="stat reveal reveal-d2"><div class="stat-num stat-accent">AI</div><div class="stat-label" data-i18n="s3l">Identification</div></div>
+  <div class="stat reveal reveal-d3"><div class="stat-num">iOS</div><div class="stat-label" data-i18n="s4l">Native</div></div>
+</div>
 
 <!-- CTA -->
 <section class="cta" id="cta">
   <div class="cta-content">
     <h2 class="section-title reveal" data-i18n="ctaTitle">A more conscious way to learn the ocean</h2>
-    <p class="section-sub reveal reveal-d1" data-i18n="ctaSub">Launching March 2026 on iOS. Follow us for updates.</p>
-    <div class="store-row reveal reveal-d2">
+    <p class="section-sub reveal reveal-d1" data-i18n="ctaSub">Launching March 2026 on iOS — join the beta or sign up to be first to know.</p>
+
+    <a href="https://testflight.apple.com/join/9MNWEfw4" target="_blank" rel="noopener" class="torch-btn" data-i18n="ctaTestflight">Join the Beta on TestFlight</a>
+
+    <div class="cta-divider reveal reveal-d3"><span data-i18n="ctaDivider">or get notified at launch</span></div>
+
+    <form class="email-form reveal reveal-d3" id="waitlistForm">
+      <input type="email" name="email" class="email-input" placeholder="your@email.com" required data-i18n-placeholder="emailPlaceholder">
+      <button type="submit" class="email-submit" data-i18n="emailBtn">Notify Me</button>
+    </form>
+    <p class="email-note reveal reveal-d4" id="emailNote" data-i18n="emailNote">No spam. Just a ping when we launch.</p>
+
+    <div class="store-row reveal reveal-d4">
       <div class="store-badge">
         <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
         <div class="store-text">
@@ -1208,11 +1285,8 @@
       </div>
     </div>
 
-    <a href="#" class="torch-btn reveal reveal-d2" data-i18n="heroBtn1">Get Early Access</a>
-
-    <div class="social-row reveal reveal-d3">
-      <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>Instagram</a>
-      <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X</a>
+    <div class="social-row reveal reveal-d4">
+      <a href="https://www.instagram.com/divera.app/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>Instagram</a>
     </div>
   </div>
 </section>
@@ -1284,8 +1358,8 @@
       navSpecies: 'Marine Life',
       navCta: 'Early Access',
       heroBadge: 'Launching March 2026',
-      heroTitle: 'Discovery feels better when it makes <span class="accent">sense</span>',
-      heroSub: 'Passive observation becomes clear understanding. Understanding becomes intentional care. Log dives, identify species, and discover life underwater.',
+      heroTitle: 'The dive app that knows <span class="accent">what you saw.</span>',
+      heroSub: 'Log dives, identify marine species with AI, and discover dive centers near your favorite spots. Discovery feels better when it makes sense.',
       heroBtn1: 'Get Early Access',
       heroBtn2: 'Learn More',
       s1l: 'Species', s2l: 'Dive Sites', s3l: 'Identification', s4l: 'Native',
@@ -1295,9 +1369,9 @@
       f1t: 'Log & Relive',
       f1d: 'Every dive holds knowledge. Stats, photos, conditions, and the species you encountered \u2014 every dive tells a complete story.',
       f2t: 'Identify & Discover',
-      f2d: 'Point your camera at any species. AI identifies it instantly. What you observe can matter \u2014 500+ species with fun facts, diver tips, and conservation data.',
-      f3t: 'Connect & Share',
-      f3d: 'Follow other divers, explore dive sites, share your sightings. A community built around discovery, not exhibition.',
+      f2d: 'Point your camera at any species. AI identifies it instantly. What you observe can matter \u2014 1200+ species with fun facts, diver tips, and conservation data.',
+      f3t: 'Explore & Connect',
+      f3d: 'Browse dive sites and dive centers on the map, follow other divers, and share your sightings. A community built around discovery, not exhibition.',
       shLabel: 'LIFE BEYOND WHAT\'S VISIBLE',
       shTitle: 'Every species has a story',
       shDesc: 'Knowledge, beneath the surface. Conservation status, depth ranges, behavior, fun facts, and practical diver tips \u2014 learning begins below the surface.',
@@ -1313,9 +1387,9 @@
       md1: 'Max Depth', md2: 'Bottom Time', md3: 'Conditions', md4: 'Dive Rating',
       // AI Detection
       shAiLabel: 'AI-POWERED RECOGNITION',
-      shAiTitle: 'See it. Know it. <span class="accent">Instantly.</span>',
-      shAiDesc: 'Our CoreML model runs live on your device while you dive. Point your camera at any species and get real-time identification \u2014 no internet needed. After your dive, AI helps you tag every species you captured in your photos.',
-      ma1: 'Real-Time Detection', ma2: 'On-Device CoreML', ma3: 'Post-Dive AI', ma4: 'No Internet Needed',
+      shAiTitle: 'Photograph it. <span class="accent">Know what it is.</span>',
+      shAiDesc: 'After your dive, our AI analyzes your underwater photos and identifies every species you captured. No expertise needed \u2014 just photograph what you see. Basic identification also works offline.',
+      ma1: 'Photo Analysis', ma2: 'AI Identification', ma3: 'Post-Dive Tagging', ma4: '1200+ Species',
       shSiteLabel: 'EXPLORE THE WORLD BELOW',
       shSiteTitle: 'Dive sites worth discovering',
       shSiteDesc: 'Browse dive sites with descriptions, conditions, and community activity. See what others have spotted, plan your next dive, and share your own sightings from each location.',
@@ -1326,8 +1400,19 @@
       h2t: 'Log', h2d: 'Record your dive with AI\u2011powered species identification. Observation becomes knowledge.',
       h3t: 'Discover', h3d: 'Learn about every species, track sightings, and contribute to marine conservation.',
       ctaTitle: 'A more conscious way to learn the ocean',
-      ctaSub: 'Launching March 2026 on iOS. Follow us for updates.',
+      ctaSub: 'Join the beta or sign up to be first to know.',
+      ctaTestflight: 'Join the Beta on TestFlight',
+      ctaDivider: 'or get notified at launch',
+      emailBtn: 'Notify Me',
+      emailNote: 'No spam. Just a ping when we launch.',
+      emailSuccess: 'You\'re on the list. See you underwater.',
       storeSmall: 'Coming Soon',
+      shCenterLabel: 'DIVE CENTERS',
+      shCenterTitle: 'Find dive centers near every site',
+      shCenterDesc: 'Every dive site shows nearby dive centers with ratings, contact info, and opening hours. Switch between dive sites and centers on the map \u2014 everything you need to plan your next immersion in one place.',
+      mc1: 'Nearby Centers', mc2: 'Ratings & Reviews', mc3: 'Contact Info', mc4: 'Opening Hours',
+      centerCtaText: 'Are you a dive center?',
+      centerCtaLink: 'Get listed on Divera \u2192',
       footerR: '\u00a9 2026 Divera. All rights reserved.',
       scrFeed: 'Activity Feed', scrDive: 'Dive Log', scrSpecies: 'Marine Life', scrFish: 'Species Detail',
     },
@@ -1336,8 +1421,8 @@
       navSpecies: 'Vida Marina',
       navCta: 'Acceso Anticipado',
       heroBadge: 'Lanzamiento marzo 2026',
-      heroTitle: 'El descubrimiento se disfruta m\u00e1s cuando tiene <span class="accent">sentido</span>',
-      heroSub: 'La observaci\u00f3n pasiva se convierte en comprensi\u00f3n. La comprensi\u00f3n, en cuidado intencional. Registra inmersiones, identifica especies y descubre la vida bajo el agua.',
+      heroTitle: 'La app de buceo que sabe <span class="accent">lo que viste.</span>',
+      heroSub: 'Registra inmersiones, identifica especies marinas con IA y descubre centros de buceo cerca de tus sitios favoritos. El descubrimiento se disfruta m\u00e1s cuando tiene sentido.',
       heroBtn1: 'Acceso Anticipado',
       heroBtn2: 'Saber M\u00e1s',
       s1l: 'Especies', s2l: 'Sitios de buceo', s3l: 'Identificaci\u00f3n', s4l: 'Nativa',
@@ -1347,9 +1432,9 @@
       f1t: 'Registra y Revive',
       f1d: 'Cada inmersi\u00f3n guarda conocimiento. Estad\u00edsticas, fotos, condiciones y las especies que encontraste \u2014 todo cuenta una historia completa.',
       f2t: 'Identifica y Descubre',
-      f2d: 'Apunta tu c\u00e1mara a cualquier especie. La IA la identifica al instante. Lo que observ\u00e1s puede importar \u2014 500+ especies con datos, consejos y estado de conservaci\u00f3n.',
-      f3t: 'Conecta y Comparte',
-      f3d: 'Sigue a otros buceadores, explora sitios, comparte avistamientos. Una comunidad orientada al descubrimiento, no a la exhibici\u00f3n.',
+      f2d: 'Apunta tu c\u00e1mara a cualquier especie. La IA la identifica al instante. Lo que observ\u00e1s puede importar \u2014 1200+ especies con datos, consejos y estado de conservaci\u00f3n.',
+      f3t: 'Explora y Conecta',
+      f3d: 'Explora sitios de buceo y centros en el mapa, sigue a otros buceadores y comparte avistamientos. Una comunidad orientada al descubrimiento, no a la exhibici\u00f3n.',
       shLabel: 'VIDA M\u00c1S ALL\u00c1 DE LO VISIBLE',
       shTitle: 'Cada especie tiene una historia',
       shDesc: 'Conocimiento bajo la superficie. Estado de conservaci\u00f3n, profundidad, comportamiento, datos curiosos y consejos pr\u00e1cticos \u2014 aprender empieza bajo la superficie.',
@@ -1363,9 +1448,9 @@
       shDiveDesc: 'Profundidad, tiempo, temperatura, visibilidad \u2014 tus estad\u00edsticas de inmersi\u00f3n registradas junto con fotos y las especies que encontraste. Cada inmersi\u00f3n se convierte en un registro completo que puedes revivir.',
       md1: 'Prof. M\u00e1xima', md2: 'Tiempo Fondo', md3: 'Condiciones', md4: 'Valoraci\u00f3n',
       shAiLabel: 'RECONOCIMIENTO CON IA',
-      shAiTitle: 'Mir\u00e1lo. Conoc\u00e9lo. <span class="accent">Al instante.</span>',
-      shAiDesc: 'Nuestro modelo CoreML funciona en vivo en tu dispositivo mientras buce\u00e1s. Apunt\u00e1 la c\u00e1mara a cualquier especie y obt\u00e9n identificaci\u00f3n en tiempo real \u2014 sin internet. Despu\u00e9s de tu inmersi\u00f3n, la IA te ayuda a etiquetar cada especie en tus fotos.',
-      ma1: 'Detecci\u00f3n en Tiempo Real', ma2: 'CoreML en Dispositivo', ma3: 'IA Post-Inmersi\u00f3n', ma4: 'Sin Internet',
+      shAiTitle: 'Fotografi\u00e1lo. <span class="accent">Descubr\u00ed qu\u00e9 es.</span>',
+      shAiDesc: 'Despu\u00e9s de tu inmersi\u00f3n, nuestra IA analiza tus fotos submarinas e identifica cada especie capturada. Sin experiencia previa \u2014 solo fotograf\u00eda lo que ves. La identificaci\u00f3n b\u00e1sica tambi\u00e9n funciona sin internet.',
+      ma1: 'An\u00e1lisis de Fotos', ma2: 'Identificaci\u00f3n IA', ma3: 'Post-Inmersi\u00f3n', ma4: '1200+ Especies',
       shSiteLabel: 'EXPLORA EL MUNDO SUBMARINO',
       shSiteTitle: 'Sitios de buceo por descubrir',
       shSiteDesc: 'Explora sitios de buceo con descripciones, condiciones y actividad de la comunidad. Mira qu\u00e9 han avistado otros, planifica tu pr\u00f3xima inmersi\u00f3n y comparte tus propios avistamientos.',
@@ -1376,8 +1461,19 @@
       h2t: 'Registra', h2d: 'Registra tu inmersi\u00f3n con identificaci\u00f3n de especies por IA. La observaci\u00f3n se vuelve conocimiento.',
       h3t: 'Descubre', h3d: 'Aprende sobre cada especie, sigue avistamientos y contribuye a la conservaci\u00f3n marina.',
       ctaTitle: 'Una forma m\u00e1s consciente de conocer el oc\u00e9ano',
-      ctaSub: 'Lanzamiento marzo 2026 en iOS. S\u00edguenos para novedades.',
+      ctaSub: '\u00danete a la beta o reg\u00edstrate para ser el primero en saberlo.',
+      ctaTestflight: 'Unirse a la Beta en TestFlight',
+      ctaDivider: 'o recibe un aviso al lanzamiento',
+      emailBtn: 'Av\u00edsame',
+      emailNote: 'Sin spam. Solo un aviso cuando lancemos.',
+      emailSuccess: 'Est\u00e1s en la lista. Nos vemos bajo el agua.',
       storeSmall: 'Pr\u00f3ximamente',
+      shCenterLabel: 'CENTROS DE BUCEO',
+      shCenterTitle: 'Encuentra centros de buceo en cada sitio',
+      shCenterDesc: 'Cada sitio de buceo muestra los centros cercanos con valoraciones, datos de contacto y horarios. Alterna entre sitios y centros en el mapa \u2014 todo lo que necesitas para planificar tu pr\u00f3xima inmersi\u00f3n.',
+      mc1: 'Centros Cercanos', mc2: 'Valoraciones', mc3: 'Contacto', mc4: 'Horarios',
+      centerCtaText: '\u00bfEres un centro de buceo?',
+      centerCtaLink: 'Ap\u00e1rece en Divera \u2192',
       footerR: '\u00a9 2026 Divera. Todos los derechos reservados.',
       scrFeed: 'Feed', scrDive: 'Inmersi\u00f3n', scrSpecies: 'Vida Marina', scrFish: 'Detalle Especie',
     },
@@ -1386,8 +1482,8 @@
       navSpecies: 'Vie Marine',
       navCta: 'Acc\u00e8s Anticip\u00e9',
       heroBadge: 'Lancement mars 2026',
-      heroTitle: 'La d\u00e9couverte est plus belle quand elle a du <span class="accent">sens</span>',
-      heroSub: 'L\u2019observation passive devient compr\u00e9hension. La compr\u00e9hension devient soin intentionnel. Enregistrez vos plong\u00e9es, identifiez les esp\u00e8ces et d\u00e9couvrez la vie sous-marine.',
+      heroTitle: 'L\u2019app de plong\u00e9e qui sait <span class="accent">ce que vous avez vu.</span>',
+      heroSub: 'Enregistrez vos plong\u00e9es, identifiez les esp\u00e8ces marines avec l\u2019IA et trouvez des centres de plong\u00e9e pr\u00e8s de vos sites pr\u00e9f\u00e9r\u00e9s. La d\u00e9couverte est plus belle quand elle a du sens.',
       heroBtn1: 'Acc\u00e8s Anticip\u00e9',
       heroBtn2: 'En Savoir Plus',
       s1l: 'Esp\u00e8ces', s2l: 'Sites de plong\u00e9e', s3l: 'Identification', s4l: 'Native',
@@ -1397,9 +1493,9 @@
       f1t: 'Enregistrez et Revivez',
       f1d: 'Chaque plong\u00e9e est source de savoir. Statistiques, photos, conditions et esp\u00e8ces rencontr\u00e9es \u2014 chaque plong\u00e9e raconte une histoire compl\u00e8te.',
       f2t: 'Identifiez et D\u00e9couvrez',
-      f2d: 'Pointez votre cam\u00e9ra vers n\u2019importe quelle esp\u00e8ce. L\u2019IA l\u2019identifie instantan\u00e9ment. 500+ esp\u00e8ces avec anecdotes, conseils et donn\u00e9es de conservation.',
-      f3t: 'Connectez et Partagez',
-      f3d: 'Suivez d\u2019autres plongeurs, explorez des sites, partagez vos observations. Une communaut\u00e9 construite autour de la d\u00e9couverte.',
+      f2d: 'Pointez votre cam\u00e9ra vers n\u2019importe quelle esp\u00e8ce. L\u2019IA l\u2019identifie instantan\u00e9ment. 1200+ esp\u00e8ces avec anecdotes, conseils et donn\u00e9es de conservation.',
+      f3t: 'Explorez et Connectez',
+      f3d: 'Parcourez les sites et centres de plong\u00e9e sur la carte, suivez d\u2019autres plongeurs et partagez vos observations. Une communaut\u00e9 construite autour de la d\u00e9couverte.',
       shLabel: 'LA VIE AU-DEL\u00c0 DU VISIBLE',
       shTitle: 'Chaque esp\u00e8ce a une histoire',
       shDesc: 'Le savoir, sous la surface. Statut de conservation, profondeurs, comportement, anecdotes et conseils pratiques \u2014 apprendre commence sous la surface.',
@@ -1413,9 +1509,9 @@
       shDiveDesc: 'Profondeur, dur\u00e9e, temp\u00e9rature, visibilit\u00e9 \u2014 vos statistiques de plong\u00e9e enregistr\u00e9es avec photos et esp\u00e8ces rencontr\u00e9es. Chaque plong\u00e9e devient un journal complet et consultable.',
       md1: 'Prof. Max', md2: 'Temps au Fond', md3: 'Conditions', md4: '\u00c9valuation',
       shAiLabel: 'RECONNAISSANCE PAR IA',
-      shAiTitle: 'Voyez-le. Identifiez-le. <span class="accent">Instantan\u00e9ment.</span>',
-      shAiDesc: 'Notre mod\u00e8le CoreML fonctionne en direct sur votre appareil pendant la plong\u00e9e. Pointez votre cam\u00e9ra vers n\u2019importe quelle esp\u00e8ce pour une identification en temps r\u00e9el \u2014 sans internet. Apr\u00e8s la plong\u00e9e, l\u2019IA vous aide \u00e0 identifier chaque esp\u00e8ce dans vos photos.',
-      ma1: 'D\u00e9tection en Temps R\u00e9el', ma2: 'CoreML sur Appareil', ma3: 'IA Post-Plong\u00e9e', ma4: 'Sans Internet',
+      shAiTitle: 'Photographiez-le. <span class="accent">Identifiez-le.</span>',
+      shAiDesc: 'Apr\u00e8s votre plong\u00e9e, notre IA analyse vos photos sous-marines et identifie chaque esp\u00e8ce captur\u00e9e. Aucune expertise n\u00e9cessaire \u2014 il suffit de photographier ce que vous voyez. L\u2019identification de base fonctionne aussi hors ligne.',
+      ma1: 'Analyse de Photos', ma2: 'Identification IA', ma3: 'Post-Plong\u00e9e', ma4: '1200+ Esp\u00e8ces',
       shSiteLabel: 'EXPLOREZ LE MONDE SOUS-MARIN',
       shSiteTitle: 'Des sites de plong\u00e9e \u00e0 d\u00e9couvrir',
       shSiteDesc: 'Parcourez des sites avec descriptions, conditions et activit\u00e9 communautaire. D\u00e9couvrez ce que d\u2019autres ont observ\u00e9, planifiez votre prochaine plong\u00e9e et partagez vos observations.',
@@ -1426,8 +1522,19 @@
       h2t: 'Enregistrez', h2d: 'Enregistrez votre plong\u00e9e avec identification IA des esp\u00e8ces. L\u2019observation devient connaissance.',
       h3t: 'D\u00e9couvrez', h3d: 'Apprenez sur chaque esp\u00e8ce, suivez les observations et contribuez \u00e0 la conservation marine.',
       ctaTitle: 'Une fa\u00e7on plus consciente de conna\u00eetre l\u2019oc\u00e9an',
-      ctaSub: 'Lancement mars 2026 sur iOS. Suivez-nous pour les nouveaut\u00e9s.',
+      ctaSub: 'Rejoignez la b\u00eata ou inscrivez-vous pour \u00eatre le premier inform\u00e9.',
+      ctaTestflight: 'Rejoindre la B\u00eata sur TestFlight',
+      ctaDivider: 'ou soyez notifi\u00e9 au lancement',
+      emailBtn: 'M\u2019avertir',
+      emailNote: 'Pas de spam. Juste un message au lancement.',
+      emailSuccess: 'Vous \u00eates sur la liste. \u00c0 bient\u00f4t sous l\u2019eau.',
       storeSmall: 'Bient\u00f4t disponible',
+      shCenterLabel: 'CENTRES DE PLONG\u00c9E',
+      shCenterTitle: 'Trouvez des centres pr\u00e8s de chaque site',
+      shCenterDesc: 'Chaque site affiche les centres de plong\u00e9e \u00e0 proximit\u00e9 avec avis, coordonn\u00e9es et horaires. Basculez entre sites et centres sur la carte \u2014 tout pour planifier votre prochaine plong\u00e9e.',
+      mc1: 'Centres \u00e0 proximit\u00e9', mc2: 'Avis & Notes', mc3: 'Contact', mc4: 'Horaires',
+      centerCtaText: 'Vous \u00eates un centre de plong\u00e9e\u00a0?',
+      centerCtaLink: 'Rejoignez Divera \u2192',
       footerR: '\u00a9 2026 Divera. Tous droits r\u00e9serv\u00e9s.',
       scrFeed: 'Fil d\u2019activit\u00e9', scrDive: 'Carnet de plong\u00e9e', scrSpecies: 'Vie Marine', scrFish: 'D\u00e9tail Esp\u00e8ce',
     }
@@ -1489,6 +1596,36 @@
 
   // Apply initial translations
   applyTranslations(currentLang);
+
+  // ============================================
+  // EMAIL WAITLIST FORM — Formsubmit.co
+  // ============================================
+  const waitlistForm = document.getElementById('waitlistForm');
+  const emailNoteEl  = document.getElementById('emailNote');
+  if (waitlistForm) {
+    waitlistForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = waitlistForm.querySelector('input[type="email"]').value;
+      const btn   = waitlistForm.querySelector('.email-submit');
+      btn.disabled = true;
+      btn.textContent = '...';
+      try {
+        await fetch('https://formsubmit.co/ajax/divera.app@gmail.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ email, _subject: 'Divera Waitlist Signup', _captcha: 'false' })
+        });
+        waitlistForm.style.display = 'none';
+        emailNoteEl.className = 'email-success';
+        const tx = translations[currentLang];
+        emailNoteEl.textContent = tx.emailSuccess || 'You\'re on the list. See you underwater.';
+      } catch {
+        btn.disabled = false;
+        const tx = translations[currentLang];
+        btn.textContent = tx.emailBtn || 'Notify Me';
+      }
+    });
+  }
 </script>
 </body>
 </html>
