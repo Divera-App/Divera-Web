@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Divera — Log dives, identify 1200+ marine species with AI, discover dive sites, and find dive centers near you. iOS app launching March 2026.">
+<meta name="description" content="Divera — Log dives, identify 1200+ marine species with AI, discover dive sites, and find dive centers near you. iOS app launching April 2026.">
 <title>Divera — Dive Logging, Species ID & Dive Centers | iOS App</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -417,6 +417,13 @@
     background-clip: text;
   }
 
+  .hero-tagline {
+    font-size: clamp(16px, 1.8vw, 20px);
+    font-weight: 400; font-style: italic;
+    color: var(--coral); opacity: 0.85;
+    letter-spacing: 0.2px;
+    margin: 14px auto 20px; max-width: 460px;
+  }
   .hero-sub {
     font-size: clamp(15px, 2vw, 18px);
     color: var(--text-secondary); line-height: 1.65;
@@ -560,7 +567,11 @@
     max-width: 1200px; margin: 0 auto;
     position: relative; z-index: 1;
   }
-  @media (max-width: 768px) { .section { padding: 80px 20px; } }
+  @media (max-width: 768px) {
+    .section { padding: 80px 20px; }
+    .features-header { text-align: left; }
+    .features-header .section-sub { margin: 16px 0 0; }
+  }
 
   .section-label {
     font-size: 11px; font-weight: 600; text-transform: uppercase;
@@ -718,8 +729,7 @@
   /* AI Detection — Full-width hero moment (distinct from showcases) */
   .ai-hero {
     position: relative;
-    padding: 140px 48px;
-    overflow: hidden;
+    padding: 100px 48px 64px;
   }
   .ai-hero-glow {
     position: absolute; top: 50%; left: 50%;
@@ -771,13 +781,14 @@
     position: absolute;
     right: -30px; bottom: -40px;
     width: 220px; z-index: 2;
-    box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 0.5px rgba(255,255,255,0.05);
+    border-radius: 0; border: none; background: transparent; overflow: visible;
+    box-shadow: none;
   }
   @media (max-width: 900px) {
-    .ai-hero { padding: 80px 20px; }
+    .ai-hero { padding: 60px 20px 40px; }
     .ai-hero-content { grid-template-columns: 1fr; gap: 48px; }
     .ai-detection-photo { width: 300px; }
-    .ai-hero-visual .showcase-phone { width: 180px; right: -20px; bottom: -30px; }
+    .ai-hero-visual .showcase-phone { display: none; }
   }
 
   /* Centered showcase — text above, phones below */
@@ -843,17 +854,56 @@
   }
 
   /* ============================================ */
-  /* CTA — The "dive torch" moment                */
+  /* BETA JOIN CARD                               */
   /* ============================================ */
-  .cta {
-    text-align: center;
-    padding: 120px 48px 80px;
+  .beta-card-wrap {
+    padding: 0 48px; max-width: 1200px;
+    margin: 0 auto 100px;
+  }
+  .beta-card {
+    background: var(--surface);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 32px;
+    padding: 48px 72px 64px;
+    display: grid; grid-template-columns: 1fr 1.5fr;
+    gap: 56px; align-items: start;
+    position: relative; overflow: hidden;
+  }
+  .beta-card::before {
+    content: '';
+    position: absolute; top: -120px; right: -80px;
+    width: 520px; height: 520px;
+    background: radial-gradient(circle, rgba(255,90,98,0.07) 0%, transparent 65%);
+    pointer-events: none; border-radius: 50%;
+  }
+  .beta-card-visual {
+    display: flex; justify-content: center;
     position: relative; z-index: 1;
   }
-  .cta-content { position: relative; z-index: 2; }
-  .cta .section-title { margin-bottom: 16px; }
-  .cta .section-sub { margin: 0 auto 36px; text-align: center; }
-  .cta .torch-btn { display: inline-block; margin-bottom: 8px; }
+  .beta-card-visual .showcase-phone { width: 240px; }
+  .beta-card-body { position: relative; z-index: 1; }
+  .beta-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 800; letter-spacing: -1.8px; line-height: 1.06;
+    margin-bottom: 16px;
+  }
+  .beta-desc {
+    font-size: 16px; color: var(--text-secondary);
+    line-height: 1.65; margin: 0 auto 32px;
+    max-width: 420px; letter-spacing: -0.2px;
+  }
+  .beta-card-body { text-align: center; }
+  .beta-card-body .torch-btn { display: inline-block; }
+  .beta-card-body .cta-divider { max-width: none; margin: 20px 0 16px; justify-content: center; }
+  .beta-card-body .cta-divider::before,
+  .beta-card-body .cta-divider::after { display: none; }
+  .beta-card-body .social-row { margin-top: 28px; }
+  @media (max-width: 900px) {
+    .beta-card-wrap { padding: 0 16px; margin-bottom: 60px; }
+    .beta-card { grid-template-columns: 1fr; gap: 0; padding: 40px 28px; border-radius: 24px; }
+    .beta-card-visual { display: none; }
+  }
 
   /* CTA Button */
   .torch-btn {
@@ -974,10 +1024,11 @@
     font-size: 14px; color: var(--text-secondary); letter-spacing: -0.2px;
   }
   .center-cta-link {
-    color: var(--coral); text-decoration: none;
-    font-weight: 600; transition: opacity 0.2s;
+    color: var(--coral); text-decoration: underline;
+    text-underline-offset: 3px; font-weight: 600;
+    transition: opacity 0.2s; cursor: pointer;
   }
-  .center-cta-link:hover { opacity: 0.8; }
+  .center-cta-link:hover { opacity: 0.7; }
 
   /* ============================================ */
   /* FOOTER                                       */
@@ -995,6 +1046,9 @@
     font-size: 15px; font-weight: 500; color: var(--text-secondary);
   }
   .foot-right { font-size: 12px; color: var(--text-dim); letter-spacing: -0.2px; }
+  .foot-center { font-size: 12px; }
+  .foot-center a { color: var(--text-dim); text-decoration: none; transition: color 0.3s; letter-spacing: -0.1px; }
+  .foot-center a:hover { color: var(--coral); }
   @media (max-width: 768px) {
     footer { padding: 24px 20px; flex-direction: column; text-align: center; }
   }
@@ -1057,9 +1111,9 @@
   <div class="hero-content">
     <div class="launch-badge reveal">
       <span class="launch-dot"></span>
-      <span data-i18n="heroBadge">Launching March 2026</span>
+      <span data-i18n="heroBadge">Launching April 2026</span>
     </div>
-    <h1 class="reveal reveal-d1" data-i18n="heroTitle">The dive app that knows <span class="accent">what you saw.</span></h1>
+    <h1 class="reveal reveal-d1" data-i18n="heroTitle"><span class="accent">Life,</span> understood underwater.</h1>
     <p class="hero-sub reveal reveal-d2" data-i18n="heroSub">Log dives, identify marine species with AI, and discover dive centers near your favorite spots. Discovery feels better when it makes sense.</p>
     <div class="hero-actions reveal reveal-d3">
       <a href="#cta" class="btn-primary" data-i18n="heroBtn1">Get Early Access</a>
@@ -1088,7 +1142,7 @@
     <div>
       <div class="section-label reveal" data-i18n="shAiLabel">AI-Powered Recognition</div>
       <h2 class="ai-hero-title reveal reveal-d1" data-i18n="shAiTitle">Photograph it. <span class="accent">Know what it is.</span></h2>
-      <p class="ai-hero-desc reveal reveal-d2" data-i18n="shAiDesc">After your dive, our AI analyzes your underwater photos and identifies every species you captured. No expertise needed — just photograph what you see. Basic identification also works offline.</p>
+      <p class="ai-hero-desc reveal reveal-d2" data-i18n="shAiDesc">After your dive, our AI analyzes your underwater photos and identifies every species you captured. No expertise needed. Just photograph what you see. Basic identification also works offline.</p>
       <div class="ai-capabilities reveal reveal-d3">
         <span data-i18n="ma1">Photo Analysis</span><span class="cap-dot">·</span>
         <span data-i18n="ma2">AI Identification</span><span class="cap-dot">·</span>
@@ -1118,12 +1172,12 @@
     <div class="f-row reveal">
       <span class="f-index">01</span>
       <h3 class="f-title" data-i18n="f1t">Log & Relive</h3>
-      <p class="f-desc" data-i18n="f1d">Every dive holds knowledge. Stats, photos, conditions, and the species you encountered — every dive tells a complete story.</p>
+      <p class="f-desc" data-i18n="f1d">Every dive holds knowledge. Stats, photos, conditions, and the species you encountered. Every dive tells a complete story.</p>
     </div>
     <div class="f-row reveal reveal-d1">
       <span class="f-index">02</span>
       <h3 class="f-title" data-i18n="f2t">Identify & Discover</h3>
-      <p class="f-desc" data-i18n="f2d">Point your camera at any species. AI identifies it instantly. What you observe can matter — 1200+ species with fun facts, diver tips, and conservation data.</p>
+      <p class="f-desc" data-i18n="f2d">Point your camera at any species. AI identifies it instantly. What you observe can matter. 1200+ species with fun facts, diver tips, and conservation data.</p>
     </div>
     <div class="f-row reveal reveal-d2">
       <span class="f-index">03</span>
@@ -1169,7 +1223,7 @@
     <div class="showcase-text">
       <div class="section-label reveal-left" data-i18n="shLabel">Life Beyond What's Visible</div>
       <h2 class="section-title reveal-left reveal-d1" data-i18n="shTitle">Every species has a story</h2>
-      <p class="reveal-left reveal-d2" data-i18n="shDesc">Knowledge, beneath the surface. Conservation status, depth ranges, behavior, fun facts, and practical diver tips — learning begins below the surface.</p>
+      <p class="reveal-left reveal-d2" data-i18n="shDesc">Knowledge, beneath the surface. Conservation status, depth ranges, behavior, fun facts, and practical diver tips. Learning begins below the surface.</p>
       <div class="showcase-metrics reveal-left reveal-d3">
         <div class="metric"><div class="metric-num">1200+</div><div class="metric-label" data-i18n="m1">Species</div></div>
         <div class="metric"><div class="metric-num">7</div><div class="metric-label" data-i18n="m2">IUCN Categories</div></div>
@@ -1223,7 +1277,7 @@
     <div class="showcase-text">
       <div class="section-label reveal-right" data-i18n="shCenterLabel">Dive Centers</div>
       <h2 class="section-title reveal-right reveal-d1" data-i18n="shCenterTitle">Find dive centers near every site</h2>
-      <p class="reveal-right reveal-d2" data-i18n="shCenterDesc">Every dive site shows nearby dive centers with ratings, contact info, and opening hours. Switch between dive sites and centers on the map — everything you need to plan your next immersion in one place.</p>
+      <p class="reveal-right reveal-d2" data-i18n="shCenterDesc">Every dive site shows nearby dive centers with ratings, contact info, and opening hours. Switch between dive sites and centers on the map. Everything you need to plan your next immersion in one place.</p>
       <div class="showcase-metrics reveal-right reveal-d3">
         <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="metric-label" data-i18n="mc1">Nearby Centers</div></div>
         <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="metric-label" data-i18n="mc2">Ratings & Reviews</div></div>
@@ -1231,7 +1285,7 @@
         <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="metric-label" data-i18n="mc4">Opening Hours</div></div>
       </div>
       <div class="center-cta reveal-right reveal-d4">
-        <p data-i18n="centerCtaText">Are you a dive center? <a href="mailto:divera.app@gmail.com?subject=Dive Center Listing" class="center-cta-link" data-i18n="centerCtaLink">Get listed on Divera →</a></p>
+        <p><span data-i18n="centerCtaText">Are you a dive center?</span> <a href="mailto:divera.app@gmail.com?subject=Dive%20Center%20Listing" class="center-cta-link">Contact us →</a></p>
       </div>
     </div>
     <div class="showcase-visual">
@@ -1255,41 +1309,42 @@
   <div class="stat reveal reveal-d3"><div class="stat-num">iOS</div><div class="stat-label" data-i18n="s4l">Native</div></div>
 </div>
 
-<!-- CTA -->
-<section class="cta" id="cta">
-  <div class="cta-content">
-    <h2 class="section-title reveal" data-i18n="ctaTitle">A more conscious way to learn the ocean</h2>
-    <p class="section-sub reveal reveal-d1" data-i18n="ctaSub">Launching March 2026 on iOS — join the beta or sign up to be first to know.</p>
-
-    <a href="https://testflight.apple.com/join/9MNWEfw4" target="_blank" rel="noopener" class="torch-btn" data-i18n="ctaTestflight">Join the Beta on TestFlight</a>
-
-    <div class="cta-divider reveal reveal-d3"><span data-i18n="ctaDivider">or get notified at launch</span></div>
-
-    <form class="email-form reveal reveal-d3" id="waitlistForm">
-      <input type="email" name="email" class="email-input" placeholder="your@email.com" required data-i18n-placeholder="emailPlaceholder">
-      <button type="submit" class="email-submit" data-i18n="emailBtn">Notify Me</button>
-    </form>
-    <p class="email-note reveal reveal-d4" id="emailNote" data-i18n="emailNote">No spam. Just a ping when we launch.</p>
-
-    <div class="store-row reveal reveal-d4">
-      <div class="store-badge">
-        <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        <div class="store-text">
-          <span class="small" data-i18n="storeSmall">Coming Soon</span>
-          <span class="name">App Store</span>
-        </div>
+<!-- BETA JOIN CARD -->
+<div class="beta-card-wrap" id="cta">
+  <div class="beta-card reveal">
+    <div class="beta-card-visual">
+      <div class="showcase-phone">
+        <img src="screen-library.png" alt="Divera species library" style="width:100%;display:block;">
       </div>
     </div>
+    <div class="beta-card-body">
+      <div class="section-label" data-i18n="betaLabel">Early Access</div>
+      <h2 class="beta-title" data-i18n="ctaTitle">A more conscious way to learn the ocean</h2>
+      <p class="beta-desc" data-i18n="ctaSub">Join the beta or sign up to be first to know.</p>
 
-    <div class="social-row reveal reveal-d4">
-      <a href="https://www.instagram.com/divera.app/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>Instagram</a>
+      <a href="https://testflight.apple.com/join/9MNWEfw4" target="_blank" rel="noopener" class="torch-btn" data-i18n="ctaTestflight">Join the Beta on TestFlight</a>
+
+      <div class="cta-divider beta-divider"><span data-i18n="ctaDivider">or get notified at launch</span></div>
+
+      <form class="email-form" id="waitlistForm">
+        <input type="email" name="email" class="email-input" placeholder="your@email.com" required data-i18n-placeholder="emailPlaceholder">
+        <button type="submit" class="email-submit" data-i18n="emailBtn">Notify Me</button>
+      </form>
+      <p class="email-note" id="emailNote" data-i18n="emailNote">No spam. Just a ping when we launch.</p>
+
+      <div class="social-row beta-social">
+        <a href="https://www.instagram.com/divera.app/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>Instagram</a>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
 <footer>
   <div class="foot-left">
     <img src="logo-full.png" alt="Divera" style="height:20px;width:auto;display:block;opacity:0.7;">
+  </div>
+  <div class="foot-center">
+    <a href="mailto:divera.app@gmail.com?subject=Dive Center Listing" data-i18n="centerCtaLink">Get listed on Divera →</a>
   </div>
   <div class="foot-right" data-i18n="footerR">© 2026 Divera. All rights reserved.</div>
 </footer>
@@ -1352,8 +1407,8 @@
       navFeatures: 'Features',
       navSpecies: 'Marine Life',
       navCta: 'Early Access',
-      heroBadge: 'Launching March 2026',
-      heroTitle: 'The dive app that knows <span class="accent">what you saw.</span>',
+      heroBadge: 'Launching April 2026',
+      heroTitle: '<span class="accent">Life,</span> understood underwater.',
       heroSub: 'Log dives, identify marine species with AI, and discover dive centers near your favorite spots. Discovery feels better when it makes sense.',
       heroBtn1: 'Get Early Access',
       heroBtn2: 'Learn More',
@@ -1362,14 +1417,14 @@
       fTitle: 'Turn observation into understanding',
       fSub: 'Built by divers, for those who want to look closer and learn deeper.',
       f1t: 'Log & Relive',
-      f1d: 'Every dive holds knowledge. Stats, photos, conditions, and the species you encountered \u2014 every dive tells a complete story.',
+      f1d: 'Every dive holds knowledge. Stats, photos, conditions, and the species you encountered. Every dive tells a complete story.',
       f2t: 'Identify & Discover',
-      f2d: 'Point your camera at any species. AI identifies it instantly. What you observe can matter \u2014 1200+ species with fun facts, diver tips, and conservation data.',
+      f2d: 'Point your camera at any species. AI identifies it instantly. What you observe can matter. 1200+ species with fun facts, diver tips, and conservation data.',
       f3t: 'Explore & Connect',
       f3d: 'Browse dive sites and dive centers on the map, follow other divers, and share your sightings. A community built around discovery, not exhibition.',
       shLabel: 'LIFE BEYOND WHAT\'S VISIBLE',
       shTitle: 'Every species has a story',
-      shDesc: 'Knowledge, beneath the surface. Conservation status, depth ranges, behavior, fun facts, and practical diver tips \u2014 learning begins below the surface.',
+      shDesc: 'Knowledge, beneath the surface. Conservation status, depth ranges, behavior, fun facts, and practical diver tips. Learning begins below the surface.',
       m1: 'Species', m2: 'IUCN Categories', m3: 'Fun Facts', m4: 'Diver Tips',
       // Social Feed
       shFeedLabel: 'YOUR DIVE COMMUNITY',
@@ -1378,12 +1433,12 @@
       mf1: 'Likes & Comments', mf2: 'Follow Divers', mf3: 'Photo Sharing', mf4: 'Activity Feed',
       shDiveLabel: 'YOUR DIVE, FULLY CAPTURED',
       shDiveTitle: 'Every detail from every dive',
-      shDiveDesc: 'Depth, time, temperature, visibility \u2014 your dive stats recorded alongside photos and the species you encountered. Every dive becomes a complete, searchable record you can relive.',
+      shDiveDesc: 'Depth, time, temperature, visibility: your dive stats recorded alongside photos and the species you encountered. Every dive becomes a complete, searchable record you can relive.',
       md1: 'Max Depth', md2: 'Bottom Time', md3: 'Conditions', md4: 'Dive Rating',
       // AI Detection
       shAiLabel: 'AI-POWERED RECOGNITION',
       shAiTitle: 'Photograph it. <span class="accent">Know what it is.</span>',
-      shAiDesc: 'After your dive, our AI analyzes your underwater photos and identifies every species you captured. No expertise needed \u2014 just photograph what you see. Basic identification also works offline.',
+      shAiDesc: 'After your dive, our AI analyzes your underwater photos and identifies every species you captured. No expertise needed. Just photograph what you see. Basic identification also works offline.',
       ma1: 'Photo Analysis', ma2: 'AI Identification', ma3: 'Post-Dive Tagging', ma4: '1200+ Species',
       shSiteLabel: 'EXPLORE THE WORLD BELOW',
       shSiteTitle: 'Dive sites worth discovering',
@@ -1394,6 +1449,7 @@
       h1t: 'Dive', h1d: 'Go diving and photograph everything you see underwater.',
       h2t: 'Log', h2d: 'Record your dive with AI\u2011powered species identification. Observation becomes knowledge.',
       h3t: 'Discover', h3d: 'Learn about every species, track sightings, and contribute to marine conservation.',
+      betaLabel: 'EARLY ACCESS',
       ctaTitle: 'A more conscious way to learn the ocean',
       ctaSub: 'Join the beta or sign up to be first to know.',
       ctaTestflight: 'Join the Beta on TestFlight',
@@ -1404,7 +1460,7 @@
       storeSmall: 'Coming Soon',
       shCenterLabel: 'DIVE CENTERS',
       shCenterTitle: 'Find dive centers near every site',
-      shCenterDesc: 'Every dive site shows nearby dive centers with ratings, contact info, and opening hours. Switch between dive sites and centers on the map \u2014 everything you need to plan your next immersion in one place.',
+      shCenterDesc: 'Every dive site shows nearby dive centers with ratings, contact info, and opening hours. Switch between dive sites and centers on the map. Everything you need to plan your next immersion in one place.',
       mc1: 'Nearby Centers', mc2: 'Ratings & Reviews', mc3: 'Contact Info', mc4: 'Opening Hours',
       centerCtaText: 'Are you a dive center?',
       centerCtaLink: 'Get listed on Divera \u2192',
@@ -1415,8 +1471,8 @@
       navFeatures: 'Funciones',
       navSpecies: 'Vida Marina',
       navCta: 'Acceso Anticipado',
-      heroBadge: 'Lanzamiento marzo 2026',
-      heroTitle: 'La app de buceo que sabe <span class="accent">lo que viste.</span>',
+      heroBadge: 'Lanzamiento abril 2026',
+      heroTitle: '<span class="accent">La vida,</span> comprendida bajo el agua.',
       heroSub: 'Registra inmersiones, identifica especies marinas con IA y descubre centros de buceo cerca de tus sitios favoritos. El descubrimiento se disfruta m\u00e1s cuando tiene sentido.',
       heroBtn1: 'Acceso Anticipado',
       heroBtn2: 'Saber M\u00e1s',
@@ -1425,14 +1481,14 @@
       fTitle: 'De la observaci\u00f3n a la comprensi\u00f3n',
       fSub: 'Creada por buceadores, para quienes quieren mirar m\u00e1s de cerca y aprender m\u00e1s profundo.',
       f1t: 'Registra y Revive',
-      f1d: 'Cada inmersi\u00f3n guarda conocimiento. Estad\u00edsticas, fotos, condiciones y las especies que encontraste \u2014 todo cuenta una historia completa.',
+      f1d: 'Cada inmersi\u00f3n guarda conocimiento. Estad\u00edsticas, fotos, condiciones y las especies que encontraste. Todo cuenta una historia completa.',
       f2t: 'Identifica y Descubre',
-      f2d: 'Apunta tu c\u00e1mara a cualquier especie. La IA la identifica al instante. Lo que observas puede importar \u2014 1200+ especies con datos, consejos y estado de conservaci\u00f3n.',
+      f2d: 'Apunta tu c\u00e1mara a cualquier especie. La IA la identifica al instante. Lo que observas puede importar. 1200+ especies con datos, consejos y estado de conservaci\u00f3n.',
       f3t: 'Explora y Conecta',
       f3d: 'Explora sitios de buceo y centros en el mapa, sigue a otros buceadores y comparte avistamientos. Una comunidad orientada al descubrimiento, no a la exhibici\u00f3n.',
       shLabel: 'VIDA M\u00c1S ALL\u00c1 DE LO VISIBLE',
       shTitle: 'Cada especie tiene una historia',
-      shDesc: 'Conocimiento bajo la superficie. Estado de conservaci\u00f3n, profundidad, comportamiento, datos curiosos y consejos pr\u00e1cticos \u2014 aprender empieza bajo la superficie.',
+      shDesc: 'Conocimiento bajo la superficie. Estado de conservaci\u00f3n, profundidad, comportamiento, datos curiosos y consejos pr\u00e1cticos. Aprender empieza bajo la superficie.',
       m1: 'Especies', m2: 'Categor\u00edas UICN', m3: 'Datos curiosos', m4: 'Consejos',
       shFeedLabel: 'TU COMUNIDAD DE BUCEO',
       shFeedTitle: 'Cada inmersi\u00f3n es una historia que vale compartir',
@@ -1440,11 +1496,11 @@
       mf1: 'Likes y Comentarios', mf2: 'Seguir Buceadores', mf3: 'Compartir Fotos', mf4: 'Feed de Actividad',
       shDiveLabel: 'TU INMERSI\u00d3N, COMPLETAMENTE CAPTURADA',
       shDiveTitle: 'Cada detalle de cada inmersi\u00f3n',
-      shDiveDesc: 'Profundidad, tiempo, temperatura, visibilidad \u2014 tus estad\u00edsticas de inmersi\u00f3n registradas junto con fotos y las especies que encontraste. Cada inmersi\u00f3n se convierte en un registro completo que puedes revivir.',
+      shDiveDesc: 'Profundidad, tiempo, temperatura, visibilidad: tus estad\u00edsticas de inmersi\u00f3n registradas junto con fotos y las especies que encontraste. Cada inmersi\u00f3n se convierte en un registro completo que puedes revivir.',
       md1: 'Prof. M\u00e1xima', md2: 'Tiempo Fondo', md3: 'Condiciones', md4: 'Valoraci\u00f3n',
       shAiLabel: 'RECONOCIMIENTO CON IA',
       shAiTitle: 'Fotograf\u00edalo. <span class="accent">Descubre qu\u00e9 es.</span>',
-      shAiDesc: 'Despu\u00e9s de tu inmersi\u00f3n, nuestra IA analiza tus fotos submarinas e identifica cada especie capturada. Sin experiencia previa \u2014 solo fotograf\u00eda lo que ves. La identificaci\u00f3n b\u00e1sica tambi\u00e9n funciona sin internet.',
+      shAiDesc: 'Despu\u00e9s de tu inmersi\u00f3n, nuestra IA analiza tus fotos submarinas e identifica cada especie capturada. Sin experiencia previa. Solo fotograf\u00eda lo que ves. La identificaci\u00f3n b\u00e1sica tambi\u00e9n funciona sin internet.',
       ma1: 'An\u00e1lisis de Fotos', ma2: 'Identificaci\u00f3n IA', ma3: 'Post-Inmersi\u00f3n', ma4: '1200+ Especies',
       shSiteLabel: 'EXPLORA EL MUNDO SUBMARINO',
       shSiteTitle: 'Sitios de buceo por descubrir',
@@ -1455,6 +1511,7 @@
       h1t: 'Bucea', h1d: 'Haz tu inmersi\u00f3n y fotograf\u00eda todo lo que veas bajo el agua.',
       h2t: 'Registra', h2d: 'Registra tu inmersi\u00f3n con identificaci\u00f3n de especies por IA. La observaci\u00f3n se vuelve conocimiento.',
       h3t: 'Descubre', h3d: 'Aprende sobre cada especie, sigue avistamientos y contribuye a la conservaci\u00f3n marina.',
+      betaLabel: 'ACCESO ANTICIPADO',
       ctaTitle: 'Una forma m\u00e1s consciente de conocer el oc\u00e9ano',
       ctaSub: '\u00danete a la beta o reg\u00edstrate para ser el primero en saberlo.',
       ctaTestflight: 'Unirse a la Beta en TestFlight',
@@ -1465,7 +1522,7 @@
       storeSmall: 'Pr\u00f3ximamente',
       shCenterLabel: 'CENTROS DE BUCEO',
       shCenterTitle: 'Encuentra centros de buceo en cada sitio',
-      shCenterDesc: 'Cada sitio de buceo muestra los centros cercanos con valoraciones, datos de contacto y horarios. Alterna entre sitios y centros en el mapa \u2014 todo lo que necesitas para planificar tu pr\u00f3xima inmersi\u00f3n.',
+      shCenterDesc: 'Cada sitio de buceo muestra los centros cercanos con valoraciones, datos de contacto y horarios. Alterna entre sitios y centros en el mapa. Todo lo que necesitas para planificar tu pr\u00f3xima inmersi\u00f3n.',
       mc1: 'Centros Cercanos', mc2: 'Valoraciones', mc3: 'Contacto', mc4: 'Horarios',
       centerCtaText: '\u00bfEres un centro de buceo?',
       centerCtaLink: 'Ap\u00e1rece en Divera \u2192',
@@ -1476,8 +1533,8 @@
       navFeatures: 'Fonctionnalit\u00e9s',
       navSpecies: 'Vie Marine',
       navCta: 'Acc\u00e8s Anticip\u00e9',
-      heroBadge: 'Lancement mars 2026',
-      heroTitle: 'L\u2019app de plong\u00e9e qui sait <span class="accent">ce que vous avez vu.</span>',
+      heroBadge: 'Lancement avril 2026',
+      heroTitle: '<span class="accent">La vie,</span> comprise sous l\u2019eau.',
       heroSub: 'Enregistrez vos plong\u00e9es, identifiez les esp\u00e8ces marines avec l\u2019IA et trouvez des centres de plong\u00e9e pr\u00e8s de vos sites pr\u00e9f\u00e9r\u00e9s. La d\u00e9couverte est plus belle quand elle a du sens.',
       heroBtn1: 'Acc\u00e8s Anticip\u00e9',
       heroBtn2: 'En Savoir Plus',
@@ -1486,14 +1543,14 @@
       fTitle: 'De l\u2019observation \u00e0 la compr\u00e9hension',
       fSub: 'Con\u00e7ue par des plongeurs, pour ceux qui veulent regarder de plus pr\u00e8s et apprendre en profondeur.',
       f1t: 'Enregistrez et Revivez',
-      f1d: 'Chaque plong\u00e9e est source de savoir. Statistiques, photos, conditions et esp\u00e8ces rencontr\u00e9es \u2014 chaque plong\u00e9e raconte une histoire compl\u00e8te.',
+      f1d: 'Chaque plong\u00e9e est source de savoir. Statistiques, photos, conditions et esp\u00e8ces rencontr\u00e9es. Chaque plong\u00e9e raconte une histoire compl\u00e8te.',
       f2t: 'Identifiez et D\u00e9couvrez',
       f2d: 'Pointez votre cam\u00e9ra vers n\u2019importe quelle esp\u00e8ce. L\u2019IA l\u2019identifie instantan\u00e9ment. 1200+ esp\u00e8ces avec anecdotes, conseils et donn\u00e9es de conservation.',
       f3t: 'Explorez et Connectez',
       f3d: 'Parcourez les sites et centres de plong\u00e9e sur la carte, suivez d\u2019autres plongeurs et partagez vos observations. Une communaut\u00e9 construite autour de la d\u00e9couverte.',
       shLabel: 'LA VIE AU-DEL\u00c0 DU VISIBLE',
       shTitle: 'Chaque esp\u00e8ce a une histoire',
-      shDesc: 'Le savoir, sous la surface. Statut de conservation, profondeurs, comportement, anecdotes et conseils pratiques \u2014 apprendre commence sous la surface.',
+      shDesc: 'Le savoir, sous la surface. Statut de conservation, profondeurs, comportement, anecdotes et conseils pratiques. Apprendre commence sous la surface.',
       m1: 'Esp\u00e8ces', m2: 'Cat\u00e9gories UICN', m3: 'Anecdotes', m4: 'Conseils',
       shFeedLabel: 'VOTRE COMMUNAUT\u00c9 DE PLONG\u00c9E',
       shFeedTitle: 'Chaque plong\u00e9e est une histoire \u00e0 partager',
@@ -1501,11 +1558,11 @@
       mf1: 'Likes et Commentaires', mf2: 'Suivre des Plongeurs', mf3: 'Partage de Photos', mf4: 'Fil d\u2019Activit\u00e9',
       shDiveLabel: 'VOTRE PLONG\u00c9E, ENTI\u00c8REMENT CAPTUR\u00c9E',
       shDiveTitle: 'Chaque d\u00e9tail de chaque plong\u00e9e',
-      shDiveDesc: 'Profondeur, dur\u00e9e, temp\u00e9rature, visibilit\u00e9 \u2014 vos statistiques de plong\u00e9e enregistr\u00e9es avec photos et esp\u00e8ces rencontr\u00e9es. Chaque plong\u00e9e devient un journal complet et consultable.',
+      shDiveDesc: 'Profondeur, dur\u00e9e, temp\u00e9rature, visibilit\u00e9\u00a0: vos statistiques de plong\u00e9e enregistr\u00e9es avec photos et esp\u00e8ces rencontr\u00e9es. Chaque plong\u00e9e devient un journal complet et consultable.',
       md1: 'Prof. Max', md2: 'Temps au Fond', md3: 'Conditions', md4: '\u00c9valuation',
       shAiLabel: 'RECONNAISSANCE PAR IA',
       shAiTitle: 'Photographiez-le. <span class="accent">Identifiez-le.</span>',
-      shAiDesc: 'Apr\u00e8s votre plong\u00e9e, notre IA analyse vos photos sous-marines et identifie chaque esp\u00e8ce captur\u00e9e. Aucune expertise n\u00e9cessaire \u2014 il suffit de photographier ce que vous voyez. L\u2019identification de base fonctionne aussi hors ligne.',
+      shAiDesc: 'Apr\u00e8s votre plong\u00e9e, notre IA analyse vos photos sous-marines et identifie chaque esp\u00e8ce captur\u00e9e. Aucune expertise n\u00e9cessaire. Il suffit de photographier ce que vous voyez. L\u2019identification de base fonctionne aussi hors ligne.',
       ma1: 'Analyse de Photos', ma2: 'Identification IA', ma3: 'Post-Plong\u00e9e', ma4: '1200+ Esp\u00e8ces',
       shSiteLabel: 'EXPLOREZ LE MONDE SOUS-MARIN',
       shSiteTitle: 'Des sites de plong\u00e9e \u00e0 d\u00e9couvrir',
@@ -1516,6 +1573,7 @@
       h1t: 'Plongez', h1d: 'Faites votre plong\u00e9e et photographiez tout ce que vous voyez sous l\u2019eau.',
       h2t: 'Enregistrez', h2d: 'Enregistrez votre plong\u00e9e avec identification IA des esp\u00e8ces. L\u2019observation devient connaissance.',
       h3t: 'D\u00e9couvrez', h3d: 'Apprenez sur chaque esp\u00e8ce, suivez les observations et contribuez \u00e0 la conservation marine.',
+      betaLabel: 'ACC\u00c8S ANTICIP\u00c9',
       ctaTitle: 'Une fa\u00e7on plus consciente de conna\u00eetre l\u2019oc\u00e9an',
       ctaSub: 'Rejoignez la b\u00eata ou inscrivez-vous pour \u00eatre le premier inform\u00e9.',
       ctaTestflight: 'Rejoindre la B\u00eata sur TestFlight',
@@ -1526,7 +1584,7 @@
       storeSmall: 'Bient\u00f4t disponible',
       shCenterLabel: 'CENTRES DE PLONG\u00c9E',
       shCenterTitle: 'Trouvez des centres pr\u00e8s de chaque site',
-      shCenterDesc: 'Chaque site affiche les centres de plong\u00e9e \u00e0 proximit\u00e9 avec avis, coordonn\u00e9es et horaires. Basculez entre sites et centres sur la carte \u2014 tout pour planifier votre prochaine plong\u00e9e.',
+      shCenterDesc: 'Chaque site affiche les centres de plong\u00e9e \u00e0 proximit\u00e9 avec avis, coordonn\u00e9es et horaires. Basculez entre sites et centres sur la carte. Tout pour planifier votre prochaine plong\u00e9e.',
       mc1: 'Centres \u00e0 proximit\u00e9', mc2: 'Avis & Notes', mc3: 'Contact', mc4: 'Horaires',
       centerCtaText: 'Vous \u00eates un centre de plong\u00e9e\u00a0?',
       centerCtaLink: 'Rejoignez Divera \u2192',
