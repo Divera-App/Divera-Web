@@ -856,6 +856,24 @@
   }
 
   /* ============================================ */
+  /* MANIFESTO                                    */
+  /* ============================================ */
+  .manifesto {
+    text-align: center;
+    padding: 100px 48px;
+  }
+  .manifesto p {
+    font-size: 18px; font-weight: 400;
+    line-height: 1.85; letter-spacing: -0.2px;
+    color: rgba(255,255,255,0.62);
+    max-width: 640px; margin: 0 auto;
+    font-family: var(--font-body);
+  }
+  @media (max-width: 768px) {
+    .manifesto { padding: 72px 24px; }
+    .manifesto p { font-size: 16px; }
+  }
+
   /* BETA JOIN CARD                               */
   /* ============================================ */
   .beta-card-wrap {
@@ -1048,12 +1066,15 @@
     font-family: var(--font-display);
     font-size: 15px; font-weight: 500; color: var(--text-secondary);
   }
-  .foot-right { font-size: 12px; color: var(--text-dim); letter-spacing: -0.2px; }
+  .foot-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; text-align: right; }
+  .foot-right span { font-size: 12px; color: var(--text-dim); letter-spacing: -0.2px; }
+  .foot-tagline { font-size: 11px; color: rgba(255,255,255,0.28); letter-spacing: -0.1px; font-family: var(--font-body); }
   .foot-center { font-size: 12px; }
   .foot-center a { color: var(--text-dim); text-decoration: none; transition: color 0.3s; letter-spacing: -0.1px; }
   .foot-center a:hover { color: var(--coral); }
   @media (max-width: 768px) {
     footer { padding: 24px 20px; flex-direction: column; text-align: center; }
+    .foot-right { align-items: center; }
   }
 
   .nav-manta { height: 24px; width: auto; display: block; }
@@ -1166,6 +1187,7 @@
     font-size: 13px; color: var(--text-dim); letter-spacing: -0.1px;
   }
   .dc-modal-footer p { margin-bottom: 16px; line-height: 1.6; }
+  .dc-modal-values { font-size: 12px; color: rgba(255,255,255,0.38); font-style: italic; }
   .dc-modal-footer a {
     color: var(--coral); text-decoration: underline;
     text-underline-offset: 2px; font-weight: 600;
@@ -1421,6 +1443,11 @@
   <div class="stat reveal reveal-d3"><div class="stat-num">iOS</div><div class="stat-label" data-i18n="s4l">Native</div></div>
 </div>
 
+<!-- MANIFESTO -->
+<div class="manifesto">
+  <p class="reveal" data-i18n="manifesto">We believe the diving community holds something extraordinary: millions of eyes beneath the surface, every week, all over the world. Right now, most of that observation disappears after the dive. We're building Divera to change that. A place where every dive feeds understanding, and understanding feeds protection. We're not there yet. But with the right community, we will be.</p>
+</div>
+
 <!-- BETA JOIN CARD -->
 <div class="beta-card-wrap" id="cta">
   <div class="beta-card reveal">
@@ -1456,7 +1483,10 @@
     <img src="logo-full.png" alt="Divera" style="height:20px;width:auto;display:block;opacity:0.7;">
   </div>
 
-  <div class="foot-right" data-i18n="footerR">© 2026 Divera. All rights reserved.</div>
+  <div class="foot-right">
+    <p class="foot-tagline" data-i18n="footerTagline">Built in Spain by divers who think the ocean deserves better tools.</p>
+    <span data-i18n="footerR">© 2026 Divera. All rights reserved.</span>
+  </div>
 </footer>
 
 <!-- DIVE CENTER DASHBOARD MODAL -->
@@ -1475,6 +1505,7 @@
     </ul>
     <div class="dc-modal-footer">
       <p data-i18n="dcModalNote">Interested in becoming a launch partner? We're offering special deals and free services for centers that join before we go live.</p>
+      <p class="dc-modal-values" data-i18n="dcModalValues">We're looking for dive centers that believe diving should leave the ocean better than we found it. Early partners help shape what Divera becomes.</p>
       <a href="mailto:divera.app@gmail.com?subject=Dive%20Center%20Dashboard%20Early%20Access" class="center-cta-link" data-i18n="dcModalNoteLink">Get in touch &#x2192;</a>
     </div>
   </div>
@@ -1605,7 +1636,10 @@
       dcF4: 'Customer ratings & review tools',
       dcF5: 'Species sightings from your divers',
       dcModalNote: 'Interested in becoming a launch partner? We\'re offering special deals and free services for centers that join before we go live.',
+      dcModalValues: 'We\'re looking for dive centers that believe diving should leave the ocean better than we found it. Early partners help shape what Divera becomes.',
       dcModalNoteLink: 'Get in touch \u2192',
+      manifesto: 'We believe the diving community holds something extraordinary: millions of eyes beneath the surface, every week, all over the world. Right now, most of that observation disappears after the dive. We\u2019re building Divera to change that. A place where every dive feeds understanding, and understanding feeds protection. We\u2019re not there yet. But with the right community, we will be.',
+      footerTagline: 'From Spain. Built by divers, for divers.',
       footerR: '\u00a9 2026 Divera. All rights reserved.',
       scrFeed: 'Activity Feed', scrDive: 'Dive Log', scrSpecies: 'Marine Life', scrFish: 'Species Detail',
     },
@@ -1678,7 +1712,10 @@
       dcF4: 'Valoraciones y gesti\u00f3n de rese\u00f1as',
       dcF5: 'Avistamientos de tus buceadores',
       dcModalNote: '\u00bfTe interesa ser un centro colaborador? Ofrecemos condiciones especiales y servicios gratuitos a los centros que se unan antes del lanzamiento.',
+      dcModalValues: 'Buscamos centros de buceo que crean que bucear deber\u00eda dejar el oc\u00e9ano en mejor estado del que lo encontramos. Los primeros socios ayudan a dar forma a lo que Divera se convierte.',
       dcModalNoteLink: 'Cont\u00e1ctanos \u2192',
+      manifesto: 'Creemos que la comunidad de buceo guarda algo extraordinario: millones de ojos bajo la superficie, cada semana, en todo el mundo. Ahora mismo, la mayor parte de esa observaci\u00f3n desaparece despu\u00e9s de cada inmersi\u00f3n. Estamos construyendo Divera para cambiar eso. Un lugar donde cada inmersi\u00f3n alimenta el conocimiento, y el conocimiento alimenta la protecci\u00f3n. Todav\u00eda no hemos llegado. Pero con la comunidad adecuada, lo haremos.',
+      footerTagline: 'Desde Espa\u00f1a. Hecho por buceadores, para buceadores.',
       footerR: '\u00a9 2026 Divera. Todos los derechos reservados.',
       scrFeed: 'Feed', scrDive: 'Inmersi\u00f3n', scrSpecies: 'Vida Marina', scrFish: 'Detalle Especie',
     },
@@ -1751,7 +1788,10 @@
       dcF4: 'Avis clients et outils d\u2019\u00e9valuation',
       dcF5: 'Observations d\u2019esp\u00e8ces de vos plongeurs',
       dcModalNote: 'Int\u00e9ress\u00e9 par un partenariat de lancement\u00a0? Nous proposons des conditions sp\u00e9ciales et des services gratuits aux centres qui rejoignent Divera avant le lancement.',
+      dcModalValues: 'Nous cherchons des centres de plong\u00e9e qui croient que la plong\u00e9e doit laisser l\u2019oc\u00e9an en meilleur \u00e9tat qu\u2019on ne l\u2019a trouv\u00e9. Les premiers partenaires contribuent \u00e0 fa\u00e7onner ce que Divera devient.',
       dcModalNoteLink: 'Contactez-nous \u2192',
+      manifesto: 'Nous croyons que la communaut\u00e9 de plong\u00e9e recèle quelque chose d\u2019extraordinaire : des millions d\u2019yeux sous la surface, chaque semaine, partout dans le monde. Aujourd\u2019hui, la majeure partie de ces observations dispara\u00eet apr\u00e8s la plong\u00e9e. Nous construisons Divera pour changer cela. Un endroit o\u00f9 chaque plong\u00e9e nourrit la compr\u00e9hension, et la compr\u00e9hension nourrit la protection. Nous n\u2019y sommes pas encore. Mais avec la bonne communaut\u00e9, nous y arriverons.',
+      footerTagline: 'Depuis l\u2019Espagne. Con\u00e7u par des plongeurs, pour des plongeurs.',
       footerR: '\u00a9 2026 Divera. Tous droits r\u00e9serv\u00e9s.',
       scrFeed: 'Fil d\u2019activit\u00e9', scrDive: 'Carnet de plong\u00e9e', scrSpecies: 'Vie Marine', scrFish: 'D\u00e9tail Esp\u00e8ce',
     },
@@ -1824,7 +1864,10 @@
       dcF4: 'Valoracions i gesti\u00f3 de ressenyes',
       dcF5: 'Avistaments d\u2019esp\u00e8cies dels teus bussejadors',
       dcModalNote: 'T\u2019interessa ser un centre col\u00b7laborador? Oferim condicions especials i serveis gratu\u00efts als centres que s\u2019uneixin abans del llan\u00e7ament.',
+      dcModalValues: 'Busquem centres de busseig que creguin que bussejar hauria de deixar l\u2019oce\u00e0 en millor estat del que el vam trobar. Els primers socis ajuden a donar forma al que Divera es converteix.',
       dcModalNoteLink: 'Contacta\u2019ns \u2192',
+      manifesto: 'Creiem que la comunitat de busseig guarda alguna cosa extraordin\u00e0ria: milions d\u2019ulls sota la superf\u00edcie, cada setmana, arreu del m\u00f3n. Ara mateix, la major part d\u2019aquella observaci\u00f3 desapareix despr\u00e9s de cada immersi\u00f3. Estem construint Divera per canviar aquesta situaci\u00f3. Un lloc on cada immersi\u00f3 alimenta el coneixement, i el coneixement alimenta la protecci\u00f3. Encara no hi som. Per\u00f2 amb la comunitat adequada, hi serem.',
+      footerTagline: 'Des d\u2019Espanya. Fet per bussejadors, per a bussejadors.',
       footerR: '\u00a9 2026 Divera. Tots els drets reservats.',
       scrFeed: 'Feed', scrDive: 'Immersi\u00f3', scrSpecies: 'Vida Marina', scrFish: 'Detall Esp\u00e8cie',
     }
