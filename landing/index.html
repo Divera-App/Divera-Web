@@ -787,8 +787,10 @@
   @media (max-width: 900px) {
     .ai-hero { padding: 60px 20px 40px; }
     .ai-hero-content { grid-template-columns: 1fr; gap: 48px; }
-    .ai-detection-photo { width: 300px; }
-    .ai-hero-visual .showcase-phone { display: none; }
+    .ai-hero-visual { display: flex; align-items: flex-end; justify-content: center; gap: 0; }
+    .ai-detection-photo { width: 190px; flex-shrink: 0; position: relative; z-index: 2; }
+    .ai-hero-visual .showcase-phone { display: block; position: relative; width: 140px; flex-shrink: 0; overflow: hidden; margin-left: -30px; transform: translateY(-60px); z-index: 1; }
+    .ai-hero-visual .showcase-phone img { margin-top: -50px; }
   }
 
   /* Centered showcase — text above, phones below */
@@ -1067,6 +1069,110 @@
     .metric-num { font-size: 18px; }
     .torch-btn { padding: 16px 32px; font-size: 15px; }
   }
+
+  /* ============================================ */
+  /* DIVE CENTER DASHBOARD BUTTON & MODAL         */
+  /* ============================================ */
+  .nav-dc-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: none; border: none; padding: 0;
+    font-family: var(--font-body); font-size: 14px; font-weight: 500;
+    color: var(--text-secondary); cursor: pointer;
+    transition: color 0.3s; letter-spacing: -0.2px;
+  }
+  .nav-dc-btn:hover { color: var(--text-primary); }
+  .nav-dc-soon {
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 0.5px; text-transform: uppercase;
+    color: var(--coral); background: var(--coral-soft);
+    border-radius: 4px; padding: 2px 5px;
+  }
+  @media (max-width: 768px) { .nav-dc-btn { display: none; } }
+  .dc-section-btn {
+    display: block; margin-top: 20px;
+    background: none; border: none; padding: 0;
+    font-family: var(--font-body); font-size: 14px; font-weight: 600;
+    color: var(--coral); cursor: pointer;
+    letter-spacing: -0.2px; transition: opacity 0.2s;
+    text-decoration: underline; text-underline-offset: 3px;
+  }
+  .dc-section-btn:hover { opacity: 0.7; }
+  .dc-modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    z-index: 9000;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s var(--ease-out);
+    padding: 20px;
+  }
+  .dc-modal-overlay.open { opacity: 1; pointer-events: all; }
+  .dc-modal {
+    background: var(--surface);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 28px; padding: 48px;
+    max-width: 500px; width: 100%;
+    position: relative; overflow: hidden;
+    transform: translateY(20px);
+    transition: transform 0.35s var(--ease-out);
+  }
+  .dc-modal-overlay.open .dc-modal { transform: translateY(0); }
+  .dc-modal::before {
+    content: ''; position: absolute;
+    top: -80px; right: -60px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(255,90,98,0.08) 0%, transparent 65%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .dc-modal-close {
+    position: absolute; top: 16px; right: 16px;
+    background: rgba(255,255,255,0.06); border: none;
+    border-radius: 50%; width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: var(--text-secondary);
+    font-size: 20px; line-height: 1; transition: background 0.2s;
+  }
+  .dc-modal-close:hover { background: rgba(255,255,255,0.1); }
+  .dc-modal-title {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 800; letter-spacing: -1.5px; line-height: 1.1;
+    margin: 12px 0 14px;
+  }
+  .dc-modal-desc {
+    font-size: 15px; color: var(--text-secondary);
+    line-height: 1.65; margin-bottom: 28px; letter-spacing: -0.2px;
+  }
+  .dc-feature-list {
+    list-style: none; display: flex;
+    flex-direction: column; gap: 8px; margin-bottom: 28px;
+  }
+  .dc-feature-list li {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 14px; color: var(--text-secondary);
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 10px; letter-spacing: -0.1px;
+  }
+  .dc-feature-list li::before {
+    content: ''; width: 5px; height: 5px;
+    background: var(--coral); border-radius: 50%; flex-shrink: 0;
+  }
+  .dc-modal-footer {
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    font-size: 13px; color: var(--text-dim); letter-spacing: -0.1px;
+  }
+  .dc-modal-footer p { margin-bottom: 16px; line-height: 1.6; }
+  .dc-modal-footer a {
+    color: var(--coral); text-decoration: underline;
+    text-underline-offset: 2px; font-weight: 600;
+  }
+  @media (max-width: 600px) {
+    .dc-modal { padding: 32px 24px; border-radius: 20px; }
+  }
 </style>
 </head>
 <body>
@@ -1088,8 +1194,10 @@
     <img class="nav-full-logo" src="logo-full.png" alt="Divera">
   </div>
   <div class="nav-right">
-    <a href="#features" data-i18n="navFeatures">Features</a>
-    <a href="#species" data-i18n="navSpecies">Marine Life</a>
+    <button class="nav-dc-btn" id="dcPortalBtn">
+      <span data-i18n="dcNavBtn">For Dive Centers</span>
+      <span class="nav-dc-soon" data-i18n="dcBadge">Soon</span>
+    </button>
     <div class="lang-switcher" id="langSwitcher">
       <button class="lang-btn" id="langBtn" aria-label="Change language">
         <span id="langCurrent">EN</span>
@@ -1099,6 +1207,7 @@
         <button class="lang-option" data-lang="en"><span class="lang-flag">🇬🇧</span> English</button>
         <button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span> Espa&#241;ol</button>
         <button class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span> Fran&#231;ais</button>
+        <button class="lang-option" data-lang="ca"><span class="lang-flag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" width="20" height="14" style="border-radius:2px;vertical-align:middle;display:inline-block"><rect width="3" height="2" fill="#FCDD09"/><rect y=".2222" width="3" height=".2222" fill="#DA121A"/><rect y=".6667" width="3" height=".2222" fill="#DA121A"/><rect y="1.1111" width="3" height=".2222" fill="#DA121A"/><rect y="1.5556" width="3" height=".2222" fill="#DA121A"/></svg></span> Catal&#224;</button>
       </div>
     </div>
     <a href="#cta" class="nav-cta" data-i18n="navCta">Early Access</a>
@@ -1144,11 +1253,11 @@
       <div class="section-label reveal" data-i18n="shAiLabel">AI-Powered Recognition</div>
       <h2 class="ai-hero-title reveal reveal-d1" data-i18n="shAiTitle">Photograph it. <span class="accent">Know what it is.</span></h2>
       <p class="ai-hero-desc reveal reveal-d2" data-i18n="shAiDesc">After your dive, our AI analyzes your underwater photos and identifies every species you captured. No expertise needed. Just photograph what you see. Basic identification also works offline.</p>
-      <div class="ai-capabilities reveal reveal-d3">
-        <span data-i18n="ma1">Photo Analysis</span><span class="cap-dot">·</span>
-        <span data-i18n="ma2">AI Identification</span><span class="cap-dot">·</span>
-        <span data-i18n="ma3">Post-Dive Tagging</span><span class="cap-dot">·</span>
-        <span data-i18n="ma4">1200+ Species</span>
+      <div class="showcase-metrics reveal reveal-d3">
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div><div class="metric-label" data-i18n="ma1">Photo Analysis</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="metric-label" data-i18n="ma2">AI Identification</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div><div class="metric-label" data-i18n="ma3">Post-Dive Tagging</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div><div class="metric-label" data-i18n="ma4">1200+ Species</div></div>
       </div>
     </div>
     <div class="ai-hero-visual">
@@ -1288,6 +1397,7 @@
       <div class="center-cta reveal-right reveal-d4">
         <p data-i18n="centerCtaText">Are you a dive center?</p>
         <a href="mailto:divera.app@gmail.com?subject=Dive%20Center%20Listing" class="center-cta-link" data-i18n="centerCtaLink">Get listed on Divera →</a>
+        <button class="dc-section-btn" id="dcSectionBtn" data-i18n="dcSectionBtn">See partner benefits →</button>
       </div>
     </div>
     <div class="showcase-visual">
@@ -1350,6 +1460,27 @@
   </div>
   <div class="foot-right" data-i18n="footerR">© 2026 Divera. All rights reserved.</div>
 </footer>
+
+<!-- DIVE CENTER DASHBOARD MODAL -->
+<div class="dc-modal-overlay" id="dcModal">
+  <div class="dc-modal">
+    <button class="dc-modal-close" id="dcModalClose" aria-label="Close">&#x2715;</button>
+    <div class="section-label" data-i18n="dcModalLabel">COMING SOON</div>
+    <h2 class="dc-modal-title" data-i18n="dcModalTitle">Your Dive Center, Fully Connected</h2>
+    <p class="dc-modal-desc" data-i18n="dcModalDesc">We're building a dedicated portal for dive centers. Manage your presence, grow bookings, and connect with divers. We're looking for launch partners and offering free services before the app is released.</p>
+    <ul class="dc-feature-list">
+      <li data-i18n="dcF1">Analytics &amp; visibility dashboard</li>
+      <li data-i18n="dcF2">Online booking management</li>
+      <li data-i18n="dcF3">Featured listing on dive site maps</li>
+      <li data-i18n="dcF4">Customer ratings &amp; review tools</li>
+      <li data-i18n="dcF5">Species sightings from your divers</li>
+    </ul>
+    <div class="dc-modal-footer">
+      <p data-i18n="dcModalNote">Interested in becoming a launch partner? We're offering special deals and free services for centers that join before we go live.</p>
+      <a href="mailto:divera.app@gmail.com?subject=Dive%20Center%20Dashboard%20Early%20Access" class="center-cta-link" data-i18n="dcModalNoteLink">Get in touch &#x2192;</a>
+    </div>
+  </div>
+</div>
 
 <script>
   // ============================================
@@ -1466,6 +1597,17 @@
       mc1: 'Nearby Centers', mc2: 'Ratings & Reviews', mc3: 'Contact Info', mc4: 'Opening Hours',
       centerCtaText: 'Are you a dive center?',
       centerCtaLink: 'Get listed on Divera \u2192',
+      dcNavBtn: 'Dive Centers Dashboard', dcSectionBtn: 'See partner benefits \u2192', dcBtnText: 'Center Dashboard', dcBadge: 'Soon',
+      dcModalLabel: 'COMING SOON',
+      dcModalTitle: 'Your Dive Center, Fully Connected',
+      dcModalDesc: 'We\'re building a dedicated portal for dive centers. Manage your presence, grow bookings, and connect with divers. We\'re looking for launch partners and offering free services before the app is released.',
+      dcF1: 'Analytics & visibility dashboard',
+      dcF2: 'Online booking management',
+      dcF3: 'Featured listing on dive site maps',
+      dcF4: 'Customer ratings & review tools',
+      dcF5: 'Species sightings from your divers',
+      dcModalNote: 'Interested in becoming a launch partner? We\'re offering special deals and free services for centers that join before we go live.',
+      dcModalNoteLink: 'Get in touch \u2192',
       footerR: '\u00a9 2026 Divera. All rights reserved.',
       scrFeed: 'Activity Feed', scrDive: 'Dive Log', scrSpecies: 'Marine Life', scrFish: 'Species Detail',
     },
@@ -1473,7 +1615,7 @@
       navFeatures: 'Funciones',
       navSpecies: 'Vida Marina',
       navCta: 'Acceso Anticipado',
-      heroBadge: 'Lanzamiento abril 2026',
+      heroBadge: 'Lanzamiento Abril 2026',
       heroTitle: '<span class="accent">La vida,</span> comprendida bajo el agua.',
       heroSub: 'Registra inmersiones, identifica especies marinas con IA y descubre centros de buceo cerca de tus sitios favoritos. El descubrimiento se disfruta m\u00e1s cuando tiene sentido.',
       heroBtn1: 'Acceso Anticipado',
@@ -1483,7 +1625,7 @@
       fTitle: 'De la observaci\u00f3n a la comprensi\u00f3n',
       fSub: 'Creada por buceadores, para quienes quieren mirar m\u00e1s de cerca y aprender en profundidad.',
       f1t: 'Registra y Revive',
-      f1d: 'Cada inmersi\u00f3n guarda conocimiento. Estad\u00edsticas, fotos, condiciones y las especies que encontraste. Todo cuenta una historia completa.',
+      f1d: 'Cada inmersi\u00f3n guarda conocimiento. Estad\u00edsticas, fotos, condiciones y las especies que encontraste. Cada salida es un registro completo.',
       f2t: 'Identifica y Descubre',
       f2d: 'Apunta tu c\u00e1mara a cualquier especie. La IA la identifica al instante. Lo que observas puede importar. 1200+ especies con datos, consejos y estado de conservaci\u00f3n.',
       f3t: 'Explora y Conecta',
@@ -1493,9 +1635,9 @@
       shDesc: 'Conocimiento bajo la superficie. Estado de conservaci\u00f3n, profundidad, comportamiento, datos curiosos y consejos pr\u00e1cticos. Aprender empieza bajo la superficie.',
       m1: 'Especies', m2: 'Categor\u00edas UICN', m3: 'Datos curiosos', m4: 'Consejos',
       shFeedLabel: 'TU COMUNIDAD DE BUCEO',
-      shFeedTitle: 'Cada inmersi\u00f3n es una historia que vale compartir',
-      shFeedDesc: 'Un feed social hecho para buceadores. Descubre lo que tu comunidad encuentra, dale like y comenta inmersiones, sigue a tus buceadores favoritos y comparte tus experiencias submarinas.',
-      mf1: 'Likes y Comentarios', mf2: 'Seguir Buceadores', mf3: 'Compartir Fotos', mf4: 'Feed de Actividad',
+      shFeedTitle: 'Cada inmersi\u00f3n es una historia que merece compartirse',
+      shFeedDesc: 'Un feed social pensado para buceadores. Descubre lo que encuentra tu comunidad, dale me gusta y comenta inmersiones, sigue a tus buceadores favoritos y comparte tus experiencias submarinas.',
+      mf1: 'Me gusta y Comentarios', mf2: 'Seguir Buceadores', mf3: 'Compartir Fotos', mf4: 'Feed de Actividad',
       shDiveLabel: 'TU INMERSI\u00d3N, COMPLETAMENTE CAPTURADA',
       shDiveTitle: 'Cada detalle de cada inmersi\u00f3n',
       shDiveDesc: 'Profundidad, tiempo, temperatura, visibilidad: tus estad\u00edsticas de inmersi\u00f3n registradas junto con fotos y las especies que encontraste. Cada inmersi\u00f3n se convierte en un registro completo que puedes revivir.',
@@ -1511,7 +1653,7 @@
       hLabel: 'C\u00d3MO FUNCIONA',
       hTitle: 'Mira m\u00e1s de cerca. Aprende en profundidad.',
       h1t: 'Bucea', h1d: 'Haz tu inmersi\u00f3n y fotograf\u00eda todo lo que veas bajo el agua.',
-      h2t: 'Registra', h2d: 'Registra tu inmersi\u00f3n con identificaci\u00f3n de especies por IA. La observaci\u00f3n se vuelve conocimiento.',
+      h2t: 'Registra', h2d: 'Registra tu inmersi\u00f3n con identificaci\u00f3n de especies por IA. La observaci\u00f3n se convierte en conocimiento.',
       h3t: 'Descubre', h3d: 'Aprende sobre cada especie, sigue avistamientos y contribuye a la conservaci\u00f3n marina.',
       betaLabel: 'ACCESO ANTICIPADO',
       ctaTitle: 'Una forma m\u00e1s consciente de conocer el oc\u00e9ano',
@@ -1527,7 +1669,18 @@
       shCenterDesc: 'Cada sitio de buceo muestra los centros cercanos con valoraciones, datos de contacto y horarios. Alterna entre sitios y centros en el mapa. Todo lo que necesitas para planificar tu pr\u00f3xima inmersi\u00f3n.',
       mc1: 'Centros Cercanos', mc2: 'Valoraciones', mc3: 'Contacto', mc4: 'Horarios',
       centerCtaText: '\u00bfEres un centro de buceo?',
-      centerCtaLink: 'Ap\u00e1rece en Divera \u2192',
+      centerCtaLink: 'Aparece en Divera \u2192',
+      dcNavBtn: 'Panel de Centros', dcSectionBtn: 'Ver ventajas para socios \u2192', dcBtnText: 'Panel de Centro', dcBadge: 'Pronto',
+      dcModalLabel: 'PR\u00d3XIMAMENTE',
+      dcModalTitle: 'Tu Centro de Buceo, Totalmente Conectado',
+      dcModalDesc: 'Estamos creando un portal dedicado para centros de buceo. Gestiona tu presencia, aumenta tus reservas y conecta con buceadores. Buscamos centros colaboradores y ofrecemos servicios gratuitos antes del lanzamiento.',
+      dcF1: 'Panel de anal\u00edticas y visibilidad',
+      dcF2: 'Gesti\u00f3n de reservas online',
+      dcF3: 'Posicionamiento destacado en el mapa',
+      dcF4: 'Valoraciones y gesti\u00f3n de rese\u00f1as',
+      dcF5: 'Avistamientos de tus buceadores',
+      dcModalNote: '\u00bfTe interesa ser un centro colaborador? Ofrecemos condiciones especiales y servicios gratuitos a los centros que se unan antes del lanzamiento.',
+      dcModalNoteLink: 'Cont\u00e1ctanos \u2192',
       footerR: '\u00a9 2026 Divera. Todos los derechos reservados.',
       scrFeed: 'Feed', scrDive: 'Inmersi\u00f3n', scrSpecies: 'Vida Marina', scrFish: 'Detalle Especie',
     },
@@ -1535,7 +1688,7 @@
       navFeatures: 'Fonctionnalit\u00e9s',
       navSpecies: 'Vie Marine',
       navCta: 'Acc\u00e8s Anticip\u00e9',
-      heroBadge: 'Lancement avril 2026',
+      heroBadge: 'Lancement Avril 2026',
       heroTitle: '<span class="accent">La vie,</span> comprise sous l\u2019eau.',
       heroSub: 'Enregistrez vos plong\u00e9es, identifiez les esp\u00e8ces marines avec l\u2019IA et trouvez des centres de plong\u00e9e pr\u00e8s de vos sites pr\u00e9f\u00e9r\u00e9s. La d\u00e9couverte est plus belle quand elle a du sens.',
       heroBtn1: 'Acc\u00e8s Anticip\u00e9',
@@ -1590,13 +1743,97 @@
       mc1: 'Centres \u00e0 proximit\u00e9', mc2: 'Avis & Notes', mc3: 'Contact', mc4: 'Horaires',
       centerCtaText: 'Vous \u00eates un centre de plong\u00e9e\u00a0?',
       centerCtaLink: 'Rejoignez Divera \u2192',
+      dcNavBtn: 'Tableau Centres', dcSectionBtn: 'Voir les avantages partenaires \u2192', dcBtnText: 'Tableau de Bord', dcBadge: 'Bient\u00f4t',
+      dcModalLabel: 'BIENT\u00d4T DISPONIBLE',
+      dcModalTitle: 'Votre Centre de Plong\u00e9e, Enti\u00e8rement Connect\u00e9',
+      dcModalDesc: 'Nous d\u00e9veloppons un portail d\u00e9di\u00e9 pour les centres de plong\u00e9e. G\u00e9rez votre pr\u00e9sence, d\u00e9veloppez vos r\u00e9servations et connectez-vous avec les plongeurs. Nous cherchons des partenaires et offrons des services gratuits avant le lancement.',
+      dcF1: 'Tableau de bord analytique',
+      dcF2: 'Gestion des r\u00e9servations en ligne',
+      dcF3: 'Mise en avant sur la carte des sites',
+      dcF4: 'Avis clients et outils d\u2019\u00e9valuation',
+      dcF5: 'Observations d\u2019esp\u00e8ces de vos plongeurs',
+      dcModalNote: 'Int\u00e9ress\u00e9 par un partenariat de lancement\u00a0? Nous proposons des conditions sp\u00e9ciales et des services gratuits aux centres qui rejoignent Divera avant le lancement.',
+      dcModalNoteLink: 'Contactez-nous \u2192',
       footerR: '\u00a9 2026 Divera. Tous droits r\u00e9serv\u00e9s.',
       scrFeed: 'Fil d\u2019activit\u00e9', scrDive: 'Carnet de plong\u00e9e', scrSpecies: 'Vie Marine', scrFish: 'D\u00e9tail Esp\u00e8ce',
+    },
+    ca: {
+      navFeatures: 'Funcionalitats',
+      navSpecies: 'Vida Marina',
+      navCta: 'Acc\u00e9s Anticipat',
+      heroBadge: 'Llan\u00e7ament Abril 2026',
+      heroTitle: '<span class="accent">La vida,</span> compresa sota l\u2019aigua.',
+      heroSub: 'Registra immersions, identifica esp\u00e8cies marines amb IA i descobreix centres de busseig prop dels teus llocs preferits. El descobriment es gaudeix m\u00e9s quan t\u00e9 sentit.',
+      heroBtn1: 'Acc\u00e9s Anticipat',
+      heroBtn2: 'Saber M\u00e9s',
+      s1l: 'Esp\u00e8cies', s2l: 'Llocs de busseig', s3l: 'Identificaci\u00f3', s4l: 'Nativa',
+      fLabel: 'FUNCIONALITATS',
+      fTitle: 'De l\u2019observaci\u00f3 a la comprensi\u00f3',
+      fSub: 'Creada per bussejadors, per a qui vol mirar m\u00e9s de prop i aprendre en profunditat.',
+      f1t: 'Registra i Reviu',
+      f1d: 'Cada immersi\u00f3 guarda coneixement. Estad\u00edstiques, fotos, condicions i les esp\u00e8cies que vas trobar. Tot explica una hist\u00f2ria completa.',
+      f2t: 'Identifica i Descobreix',
+      f2d: 'Apunta la teva c\u00e0mera a qualsevol esp\u00e8cie. La IA la identifica a l\u2019instant. El que observes pot importar. 1200+ esp\u00e8cies amb dades, consells i estat de conservaci\u00f3.',
+      f3t: 'Explora i Connecta',
+      f3d: 'Explora llocs de busseig i centres al mapa, segueix altres bussejadors i comparteix avistaments. Una comunitat orientada al descobriment, no a l\u2019exhibici\u00f3.',
+      shLabel: 'VIDA M\u00c9S ENLL\u00c0 DEL VISIBLE',
+      shTitle: 'Cada esp\u00e8cie t\u00e9 una hist\u00f2ria',
+      shDesc: 'Coneixement sota la superf\u00edcie. Estat de conservaci\u00f3, profunditat, comportament, dades curioses i consells pr\u00e0ctics. Aprendre comen\u00e7a sota la superf\u00edcie.',
+      m1: 'Esp\u00e8cies', m2: 'Categories UICN', m3: 'Dades curioses', m4: 'Consells',
+      shFeedLabel: 'LA TEVA COMUNITAT DE BUSSEIG',
+      shFeedTitle: 'Cada immersi\u00f3 \u00e9s una hist\u00f2ria que val la pena compartir',
+      shFeedDesc: 'Un feed social fet per a bussejadors. Descobreix el que la teva comunitat troba, d\u00f3na m\u2019agrada i comenta immersions, segueix els teus bussejadors preferits i comparteix les teves experi\u00e8ncies submarines.',
+      mf1: 'M\u2019agrada i Comentaris', mf2: 'Seguir Bussejadors', mf3: 'Compartir Fotos', mf4: 'Feed d\u2019Activitat',
+      shDiveLabel: 'LA TEVA IMMERSI\u00d3, COMPLETAMENT CAPTURADA',
+      shDiveTitle: 'Cada detall de cada immersi\u00f3',
+      shDiveDesc: 'Profunditat, temps, temperatura, visibilitat: les teves estad\u00edstiques d\u2019immersi\u00f3 registrades amb fotos i les esp\u00e8cies que vas trobar. Cada immersi\u00f3 es converteix en un registre complet que pots reviure.',
+      md1: 'Prof. M\u00e0xima', md2: 'Temps de Fons', md3: 'Condicions', md4: 'Valoraci\u00f3',
+      shAiLabel: 'RECONEIXEMENT AMB IA',
+      shAiTitle: 'Fotografia-ho. <span class="accent">Descobreix qu\u00e8 \u00e9s.</span>',
+      shAiDesc: 'Despr\u00e9s de la teva immersi\u00f3, la nostra IA analitza les teves fotos submarines i identifica cada esp\u00e8cie capturada. Sense experi\u00e8ncia pr\u00e8via. Nom\u00e9s fotografia el que veus. La identificaci\u00f3 b\u00e0sica tamb\u00e9 funciona sense internet.',
+      ma1: 'An\u00e0lisi de Fotos', ma2: 'Identificaci\u00f3 IA', ma3: 'Post-Immersi\u00f3', ma4: '1200+ Esp\u00e8cies',
+      shSiteLabel: 'EXPLORA EL M\u00d3N SUBMAR\u00cd',
+      shSiteTitle: 'Llocs de busseig per descobrir',
+      shSiteDesc: 'Explora llocs de busseig amb descripcions, condicions i activitat de la comunitat. Mira qu\u00e8 han avistat altres, planifica la teva propera immersi\u00f3 i comparteix els teus propis avistaments.',
+      ms1: 'Llocs de busseig', ms2: 'Vista Mapa', ms3: 'Avistaments', ms4: 'Detalls del Lloc',
+      hLabel: 'COM FUNCIONA',
+      hTitle: 'Mira m\u00e9s de prop. Apr\u00e8n en profunditat.',
+      h1t: 'Bussa', h1d: 'Fes la teva immersi\u00f3 i fotografia tot el que vegis sota l\u2019aigua.',
+      h2t: 'Registra', h2d: 'Registra la teva immersi\u00f3 amb identificaci\u00f3 d\u2019esp\u00e8cies per IA. L\u2019observaci\u00f3 es torna coneixement.',
+      h3t: 'Descobreix', h3d: 'Apr\u00e8n sobre cada esp\u00e8cie, segueix avistaments i contribueix a la conservaci\u00f3 marina.',
+      betaLabel: 'ACC\u00c9S ANTICIPAT',
+      ctaTitle: 'Una manera m\u00e9s conscient de con\u00e8ixer l\u2019oce\u00e0',
+      ctaSub: 'Uneix-te a la beta o registra\u2019t per ser el primer a saber-ho.',
+      ctaTestflight: 'Unir-se a la Beta al TestFlight',
+      ctaDivider: 'o rep un av\u00eds al llan\u00e7ament',
+      emailBtn: 'Avisa\u2019m',
+      emailNote: 'Sense spam. Nom\u00e9s un av\u00eds quan llanceu.',
+      emailSuccess: 'Ets a la llista. Ens veiem sota l\u2019aigua.',
+      storeSmall: 'Properament',
+      shCenterLabel: 'CENTRES DE BUSSEIG',
+      shCenterTitle: 'Troba centres de busseig a cada lloc',
+      shCenterDesc: 'Cada lloc de busseig mostra els centres propers amb valoracions, dades de contacte i horaris. Alterna entre llocs i centres al mapa. Tot el que necessites per planificar la teva propera immersi\u00f3.',
+      mc1: 'Centres Propers', mc2: 'Valoracions', mc3: 'Contacte', mc4: 'Horaris',
+      centerCtaText: 'Ets un centre de busseig?',
+      centerCtaLink: 'Apareix a Divera \u2192',
+      dcNavBtn: 'Tauler de Centres', dcSectionBtn: 'Veure avantatges per a socis \u2192', dcBtnText: 'Tauler del Centre', dcBadge: 'Aviat',
+      dcModalLabel: 'PROPERAMENT',
+      dcModalTitle: 'El teu Centre de Busseig, Totalment Connectat',
+      dcModalDesc: 'Estem creant un portal dedicat per a centres de busseig. Gestiona la teva pres\u00e8ncia, augmenta les teves reserves i connecta amb bussejadors. Busquem centres col\u00b7laboradors i oferim serveis gratu\u00efts abans del llan\u00e7ament.',
+      dcF1: 'Tauler d\u2019anal\u00edtiques i visibilitat',
+      dcF2: 'Gesti\u00f3 de reserves online',
+      dcF3: 'Posicionament destacat al mapa',
+      dcF4: 'Valoracions i gesti\u00f3 de ressenyes',
+      dcF5: 'Avistaments d\u2019esp\u00e8cies dels teus bussejadors',
+      dcModalNote: 'T\u2019interessa ser un centre col\u00b7laborador? Oferim condicions especials i serveis gratu\u00efts als centres que s\u2019uneixin abans del llan\u00e7ament.',
+      dcModalNoteLink: 'Contacta\u2019ns \u2192',
+      footerR: '\u00a9 2026 Divera. Tots els drets reservats.',
+      scrFeed: 'Feed', scrDive: 'Immersi\u00f3', scrSpecies: 'Vida Marina', scrFish: 'Detall Esp\u00e8cie',
     }
   };
 
-  const LANG_LABELS = { en: 'EN', es: 'ES', fr: 'FR' };
-  const SUPPORTED_LANGS = ['en', 'es', 'fr'];
+  const LANG_LABELS = { en: 'EN', es: 'ES', fr: 'FR', ca: 'CA' };
+  const SUPPORTED_LANGS = ['en', 'es', 'fr', 'ca'];
 
   function getInitialLang() {
     const stored = localStorage.getItem('divera-lang');
@@ -1681,6 +1918,21 @@
       }
     });
   }
+
+</script>
+
+<script>
+  // Dive center dashboard modal
+  const dcPortalBtn = document.getElementById('dcPortalBtn');
+  const dcModal = document.getElementById('dcModal');
+  const dcModalClose = document.getElementById('dcModalClose');
+  const openDcModal = () => dcModal.classList.add('open');
+  const closeDcModal = () => dcModal.classList.remove('open');
+  dcPortalBtn.addEventListener('click', openDcModal);
+  document.getElementById('dcSectionBtn').addEventListener('click', openDcModal);
+  dcModalClose.addEventListener('click', closeDcModal);
+  dcModal.addEventListener('click', e => { if (e.target === dcModal) closeDcModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDcModal(); });
 </script>
 </body>
 </html>
