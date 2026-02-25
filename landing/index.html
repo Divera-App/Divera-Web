@@ -1134,7 +1134,9 @@
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 28px; padding: 48px;
     max-width: 500px; width: 100%;
-    position: relative; overflow: hidden;
+    max-height: calc(100dvh - 40px);
+    overflow-x: hidden; overflow-y: auto;
+    position: relative;
     transform: translateY(20px);
     transition: transform 0.35s var(--ease-out);
   }
@@ -1193,7 +1195,8 @@
     text-underline-offset: 2px; font-weight: 600;
   }
   @media (max-width: 600px) {
-    .dc-modal { padding: 32px 24px; border-radius: 20px; }
+    .dc-modal-overlay { align-items: flex-start; padding: 16px; }
+    .dc-modal { padding: 32px 24px; border-radius: 20px; max-height: calc(100dvh - 32px); }
   }
 </style>
 </head>
