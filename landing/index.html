@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Divera — Log dives, identify 1200+ marine species with AI, discover dive sites, and find dive centers near you. iOS app launching April 2026.">
+<meta name="description" content="Divera — Log dives, identify 5500+ marine species with AI, discover 1600+ dive sites, and find dive centers near you. iOS app launching April 2026.">
 <title>Divera — Dive Logging, Species ID & Dive Centers | iOS App</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -240,15 +240,17 @@
     font-weight: 500; transition: color 0.3s; letter-spacing: -0.2px;
   }
   .nav-right a:hover { color: var(--text-primary); }
+  .nav-right a.nav-cta, .nav-right a.nav-cta:hover { color: #fff; }
   .nav-cta {
     padding: 9px 22px; border-radius: 100px;
-    background: rgba(255,255,255,0.08); color: var(--text-primary);
+    background: var(--coral); color: #fff;
     font-size: 13px; font-weight: 600; text-decoration: none;
-    border: 0.5px solid rgba(255,255,255,0.08);
+    border: 0.5px solid transparent;
+    box-shadow: 0 4px 18px var(--coral-glow);
     transition: all 0.3s var(--ease-out); letter-spacing: -0.2px;
   }
   .nav-cta:hover {
-    background: var(--coral); border-color: var(--coral);
+    opacity: 0.88;
     box-shadow: 0 6px 28px var(--coral-glow);
     transform: translateY(-1px);
   }
@@ -1252,7 +1254,6 @@
     <p class="hero-sub reveal reveal-d2" data-i18n="heroSub">Log dives, identify marine species with AI, and discover dive centers near your favorite spots. Discovery feels better when it makes sense.</p>
     <div class="hero-actions reveal reveal-d3">
       <a href="#cta" class="btn-primary" data-i18n="heroBtn1">Get Early Access</a>
-      <a href="#features" class="btn-ghost" data-i18n="heroBtn2">Learn More</a>
     </div>
   </div>
   <div class="hero-phones reveal-scale reveal-d4">
@@ -1282,7 +1283,7 @@
         <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div><div class="metric-label" data-i18n="ma1">Photo Analysis</div></div>
         <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="metric-label" data-i18n="ma2">AI Identification</div></div>
         <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div><div class="metric-label" data-i18n="ma3">Post-Dive Tagging</div></div>
-        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div><div class="metric-label" data-i18n="ma4">1200+ Species</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div><div class="metric-label" data-i18n="ma4">5500+ Species</div></div>
       </div>
     </div>
     <div class="ai-hero-visual">
@@ -1360,7 +1361,7 @@
       <h2 class="section-title reveal-left reveal-d1" data-i18n="shTitle">Every species has a story</h2>
       <p class="reveal-left reveal-d2" data-i18n="shDesc">Knowledge, beneath the surface. Conservation status, depth ranges, behavior, fun facts, and practical diver tips. Learning begins below the surface.</p>
       <div class="showcase-metrics reveal-left reveal-d3">
-        <div class="metric"><div class="metric-num">1200+</div><div class="metric-label" data-i18n="m1">Species</div></div>
+        <div class="metric"><div class="metric-num">5500+</div><div class="metric-label" data-i18n="m1">Species</div></div>
         <div class="metric"><div class="metric-num">7</div><div class="metric-label" data-i18n="m2">IUCN Categories</div></div>
         <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><div class="metric-label" data-i18n="m3">Fun Facts</div></div>
         <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="16 12 12 8 8 12"/><line x1="12" y1="16" x2="12" y2="8"/></svg></div><div class="metric-label" data-i18n="m4">Diver Tips</div></div>
@@ -1440,8 +1441,8 @@
 
 <!-- STATS — hits harder after seeing all features -->
 <div class="stats">
-  <div class="stat reveal"><div class="stat-num">1200<span class="stat-accent">+</span></div><div class="stat-label" data-i18n="s1l">Species</div></div>
-  <div class="stat reveal reveal-d1"><div class="stat-num">100<span class="stat-accent">+</span></div><div class="stat-label" data-i18n="s2l">Dive Sites</div></div>
+  <div class="stat reveal"><div class="stat-num">5500<span class="stat-accent">+</span></div><div class="stat-label" data-i18n="s1l">Species</div></div>
+  <div class="stat reveal reveal-d1"><div class="stat-num">1600<span class="stat-accent">+</span></div><div class="stat-label" data-i18n="s2l">Dive Sites</div></div>
   <div class="stat reveal reveal-d2"><div class="stat-num stat-accent">AI</div><div class="stat-label" data-i18n="s3l">Identification</div></div>
   <div class="stat reveal reveal-d3"><div class="stat-num">iOS</div><div class="stat-label" data-i18n="s4l">Native</div></div>
 </div>
@@ -1575,7 +1576,7 @@
       heroBadge: 'Launching April 2026',
       heroTitle: '<span class="accent">Life,</span> understood underwater.',
       heroSub: 'Log dives, identify marine species with AI, and discover dive centers near your favorite spots. Discovery feels better when it makes sense.',
-      heroBtn1: 'Get Early Access',
+      heroBtn1: 'Download the Early Version',
       heroBtn2: 'Learn More',
       s1l: 'Species', s2l: 'Dive Sites', s3l: 'Identification', s4l: 'Native',
       fLabel: 'FEATURES',
@@ -1584,7 +1585,7 @@
       f1t: 'Log & Relive',
       f1d: 'Every dive holds knowledge. Stats, photos, conditions, and the species you encountered. Every dive tells a complete story.',
       f2t: 'Identify & Discover',
-      f2d: 'Point your camera at any species. AI identifies it instantly. What you observe can matter. 1200+ species with fun facts, diver tips, and conservation data.',
+      f2d: 'Point your camera at any species. AI identifies it instantly. What you observe can matter. 5500+ species with fun facts, diver tips, and conservation data.',
       f3t: 'Explore & Connect',
       f3d: 'Browse dive sites and dive centers on the map, follow other divers, and share your sightings. A community built around discovery, not exhibition.',
       shLabel: 'LIFE BEYOND WHAT\'S VISIBLE',
@@ -1604,7 +1605,7 @@
       shAiLabel: 'AI-POWERED RECOGNITION',
       shAiTitle: 'Photograph it. <span class="accent">Know what it is.</span>',
       shAiDesc: 'After your dive, our AI analyzes your underwater photos and identifies every species you captured. No expertise needed. Just photograph what you see. Basic identification also works offline.',
-      ma1: 'Photo Analysis', ma2: 'AI Identification', ma3: 'Post-Dive Tagging', ma4: '1200+ Species',
+      ma1: 'Photo Analysis', ma2: 'AI Identification', ma3: 'Post-Dive Tagging', ma4: '5500+ Species',
       shSiteLabel: 'EXPLORE THE WORLD BELOW',
       shSiteTitle: 'Dive sites worth discovering',
       shSiteDesc: 'Browse dive sites with descriptions, conditions, and community activity. See what others have spotted, plan your next dive, and share your own sightings from each location.',
@@ -1648,43 +1649,43 @@
     },
     es: {
       navFeatures: 'Funciones',
-      navSpecies: 'Vida Marina',
-      navCta: 'Acceso Anticipado',
+      navSpecies: 'Vida marina',
+      navCta: 'Acceso anticipado',
       heroBadge: 'Lanzamiento Abril 2026',
       heroTitle: '<span class="accent">La vida,</span> comprendida bajo el agua.',
       heroSub: 'Registra inmersiones, identifica especies marinas con IA y descubre centros de buceo cerca de tus sitios favoritos. El descubrimiento se disfruta m\u00e1s cuando tiene sentido.',
-      heroBtn1: 'Acceso Anticipado',
+      heroBtn1: 'Descarga la versi\u00f3n anticipada',
       heroBtn2: 'Saber M\u00e1s',
       s1l: 'Especies', s2l: 'Sitios de buceo', s3l: 'Identificaci\u00f3n', s4l: 'Nativa',
       fLabel: 'FUNCIONES',
       fTitle: 'De la observaci\u00f3n a la comprensi\u00f3n',
       fSub: 'Creada por buceadores, para quienes quieren mirar m\u00e1s de cerca y aprender en profundidad.',
-      f1t: 'Registra y Revive',
+      f1t: 'Registra y revive',
       f1d: 'Cada inmersi\u00f3n guarda conocimiento. Estad\u00edsticas, fotos, condiciones y las especies que encontraste. Cada salida es un registro completo.',
-      f2t: 'Identifica y Descubre',
-      f2d: 'Apunta tu c\u00e1mara a cualquier especie. La IA la identifica al instante. Lo que observas puede importar. 1200+ especies con datos, consejos y estado de conservaci\u00f3n.',
-      f3t: 'Explora y Conecta',
+      f2t: 'Identifica y descubre',
+      f2d: 'Lo que observas puede importar. Apunta tu c\u00e1mara a cualquier especie y la IA la identifica al instante. 5500+ especies con datos, consejos y estado de conservaci\u00f3n.',
+      f3t: 'Explora y conecta',
       f3d: 'Explora sitios de buceo y centros en el mapa, sigue a otros buceadores y comparte avistamientos. Una comunidad orientada al descubrimiento, no a la exhibici\u00f3n.',
       shLabel: 'VIDA M\u00c1S ALL\u00c1 DE LO VISIBLE',
       shTitle: 'Cada especie tiene una historia',
-      shDesc: 'Conocimiento bajo la superficie. Estado de conservaci\u00f3n, profundidad, comportamiento, datos curiosos y consejos pr\u00e1cticos. Aprender empieza bajo la superficie.',
+      shDesc: 'Conocimiento bajo la superficie. Estado de conservaci\u00f3n, profundidad, comportamiento, datos curiosos y consejos pr\u00e1cticos para cada especie que encuentres.',
       m1: 'Especies', m2: 'Categor\u00edas UICN', m3: 'Datos curiosos', m4: 'Consejos',
       shFeedLabel: 'TU COMUNIDAD DE BUCEO',
       shFeedTitle: 'Cada inmersi\u00f3n es una historia que merece compartirse',
       shFeedDesc: 'Un feed social pensado para buceadores. Descubre lo que encuentra tu comunidad, dale me gusta y comenta inmersiones, sigue a tus buceadores favoritos y comparte tus experiencias submarinas.',
-      mf1: 'Me gusta y Comentarios', mf2: 'Seguir Buceadores', mf3: 'Compartir Fotos', mf4: 'Feed de Actividad',
+      mf1: 'Me gusta y comentarios', mf2: 'Seguir buceadores', mf3: 'Compartir fotos', mf4: 'Feed de actividad',
       shDiveLabel: 'TU INMERSI\u00d3N, COMPLETAMENTE CAPTURADA',
       shDiveTitle: 'Cada detalle de cada inmersi\u00f3n',
       shDiveDesc: 'Profundidad, tiempo, temperatura, visibilidad: tus estad\u00edsticas de inmersi\u00f3n registradas junto con fotos y las especies que encontraste. Cada inmersi\u00f3n se convierte en un registro completo que puedes revivir.',
-      md1: 'Prof. M\u00e1xima', md2: 'Tiempo Fondo', md3: 'Condiciones', md4: 'Valoraci\u00f3n',
+      md1: 'Prof. m\u00e1xima', md2: 'Tiempo fondo', md3: 'Condiciones', md4: 'Valoraci\u00f3n',
       shAiLabel: 'RECONOCIMIENTO CON IA',
       shAiTitle: 'Fotograf\u00edalo. <span class="accent">Descubre qu\u00e9 es.</span>',
       shAiDesc: 'Despu\u00e9s de tu inmersi\u00f3n, nuestra IA analiza tus fotos submarinas e identifica cada especie capturada. Sin experiencia previa. Solo fotograf\u00eda lo que ves. La identificaci\u00f3n b\u00e1sica tambi\u00e9n funciona sin internet.',
-      ma1: 'An\u00e1lisis de Fotos', ma2: 'Identificaci\u00f3n IA', ma3: 'Post-Inmersi\u00f3n', ma4: '1200+ Especies',
+      ma1: 'An\u00e1lisis de fotos', ma2: 'Identificaci\u00f3n IA', ma3: 'Post-inmersi\u00f3n', ma4: '5500+ Especies',
       shSiteLabel: 'EXPLORA EL MUNDO SUBMARINO',
       shSiteTitle: 'Sitios de buceo por descubrir',
       shSiteDesc: 'Explora sitios de buceo con descripciones, condiciones y actividad de la comunidad. Mira qu\u00e9 han avistado otros, planifica tu pr\u00f3xima inmersi\u00f3n y comparte tus propios avistamientos.',
-      ms1: 'Sitios de buceo', ms2: 'Vista Mapa', ms3: 'Avistamientos', ms4: 'Detalles del Sitio',
+      ms1: 'Sitios de buceo', ms2: 'Vista mapa', ms3: 'Avistamientos', ms4: 'Detalles del sitio',
       hLabel: 'C\u00d3MO FUNCIONA',
       hTitle: 'Mira m\u00e1s de cerca. Aprende en profundidad.',
       h1t: 'Bucea', h1d: 'Haz tu inmersi\u00f3n y fotograf\u00eda todo lo que veas bajo el agua.',
@@ -1693,7 +1694,7 @@
       betaLabel: 'ACCESO ANTICIPADO',
       ctaTitle: 'Una forma m\u00e1s consciente de conocer el oc\u00e9ano',
       ctaSub: '\u00danete a la beta o reg\u00edstrate para ser el primero en saberlo.',
-      ctaTestflight: 'Unirse a la Beta en TestFlight',
+      ctaTestflight: 'Unirse a la beta en TestFlight',
       ctaDivider: 'o recibe un aviso al lanzamiento',
       emailBtn: 'Av\u00edsame',
       emailNote: 'Sin spam. Solo un aviso cuando lancemos.',
@@ -1702,12 +1703,12 @@
       shCenterLabel: 'CENTROS DE BUCEO',
       shCenterTitle: 'Encuentra centros de buceo en cada sitio',
       shCenterDesc: 'Cada sitio de buceo muestra los centros cercanos con valoraciones, datos de contacto y horarios. Alterna entre sitios y centros en el mapa. Todo lo que necesitas para planificar tu pr\u00f3xima inmersi\u00f3n.',
-      mc1: 'Centros Cercanos', mc2: 'Valoraciones', mc3: 'Contacto', mc4: 'Horarios',
+      mc1: 'Centros cercanos', mc2: 'Valoraciones', mc3: 'Contacto', mc4: 'Horarios',
       centerCtaText: '\u00bfEres un centro de buceo?',
       centerCtaLink: 'Aparece en Divera \u2192',
-      dcNavBtn: 'Panel de Centros', dcSectionBtn: 'Ver ventajas para socios \u2192', dcBtnText: 'Panel de Centro', dcBadge: 'Pronto',
+      dcNavBtn: 'Panel de centros', dcSectionBtn: 'Ver ventajas para socios \u2192', dcBtnText: 'Panel de centro', dcBadge: 'Pronto',
       dcModalLabel: 'PR\u00d3XIMAMENTE',
-      dcModalTitle: 'Tu Centro de Buceo, Totalmente Conectado',
+      dcModalTitle: 'Tu centro de buceo, totalmente conectado',
       dcModalDesc: 'Estamos creando un portal dedicado para centros de buceo. Gestiona tu presencia, aumenta tus reservas y conecta con buceadores. Buscamos centros colaboradores y ofrecemos servicios gratuitos antes del lanzamiento.',
       dcF1: 'Panel de anal\u00edticas y visibilidad',
       dcF2: 'Gesti\u00f3n de reservas online',
@@ -1720,26 +1721,26 @@
       manifesto: 'Creemos que la comunidad de buceo guarda algo extraordinario: millones de ojos bajo la superficie, cada semana, en todo el mundo. Ahora mismo, la mayor parte de esa observaci\u00f3n desaparece despu\u00e9s de cada inmersi\u00f3n. Estamos construyendo Divera para cambiar eso. Un lugar donde cada inmersi\u00f3n alimenta el conocimiento, y el conocimiento alimenta la protecci\u00f3n. Todav\u00eda no hemos llegado. Pero con la comunidad adecuada, lo haremos.',
       footerTagline: 'Desde Espa\u00f1a. Hecho por buceadores, para buceadores.',
       footerR: '\u00a9 2026 Divera. Todos los derechos reservados.',
-      scrFeed: 'Feed', scrDive: 'Inmersi\u00f3n', scrSpecies: 'Vida Marina', scrFish: 'Detalle Especie',
+      scrFeed: 'Feed', scrDive: 'Inmersi\u00f3n', scrSpecies: 'Vida marina', scrFish: 'Detalle especie',
     },
     fr: {
       navFeatures: 'Fonctionnalit\u00e9s',
-      navSpecies: 'Vie Marine',
-      navCta: 'Acc\u00e8s Anticip\u00e9',
+      navSpecies: 'Vie marine',
+      navCta: 'Acc\u00e8s anticip\u00e9',
       heroBadge: 'Lancement Avril 2026',
       heroTitle: '<span class="accent">La vie,</span> comprise sous l\u2019eau.',
       heroSub: 'Enregistrez vos plong\u00e9es, identifiez les esp\u00e8ces marines avec l\u2019IA et trouvez des centres de plong\u00e9e pr\u00e8s de vos sites pr\u00e9f\u00e9r\u00e9s. La d\u00e9couverte est plus belle quand elle a du sens.',
-      heroBtn1: 'Acc\u00e8s Anticip\u00e9',
+      heroBtn1: 'T\u00e9l\u00e9charge la version anticip\u00e9e',
       heroBtn2: 'En Savoir Plus',
       s1l: 'Esp\u00e8ces', s2l: 'Sites de plong\u00e9e', s3l: 'Identification', s4l: 'Native',
       fLabel: 'FONCTIONNALIT\u00c9S',
       fTitle: 'De l\u2019observation \u00e0 la compr\u00e9hension',
       fSub: 'Con\u00e7ue par des plongeurs, pour ceux qui veulent regarder de plus pr\u00e8s et apprendre en profondeur.',
-      f1t: 'Enregistrez et Revivez',
+      f1t: 'Enregistrez et revivez',
       f1d: 'Chaque plong\u00e9e est source de savoir. Statistiques, photos, conditions et esp\u00e8ces rencontr\u00e9es. Chaque plong\u00e9e raconte une histoire compl\u00e8te.',
-      f2t: 'Identifiez et D\u00e9couvrez',
-      f2d: 'Pointez votre cam\u00e9ra vers n\u2019importe quelle esp\u00e8ce. L\u2019IA l\u2019identifie instantan\u00e9ment. 1200+ esp\u00e8ces avec anecdotes, conseils et donn\u00e9es de conservation.',
-      f3t: 'Explorez et Connectez',
+      f2t: 'Identifiez et d\u00e9couvrez',
+      f2d: 'Pointez votre cam\u00e9ra vers n\u2019importe quelle esp\u00e8ce. L\u2019IA l\u2019identifie instantan\u00e9ment. 5500+ esp\u00e8ces avec anecdotes, conseils et donn\u00e9es de conservation.',
+      f3t: 'Explorez et connectez',
       f3d: 'Parcourez les sites et centres de plong\u00e9e sur la carte, suivez d\u2019autres plongeurs et partagez vos observations. Une communaut\u00e9 construite autour de la d\u00e9couverte.',
       shLabel: 'LA VIE AU-DEL\u00c0 DU VISIBLE',
       shTitle: 'Chaque esp\u00e8ce a une histoire',
@@ -1748,19 +1749,19 @@
       shFeedLabel: 'VOTRE COMMUNAUT\u00c9 DE PLONG\u00c9E',
       shFeedTitle: 'Chaque plong\u00e9e est une histoire \u00e0 partager',
       shFeedDesc: 'Un fil social con\u00e7u pour les plongeurs. D\u00e9couvrez ce que votre communaut\u00e9 explore, aimez et commentez les plong\u00e9es, suivez vos plongeurs pr\u00e9f\u00e9r\u00e9s et partagez vos exp\u00e9riences sous-marines.',
-      mf1: 'Likes et Commentaires', mf2: 'Suivre des Plongeurs', mf3: 'Partage de Photos', mf4: 'Fil d\u2019Activit\u00e9',
+      mf1: 'Likes et commentaires', mf2: 'Suivre des plongeurs', mf3: 'Partage de photos', mf4: 'Fil d\u2019activit\u00e9',
       shDiveLabel: 'VOTRE PLONG\u00c9E, ENTI\u00c8REMENT CAPTUR\u00c9E',
       shDiveTitle: 'Chaque d\u00e9tail de chaque plong\u00e9e',
       shDiveDesc: 'Profondeur, dur\u00e9e, temp\u00e9rature, visibilit\u00e9\u00a0: vos statistiques de plong\u00e9e enregistr\u00e9es avec photos et esp\u00e8ces rencontr\u00e9es. Chaque plong\u00e9e devient un journal complet et consultable.',
-      md1: 'Prof. Max', md2: 'Temps au Fond', md3: 'Conditions', md4: '\u00c9valuation',
+      md1: 'Prof. max', md2: 'Temps au fond', md3: 'Conditions', md4: '\u00c9valuation',
       shAiLabel: 'RECONNAISSANCE PAR IA',
       shAiTitle: 'Photographiez-le. <span class="accent">Identifiez-le.</span>',
       shAiDesc: 'Apr\u00e8s votre plong\u00e9e, notre IA analyse vos photos sous-marines et identifie chaque esp\u00e8ce captur\u00e9e. Aucune expertise n\u00e9cessaire. Il suffit de photographier ce que vous voyez. L\u2019identification de base fonctionne aussi hors ligne.',
-      ma1: 'Analyse de Photos', ma2: 'Identification IA', ma3: 'Post-Plong\u00e9e', ma4: '1200+ Esp\u00e8ces',
+      ma1: 'Analyse de photos', ma2: 'Identification IA', ma3: 'Post-plong\u00e9e', ma4: '5500+ Esp\u00e8ces',
       shSiteLabel: 'EXPLOREZ LE MONDE SOUS-MARIN',
       shSiteTitle: 'Des sites de plong\u00e9e \u00e0 d\u00e9couvrir',
       shSiteDesc: 'Parcourez des sites avec descriptions, conditions et activit\u00e9 communautaire. D\u00e9couvrez ce que d\u2019autres ont observ\u00e9, planifiez votre prochaine plong\u00e9e et partagez vos observations.',
-      ms1: 'Sites de plong\u00e9e', ms2: 'Vue Carte', ms3: 'Observations', ms4: 'D\u00e9tails du Site',
+      ms1: 'Sites de plong\u00e9e', ms2: 'Vue carte', ms3: 'Observations', ms4: 'D\u00e9tails du site',
       hLabel: 'COMMENT \u00c7A MARCHE',
       hTitle: 'Regardez de plus pr\u00e8s. Apprenez en profondeur.',
       h1t: 'Plongez', h1d: 'Faites votre plong\u00e9e et photographiez tout ce que vous voyez sous l\u2019eau.',
@@ -1769,7 +1770,7 @@
       betaLabel: 'ACC\u00c8S ANTICIP\u00c9',
       ctaTitle: 'Une fa\u00e7on plus consciente de conna\u00eetre l\u2019oc\u00e9an',
       ctaSub: 'Rejoignez la b\u00eata ou inscrivez-vous pour \u00eatre le premier inform\u00e9.',
-      ctaTestflight: 'Rejoindre la B\u00eata sur TestFlight',
+      ctaTestflight: 'Rejoindre la b\u00eata sur TestFlight',
       ctaDivider: 'ou soyez notifi\u00e9 au lancement',
       emailBtn: 'M\u2019avertir',
       emailNote: 'Pas de spam. Juste un message au lancement.',
@@ -1778,12 +1779,12 @@
       shCenterLabel: 'CENTRES DE PLONG\u00c9E',
       shCenterTitle: 'Trouvez des centres pr\u00e8s de chaque site',
       shCenterDesc: 'Chaque site affiche les centres de plong\u00e9e \u00e0 proximit\u00e9 avec avis, coordonn\u00e9es et horaires. Basculez entre sites et centres sur la carte. Tout pour planifier votre prochaine plong\u00e9e.',
-      mc1: 'Centres \u00e0 proximit\u00e9', mc2: 'Avis & Notes', mc3: 'Contact', mc4: 'Horaires',
+      mc1: 'Centres \u00e0 proximit\u00e9', mc2: 'Avis & notes', mc3: 'Contact', mc4: 'Horaires',
       centerCtaText: 'Vous \u00eates un centre de plong\u00e9e\u00a0?',
       centerCtaLink: 'Rejoignez Divera \u2192',
-      dcNavBtn: 'Tableau Centres', dcSectionBtn: 'Voir les avantages partenaires \u2192', dcBtnText: 'Tableau de Bord', dcBadge: 'Bient\u00f4t',
+      dcNavBtn: 'Tableau centres', dcSectionBtn: 'Voir les avantages partenaires \u2192', dcBtnText: 'Tableau de bord', dcBadge: 'Bient\u00f4t',
       dcModalLabel: 'BIENT\u00d4T DISPONIBLE',
-      dcModalTitle: 'Votre Centre de Plong\u00e9e, Enti\u00e8rement Connect\u00e9',
+      dcModalTitle: 'Votre centre de plong\u00e9e, enti\u00e8rement connect\u00e9',
       dcModalDesc: 'Nous d\u00e9veloppons un portail d\u00e9di\u00e9 pour les centres de plong\u00e9e. G\u00e9rez votre pr\u00e9sence, d\u00e9veloppez vos r\u00e9servations et connectez-vous avec les plongeurs. Nous cherchons des partenaires et offrons des services gratuits avant le lancement.',
       dcF1: 'Tableau de bord analytique',
       dcF2: 'Gestion des r\u00e9servations en ligne',
@@ -1796,26 +1797,26 @@
       manifesto: 'Nous croyons que la communaut\u00e9 de plong\u00e9e recèle quelque chose d\u2019extraordinaire : des millions d\u2019yeux sous la surface, chaque semaine, partout dans le monde. Aujourd\u2019hui, la majeure partie de ces observations dispara\u00eet apr\u00e8s la plong\u00e9e. Nous construisons Divera pour changer cela. Un endroit o\u00f9 chaque plong\u00e9e nourrit la compr\u00e9hension, et la compr\u00e9hension nourrit la protection. Nous n\u2019y sommes pas encore. Mais avec la bonne communaut\u00e9, nous y arriverons.',
       footerTagline: 'Depuis l\u2019Espagne. Con\u00e7u par des plongeurs, pour des plongeurs.',
       footerR: '\u00a9 2026 Divera. Tous droits r\u00e9serv\u00e9s.',
-      scrFeed: 'Fil d\u2019activit\u00e9', scrDive: 'Carnet de plong\u00e9e', scrSpecies: 'Vie Marine', scrFish: 'D\u00e9tail Esp\u00e8ce',
+      scrFeed: 'Fil d\u2019activit\u00e9', scrDive: 'Carnet de plong\u00e9e', scrSpecies: 'Vie marine', scrFish: 'D\u00e9tail esp\u00e8ce',
     },
     ca: {
       navFeatures: 'Funcionalitats',
-      navSpecies: 'Vida Marina',
-      navCta: 'Acc\u00e9s Anticipat',
+      navSpecies: 'Vida marina',
+      navCta: 'Acc\u00e9s anticipat',
       heroBadge: 'Llan\u00e7ament Abril 2026',
       heroTitle: '<span class="accent">La vida,</span> compresa sota l\u2019aigua.',
       heroSub: 'Registra immersions, identifica esp\u00e8cies marines amb IA i descobreix centres de busseig prop dels teus llocs preferits. El descobriment es gaudeix m\u00e9s quan t\u00e9 sentit.',
-      heroBtn1: 'Acc\u00e9s Anticipat',
+      heroBtn1: 'Descarrega la versi\u00f3 anticipada',
       heroBtn2: 'Saber M\u00e9s',
       s1l: 'Esp\u00e8cies', s2l: 'Llocs de busseig', s3l: 'Identificaci\u00f3', s4l: 'Nativa',
       fLabel: 'FUNCIONALITATS',
       fTitle: 'De l\u2019observaci\u00f3 a la comprensi\u00f3',
       fSub: 'Creada per bussejadors, per a qui vol mirar m\u00e9s de prop i aprendre en profunditat.',
-      f1t: 'Registra i Reviu',
+      f1t: 'Registra i reviu',
       f1d: 'Cada immersi\u00f3 guarda coneixement. Estad\u00edstiques, fotos, condicions i les esp\u00e8cies que vas trobar. Tot explica una hist\u00f2ria completa.',
-      f2t: 'Identifica i Descobreix',
-      f2d: 'Apunta la teva c\u00e0mera a qualsevol esp\u00e8cie. La IA la identifica a l\u2019instant. El que observes pot importar. 1200+ esp\u00e8cies amb dades, consells i estat de conservaci\u00f3.',
-      f3t: 'Explora i Connecta',
+      f2t: 'Identifica i descobreix',
+      f2d: 'Apunta la teva c\u00e0mera a qualsevol esp\u00e8cie. La IA la identifica a l\u2019instant. El que observes pot importar. 5500+ esp\u00e8cies amb dades, consells i estat de conservaci\u00f3.',
+      f3t: 'Explora i connecta',
       f3d: 'Explora llocs de busseig i centres al mapa, segueix altres bussejadors i comparteix avistaments. Una comunitat orientada al descobriment, no a l\u2019exhibici\u00f3.',
       shLabel: 'VIDA M\u00c9S ENLL\u00c0 DEL VISIBLE',
       shTitle: 'Cada esp\u00e8cie t\u00e9 una hist\u00f2ria',
@@ -1824,19 +1825,19 @@
       shFeedLabel: 'LA TEVA COMUNITAT DE BUSSEIG',
       shFeedTitle: 'Cada immersi\u00f3 \u00e9s una hist\u00f2ria que val la pena compartir',
       shFeedDesc: 'Un feed social fet per a bussejadors. Descobreix el que la teva comunitat troba, d\u00f3na m\u2019agrada i comenta immersions, segueix els teus bussejadors preferits i comparteix les teves experi\u00e8ncies submarines.',
-      mf1: 'M\u2019agrada i Comentaris', mf2: 'Seguir Bussejadors', mf3: 'Compartir Fotos', mf4: 'Feed d\u2019Activitat',
+      mf1: 'M\u2019agrada i comentaris', mf2: 'Seguir bussejadors', mf3: 'Compartir fotos', mf4: 'Feed d\u2019activitat',
       shDiveLabel: 'LA TEVA IMMERSI\u00d3, COMPLETAMENT CAPTURADA',
       shDiveTitle: 'Cada detall de cada immersi\u00f3',
       shDiveDesc: 'Profunditat, temps, temperatura, visibilitat: les teves estad\u00edstiques d\u2019immersi\u00f3 registrades amb fotos i les esp\u00e8cies que vas trobar. Cada immersi\u00f3 es converteix en un registre complet que pots reviure.',
-      md1: 'Prof. M\u00e0xima', md2: 'Temps de Fons', md3: 'Condicions', md4: 'Valoraci\u00f3',
+      md1: 'Prof. m\u00e0xima', md2: 'Temps de fons', md3: 'Condicions', md4: 'Valoraci\u00f3',
       shAiLabel: 'RECONEIXEMENT AMB IA',
       shAiTitle: 'Fotografia-ho. <span class="accent">Descobreix qu\u00e8 \u00e9s.</span>',
       shAiDesc: 'Despr\u00e9s de la teva immersi\u00f3, la nostra IA analitza les teves fotos submarines i identifica cada esp\u00e8cie capturada. Sense experi\u00e8ncia pr\u00e8via. Nom\u00e9s fotografia el que veus. La identificaci\u00f3 b\u00e0sica tamb\u00e9 funciona sense internet.',
-      ma1: 'An\u00e0lisi de Fotos', ma2: 'Identificaci\u00f3 IA', ma3: 'Post-Immersi\u00f3', ma4: '1200+ Esp\u00e8cies',
+      ma1: 'An\u00e0lisi de fotos', ma2: 'Identificaci\u00f3 IA', ma3: 'Post-immersi\u00f3', ma4: '5500+ Esp\u00e8cies',
       shSiteLabel: 'EXPLORA EL M\u00d3N SUBMAR\u00cd',
       shSiteTitle: 'Llocs de busseig per descobrir',
       shSiteDesc: 'Explora llocs de busseig amb descripcions, condicions i activitat de la comunitat. Mira qu\u00e8 han avistat altres, planifica la teva propera immersi\u00f3 i comparteix els teus propis avistaments.',
-      ms1: 'Llocs de busseig', ms2: 'Vista Mapa', ms3: 'Avistaments', ms4: 'Detalls del Lloc',
+      ms1: 'Llocs de busseig', ms2: 'Vista mapa', ms3: 'Avistaments', ms4: 'Detalls del lloc',
       hLabel: 'COM FUNCIONA',
       hTitle: 'Mira m\u00e9s de prop. Apr\u00e8n en profunditat.',
       h1t: 'Bussa', h1d: 'Fes la teva immersi\u00f3 i fotografia tot el que vegis sota l\u2019aigua.',
@@ -1845,7 +1846,7 @@
       betaLabel: 'ACC\u00c9S ANTICIPAT',
       ctaTitle: 'Una manera m\u00e9s conscient de con\u00e8ixer l\u2019oce\u00e0',
       ctaSub: 'Uneix-te a la beta o registra\u2019t per ser el primer a saber-ho.',
-      ctaTestflight: 'Unir-se a la Beta al TestFlight',
+      ctaTestflight: 'Unir-se a la beta al TestFlight',
       ctaDivider: 'o rep un av\u00eds al llan\u00e7ament',
       emailBtn: 'Avisa\u2019m',
       emailNote: 'Sense spam. Nom\u00e9s un av\u00eds quan llanceu.',
@@ -1854,12 +1855,12 @@
       shCenterLabel: 'CENTRES DE BUSSEIG',
       shCenterTitle: 'Troba centres de busseig a cada lloc',
       shCenterDesc: 'Cada lloc de busseig mostra els centres propers amb valoracions, dades de contacte i horaris. Alterna entre llocs i centres al mapa. Tot el que necessites per planificar la teva propera immersi\u00f3.',
-      mc1: 'Centres Propers', mc2: 'Valoracions', mc3: 'Contacte', mc4: 'Horaris',
+      mc1: 'Centres propers', mc2: 'Valoracions', mc3: 'Contacte', mc4: 'Horaris',
       centerCtaText: 'Ets un centre de busseig?',
       centerCtaLink: 'Apareix a Divera \u2192',
-      dcNavBtn: 'Tauler de Centres', dcSectionBtn: 'Veure avantatges per a socis \u2192', dcBtnText: 'Tauler del Centre', dcBadge: 'Aviat',
+      dcNavBtn: 'Tauler de centres', dcSectionBtn: 'Veure avantatges per a socis \u2192', dcBtnText: 'Tauler del centre', dcBadge: 'Aviat',
       dcModalLabel: 'PROPERAMENT',
-      dcModalTitle: 'El teu Centre de Busseig, Totalment Connectat',
+      dcModalTitle: 'El teu centre de busseig, totalment connectat',
       dcModalDesc: 'Estem creant un portal dedicat per a centres de busseig. Gestiona la teva pres\u00e8ncia, augmenta les teves reserves i connecta amb bussejadors. Busquem centres col\u00b7laboradors i oferim serveis gratu\u00efts abans del llan\u00e7ament.',
       dcF1: 'Tauler d\u2019anal\u00edtiques i visibilitat',
       dcF2: 'Gesti\u00f3 de reserves online',
@@ -1872,7 +1873,7 @@
       manifesto: 'Creiem que la comunitat de busseig guarda alguna cosa extraordin\u00e0ria: milions d\u2019ulls sota la superf\u00edcie, cada setmana, arreu del m\u00f3n. Ara mateix, la major part d\u2019aquella observaci\u00f3 desapareix despr\u00e9s de cada immersi\u00f3. Estem construint Divera per canviar aquesta situaci\u00f3. Un lloc on cada immersi\u00f3 alimenta el coneixement, i el coneixement alimenta la protecci\u00f3. Encara no hi som. Per\u00f2 amb la comunitat adequada, hi serem.',
       footerTagline: 'Des d\u2019Espanya. Fet per bussejadors, per a bussejadors.',
       footerR: '\u00a9 2026 Divera. Tots els drets reservats.',
-      scrFeed: 'Feed', scrDive: 'Immersi\u00f3', scrSpecies: 'Vida Marina', scrFish: 'Detall Esp\u00e8cie',
+      scrFeed: 'Feed', scrDive: 'Immersi\u00f3', scrSpecies: 'Vida marina', scrFish: 'Detall esp\u00e8cie',
     }
   };
 
