@@ -434,6 +434,32 @@
     .partner-text { padding-top: 0; }
     .partner-form-panel { position: static; }
   }
+
+  /* ============================================ */
+  /* CONTACT SECTION                              */
+  /* ============================================ */
+  .contact-section {
+    padding: 0 48px 80px; max-width: 600px; margin: 0 auto;
+    text-align: center; position: relative; z-index: 1;
+  }
+  .contact-section .section-label { margin-bottom: 16px; }
+  .contact-section .section-title { font-size: clamp(24px,3vw,32px); margin-bottom: 12px; }
+  .contact-section .section-sub { margin: 0 auto 36px; max-width: 400px; font-size: 15px; }
+  .contact-form { display: flex; flex-direction: column; gap: 16px; text-align: left; }
+  .contact-form .pf-group { display: flex; flex-direction: column; gap: 8px; }
+  .contact-form textarea.pf-input {
+    min-height: 120px; resize: vertical; border-radius: 16px;
+    font-family: var(--font-body); line-height: 1.6;
+  }
+  .contact-form .pf-submit { align-self: center; }
+  .contact-success { display: none; padding: 8px 0; }
+  .contact-success p {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 600; color: var(--coral);
+    letter-spacing: -1px; line-height: 1.2;
+  }
+  @media (max-width: 768px) { .contact-section { padding: 0 20px 60px; } }
 </style>
 </head>
 <body>
@@ -456,6 +482,7 @@
   </div>
   <div class="nav-right">
     <a href="#centros-fundadores" data-i18n="dcNavLink">Centros fundadores</a>
+    <a href="#contacto" data-i18n="navContact">Contacto</a>
     <div class="lang-switcher" id="langSwitcher">
       <button class="lang-btn" id="langBtn" aria-label="Change language">
         <span id="langCurrent">ES</span>
@@ -742,6 +769,31 @@
   </div>
 </div>
 
+<!-- CONTACT SECTION -->
+<div class="contact-section" id="contacto">
+  <div class="section-label reveal" data-i18n="contactLabel">CONTACTO</div>
+  <h2 class="section-title reveal reveal-d1" data-i18n="contactTitle">¿Tienes alguna pregunta?</h2>
+  <p class="section-sub reveal reveal-d2" data-i18n="contactSub">Escríbenos y te responderemos lo antes posible.</p>
+  <form class="contact-form reveal reveal-d3" id="contactForm">
+    <div class="pf-group">
+      <label class="pf-label" data-i18n="contactEmail">Tu email</label>
+      <input type="email" name="email" class="pf-input" required placeholder="tu@email.com" data-i18n-placeholder="contactEmailPh">
+    </div>
+    <div class="pf-group">
+      <label class="pf-label" data-i18n="contactSubject">Asunto</label>
+      <input type="text" name="subject" class="pf-input" required placeholder="¿Sobre qué nos escribes?" data-i18n-placeholder="contactSubjectPh">
+    </div>
+    <div class="pf-group">
+      <label class="pf-label" data-i18n="contactMessage">Mensaje</label>
+      <textarea name="message" class="pf-input" required placeholder="Cuéntanos..." data-i18n-placeholder="contactMessagePh"></textarea>
+    </div>
+    <button type="submit" class="pf-submit" data-i18n="contactSubmit">Enviar mensaje</button>
+  </form>
+  <div class="contact-success" id="contactSuccess">
+    <p data-i18n="contactSuccessMsg">Mensaje enviado. Te responderemos pronto.</p>
+  </div>
+</div>
+
 <footer>
   <div class="foot-left">
     <img src="logo-full.png" alt="Divera" style="height:20px;width:auto;display:block;opacity:0.7;">
@@ -783,6 +835,7 @@
     en: {
       navCta: 'Early Access',
       dcNavLink: 'Founding Partners',
+      navContact: 'Contact',
       heroBadge: 'Launching April 2026',
       heroTitle: '<span class="accent">Life,</span> understood underwater.',
       heroSub: 'Log dives, identify marine species with AI, and discover dive centers near your favorite spots.',
@@ -843,6 +896,14 @@
       emailSuccess: 'You\'re on the list. See you underwater.',
       emailPlaceholder: 'your@email.com',
       manifesto: 'We believe the diving community holds something extraordinary: millions of eyes beneath the surface, every week, all over the world. Right now, most of that observation disappears after the dive. We\'re building Divera to change that. A place where every dive feeds understanding, and understanding feeds protection. We\'re not there yet. But with the right community, we will be.',
+      contactLabel: 'CONTACT',
+      contactTitle: 'Got a question?',
+      contactSub: 'Write to us and we\'ll get back to you as soon as possible.',
+      contactEmail: 'Your email', contactEmailPh: 'your@email.com',
+      contactSubject: 'Subject', contactSubjectPh: 'What is this about?',
+      contactMessage: 'Message', contactMessagePh: 'Tell us...',
+      contactSubmit: 'Send message',
+      contactSuccessMsg: 'Message sent. We\'ll get back to you soon.',
       footerTagline: 'From Spain. Built by divers, for divers.',
       footerR: '\u00a9 2026 Divera. All rights reserved.',
       pageTitle: 'Divera — AI Fish Detection & Dive App | Marine Species ID | iOS',
@@ -851,6 +912,7 @@
     es: {
       navCta: 'Acceso anticipado',
       dcNavLink: 'Centros fundadores',
+      navContact: 'Contacto',
       heroBadge: 'Lanzamiento Abril 2026',
       heroTitle: '<span class="accent">La vida,</span> comprendida bajo el agua.',
       heroSub: 'Registra inmersiones, identifica especies marinas con IA y descubre centros de buceo cerca de tus sitios favoritos.',
@@ -911,6 +973,14 @@
       emailSuccess: 'Est\u00e1s en la lista. Nos vemos bajo el agua.',
       emailPlaceholder: 'tu@email.com',
       manifesto: 'Creemos que la comunidad de buceo guarda algo extraordinario: millones de ojos bajo la superficie, cada semana, en todo el mundo. Ahora mismo, la mayor parte de esa observaci\u00f3n desaparece despu\u00e9s de cada inmersi\u00f3n. Estamos construyendo Divera para cambiar eso. Un lugar donde cada inmersi\u00f3n alimenta el conocimiento, y el conocimiento alimenta la protecci\u00f3n. Todav\u00eda no hemos llegado. Pero con la comunidad adecuada, lo haremos.',
+      contactLabel: 'CONTACTO',
+      contactTitle: '\u00bfTienes alguna pregunta?',
+      contactSub: 'Escr\u00edbenos y te responderemos lo antes posible.',
+      contactEmail: 'Tu email', contactEmailPh: 'tu@email.com',
+      contactSubject: 'Asunto', contactSubjectPh: '\u00bfSobre qu\u00e9 nos escribes?',
+      contactMessage: 'Mensaje', contactMessagePh: 'Cu\u00e9ntanos...',
+      contactSubmit: 'Enviar mensaje',
+      contactSuccessMsg: 'Mensaje enviado. Te responderemos pronto.',
       footerTagline: 'Desde Espa\u00f1a. Hecho por buceadores, para buceadores.',
       footerR: '\u00a9 2026 Divera. Todos los derechos reservados.',
       pageTitle: 'Divera — App de Buceo con IA | Identifica Peces y Registra Inmersiones | iOS',
@@ -919,6 +989,7 @@
     fr: {
       navCta: 'Acc\u00e8s anticip\u00e9',
       dcNavLink: 'Partenaires fondateurs',
+      navContact: 'Contact',
       heroBadge: 'Lancement Avril 2026',
       heroTitle: '<span class="accent">La vie,</span> comprise sous l\u2019eau.',
       heroSub: 'Enregistrez vos plong\u00e9es, identifiez les esp\u00e8ces marines avec l\u2019IA et trouvez des centres de plong\u00e9e pr\u00e8s de vos sites pr\u00e9f\u00e9r\u00e9s.',
@@ -979,6 +1050,14 @@
       emailSuccess: 'Vous \u00eates sur la liste. \u00c0 bient\u00f4t sous l\u2019eau.',
       emailPlaceholder: 'votre@email.com',
       manifesto: 'Nous croyons que la communaut\u00e9 de plong\u00e9e rec\u00e8le quelque chose d\u2019extraordinaire\u00a0: des millions d\u2019yeux sous la surface, chaque semaine, partout dans le monde. Aujourd\u2019hui, la majeure partie de ces observations dispara\u00eet apr\u00e8s la plong\u00e9e. Nous construisons Divera pour changer cela. Un endroit o\u00f9 chaque plong\u00e9e nourrit la compr\u00e9hension, et la compr\u00e9hension nourrit la protection.',
+      contactLabel: 'CONTACT',
+      contactTitle: 'Une question\u00a0?',
+      contactSub: '\u00c9crivez-nous et nous vous r\u00e9pondrons dans les plus brefs d\u00e9lais.',
+      contactEmail: 'Votre email', contactEmailPh: 'votre@email.com',
+      contactSubject: 'Sujet', contactSubjectPh: 'De quoi s\u2019agit-il\u00a0?',
+      contactMessage: 'Message', contactMessagePh: 'Dites-nous...',
+      contactSubmit: 'Envoyer le message',
+      contactSuccessMsg: 'Message envoy\u00e9. Nous vous r\u00e9pondrons bient\u00f4t.',
       footerTagline: 'Depuis l\u2019Espagne. Con\u00e7u par des plongeurs, pour des plongeurs.',
       footerR: '\u00a9 2026 Divera. Tous droits r\u00e9serv\u00e9s.',
       pageTitle: 'Divera — App de Plongée IA | Identification d\u2019Esp\u00e8ces Marines | iOS',
@@ -987,6 +1066,7 @@
     ca: {
       navCta: 'Acc\u00e9s anticipat',
       dcNavLink: 'Centres fundadors',
+      navContact: 'Contacte',
       heroBadge: 'Llan\u00e7ament Abril 2026',
       heroTitle: '<span class="accent">La vida,</span> compresa sota l\u2019aigua.',
       heroSub: 'Registra immersions, identifica esp\u00e8cies marines amb IA i descobreix centres de busseig prop dels teus llocs preferits.',
@@ -1047,6 +1127,14 @@
       emailSuccess: 'Ets a la llista. Ens veiem sota l\u2019aigua.',
       emailPlaceholder: 'el-teu@email.com',
       manifesto: 'Creiem que la comunitat de busseig guarda alguna cosa extraordin\u00e0ria: milions d\u2019ulls sota la superf\u00edcie, cada setmana, arreu del m\u00f3n. Ara mateix, la major part d\u2019aquella observaci\u00f3 desapareix despr\u00e9s de cada immersi\u00f3. Estem construint Divera per canviar aquesta situaci\u00f3. Un lloc on cada immersi\u00f3 alimenta el coneixement, i el coneixement alimenta la protecci\u00f3.',
+      contactLabel: 'CONTACTE',
+      contactTitle: 'Tens alguna pregunta?',
+      contactSub: 'Escriu-nos i et respondrem el m\u00e9s aviat possible.',
+      contactEmail: 'El teu email', contactEmailPh: 'el-teu@email.com',
+      contactSubject: 'Assumpte', contactSubjectPh: 'Sobre qu\u00e8 ens escrius?',
+      contactMessage: 'Missatge', contactMessagePh: 'Explica\u2019ns...',
+      contactSubmit: 'Enviar missatge',
+      contactSuccessMsg: 'Missatge enviat. Et respondrem aviat.',
       footerTagline: 'Des d\u2019Espanya. Fet per bussejadors, per a bussejadors.',
       footerR: '\u00a9 2026 Divera. Tots els drets reservats.',
       pageTitle: 'Divera — App de Busseig amb IA | Identificaci\u00f3 d\u2019Esp\u00e8cies Marines | iOS',
@@ -1115,7 +1203,7 @@
       const btn = waitlistForm.querySelector('.email-submit');
       btn.disabled = true; btn.textContent = '...';
       try {
-        await fetch('https://formsubmit.co/ajax/divera.app@gmail.com', {
+        await fetch('https://formsubmit.co/ajax/divera.app@gmail.com,diveradevelopers@gmail.com', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({ email, _subject: 'Divera Waitlist Signup', _captcha: 'false' })
@@ -1140,7 +1228,7 @@
       const btn = partnerForm.querySelector('.pf-submit');
       btn.disabled = true; btn.textContent = '...';
       try {
-        await fetch('https://formsubmit.co/ajax/divera.app@gmail.com', {
+        await fetch('https://formsubmit.co/ajax/divera.app@gmail.com,diveradevelopers@gmail.com', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({ ...data, _subject: 'Divera Founding Partner Request', _captcha: 'false' })
@@ -1150,6 +1238,30 @@
       } catch {
         btn.disabled = false;
         btn.textContent = translations[currentLang].pfSubmit || 'Submit';
+      }
+    });
+  }
+
+  // CONTACT FORM
+  const contactForm = document.getElementById('contactForm');
+  const contactSuccess = document.getElementById('contactSuccess');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(contactForm));
+      const btn = contactForm.querySelector('.pf-submit');
+      btn.disabled = true; btn.textContent = '...';
+      try {
+        await fetch('https://formsubmit.co/ajax/divera.app@gmail.com,diveradevelopers@gmail.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ email: data.email, message: data.message, _subject: 'Divera Contact: ' + data.subject, _captcha: 'false', _replyto: data.email })
+        });
+        contactForm.style.display = 'none';
+        contactSuccess.style.display = 'block';
+      } catch {
+        btn.disabled = false;
+        btn.textContent = translations[currentLang].contactSubmit || 'Send message';
       }
     });
   }
