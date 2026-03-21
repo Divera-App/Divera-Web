@@ -350,6 +350,7 @@
   .email-submit:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.16); transform: translateY(-1px); }
   .email-note { font-size: 12px; color: var(--text-dim); margin-bottom: 40px; letter-spacing: -0.1px; }
   .email-success { font-size: 14px; color: var(--positive); margin-bottom: 40px; letter-spacing: -0.2px; }
+  .email-error { font-size: 14px; color: var(--coral); margin-bottom: 40px; letter-spacing: -0.2px; }
   @media (max-width: 600px) { .email-form { flex-direction: column; align-items: center; } .email-input { min-width: auto; width: 100%; max-width: 300px; } .email-submit { width: 100%; max-width: 300px; } }
   .center-cta { margin-top: 28px; padding-top: 24px; border-top: 0.5px solid rgba(255,255,255,0.06); }
   .center-cta p { font-size: 14px; color: var(--text-secondary); letter-spacing: -0.2px; }
@@ -730,6 +731,7 @@
         </div>
         <button type="submit" class="pf-submit" data-i18n="pfSubmit">Solicitar acceso fundador</button>
         <p class="pf-fine" data-i18n="pfFine">Sin compromiso. Te contactaremos antes del lanzamiento.</p>
+        <p id="partnerError" style="display:none; color:var(--coral); font-size:13px; margin-top:8px; text-align:center;"></p>
       </form>
       <div class="pf-success" id="partnerSuccess">
         <p data-i18n="pfSuccess">Recibido. Nos ponemos en contacto contigo antes del lanzamiento.</p>
@@ -788,6 +790,7 @@
       <textarea name="message" class="pf-input" required placeholder="Cuéntanos..." data-i18n-placeholder="contactMessagePh"></textarea>
     </div>
     <button type="submit" class="pf-submit" data-i18n="contactSubmit">Enviar mensaje</button>
+    <p id="contactError" style="display:none; color:var(--coral); font-size:13px; margin-top:8px; text-align:center;"></p>
   </form>
   <div class="contact-success" id="contactSuccess">
     <p data-i18n="contactSuccessMsg">Mensaje enviado. Te responderemos pronto.</p>
@@ -904,6 +907,7 @@
       contactMessage: 'Message', contactMessagePh: 'Tell us...',
       contactSubmit: 'Send message',
       contactSuccessMsg: 'Message sent. We\'ll get back to you soon.',
+      formError: 'Something went wrong. Please try again.',
       footerTagline: 'From Spain. Built by divers, for divers.',
       footerR: '\u00a9 2026 Divera. All rights reserved.',
       pageTitle: 'Divera — AI Fish Detection & Dive App | Marine Species ID | iOS',
@@ -981,6 +985,7 @@
       contactMessage: 'Mensaje', contactMessagePh: 'Cu\u00e9ntanos...',
       contactSubmit: 'Enviar mensaje',
       contactSuccessMsg: 'Mensaje enviado. Te responderemos pronto.',
+      formError: 'Algo salió mal. Inténtalo de nuevo.',
       footerTagline: 'Desde Espa\u00f1a. Hecho por buceadores, para buceadores.',
       footerR: '\u00a9 2026 Divera. Todos los derechos reservados.',
       pageTitle: 'Divera — App de Buceo con IA | Identifica Peces y Registra Inmersiones | iOS',
@@ -1058,6 +1063,7 @@
       contactMessage: 'Message', contactMessagePh: 'Dites-nous...',
       contactSubmit: 'Envoyer le message',
       contactSuccessMsg: 'Message envoy\u00e9. Nous vous r\u00e9pondrons bient\u00f4t.',
+      formError: 'Une erreur est survenue. Veuillez r\u00e9essayer.',
       footerTagline: 'Depuis l\u2019Espagne. Con\u00e7u par des plongeurs, pour des plongeurs.',
       footerR: '\u00a9 2026 Divera. Tous droits r\u00e9serv\u00e9s.',
       pageTitle: 'Divera — App de Plongée IA | Identification d\u2019Esp\u00e8ces Marines | iOS',
@@ -1135,6 +1141,7 @@
       contactMessage: 'Missatge', contactMessagePh: 'Explica\u2019ns...',
       contactSubmit: 'Enviar missatge',
       contactSuccessMsg: 'Missatge enviat. Et respondrem aviat.',
+      formError: 'Alguna cosa ha anat malament. Torna-ho a provar.',
       footerTagline: 'Des d\u2019Espanya. Fet per bussejadors, per a bussejadors.',
       footerR: '\u00a9 2026 Divera. Tots els drets reservats.',
       pageTitle: 'Divera — App de Busseig amb IA | Identificaci\u00f3 d\u2019Esp\u00e8cies Marines | iOS',
@@ -1203,15 +1210,20 @@
       const btn = waitlistForm.querySelector('.email-submit');
       btn.disabled = true; btn.textContent = '...';
       try {
-        await fetch('https://formsubmit.co/ajax/divera.app@gmail.com,diveradevelopers@gmail.com', {
+        const res = await fetch('https://formsubmit.co/ajax/diveradevelopers@gmail.com', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({ email, _subject: 'Divera Waitlist Signup', _captcha: 'false' })
         });
+        if (!res.ok) throw new Error('Server error');
+        const json = await res.json();
+        if (!json.success) throw new Error('Submission failed');
         waitlistForm.style.display = 'none';
         emailNoteEl.className = 'email-success';
         emailNoteEl.textContent = translations[currentLang].emailSuccess || 'You\'re on the list.';
       } catch {
+        emailNoteEl.className = 'email-error';
+        emailNoteEl.textContent = translations[currentLang].formError || 'Something went wrong. Please try again.';
         btn.disabled = false;
         btn.textContent = translations[currentLang].emailBtn || 'Notify Me';
       }
@@ -1228,14 +1240,19 @@
       const btn = partnerForm.querySelector('.pf-submit');
       btn.disabled = true; btn.textContent = '...';
       try {
-        await fetch('https://formsubmit.co/ajax/divera.app@gmail.com,diveradevelopers@gmail.com', {
+        const res = await fetch('https://formsubmit.co/ajax/diveradevelopers@gmail.com', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({ ...data, _subject: 'Divera Founding Partner Request', _captcha: 'false' })
         });
+        if (!res.ok) throw new Error('Server error');
+        const json = await res.json();
+        if (!json.success) throw new Error('Submission failed');
         partnerForm.style.display = 'none';
         partnerSuccess.style.display = 'block';
       } catch {
+        const errEl = document.getElementById('partnerError');
+        if (errEl) { errEl.style.display = 'block'; errEl.textContent = translations[currentLang].formError || 'Something went wrong. Please try again.'; }
         btn.disabled = false;
         btn.textContent = translations[currentLang].pfSubmit || 'Submit';
       }
@@ -1252,14 +1269,19 @@
       const btn = contactForm.querySelector('.pf-submit');
       btn.disabled = true; btn.textContent = '...';
       try {
-        await fetch('https://formsubmit.co/ajax/divera.app@gmail.com,diveradevelopers@gmail.com', {
+        const res = await fetch('https://formsubmit.co/ajax/diveradevelopers@gmail.com', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({ email: data.email, message: data.message, _subject: 'Divera Contact: ' + data.subject, _captcha: 'false', _replyto: data.email })
         });
+        if (!res.ok) throw new Error('Server error');
+        const json = await res.json();
+        if (!json.success) throw new Error('Submission failed');
         contactForm.style.display = 'none';
         contactSuccess.style.display = 'block';
       } catch {
+        const errEl = document.getElementById('contactError');
+        if (errEl) { errEl.style.display = 'block'; errEl.textContent = translations[currentLang].formError || 'Something went wrong. Please try again.'; }
         btn.disabled = false;
         btn.textContent = translations[currentLang].contactSubmit || 'Send message';
       }
