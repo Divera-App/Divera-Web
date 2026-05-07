@@ -135,7 +135,7 @@
     -webkit-backdrop-filter: blur(40px) saturate(1.5);
     border-bottom: 0.5px solid rgba(255,255,255,0.04);
   }
-  .nav-logo { display: flex; align-items: center; }
+  .nav-logo { display: flex; align-items: center; text-decoration: none; color: inherit; cursor: pointer; }
   .nav-full-logo { height: 28px; width: auto; display: block; }
   .nav-right { display: flex; align-items: center; gap: 28px; }
   .nav-right a {
@@ -368,7 +368,7 @@
   .foot-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; text-align: right; }
   .foot-right span { font-size: 12px; color: var(--text-dim); letter-spacing: -0.2px; }
   .foot-tagline { font-size: 11px; color: rgba(255,255,255,0.28); letter-spacing: -0.1px; font-family: var(--font-body); }
-  .foot-center { font-size: 12px; }
+  .foot-center { font-size: 12px; display: flex; align-items: center; gap: 16px; }
   .foot-center a { color: var(--text-dim); text-decoration: none; transition: color 0.3s; letter-spacing: -0.1px; }
   .foot-center a:hover { color: var(--coral); }
   @media (max-width: 768px) { footer { padding: 24px 20px; flex-direction: column; text-align: center; } .foot-right { align-items: center; } }
@@ -484,9 +484,9 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">
+  <a class="nav-logo" href="#top" aria-label="Divera — go to top">
     <img class="nav-full-logo" src="logo-full.png" alt="Divera">
-  </div>
+  </a>
   <div class="nav-right">
     <a href="#centros-fundadores" data-i18n="dcNavLink">Centros fundadores</a>
     <a href="#contacto" data-i18n="navContact">Contacto</a>
@@ -865,6 +865,7 @@
     <img src="logo-full.png" alt="Divera" style="height:20px;width:auto;display:block;opacity:0.7;">
   </div>
   <div class="foot-center">
+    <a href="https://www.instagram.com/divera.app/" target="_blank" rel="noopener" aria-label="Divera on Instagram">@divera.app</a>
     <a href="/privacy" data-i18n="footerPrivacy">Política de Privacidad</a>
   </div>
   <div class="foot-right">
