@@ -16,7 +16,7 @@
 <meta property="og:url" content="https://divera.app/">
 <meta property="og:site_name" content="Divera">
 <meta property="og:title" content="Divera · App de Buceo con IA | Identifica peces, planifica y conecta | iOS">
-<meta property="og:description" content="App de buceo con IA para iOS. Identifica 5500+ especies marinas, registra y planifica inmersiones, descubre 1600+ sitios y centros de buceo. Beta abierta en TestFlight.">
+<meta property="og:description" content="App de buceo con IA para iOS. Identifica 5500+ especies marinas, registra y planifica inmersiones, descubre 1600+ sitios y centros de buceo. Descárgala gratis en el App Store.">
 <meta property="og:image" content="https://divera.app/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -27,9 +27,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@diveraapp">
 <meta name="twitter:title" content="Divera · AI Fish ID, Dive Log & Trip Planner | iOS">
-<meta name="twitter:description" content="Identify 5500+ marine species with AI. Log dives, plan trips with your community, and discover 1600+ dive sites and centers. Open beta on TestFlight.">
+<meta name="twitter:description" content="Identify 5500+ marine species with AI. Log dives, plan trips with your community, and discover 1600+ dive sites and centers. Free on the App Store.">
 <meta name="twitter:image" content="https://divera.app/og-image.jpg">
-<meta name="description" content="App de buceo con IA para iOS. Identifica 5500+ especies marinas, registra y planifica inmersiones, descubre 1600+ sitios y centros de buceo. Beta abierta en TestFlight.">
+<meta name="description" content="App de buceo con IA para iOS. Identifica 5500+ especies marinas, registra y planifica inmersiones, descubre 1600+ sitios y centros de buceo. Descárgala gratis en el App Store.">
 <title>Divera · App de Buceo con IA | Identifica peces, planifica y conecta | iOS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -208,7 +208,11 @@
     font-size: 12px; font-weight: 500; color: var(--text-secondary); margin-bottom: 36px;
     letter-spacing: -0.2px; backdrop-filter: blur(10px);
   }
-  .launch-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--coral); animation: breathe 3s ease-in-out infinite; }
+  .launch-badges { display: inline-flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 36px; }
+  .launch-badges .launch-badge { margin-bottom: 0; }
+  .launch-badge.launch-soon { color: var(--text-dim); border-color: rgba(255,255,255,0.04); background: rgba(255,255,255,0.02); }
+  .btn-apple-icon { width: 16px; height: 16px; display: inline-block; vertical-align: -3px; margin-right: 8px; }
+  .btn-apple-icon svg { width: 100%; height: 100%; fill: currentColor; }
   @keyframes breathe { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
   .hero h1 { font-family: var(--font-display); font-size: clamp(40px,6.5vw,68px); font-weight: 600; letter-spacing: -3px; line-height: 1.1; margin-bottom: 24px; padding-bottom: 4px; }
   .hero h1 .accent { color: var(--coral); }
@@ -502,7 +506,7 @@
         <button class="lang-option" data-lang="ca"><span class="lang-flag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" width="20" height="14" style="border-radius:2px;vertical-align:middle;display:inline-block"><rect width="3" height="2" fill="#FCDD09"/><rect y=".2222" width="3" height=".2222" fill="#DA121A"/><rect y=".6667" width="3" height=".2222" fill="#DA121A"/><rect y="1.1111" width="3" height=".2222" fill="#DA121A"/><rect y="1.5556" width="3" height=".2222" fill="#DA121A"/></svg></span> Català</button>
       </div>
     </div>
-    <a href="#cta" class="nav-cta" data-i18n="navCta">Acceso anticipado</a>
+    <a href="https://apps.apple.com/app/id6759156407" target="_blank" rel="noopener" class="nav-cta" data-i18n="navCta">Descargar</a>
   </div>
 </nav>
 
@@ -511,14 +515,14 @@
   <div class="ambient-orb orb-1"></div>
   <div class="ambient-orb orb-2"></div>
   <div class="hero-content">
-    <div class="launch-badge reveal">
-      <span class="launch-dot"></span>
-      <span data-i18n="heroBadge">Beta abierta · TestFlight</span>
+    <div class="launch-badges reveal">
+      <div class="launch-badge"><span data-i18n="heroBadgeIos">iOS disponible</span></div>
+      <div class="launch-badge launch-soon"><span data-i18n="heroBadgeAndroid">Android próximamente</span></div>
     </div>
     <h1 class="reveal reveal-d1" data-i18n="heroTitle"><span class="accent">La vida,</span> comprendida bajo el agua.</h1>
     <p class="hero-sub reveal reveal-d2" data-i18n="heroSub">Registra inmersiones, identifica especies marinas con IA y descubre centros de buceo cerca de tus sitios favoritos.</p>
     <div class="hero-actions reveal reveal-d3">
-      <a href="#cta" class="btn-primary" data-i18n="heroBtn1">Unirse a la beta</a>
+      <a href="https://apps.apple.com/app/id6759156407" target="_blank" rel="noopener" class="btn-primary"><span class="btn-apple-icon"><svg viewBox="0 0 24 24"><path d="M17.5 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2.1-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.4 1-4.3 2.6-1.8 3.2-.5 7.9 1.3 10.4.9 1.3 1.9 2.6 3.3 2.6 1.3 0 1.8-.9 3.4-.9 1.6 0 2.1.9 3.4.8 1.4 0 2.3-1.3 3.2-2.6 1-1.5 1.4-2.9 1.4-3-.1 0-2.7-1-2.9-3.9zM15 4.8c.7-.9 1.2-2.1 1.1-3.3-1 0-2.3.7-3.1 1.5-.7.8-1.3 2-1.1 3.2 1.1.1 2.3-.6 3.1-1.4z"/></svg></span><span data-i18n="heroBtn1">Descargar en App Store</span></a>
       <a href="#centros-fundadores" class="btn-ghost" data-i18n="heroBtn2">Para centros de buceo</a>
     </div>
   </div>
@@ -771,7 +775,7 @@
       <div class="section-label reveal" data-i18n="partnerLabel">CENTROS FUNDADORES</div>
       <h2 class="section-title reveal reveal-d1" data-i18n="partnerTitle">Gestiona tu centro. Sin papeles, sin WhatsApp.</h2>
       <p class="partner-lead reveal reveal-d2" data-i18n="partnerLead">Un panel web para tu día a día: la lista de inmersiones de hoy con quién va, qué equipo necesita, si pagó y si firmó. Cuestionario médico y exención de responsabilidad por enlace, con firma en pantalla y consentimiento RGPD. Catálogo de alquiler con stock, asignación de instructores y chat de grupo por inmersión. Tu centro aparece en cada sitio donde se bucea. Los buceadores te encuentran cuando planifican.</p>
-      <p class="partner-offer reveal reveal-d3" data-i18n="partnerOffer">El primer año es gratuito para los centros que se registren antes del lanzamiento público.</p>
+      <p class="partner-offer reveal reveal-d3" data-i18n="partnerOffer">La app para buceadores ya está disponible en el App Store. Los centros que se registren antes del lanzamiento del panel acceden a condiciones especiales como socios fundadores.</p>
       <p class="partner-terms reveal reveal-d4" data-i18n="partnerTerms">Buscamos centros que crean que bucear debería dejar el océano en mejor estado del que lo encontramos. Los primeros colaboradores ayudarán a dar forma a lo que Divera se convierte.</p>
     </div>
     <div class="partner-form-panel reveal-left">
@@ -817,16 +821,16 @@
       </div>
     </div>
     <div class="beta-card-body">
-      <div class="section-label" data-i18n="betaLabel">ACCESO ANTICIPADO</div>
+      <div class="section-label" data-i18n="betaLabel">YA DISPONIBLE</div>
       <h2 class="beta-title" data-i18n="ctaTitle">Una forma más consciente de conocer el océano</h2>
-      <p class="beta-desc" data-i18n="ctaSub">Únete a la beta o regístrate para ser el primero en saberlo.</p>
-      <a href="https://testflight.apple.com/join/9MNWEfw4" target="_blank" rel="noopener" class="torch-btn" data-i18n="ctaTestflight">Unirse a la beta en TestFlight</a>
-      <div class="cta-divider beta-divider"><span data-i18n="ctaDivider">o recibe un aviso al lanzamiento</span></div>
+      <p class="beta-desc" data-i18n="ctaSub">Descarga Divera gratis y empieza a registrar tus inmersiones hoy.</p>
+      <a href="https://apps.apple.com/app/id6759156407" target="_blank" rel="noopener" class="torch-btn"><span class="btn-apple-icon"><svg viewBox="0 0 24 24"><path d="M17.5 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2.1-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.4 1-4.3 2.6-1.8 3.2-.5 7.9 1.3 10.4.9 1.3 1.9 2.6 3.3 2.6 1.3 0 1.8-.9 3.4-.9 1.6 0 2.1.9 3.4.8 1.4 0 2.3-1.3 3.2-2.6 1-1.5 1.4-2.9 1.4-3-.1 0-2.7-1-2.9-3.9zM15 4.8c.7-.9 1.2-2.1 1.1-3.3-1 0-2.3.7-3.1 1.5-.7.8-1.3 2-1.1 3.2 1.1.1 2.3-.6 3.1-1.4z"/></svg></span><span data-i18n="ctaTestflight">Descargar en App Store</span></a>
+      <div class="cta-divider beta-divider"><span data-i18n="ctaDivider">o suscríbete a las novedades</span></div>
       <form class="email-form" id="waitlistForm">
         <input type="email" name="email" class="email-input" placeholder="tu@email.com" required data-i18n-placeholder="emailPlaceholder">
-        <button type="submit" class="email-submit" data-i18n="emailBtn">Avísame</button>
+        <button type="submit" class="email-submit" data-i18n="emailBtn">Suscribirme</button>
       </form>
-      <p class="email-note" id="emailNote" data-i18n="emailNote">Sin spam. Solo un aviso cuando lancemos.</p>
+      <p class="email-note" id="emailNote" data-i18n="emailNote">Sin spam. Solo novedades importantes.</p>
       <div class="social-row beta-social">
         <a href="https://www.instagram.com/divera.app/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>Instagram</a>
       </div>
@@ -903,13 +907,15 @@
   // i18n
   const translations = {
     en: {
-      navCta: 'Early Access',
+      navCta: 'Download',
       dcNavLink: 'Founding Partners',
       navContact: 'Contact',
-      heroBadge: 'Open beta · TestFlight',
+      heroBadge: 'Available on the App Store',
+      heroBadgeIos: 'iOS available',
+      heroBadgeAndroid: 'Android coming soon',
       heroTitle: '<span class="accent">Life,</span> understood underwater.',
       heroSub: 'Log dives, identify marine species with AI, plan trips with your community, and find dive centers near your favorite spots.',
-      heroBtn1: 'Join the Beta',
+      heroBtn1: 'Download on App Store',
       heroBtn2: 'For Dive Centers',
       s1l: 'Species', s2l: 'Dive Sites', s3l: 'Identification', s4l: 'Native',
       fLabel: 'FEATURES',
@@ -957,22 +963,22 @@
       partnerLabel: 'FOUNDING PARTNERS',
       partnerTitle: 'Run your center. No paperwork, no WhatsApp.',
       partnerLead: 'A web dashboard for your day-to-day: today\'s dive list with who\'s coming, what gear they need, who paid and who signed. Medical questionnaire and liability waiver via link, with on-screen signature and GDPR consent. Rental catalog with stock, instructor assignment, and a group chat per dive. Your center shows up on every dive site. Divers find you when they plan.',
-      partnerOffer: 'The first year is free for centers that register before public launch.',
+      partnerOffer: 'The diver app is live on the App Store. Centers that register before the dashboard launches get special founding-partner terms.',
       partnerTerms: 'We\'re looking for centers that believe diving should leave the ocean in better shape than we found it. Early partners will help shape what Divera becomes.',
       pfName: 'Your name', pfNamePh: 'Your name',
       pfCenter: 'Dive center', pfCenterPh: 'Center name',
       pfEmail: 'Email', pfEmailPh: 'your@email.com',
       pfLocation: 'Location', pfLocationPh: 'City or country',
       pfSubmit: 'Request founding access',
-      pfFine: 'No commitment. We\'ll reach out before launch.',
-      pfSuccess: 'Received. We\'ll be in touch before launch.',
-      betaLabel: 'EARLY ACCESS',
+      pfFine: 'No commitment. We\'ll reach out before the dashboard launches.',
+      pfSuccess: 'Received. We\'ll be in touch before the dashboard launches.',
+      betaLabel: 'AVAILABLE NOW',
       ctaTitle: 'A more conscious way to learn the ocean',
-      ctaSub: 'Join the beta or sign up to be first to know.',
-      ctaTestflight: 'Join the Beta on TestFlight',
-      ctaDivider: 'or get notified at launch',
-      emailBtn: 'Notify Me',
-      emailNote: 'No spam. Just a ping when we launch.',
+      ctaSub: 'Download Divera free and start logging your dives today.',
+      ctaTestflight: 'Download on App Store',
+      ctaDivider: 'or subscribe for updates',
+      emailBtn: 'Subscribe',
+      emailNote: 'No spam. Only meaningful updates.',
       emailSuccess: 'You\'re on the list. See you underwater.',
       emailPlaceholder: 'your@email.com',
       manifesto: 'We believe the diving community holds something extraordinary: millions of eyes beneath the surface, every week, all over the world. Right now, most of that observation disappears after the dive. We\'re building Divera to change that. A place where every dive feeds understanding, and understanding feeds protection. We\'re not there yet. But with the right community, we will be.',
@@ -989,16 +995,18 @@
       footerPrivacy: 'Privacy Policy',
       footerR: '\u00a9 2026 Divera. All rights reserved.',
       pageTitle: 'Divera · AI Fish ID, Dive Log & Trip Planner | iOS',
-      pageDesc: 'AI-powered dive app for iOS. Identify 5500+ marine species, log and plan dives, discover 1600+ sites and centers. Open beta on TestFlight.',
+      pageDesc: 'AI-powered dive app for iOS. Identify 5500+ marine species, log and plan dives, discover 1600+ sites and centers. Free on the App Store.',
     },
     es: {
-      navCta: 'Acceso anticipado',
+      navCta: 'Descargar',
       dcNavLink: 'Centros fundadores',
       navContact: 'Contacto',
-      heroBadge: 'Beta abierta \u00b7 TestFlight',
+      heroBadge: 'Disponible en el App Store',
+      heroBadgeIos: 'iOS disponible',
+      heroBadgeAndroid: 'Android próximamente',
       heroTitle: '<span class="accent">La vida,</span> comprendida bajo el agua.',
       heroSub: 'Registra inmersiones, identifica especies con IA, planifica salidas con tu comunidad y descubre centros de buceo cerca.',
-      heroBtn1: 'Unirse a la beta',
+      heroBtn1: 'Descargar en App Store',
       heroBtn2: 'Para centros de buceo',
       s1l: 'Especies', s2l: 'Sitios de buceo', s3l: 'Identificaci\u00f3n', s4l: 'Nativa',
       fLabel: 'FUNCIONES',
@@ -1046,22 +1054,22 @@
       partnerLabel: 'CENTROS FUNDADORES',
       partnerTitle: 'Gestiona tu centro. Sin papeles, sin WhatsApp.',
       partnerLead: 'Un panel web para tu d\u00eda a d\u00eda: la lista de inmersiones de hoy con qui\u00e9n va, qu\u00e9 equipo necesita, si pag\u00f3 y si firm\u00f3. Cuestionario m\u00e9dico y exenci\u00f3n de responsabilidad por enlace, con firma en pantalla y consentimiento RGPD. Cat\u00e1logo de alquiler con stock, asignaci\u00f3n de instructores y chat de grupo por inmersi\u00f3n. Tu centro aparece en cada sitio donde se bucea \u2014 los buceadores te encuentran cuando planifican.',
-      partnerOffer: 'El primer a\u00f1o es gratuito para los centros que se registren antes del lanzamiento p\u00fablico.',
+      partnerOffer: 'La app para buceadores ya est\u00e1 disponible en el App Store. Los centros que se registren antes del lanzamiento del panel acceden a condiciones especiales como socios fundadores.',
       partnerTerms: 'Buscamos centros que crean que bucear deber\u00eda dejar el oc\u00e9ano en mejor estado del que lo encontramos. Los primeros colaboradores ayudar\u00e1n a dar forma a lo que Divera se convierte.',
       pfName: 'Tu nombre', pfNamePh: 'Nombre',
       pfCenter: 'Centro de buceo', pfCenterPh: 'Nombre del centro',
       pfEmail: 'Email', pfEmailPh: 'tu@email.com',
       pfLocation: 'Ubicaci\u00f3n', pfLocationPh: 'Ciudad o pa\u00eds',
       pfSubmit: 'Solicitar acceso fundador',
-      pfFine: 'Sin compromiso. Te contactaremos antes del lanzamiento.',
-      pfSuccess: 'Recibido. Nos ponemos en contacto contigo antes del lanzamiento.',
-      betaLabel: 'ACCESO ANTICIPADO',
+      pfFine: 'Sin compromiso. Te contactaremos antes del lanzamiento del panel.',
+      pfSuccess: 'Recibido. Nos ponemos en contacto contigo antes del lanzamiento del panel.',
+      betaLabel: 'YA DISPONIBLE',
       ctaTitle: 'Una forma m\u00e1s consciente de conocer el oc\u00e9ano',
-      ctaSub: '\u00danete a la beta o reg\u00edstrate para ser el primero en saberlo.',
-      ctaTestflight: 'Unirse a la beta en TestFlight',
-      ctaDivider: 'o recibe un aviso al lanzamiento',
-      emailBtn: 'Av\u00edsame',
-      emailNote: 'Sin spam. Solo un aviso cuando lancemos.',
+      ctaSub: 'Descarga Divera gratis y empieza a registrar tus inmersiones hoy.',
+      ctaTestflight: 'Descargar en App Store',
+      ctaDivider: 'o suscr\u00edbete a las novedades',
+      emailBtn: 'Suscribirme',
+      emailNote: 'Sin spam. Solo novedades importantes.',
       emailSuccess: 'Est\u00e1s en la lista. Nos vemos bajo el agua.',
       emailPlaceholder: 'tu@email.com',
       manifesto: 'Creemos que la comunidad de buceo guarda algo extraordinario: millones de ojos bajo la superficie, cada semana, en todo el mundo. Ahora mismo, la mayor parte de esa observaci\u00f3n desaparece despu\u00e9s de cada inmersi\u00f3n. Estamos construyendo Divera para cambiar eso. Un lugar donde cada inmersi\u00f3n alimenta el conocimiento, y el conocimiento alimenta la protecci\u00f3n. Todav\u00eda no hemos llegado. Pero con la comunidad adecuada, lo haremos.',
@@ -1078,16 +1086,18 @@
       footerPrivacy: 'Pol\u00edtica de Privacidad',
       footerR: '\u00a9 2026 Divera. Todos los derechos reservados.',
       pageTitle: 'Divera · App de Buceo con IA | Identifica peces, planifica y conecta | iOS',
-      pageDesc: 'App de buceo con IA para iOS. Identifica 5500+ especies marinas, registra y planifica inmersiones, descubre 1600+ sitios y centros de buceo. Beta abierta en TestFlight.',
+      pageDesc: 'App de buceo con IA para iOS. Identifica 5500+ especies marinas, registra y planifica inmersiones, descubre 1600+ sitios y centros de buceo. Descárgala gratis en el App Store.',
     },
     fr: {
-      navCta: 'Acc\u00e8s anticip\u00e9',
+      navCta: 'T\u00e9l\u00e9charger',
       dcNavLink: 'Partenaires fondateurs',
       navContact: 'Contact',
-      heroBadge: 'B\u00eata ouverte \u00b7 TestFlight',
+      heroBadge: 'Disponible sur l\u2019App Store',
+      heroBadgeIos: 'iOS disponible',
+      heroBadgeAndroid: 'Android bient\u00f4t',
       heroTitle: '<span class="accent">La vie,</span> comprise sous l\u2019eau.',
       heroSub: 'Enregistrez vos plong\u00e9es, identifiez les esp\u00e8ces marines avec l\u2019IA, planifiez vos sorties avec votre communaut\u00e9 et trouvez des centres de plong\u00e9e \u00e0 proximit\u00e9.',
-      heroBtn1: 'Rejoindre la b\u00eata',
+      heroBtn1: 'T\u00e9l\u00e9charger sur l\u2019App Store',
       heroBtn2: 'Pour les centres de plong\u00e9e',
       s1l: 'Esp\u00e8ces', s2l: 'Sites de plong\u00e9e', s3l: 'Identification', s4l: 'Native',
       fLabel: 'FONCTIONNALIT\u00c9S',
@@ -1135,22 +1145,22 @@
       partnerLabel: 'PARTENAIRES FONDATEURS',
       partnerTitle: 'G\u00e9rez votre centre. Sans paperasse, sans WhatsApp.',
       partnerLead: 'Un tableau de bord web pour votre quotidien\u00a0: la liste des plong\u00e9es du jour avec qui vient, quel mat\u00e9riel il faut, qui a pay\u00e9 et qui a sign\u00e9. Questionnaire m\u00e9dical et d\u00e9charge par lien, avec signature \u00e0 l\u2019\u00e9cran et consentement RGPD. Catalogue de location avec stocks, affectation des moniteurs et chat de groupe par plong\u00e9e. Votre centre appara\u00eet sur chaque site de plong\u00e9e \u2014 les plongeurs vous trouvent quand ils planifient.',
-      partnerOffer: 'La premi\u00e8re ann\u00e9e est gratuite pour les centres qui s\u2019inscrivent avant le lancement public.',
+      partnerOffer: 'L\u2019app pour plongeurs est disponible sur l\u2019App Store. Les centres qui s\u2019inscrivent avant le lancement du tableau de bord b\u00e9n\u00e9ficient de conditions privil\u00e9gi\u00e9es en tant que partenaires fondateurs.',
       partnerTerms: 'Nous cherchons des centres qui croient que la plong\u00e9e doit laisser l\u2019oc\u00e9an en meilleur \u00e9tat. Les premiers partenaires aideront \u00e0 fa\u00e7onner ce que Divera devient.',
       pfName: 'Votre nom', pfNamePh: 'Votre nom',
       pfCenter: 'Centre de plong\u00e9e', pfCenterPh: 'Nom du centre',
       pfEmail: 'Email', pfEmailPh: 'votre@email.com',
       pfLocation: 'Localisation', pfLocationPh: 'Ville ou pays',
       pfSubmit: 'Demander l\u2019acc\u00e8s fondateur',
-      pfFine: 'Sans engagement. Nous vous contacterons avant le lancement.',
-      pfSuccess: 'Re\u00e7u. Nous vous contacterons avant le lancement.',
-      betaLabel: 'ACC\u00c8S ANTICIP\u00c9',
+      pfFine: 'Sans engagement. Nous vous contacterons avant le lancement du tableau de bord.',
+      pfSuccess: 'Re\u00e7u. Nous vous contacterons avant le lancement du tableau de bord.',
+      betaLabel: 'DISPONIBLE',
       ctaTitle: 'Une fa\u00e7on plus consciente de conna\u00eetre l\u2019oc\u00e9an',
-      ctaSub: 'Rejoignez la b\u00eata ou inscrivez-vous pour \u00eatre le premier inform\u00e9.',
-      ctaTestflight: 'Rejoindre la b\u00eata sur TestFlight',
-      ctaDivider: 'ou soyez notifi\u00e9 au lancement',
-      emailBtn: 'M\u2019avertir',
-      emailNote: 'Pas de spam. Juste un message au lancement.',
+      ctaSub: 'T\u00e9l\u00e9chargez Divera gratuitement et commencez \u00e0 enregistrer vos plong\u00e9es d\u00e8s aujourd\u2019hui.',
+      ctaTestflight: 'T\u00e9l\u00e9charger sur l\u2019App Store',
+      ctaDivider: 'ou inscrivez-vous aux actualit\u00e9s',
+      emailBtn: 'S\u2019abonner',
+      emailNote: 'Pas de spam. Uniquement des nouvelles importantes.',
       emailSuccess: 'Vous \u00eates sur la liste. \u00c0 bient\u00f4t sous l\u2019eau.',
       emailPlaceholder: 'votre@email.com',
       manifesto: 'Nous croyons que la communaut\u00e9 de plong\u00e9e rec\u00e8le quelque chose d\u2019extraordinaire\u00a0: des millions d\u2019yeux sous la surface, chaque semaine, partout dans le monde. Aujourd\u2019hui, la majeure partie de ces observations dispara\u00eet apr\u00e8s la plong\u00e9e. Nous construisons Divera pour changer cela. Un endroit o\u00f9 chaque plong\u00e9e nourrit la compr\u00e9hension, et la compr\u00e9hension nourrit la protection.',
@@ -1167,16 +1177,18 @@
       footerPrivacy: 'Politique de confidentialit\u00e9',
       footerR: '\u00a9 2026 Divera. Tous droits r\u00e9serv\u00e9s.',
       pageTitle: 'Divera · App de Plongée IA | Identification d’Espèces et Planification | iOS',
-      pageDesc: 'App de plongée avec IA pour iOS. Identifiez 5500+ espèces marines, enregistrez et planifiez vos plongées, découvrez 1600+ sites et centres. Bêta ouverte sur TestFlight.',
+      pageDesc: 'App de plongée avec IA pour iOS. Identifiez 5500+ espèces marines, enregistrez et planifiez vos plongées, découvrez 1600+ sites et centres. Disponible gratuitement sur l’App Store.',
     },
     ca: {
-      navCta: 'Acc\u00e9s anticipat',
+      navCta: 'Descarregar',
       dcNavLink: 'Centres fundadors',
       navContact: 'Contacte',
-      heroBadge: 'Beta oberta · TestFlight',
+      heroBadge: 'Disponible a l’App Store',
+      heroBadgeIos: 'iOS disponible',
+      heroBadgeAndroid: 'Android pròximament',
       heroTitle: '<span class="accent">La vida,</span> compresa sota l\u2019aigua.',
       heroSub: 'Registra immersions, identifica espècies marines amb IA, planifica sortides amb la teva comunitat i descobreix centres de busseig a prop.',
-      heroBtn1: 'Unir-se a la beta',
+      heroBtn1: 'Descarregar a l’App Store',
       heroBtn2: 'Per a centres de busseig',
       s1l: 'Esp\u00e8cies', s2l: 'Llocs de busseig', s3l: 'Identificaci\u00f3', s4l: 'Nativa',
       fLabel: 'FUNCIONALITATS',
@@ -1224,22 +1236,22 @@
       partnerLabel: 'CENTRES FUNDADORS',
       partnerTitle: 'Gestiona el teu centre. Sense papers, sense WhatsApp.',
       partnerLead: 'Un panell web per al teu dia a dia: la llista d’immersions d’avui amb qui hi va, quin equip necessita, si ha pagat i si ha signat. Qüestionari mèdic i exempció de responsabilitat per enllaç, amb signatura en pantalla i consentiment RGPD. Catàleg de lloguer amb estoc, assignació d’instructors i xat de grup per immersió. El teu centre apareix a cada lloc on es bussega. Els bussejadors et troben quan planifiquen.',
-      partnerOffer: 'El primer any és gratuït per als centres que es registrin abans del llançament públic.',
+      partnerOffer: 'L’app per a bussejadors ja és disponible a l’App Store. Els centres que es registrin abans del llançament del panell accedeixen a condicions especials com a socis fundadors.',
       partnerTerms: 'Busquem centres que creguin que bussejar hauria de deixar l\u2019oce\u00e0 en millor estat del que el vam trobar. Els primers col\u00b7laboradors ajudaran a donar forma al que Divera es convertir\u00e0.',
       pfName: 'El teu nom', pfNamePh: 'El teu nom',
       pfCenter: 'Centre de busseig', pfCenterPh: 'Nom del centre',
       pfEmail: 'Correu electr\u00f2nic', pfEmailPh: 'el-teu@email.com',
       pfLocation: 'Ubicaci\u00f3', pfLocationPh: 'Ciutat o pa\u00eds',
       pfSubmit: 'Sol\u00b7licitar acc\u00e9s fundador',
-      pfFine: 'Sense com\u00eds. Ens posarem en contacte abans del llan\u00e7ament.',
-      pfSuccess: 'Rebut. Ens posarem en contacte abans del llan\u00e7ament.',
-      betaLabel: 'ACC\u00c9S ANTICIPAT',
+      pfFine: 'Sense com\u00eds. Ens posarem en contacte abans del llan\u00e7ament del panell.',
+      pfSuccess: 'Rebut. Ens posarem en contacte abans del llan\u00e7ament del panell.',
+      betaLabel: 'JA DISPONIBLE',
       ctaTitle: 'Una manera m\u00e9s conscient de con\u00e8ixer l\u2019oce\u00e0',
-      ctaSub: 'Uneix-te a la beta o registra\u2019t per ser el primer a saber-ho.',
-      ctaTestflight: 'Unir-se a la beta al TestFlight',
-      ctaDivider: 'o rep un av\u00eds al llan\u00e7ament',
-      emailBtn: 'Avisa\u2019m',
-      emailNote: 'Sense spam. Nom\u00e9s un av\u00eds quan llanceu.',
+      ctaSub: 'Descarrega Divera gratis i comen\u00e7a a registrar les teves immersions avui.',
+      ctaTestflight: 'Descarregar a l\u2019App Store',
+      ctaDivider: 'o subscriu-te a les novetats',
+      emailBtn: 'Subscriure\u2019m',
+      emailNote: 'Sense spam. Nom\u00e9s novetats importants.',
       emailSuccess: 'Ets a la llista. Ens veiem sota l\u2019aigua.',
       emailPlaceholder: 'el-teu@email.com',
       manifesto: 'Creiem que la comunitat de busseig guarda alguna cosa extraordin\u00e0ria: milions d\u2019ulls sota la superf\u00edcie, cada setmana, arreu del m\u00f3n. Ara mateix, la major part d\u2019aquella observaci\u00f3 desapareix despr\u00e9s de cada immersi\u00f3. Estem construint Divera per canviar aquesta situaci\u00f3. Un lloc on cada immersi\u00f3 alimenta el coneixement, i el coneixement alimenta la protecci\u00f3.',
@@ -1256,7 +1268,7 @@
       footerPrivacy: 'Pol\u00edtica de privadesa',
       footerR: '\u00a9 2026 Divera. Tots els drets reservats.',
       pageTitle: 'Divera · App de Busseig amb IA | Identifica espècies, planifica i connecta | iOS',
-      pageDesc: 'App de busseig amb IA per a iOS. Identifica 5500+ espècies marines, registra i planifica immersions, descobreix 1600+ llocs i centres. Beta oberta a TestFlight.',
+      pageDesc: 'App de busseig amb IA per a iOS. Identifica 5500+ espècies marines, registra i planifica immersions, descobreix 1600+ llocs i centres. Descarrega-la gratis a l’App Store.',
     }
   };
 
@@ -1415,11 +1427,14 @@
       "applicationSubCategory": "Diving",
       "operatingSystem": "iOS",
       "inLanguage": ["es", "en", "fr", "ca"],
+      "installUrl": "https://apps.apple.com/app/id6759156407",
+      "downloadUrl": "https://apps.apple.com/app/id6759156407",
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "EUR",
-        "availability": "https://schema.org/InStock"
+        "availability": "https://schema.org/InStock",
+        "url": "https://apps.apple.com/app/id6759156407"
       },
       "featureList": [
         "AI fish identification from underwater photos",
