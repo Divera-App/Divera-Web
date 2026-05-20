@@ -34,14 +34,14 @@
                 <!-- Body text -->
                 <tr>
                   <td align="center" style="padding-bottom: 28px;">
-                    <p style="margin: 0; color: #7A7A7E; font-size: 15px; line-height: 1.6;">Click the button below to confirm your email address and activate your Divera account.</p>
+                    <p style="margin: 0; color: #7A7A7E; font-size: 15px; line-height: 1.6;">Your email was confirmed. Tap the button below to open the Divera app.</p>
                   </td>
                 </tr>
 
                 <!-- Button -->
                 <tr>
                   <td align="center" style="padding-bottom: 28px;">
-                    <a href="{{ .ConfirmationURL }}" style="display: inline-block; padding: 14px 28px; background-color: #FF5A62; color: #ffffff; font-size: 15px; font-weight: 600; text-decoration: none; border-radius: 12px;">Confirm email</a>
+                    <a id="open-app" href="#" style="display: inline-block; padding: 14px 28px; background-color: #FF5A62; color: #ffffff; font-size: 15px; font-weight: 600; text-decoration: none; border-radius: 12px;">Open Divera app</a>
                   </td>
                 </tr>
 
@@ -60,5 +60,18 @@
       </td>
     </tr>
   </table>
+  <script>
+    (function () {
+      var hash = window.location.hash || "";
+      var deepLink = "divera://auth/callback" + hash;
+      var link = document.getElementById("open-app");
+      if (link) {
+        link.href = deepLink;
+      }
+
+      // Try opening the app automatically on mobile browsers.
+      window.location.href = deepLink;
+    })();
+  </script>
 </body>
 </html>
