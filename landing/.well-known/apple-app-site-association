@@ -1,4 +1,22 @@
 {
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "8B38H968Q8.com.divera.app",
+          "8B38H968Q8.com.divera.staging"
+        ],
+        "components": [
+          { "/": "/dive/*" },
+          { "/": "/dive-site/*" },
+          { "/": "/dive-center/*" },
+          { "/": "/profile/*" },
+          { "/": "/fish/*" },
+          { "/": "/planned-dive/*" }
+        ]
+      }
+    ]
+  },
   "webcredentials": {
     "apps": ["8B38H968Q8.com.divera.app"]
   }

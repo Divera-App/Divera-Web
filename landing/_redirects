@@ -1,0 +1,10 @@
+# Deep link rewrites — serve open.html at the original URL so the page
+# can read window.location.pathname and reconstruct the divera:// scheme.
+# iOS intercepts these via Universal Links (AASA) before they reach the web;
+# open.html is the fallback for users without the app or on other platforms.
+/dive/*          /open.html  200
+/dive-site/*     /open.html  200
+/dive-center/*   /open.html  200
+/profile/*       /open.html  200
+/fish/*          /open.html  200
+/planned-dive/*  /open.html  200
