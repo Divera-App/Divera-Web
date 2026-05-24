@@ -21,10 +21,11 @@
   <meta name="twitter:description" content="Open this in the Divera app.">
   <meta name="twitter:image" content="https://divera.app/og-image-v2.jpg">
 
-  <!-- Real visitors go straight to the App Store. Users with the app
-       installed never reach this page — iOS intercepts the Universal Link
-       (AASA) first. No-JS fallback via meta refresh. -->
-  <meta http-equiv="refresh" content="0; url=https://apps.apple.com/app/id6759156407">
+  <!-- No-JS fallback only: send straight to the App Store. JS (below) does
+       the smarter "try the app first" flow when available. -->
+  <noscript>
+    <meta http-equiv="refresh" content="0; url=https://apps.apple.com/app/id6759156407">
+  </noscript>
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -74,11 +75,49 @@
       src="https://agatpmqbrpdhlfeinkmv.supabase.co/storage/v1/object/public/DiveraPhotos/divera-icon.png"
       alt="Divera"
     >
-    <p class="subtitle">Opening the App Store&hellip;</p>
+    <p class="subtitle">Opening Divera&hellip;</p>
   </div>
 
   <script>
-    location.replace("https://apps.apple.com/app/id6759156407");
+    (function () {
+      var APP_STORE = "https://apps.apple.com/app/id6759156407";
+
+      // Reconstruct the content route. Normal path: /dive/<id> (kept intact
+      // by the _redirects rewrite). Query fallback (?type=&id=) in case a
+      // redirect ever moves the data off the path.
+      function deepLink() {
+        var parts = location.pathname.split("/").filter(Boolean);
+        var type = parts[0];
+        var id = parts[1];
+        if (!id || type === "open" || type === "open.html") {
+          var q = new URLSearchParams(location.search);
+          if (q.get("id")) { type = q.get("type") || type; id = q.get("id"); }
+        }
+        if (!type || !id || type === "open" || type === "open.html") return null;
+        return "divera://" + type + "/" + id;
+      }
+
+      var link = deepLink();
+
+      // No content id (e.g. bare /open) → nothing to deep-link, go to store.
+      if (!link) { location.replace(APP_STORE); return; }
+
+      // Try the app. If it grabs the link, the page is backgrounded and we
+      // cancel the store jump. Universal Links don't re-fire from a loaded
+      // page, so the custom scheme is the only in-page route to the app
+      // (relevant for in-app browsers like Instagram/Facebook that bypass UL).
+      var fallback = setTimeout(function () {
+        location.replace(APP_STORE);
+      }, 1500);
+
+      function cancel() { clearTimeout(fallback); }
+      document.addEventListener("visibilitychange", function () {
+        if (document.visibilityState === "hidden") cancel();
+      });
+      window.addEventListener("pagehide", cancel);
+
+      window.location.href = link;
+    })();
   </script>
 </body>
 </html>
