@@ -3,7 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Open in Divera</title>
+  <title>Divera</title>
+
+  <!-- Rich link preview (WhatsApp / iMessage / social).
+       Uses the branded 1200x630 card so shared links render correctly.
+       The transparent wordmark logo is wrong for previews (invisible on
+       light card backgrounds), so the share image is og-image-v2.jpg. -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://divera.app/">
+  <meta property="og:title" content="Divera — Life, understood underwater">
+  <meta property="og:description" content="Open this in the Divera app.">
+  <meta property="og:image" content="https://divera.app/og-image-v2.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Divera — Life, understood underwater">
+  <meta name="twitter:description" content="Open this in the Divera app.">
+  <meta name="twitter:image" content="https://divera.app/og-image-v2.jpg">
+
+  <!-- Real visitors go straight to the App Store. Users with the app
+       installed never reach this page — iOS intercepts the Universal Link
+       (AASA) first. No-JS fallback via meta refresh. -->
+  <meta http-equiv="refresh" content="0; url=https://apps.apple.com/app/id6759156407">
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -28,73 +50,19 @@
       text-align: center;
     }
 
+    /* Size by height only so the 2500x1024 wordmark keeps its aspect
+       ratio (no forced square = no horizontal squish). */
     .logo {
-      width: 72px;
-      height: 72px;
-      border-radius: 18px;
-      margin: 0 auto 24px;
+      height: 48px;
+      width: auto;
+      max-width: 80%;
+      margin: 0 auto 20px;
       display: block;
-    }
-
-    h1 {
-      font-size: 24px;
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: -0.3px;
-      margin-bottom: 10px;
     }
 
     .subtitle {
       font-size: 16px;
       color: #9B9BA1;
-      line-height: 1.5;
-      margin-bottom: 32px;
-    }
-
-    .btn-primary {
-      display: block;
-      width: 100%;
-      background-color: #FF5A62;
-      color: #FFFFFF;
-      font-size: 17px;
-      font-weight: 700;
-      text-decoration: none;
-      padding: 16px 24px;
-      border-radius: 14px;
-      border: none;
-      cursor: pointer;
-      margin-bottom: 12px;
-      transition: opacity 0.15s;
-    }
-
-    .btn-primary:hover { opacity: 0.88; }
-
-    .btn-secondary {
-      display: block;
-      width: 100%;
-      background-color: transparent;
-      color: #9B9BA1;
-      font-size: 15px;
-      font-weight: 500;
-      text-decoration: none;
-      padding: 14px 24px;
-      border-radius: 14px;
-      border: 1px solid #232327;
-      cursor: pointer;
-      transition: border-color 0.15s, color 0.15s;
-    }
-
-    .btn-secondary:hover { border-color: #444; color: #EBEBEB; }
-
-    .divider {
-      border: none;
-      border-top: 1px solid #232327;
-      margin: 24px 0;
-    }
-
-    .footer {
-      font-size: 13px;
-      color: #7A7A7E;
       line-height: 1.5;
     }
   </style>
@@ -106,49 +74,11 @@
       src="https://agatpmqbrpdhlfeinkmv.supabase.co/storage/v1/object/public/DiveraPhotos/divera-icon.png"
       alt="Divera"
     >
-    <h1>Open in Divera</h1>
-    <p class="subtitle">View this content in the Divera app for the best experience.</p>
-
-    <button class="btn-primary" id="btn-open" onclick="openInApp()">
-      Open in Divera
-    </button>
-
-    <a
-      class="btn-secondary"
-      href="https://apps.apple.com/app/id6759156407"
-      id="btn-download"
-    >
-      Download on the App Store
-    </a>
-
-    <hr class="divider">
-    <p class="footer">
-      Don't have Divera yet? Download it free on the App Store and start logging your dives.
-    </p>
+    <p class="subtitle">Opening the App Store&hellip;</p>
   </div>
 
   <script>
-    (function () {
-      // Build divera:// deep link from the current URL path.
-      // e.g. /dive-site/abc123  →  divera://dive-site/abc123
-      var parts = window.location.pathname.split('/').filter(Boolean);
-      var type  = parts[0]; // "dive-site"
-      var id    = parts[1]; // "abc123"
-
-      var deepLink = (type && id) ? ('divera://' + type + '/' + id) : null;
-
-      function openInApp() {
-        if (!deepLink) return;
-        window.location.href = deepLink;
-      }
-
-      // Auto-attempt on load. If the app is installed, iOS will switch
-      // immediately and the page stays in the background. If not, nothing
-      // happens and the user sees the fallback buttons.
-      if (deepLink) {
-        setTimeout(openInApp, 100);
-      }
-    })();
+    location.replace("https://apps.apple.com/app/id6759156407");
   </script>
 </body>
 </html>
