@@ -12,7 +12,8 @@
           { "/": "/dive-center/*" },
           { "/": "/profile/*" },
           { "/": "/fish/*" },
-          { "/": "/planned-dive/*" }
+          { "/": "/planned-dive/*" },
+          { "/": "/auth/reset-password" }
         ]
       }
     ]
