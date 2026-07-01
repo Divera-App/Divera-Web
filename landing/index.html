@@ -226,21 +226,14 @@
   /* Platform chooser (shown when the OS can't be detected, e.g. desktop) */
   .pm-options { display: flex; flex-direction: column; gap: 12px; margin-top: 6px; }
   .pm-options .btn-primary, .pm-options .btn-secondary { width: 100%; box-sizing: border-box; }
-  /* Android beta email gate (testers must be allowlisted before Google Play access) */
+  /* Modal shell — used by the desktop platform chooser */
   .ab-overlay { position: fixed; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px; background: rgba(5,5,5,0.8); backdrop-filter: blur(8px); }
   .ab-overlay.open { display: flex; }
   .ab-modal { position: relative; width: 100%; max-width: 420px; background: var(--surface); border: 0.5px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 40px 32px 32px; text-align: center; box-shadow: 0 30px 80px rgba(0,0,0,0.55); }
   .ab-close { position: absolute; top: 12px; right: 16px; background: none; border: none; color: var(--text-dim); font-size: 28px; line-height: 1; cursor: pointer; transition: color 0.3s; }
   .ab-close:hover { color: var(--text-primary); }
-  .ab-icon { width: 34px; height: 34px; color: var(--coral); margin: 0 auto 16px; }
-  .ab-icon svg { width: 100%; height: 100%; fill: currentColor; }
   .ab-title { font-family: var(--font-display); font-size: 22px; font-weight: 600; letter-spacing: -0.5px; margin-bottom: 10px; }
   .ab-sub { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 22px; }
-  .ab-form { display: flex; flex-direction: column; gap: 12px; }
-  .ab-form .torch-btn { width: 100%; }
-  .ab-note { margin-top: 14px; font-size: 13px; min-height: 1px; }
-  .ab-note.email-error { color: var(--coral); }
-  .ab-success .torch-btn { display: inline-block; margin-top: 6px; }
   @keyframes breathe { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
   .hero h1 { font-family: var(--font-display); font-size: clamp(40px,6.5vw,68px); font-weight: 600; letter-spacing: -3px; line-height: 1.1; margin-bottom: 24px; padding-bottom: 4px; }
   .hero h1 .accent { color: var(--coral); }
@@ -285,6 +278,7 @@
   .stat { text-align: center; display: flex; align-items: baseline; gap: 10px; padding: 0 40px; border-left: 1px solid rgba(255,255,255,0.06); }
   .stat:first-child { border-left: none; }
   .stat-num { font-family: var(--font-display); font-size: 42px; font-weight: 700; letter-spacing: -2px; }
+  .stat-num-sm { font-size: 26px; letter-spacing: -1px; }
   .stat-accent { color: var(--coral); }
   .stat-label { font-size: 13px; color: var(--text-dim); font-weight: 500; letter-spacing: 0.3px; text-transform: uppercase; }
   @media (max-width: 768px) {
@@ -544,8 +538,8 @@
   <div class="ambient-orb orb-2"></div>
   <div class="hero-content">
     <div class="launch-badges reveal">
-      <div class="launch-badge"><span data-i18n="heroBadgeIos">iOS disponible</span></div>
-      <a href="https://play.google.com/store/apps/details?id=com.divera" target="_blank" rel="noopener" class="launch-badge ab-trigger"><span data-i18n="heroBadgeAndroid">Android en beta abierta</span></a>
+      <a href="https://apps.apple.com/app/id6759156407" target="_blank" rel="noopener" class="launch-badge"><span data-i18n="heroBadgeIos">iOS disponible</span></a>
+      <a href="https://play.google.com/store/apps/details?id=com.divera" target="_blank" rel="noopener" class="launch-badge"><span data-i18n="heroBadgeAndroid">Android disponible</span></a>
     </div>
     <h1 class="reveal reveal-d1" data-i18n="heroTitle"><span class="accent">La vida,</span> comprendida bajo el agua.</h1>
     <p class="hero-sub reveal reveal-d2" data-i18n="heroSub">Registra inmersiones, identifica especies marinas con IA y descubre centros de buceo cerca de tus sitios favoritos.</p>
@@ -574,7 +568,7 @@
   <div class="stat reveal"><div class="stat-num">5500<span class="stat-accent">+</span></div><div class="stat-label" data-i18n="s1l">Especies</div></div>
   <div class="stat reveal reveal-d1"><div class="stat-num">1600<span class="stat-accent">+</span></div><div class="stat-label" data-i18n="s2l">Sitios de buceo</div></div>
   <div class="stat reveal reveal-d2"><div class="stat-num stat-accent">IA</div><div class="stat-label" data-i18n="s3l">Identificación</div></div>
-  <div class="stat reveal reveal-d3"><div class="stat-num">iOS</div><div class="stat-label" data-i18n="s4l">Nativa</div></div>
+  <div class="stat reveal reveal-d3"><div class="stat-num stat-num-sm">iOS<span class="stat-accent"> · </span>Android</div><div class="stat-label" data-i18n="s4l">Nativa</div></div>
 </div>
 
 <!-- AI RECOGNITION -->
@@ -907,38 +901,15 @@
   </div>
 </footer>
 
-<!-- ANDROID BETA EMAIL GATE -->
-<div class="ab-overlay" id="androidBetaModal" aria-hidden="true">
-  <div class="ab-modal" role="dialog" aria-modal="true" aria-labelledby="abTitle">
-    <button class="ab-close" id="abClose" aria-label="Cerrar">&times;</button>
-    <div id="abFor" >
-      <div class="ab-icon"><svg viewBox="0 0 24 24"><path d="M3.6 2.3c-.3.3-.5.7-.5 1.3v16.8c0 .6.2 1 .5 1.3l.1.1L13 12.1v-.2L3.7 2.2l-.1.1zm12.6 13l-3.1-3.1v-.2l3.1-3.1.1.1 3.7 2.1c1 .6 1 1.6 0 2.2l-3.7 2.1-.1-.1zM15.9 15.6l-3.2-3.2-9.1 9.1c.4.4 1 .4 1.6.1l10.7-6zM15.9 8.4 5.2 2.4c-.6-.3-1.2-.3-1.6.1l9.1 9.1 3.2-3.2z"/></svg></div>
-      <h3 class="ab-title" id="abTitle" data-i18n="abTitle">Únete a la beta de Android</h3>
-      <p class="ab-sub" data-i18n="abSub">Déjanos tu email y te añadimos a la lista de testers. Cuando lo confirmemos podrás instalar Divera desde Google Play.</p>
-      <form class="ab-form" id="androidBetaForm">
-        <input type="email" name="email" class="email-input" placeholder="tu@email.com" required data-i18n-placeholder="emailPlaceholder">
-        <button type="submit" class="torch-btn ab-submit" data-i18n="abSubmit">Solicitar acceso</button>
-      </form>
-      <p class="ab-note" id="abNote"></p>
-    </div>
-    <div class="ab-success" id="abSuccess" style="display:none;">
-      <div class="ab-icon"><svg viewBox="0 0 24 24"><path d="M3.6 2.3c-.3.3-.5.7-.5 1.3v16.8c0 .6.2 1 .5 1.3l.1.1L13 12.1v-.2L3.7 2.2l-.1.1zm12.6 13l-3.1-3.1v-.2l3.1-3.1.1.1 3.7 2.1c1 .6 1 1.6 0 2.2l-3.7 2.1-.1-.1zM15.9 15.6l-3.2-3.2-9.1 9.1c.4.4 1 .4 1.6.1l10.7-6zM15.9 8.4 5.2 2.4c-.6-.3-1.2-.3-1.6.1l9.1 9.1 3.2-3.2z"/></svg></div>
-      <h3 class="ab-title" data-i18n="abSuccessTitle">¡Solicitud recibida!</h3>
-      <p class="ab-sub" data-i18n="abSuccessSub">Te añadiremos a la lista de testers muy pronto. Ya puedes abrir Google Play para tenerlo a mano.</p>
-      <a href="https://play.google.com/store/apps/details?id=com.divera" target="_blank" rel="noopener" class="torch-btn" data-i18n="abOpenPlay">Abrir Google Play</a>
-    </div>
-  </div>
-</div>
-
 <!-- PLATFORM CHOOSER (desktop / undetected OS) -->
 <div class="ab-overlay" id="platformModal" aria-hidden="true">
   <div class="ab-modal" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
     <button class="ab-close" id="pmClose" aria-label="Cerrar">&times;</button>
     <h3 class="ab-title" id="pmTitle" data-i18n="pmTitle">Elige tu plataforma</h3>
-    <p class="ab-sub" data-i18n="pmSub">Divera está disponible en iOS y en beta abierta para Android.</p>
+    <p class="ab-sub" data-i18n="pmSub">Divera está disponible en iOS y Android.</p>
     <div class="pm-options">
       <a href="https://apps.apple.com/app/id6759156407" target="_blank" rel="noopener" class="btn-primary"><span class="btn-apple-icon"><svg viewBox="0 0 24 24"><path d="M17.5 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2.1-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.4 1-4.3 2.6-1.8 3.2-.5 7.9 1.3 10.4.9 1.3 1.9 2.6 3.3 2.6 1.3 0 1.8-.9 3.4-.9 1.6 0 2.1.9 3.4.8 1.4 0 2.3-1.3 3.2-2.6 1-1.5 1.4-2.9 1.4-3-.1 0-2.7-1-2.9-3.9zM15 4.8c.7-.9 1.2-2.1 1.1-3.3-1 0-2.3.7-3.1 1.5-.7.8-1.3 2-1.1 3.2 1.1.1 2.3-.6 3.1-1.4z"/></svg></span><span data-i18n="heroBtn1">Descargar en App Store</span></a>
-      <button type="button" class="btn-secondary" id="pmAndroid"><span class="btn-google-icon"><svg viewBox="0 0 24 24"><path d="M3.6 2.3c-.3.3-.5.7-.5 1.3v16.8c0 .6.2 1 .5 1.3l.1.1L13 12.1v-.2L3.7 2.2l-.1.1zm12.6 13l-3.1-3.1v-.2l3.1-3.1.1.1 3.7 2.1c1 .6 1 1.6 0 2.2l-3.7 2.1-.1-.1zM15.9 15.6l-3.2-3.2-9.1 9.1c.4.4 1 .4 1.6.1l10.7-6zM15.9 8.4 5.2 2.4c-.6-.3-1.2-.3-1.6.1l9.1 9.1 3.2-3.2z"/></svg></span><span data-i18n="heroBtnAndroid">Probar beta en Android</span></button>
+      <a href="https://play.google.com/store/apps/details?id=com.divera" target="_blank" rel="noopener" class="btn-secondary" id="pmAndroid"><span class="btn-google-icon"><svg viewBox="0 0 24 24"><path d="M3.6 2.3c-.3.3-.5.7-.5 1.3v16.8c0 .6.2 1 .5 1.3l.1.1L13 12.1v-.2L3.7 2.2l-.1.1zm12.6 13l-3.1-3.1v-.2l3.1-3.1.1.1 3.7 2.1c1 .6 1 1.6 0 2.2l-3.7 2.1-.1-.1zM15.9 15.6l-3.2-3.2-9.1 9.1c.4.4 1 .4 1.6.1l10.7-6zM15.9 8.4 5.2 2.4c-.6-.3-1.2-.3-1.6.1l9.1 9.1 3.2-3.2z"/></svg></span><span data-i18n="heroBtnAndroid">Descargar en Google Play</span></a>
     </div>
   </div>
 </div>
@@ -977,11 +948,11 @@
       navContact: 'Contact',
       heroBadge: 'Available on the App Store',
       heroBadgeIos: 'iOS available',
-      heroBadgeAndroid: 'Android open beta',
+      heroBadgeAndroid: 'Android available',
       heroTitle: '<span class="accent">Life,</span> understood underwater.',
       heroSub: 'Log dives, identify marine species with AI, plan trips with your community, and find dive centers near your favorite spots.',
       heroBtn1: 'Download on App Store',
-      heroBtnAndroid: 'Try the Android beta',
+      heroBtnAndroid: 'Download on Google Play',
       heroBtn2: 'For Dive Centers',
       s1l: 'Species', s2l: 'Dive Sites', s3l: 'Identification', s4l: 'Native',
       fLabel: 'FEATURES',
@@ -1042,16 +1013,10 @@
       ctaTitle: 'A more conscious way to learn the ocean',
       ctaSub: 'Download Divera free and start logging your dives today.',
       ctaTestflight: 'Download on App Store',
-      ctaAndroid: 'Try the Android beta',
-      abTitle: 'Join the Android beta',
-      abSub: 'Leave your email and we’ll add you to the testers list. Once we confirm it, you can install Divera from Google Play.',
-      abSubmit: 'Request access',
-      abSuccessTitle: 'Request received!',
-      abSuccessSub: 'We’ll review your request and add you as an internal tester. Once you’re accepted you can install Divera from Google Play with the button below.',
-      abOpenPlay: 'Open Google Play',
+      ctaAndroid: 'Download on Google Play',
       dlCta: 'Download the app',
       pmTitle: 'Choose your platform',
-      pmSub: 'Divera is on iOS and in open beta for Android.',
+      pmSub: 'Divera is available on iOS and Android.',
       ctaDivider: 'or subscribe for updates',
       emailBtn: 'Subscribe',
       emailNote: 'No spam. Only meaningful updates.',
@@ -1080,11 +1045,11 @@
       navContact: 'Contacto',
       heroBadge: 'Disponible en el App Store',
       heroBadgeIos: 'iOS disponible',
-      heroBadgeAndroid: 'Android en beta abierta',
+      heroBadgeAndroid: 'Android disponible',
       heroTitle: '<span class="accent">La vida,</span> comprendida bajo el agua.',
       heroSub: 'Registra inmersiones, identifica especies con IA, planifica salidas con tu comunidad y descubre centros de buceo cerca.',
       heroBtn1: 'Descargar en App Store',
-      heroBtnAndroid: 'Probar beta en Android',
+      heroBtnAndroid: 'Descargar en Google Play',
       heroBtn2: 'Para centros de buceo',
       s1l: 'Especies', s2l: 'Sitios de buceo', s3l: 'Identificaci\u00f3n', s4l: 'Nativa',
       fLabel: 'FUNCIONES',
@@ -1145,16 +1110,10 @@
       ctaTitle: 'Una forma m\u00e1s consciente de conocer el oc\u00e9ano',
       ctaSub: 'Descarga Divera gratis y empieza a registrar tus inmersiones hoy.',
       ctaTestflight: 'Descargar en App Store',
-      ctaAndroid: 'Probar beta en Android',
-      abTitle: 'Únete a la beta de Android',
-      abSub: 'Déjanos tu email y te añadimos a la lista de testers. Cuando lo confirmemos podrás instalar Divera desde Google Play.',
-      abSubmit: 'Solicitar acceso',
-      abSuccessTitle: '¡Solicitud recibida!',
-      abSuccessSub: 'Revisaremos tu solicitud y te añadiremos como tester interno. En cuanto te aceptemos podrás instalar Divera desde Google Play con el botón de abajo.',
-      abOpenPlay: 'Abrir Google Play',
+      ctaAndroid: 'Descargar en Google Play',
       dlCta: 'Descargar la app',
       pmTitle: 'Elige tu plataforma',
-      pmSub: 'Divera está disponible en iOS y en beta abierta para Android.',
+      pmSub: 'Divera está disponible en iOS y Android.',
       ctaDivider: 'o suscr\u00edbete a las novedades',
       emailBtn: 'Suscribirme',
       emailNote: 'Sin spam. Solo novedades importantes.',
@@ -1183,11 +1142,11 @@
       navContact: 'Contact',
       heroBadge: 'Disponible sur l\u2019App Store',
       heroBadgeIos: 'iOS disponible',
-      heroBadgeAndroid: 'Android en b\u00eata ouverte',
+      heroBadgeAndroid: 'Android disponible',
       heroTitle: '<span class="accent">La vie,</span> comprise sous l\u2019eau.',
       heroSub: 'Enregistrez vos plong\u00e9es, identifiez les esp\u00e8ces marines avec l\u2019IA, planifiez vos sorties avec votre communaut\u00e9 et trouvez des centres de plong\u00e9e \u00e0 proximit\u00e9.',
       heroBtn1: 'T\u00e9l\u00e9charger sur l\u2019App Store',
-      heroBtnAndroid: 'Essayer la b\u00eata Android',
+      heroBtnAndroid: 'T\u00e9l\u00e9charger sur Google Play',
       heroBtn2: 'Pour les centres de plong\u00e9e',
       s1l: 'Esp\u00e8ces', s2l: 'Sites de plong\u00e9e', s3l: 'Identification', s4l: 'Native',
       fLabel: 'FONCTIONNALIT\u00c9S',
@@ -1248,16 +1207,10 @@
       ctaTitle: 'Une fa\u00e7on plus consciente de conna\u00eetre l\u2019oc\u00e9an',
       ctaSub: 'T\u00e9l\u00e9chargez Divera gratuitement et commencez \u00e0 enregistrer vos plong\u00e9es d\u00e8s aujourd\u2019hui.',
       ctaTestflight: 'T\u00e9l\u00e9charger sur l\u2019App Store',
-      ctaAndroid: 'Essayer la b\u00eata Android',
-      abTitle: 'Rejoignez la b\u00eata Android',
-      abSub: 'Laissez votre email et nous vous ajoutons \u00e0 la liste des testeurs. Une fois confirm\u00e9, vous pourrez installer Divera depuis Google Play.',
-      abSubmit: 'Demander l\u2019acc\u00e8s',
-      abSuccessTitle: 'Demande re\u00e7ue !',
-      abSuccessSub: 'Nous examinerons votre demande et vous ajouterons comme testeur interne. Une fois accept\u00e9, vous pourrez installer Divera depuis Google Play avec le bouton ci-dessous.',
-      abOpenPlay: 'Ouvrir Google Play',
+      ctaAndroid: 'T\u00e9l\u00e9charger sur Google Play',
       dlCta: 'Télécharger l’app',
       pmTitle: 'Choisissez votre plateforme',
-      pmSub: 'Divera est sur iOS et en bêta ouverte pour Android.',
+      pmSub: 'Divera est disponible sur iOS et Android.',
       ctaDivider: 'ou inscrivez-vous aux actualit\u00e9s',
       emailBtn: 'S\u2019abonner',
       emailNote: 'Pas de spam. Uniquement des nouvelles importantes.',
@@ -1286,11 +1239,11 @@
       navContact: 'Contacte',
       heroBadge: 'Disponible a l’App Store',
       heroBadgeIos: 'iOS disponible',
-      heroBadgeAndroid: 'Android en beta oberta',
+      heroBadgeAndroid: 'Android disponible',
       heroTitle: '<span class="accent">La vida,</span> compresa sota l\u2019aigua.',
       heroSub: 'Registra immersions, identifica espècies marines amb IA, planifica sortides amb la teva comunitat i descobreix centres de busseig a prop.',
       heroBtn1: 'Descarregar a l’App Store',
-      heroBtnAndroid: 'Provar la beta d’Android',
+      heroBtnAndroid: 'Baixa a Google Play',
       heroBtn2: 'Per a centres de busseig',
       s1l: 'Esp\u00e8cies', s2l: 'Llocs de busseig', s3l: 'Identificaci\u00f3', s4l: 'Nativa',
       fLabel: 'FUNCIONALITATS',
@@ -1351,16 +1304,10 @@
       ctaTitle: 'Una manera m\u00e9s conscient de con\u00e8ixer l\u2019oce\u00e0',
       ctaSub: 'Descarrega Divera gratis i comen\u00e7a a registrar les teves immersions avui.',
       ctaTestflight: 'Descarregar a l\u2019App Store',
-      ctaAndroid: 'Provar la beta d\u2019Android',
-      abTitle: 'Uneix-te a la beta d\u2019Android',
-      abSub: 'Deixa\u2019ns el teu email i t\u2019afegim a la llista de testers. Quan ho confirmem podr\u00e0s instal\u00b7lar Divera des de Google Play.',
-      abSubmit: 'Sol\u00b7licitar acc\u00e9s',
-      abSuccessTitle: 'Sol\u00b7licitud rebuda!',
-      abSuccessSub: 'Revisarem la teva sol\u00b7licitud i t\u2019afegirem com a tester intern. Quan t\u2019acceptem podr\u00e0s instal\u00b7lar Divera des de Google Play amb el bot\u00f3 de sota.',
-      abOpenPlay: 'Obrir Google Play',
+      ctaAndroid: 'Baixa a Google Play',
       dlCta: 'Descarregar l’app',
       pmTitle: 'Tria la teva plataforma',
-      pmSub: 'Divera és a iOS i en beta oberta per a Android.',
+      pmSub: 'Divera és a iOS i Android.',
       ctaDivider: 'o subscriu-te a les novetats',
       emailBtn: 'Subscriure\u2019m',
       emailNote: 'Sense spam. Nom\u00e9s novetats importants.',
@@ -1398,7 +1345,7 @@
   let currentLang = getInitialLang();
 
   // Detect the visitor's OS so the single Download button can route correctly:
-  // iOS -> App Store, Android -> beta email gate, desktop/unknown -> platform chooser.
+  // iOS -> App Store, Android -> Google Play, desktop/unknown -> platform chooser.
   let osIsIOS = false, osIsAndroid = false;
   (function detectStore() {
     const ua = navigator.userAgent || navigator.vendor || '';
@@ -1477,62 +1424,25 @@
     });
   }
 
-  // ANDROID BETA EMAIL GATE — testers must be allowlisted before Google Play access
-  const abModal = document.getElementById('androidBetaModal');
-  if (abModal) {
-    const abForm     = document.getElementById('androidBetaForm');
-    const abFormWrap = document.getElementById('abFor');
-    const abSuccess  = document.getElementById('abSuccess');
-    const abNote     = document.getElementById('abNote');
-    const openAb  = (e) => { if (e) e.preventDefault(); abModal.classList.add('open'); abModal.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; };
-    const closeAb = () => { abModal.classList.remove('open'); abModal.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; };
-    document.getElementById('abClose').addEventListener('click', closeAb);
-    abModal.addEventListener('click', (e) => { if (e.target === abModal) closeAb(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && abModal.classList.contains('open')) closeAb(); });
-
-    // The "Android open beta" badge always opens the email gate (Play needs allowlisting)
-    document.querySelectorAll('.ab-trigger').forEach(el => el.addEventListener('click', openAb));
-
-    // PLATFORM CHOOSER — shown for the single Download button when the OS is unknown (desktop)
-    const pmModal = document.getElementById('platformModal');
+  // DOWNLOAD ROUTING — iOS anchors already point to the App Store. Android and
+  // desktop are handled here: Android jumps straight to Google Play; desktop
+  // opens the platform chooser (both stores are live).
+  const PLAY_URL = 'https://play.google.com/store/apps/details?id=com.divera';
+  const pmModal = document.getElementById('platformModal');
+  if (pmModal) {
     const openPm  = () => { pmModal.classList.add('open'); pmModal.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; };
     const closePm = () => { pmModal.classList.remove('open'); pmModal.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; };
     document.getElementById('pmClose').addEventListener('click', closePm);
     pmModal.addEventListener('click', (e) => { if (e.target === pmModal) closePm(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && pmModal.classList.contains('open')) closePm(); });
-    document.getElementById('pmAndroid').addEventListener('click', () => { closePm(); openAb(); });
 
-    // Single Download button: iOS -> App Store (anchor proceeds), Android -> gate, desktop -> chooser
+    // Single Download button: iOS -> App Store (anchor proceeds), Android -> Play, desktop -> chooser
     document.querySelectorAll('[data-download-cta]').forEach(el => el.addEventListener('click', (e) => {
       if (osIsIOS) return;
       e.preventDefault();
-      if (osIsAndroid) openAb(); else openPm();
+      if (osIsAndroid) window.open(PLAY_URL, '_blank', 'noopener');
+      else openPm();
     }));
-
-    abForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const email = abForm.querySelector('input[type="email"]').value;
-      const btn = abForm.querySelector('.ab-submit');
-      const original = btn.textContent;
-      btn.disabled = true; btn.textContent = '...';
-      abNote.className = 'ab-note'; abNote.textContent = '';
-      try {
-        const res = await fetch('https://formsubmit.co/ajax/diveradevelopers@gmail.com', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({ email, _subject: 'Divera Android Beta — Tester Request', _captcha: 'false' })
-        });
-        if (!res.ok) throw new Error('Server error');
-        const json = await res.json();
-        if (!json.success) throw new Error('Submission failed');
-        abFormWrap.style.display = 'none';
-        abSuccess.style.display = 'block';
-      } catch {
-        abNote.className = 'ab-note email-error';
-        abNote.textContent = translations[currentLang].formError || 'Something went wrong. Please try again.';
-        btn.disabled = false; btn.textContent = original;
-      }
-    });
   }
 
   // PARTNER FORM
