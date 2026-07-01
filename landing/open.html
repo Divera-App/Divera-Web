@@ -80,7 +80,10 @@
 
   <script>
     (function () {
-      var APP_STORE = "https://apps.apple.com/app/id6759156407";
+      var APP_STORE  = "https://apps.apple.com/app/id6759156407";
+      var PLAY_STORE = "https://play.google.com/store/apps/details?id=com.divera";
+      // Platform-aware fallback: Android → Google Play, everyone else → App Store.
+      var STORE = /Android/.test(navigator.userAgent || "") ? PLAY_STORE : APP_STORE;
 
       // Reconstruct the content route. Normal path: /dive/<id> (kept intact
       // by the _redirects rewrite). Query fallback (?type=&id=) in case a
@@ -100,14 +103,14 @@
       var link = deepLink();
 
       // No content id (e.g. bare /open) → nothing to deep-link, go to store.
-      if (!link) { location.replace(APP_STORE); return; }
+      if (!link) { location.replace(STORE); return; }
 
       // Try the app. If it grabs the link, the page is backgrounded and we
       // cancel the store jump. Universal Links don't re-fire from a loaded
       // page, so the custom scheme is the only in-page route to the app
       // (relevant for in-app browsers like Instagram/Facebook that bypass UL).
       var fallback = setTimeout(function () {
-        location.replace(APP_STORE);
+        location.replace(STORE);
       }, 1500);
 
       function cancel() { clearTimeout(fallback); }

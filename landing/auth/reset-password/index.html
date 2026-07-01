@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Set a new password — Divera</title>
+<meta name="description" content="Choose a new password for your Divera account.">
+<link rel="icon" href="https://agatpmqbrpdhlfeinkmv.supabase.co/storage/v1/object/public/DiveraPhotos/divera-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Galano Grotesque';
+    src: url('../../galano-grotesque-alt-bold.otf') format('opentype');
+    font-weight: 700; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Geist';
+    src: url('https://cdn.jsdelivr.net/gh/nicholasgasior/geist-font@1.2.1/woff2/Geist-Regular.woff2') format('woff2');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Geist';
+    src: url('https://cdn.jsdelivr.net/gh/nicholasgasior/geist-font@1.2.1/woff2/Geist-Medium.woff2') format('woff2');
+    font-weight: 500; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Geist';
+    src: url('https://cdn.jsdelivr.net/gh/nicholasgasior/geist-font@1.2.1/woff2/Geist-SemiBold.woff2') format('woff2');
+    font-weight: 600; font-style: normal; font-display: swap;
+  }
+  :root {
+    --bg: #050505; --surface: #111113; --surface-2: #1A1A1C;
+    --text-primary: #EBEBEB; --text-secondary: #7A7A7E; --text-dim: #444448;
+    --coral: #FF5A62; --coral-soft: rgba(255,90,98,0.12); --coral-glow: rgba(255,90,98,0.25);
+    --success: #3ECF8E;
+    --font-display: 'Galano Grotesque', 'DM Sans', sans-serif;
+    --font-body: 'Geist', 'Instrument Sans', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font-body); background: var(--bg); color: var(--text-primary);
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 40px 20px;
+  }
+  .wrap { width: 100%; max-width: 420px; }
+  .logo { display: block; margin: 0 auto 28px; width: 96px; height: auto; }
+  .card {
+    background: var(--surface); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px; padding: 36px 32px;
+  }
+  h1 {
+    font-family: var(--font-display); font-size: 24px; font-weight: 700;
+    letter-spacing: -0.5px; text-align: center; margin-bottom: 10px;
+  }
+  .sub {
+    font-size: 14px; color: var(--text-secondary); text-align: center;
+    line-height: 1.55; margin-bottom: 26px;
+  }
+  label {
+    display: block; font-size: 13px; font-weight: 500; color: var(--text-secondary);
+    margin-bottom: 7px; letter-spacing: -0.1px;
+  }
+  .field { margin-bottom: 16px; }
+  input {
+    width: 100%; padding: 13px 14px; font-family: var(--font-body); font-size: 15px;
+    color: var(--text-primary); background: var(--surface-2);
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; outline: none;
+    transition: border-color 0.15s ease;
+  }
+  input::placeholder { color: var(--text-dim); }
+  input:focus { border-color: var(--coral); }
+  button {
+    width: 100%; padding: 14px; margin-top: 6px; font-family: var(--font-body);
+    font-size: 15px; font-weight: 600; color: #fff; background: var(--coral);
+    border: none; border-radius: 12px; cursor: pointer; letter-spacing: -0.1px;
+    transition: opacity 0.15s ease;
+  }
+  button:hover { opacity: 0.92; }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  .msg { font-size: 13px; line-height: 1.5; margin-top: 16px; text-align: center; }
+  .msg.error { color: var(--coral); }
+  .msg.hint { color: var(--text-secondary); }
+  .hidden { display: none !important; }
+  .state { text-align: center; }
+  .state .icon {
+    width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 18px;
+    display: flex; align-items: center; justify-content: center; font-size: 28px;
+  }
+  .state.ok .icon { background: rgba(62,207,142,0.12); color: var(--success); }
+  .state.bad .icon { background: var(--coral-soft); color: var(--coral); }
+  .state p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+  .state strong { color: var(--text-primary); font-weight: 600; }
+  .foot-tagline {
+    text-align: center; margin-top: 24px; font-size: 11px;
+    color: rgba(255,255,255,0.28); letter-spacing: -0.1px;
+  }
+  .spinner {
+    width: 22px; height: 22px; border: 2px solid rgba(255,255,255,0.15);
+    border-top-color: var(--coral); border-radius: 50%; margin: 8px auto;
+    animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <img class="logo" src="https://agatpmqbrpdhlfeinkmv.supabase.co/storage/v1/object/public/DiveraPhotos/divera-icon.png" alt="Divera">
+  <div class="card">
+
+    <!-- Loading -->
+    <div id="loading" class="state">
+      <div class="spinner"></div>
+      <p>Checking your reset link…</p>
+    </div>
+
+    <!-- Form -->
+    <div id="form-view" class="hidden">
+      <h1>Set a new password</h1>
+      <p class="sub">Choose a new password for your Divera account.</p>
+      <form id="reset-form" autocomplete="off">
+        <div class="field">
+          <label for="pw1">New password</label>
+          <input id="pw1" type="password" placeholder="At least 8 characters" autocomplete="new-password" required minlength="8">
+        </div>
+        <div class="field">
+          <label for="pw2">Confirm password</label>
+          <input id="pw2" type="password" placeholder="Re-enter your password" autocomplete="new-password" required minlength="8">
+        </div>
+        <button id="submit-btn" type="submit">Update password</button>
+        <div id="form-msg" class="msg error hidden"></div>
+      </form>
+    </div>
+
+    <!-- Success -->
+    <div id="success-view" class="state ok hidden">
+      <div class="icon">✓</div>
+      <h1>Password updated</h1>
+      <p style="margin-top:10px;">Your password has been changed.<br><strong>Open the Divera app and log in</strong> with your new password.</p>
+    </div>
+
+    <!-- Invalid / expired -->
+    <div id="invalid-view" class="state bad hidden">
+      <div class="icon">!</div>
+      <h1>Link invalid or expired</h1>
+      <p style="margin-top:10px;">This password reset link is invalid or has expired.<br>Open the Divera app and request a new password reset.</p>
+    </div>
+
+  </div>
+  <p class="foot-tagline">From Spain. Built by divers, for divers.</p>
+</div>
+
+<script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+  // Public Supabase config (production project). ANON / publishable key only —
+  // it is designed to be exposed in browsers. NEVER put a service-role key here.
+  const SUPABASE_URL = 'https://agatpmqbrpdhlfeinkmv.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnYXRwbXFicnBkaGxmZWlua212Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyODAzOTQsImV4cCI6MjA4OTg1NjM5NH0.fZAV62zYtZ2FnVQOqy_0X4EjcSskFBMPOd-D6ZuTGws';
+
+  const MIN_LEN = 8;
+
+  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+    auth: {
+      flowType: 'implicit',      // recovery token arrives in the URL fragment (#access_token=...)
+      detectSessionInUrl: false, // we parse it manually below for deterministic control
+      persistSession: false,
+      autoRefreshToken: false,
+    },
+  });
+
+  const $ = (id) => document.getElementById(id);
+  const show = (id) => $(id).classList.remove('hidden');
+  const hide = (id) => $(id).classList.add('hidden');
+
+  function showForm()    { hide('loading'); hide('invalid-view'); hide('success-view'); show('form-view'); }
+  function showSuccess() { hide('loading'); hide('form-view'); hide('invalid-view'); show('success-view'); }
+  function showInvalid() { hide('loading'); hide('form-view'); hide('success-view'); show('invalid-view'); }
+
+  // Establish the recovery session from whatever the reset link delivered.
+  async function bootstrap() {
+    const hash = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+    const query = new URLSearchParams(window.location.search);
+
+    // Supabase can report an expired/invalid link directly in the fragment.
+    if (hash.get('error') || query.get('error')) {
+      return showInvalid();
+    }
+
+    // Fragment (implicit) flow: #access_token=...&refresh_token=...&type=recovery
+    const accessToken = hash.get('access_token');
+    const refreshToken = hash.get('refresh_token');
+    if (accessToken && refreshToken) {
+      const { error } = await supabase.auth.setSession({
+        access_token: accessToken,
+        refresh_token: refreshToken,
+      });
+      // Strip tokens from the URL so they don't linger in history.
+      history.replaceState(null, '', window.location.pathname);
+      return error ? showInvalid() : showForm();
+    }
+
+    // Defensive: PKCE-style ?code=... flow.
+    const code = query.get('code');
+    if (code) {
+      const { error } = await supabase.auth.exchangeCodeForSession(code);
+      history.replaceState(null, '', window.location.pathname);
+      return error ? showInvalid() : showForm();
+    }
+
+    // Fall back to any session supabase-js may already hold.
+    const { data } = await supabase.auth.getSession();
+    return data.session ? showForm() : showInvalid();
+  }
+
+  // Handle the new-password submission.
+  $('reset-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const pw1 = $('pw1').value;
+    const pw2 = $('pw2').value;
+    const msg = $('form-msg');
+    const btn = $('submit-btn');
+
+    const fail = (text) => {
+      msg.textContent = text;
+      msg.classList.remove('hidden');
+    };
+    msg.classList.add('hidden');
+
+    if (pw1.length < MIN_LEN) return fail(`Password must be at least ${MIN_LEN} characters.`);
+    if (pw1 !== pw2) return fail('The passwords do not match.');
+
+    btn.disabled = true;
+    const original = btn.textContent;
+    btn.textContent = 'Updating…';
+
+    const { error } = await supabase.auth.updateUser({ password: pw1 });
+
+    if (error) {
+      btn.disabled = false;
+      btn.textContent = original;
+      return fail(error.message || 'Could not update your password. Please try again.');
+    }
+    await supabase.auth.signOut().catch(() => {});
+    showSuccess();
+  });
+
+  bootstrap().catch(() => showInvalid());
+</script>
+</body>
+</html>
