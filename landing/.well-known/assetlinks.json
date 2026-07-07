@@ -8,5 +8,15 @@
         "2D:F2:BF:1A:00:D9:98:60:B7:32:DF:5A:F7:5B:A0:58:04:02:5E:7E:07:59:23:86:FA:26:24:92:94:DC:4F:75"
       ]
     }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.divera.staging",
+      "sha256_cert_fingerprints": [
+        "77:71:AA:ED:2B:83:C4:FC:01:C8:72:35:B6:47:4B:15:2F:EC:53:50:D1:4B:98:8A:AC:22:C3:ED:93:48:F1:8F"
+      ]
+    }
   }
 ]
