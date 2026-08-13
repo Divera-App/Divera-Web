@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://divera.app/centros/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://divera.app/centros"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://divera.app/centros/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://divera.app/centros/?lang=en"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://divera.app/centros/?lang=fr"/>
     <xhtml:link rel="alternate" hreflang="ca" href="https://divera.app/centros/?lang=ca"/>
