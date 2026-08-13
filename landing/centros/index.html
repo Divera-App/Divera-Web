@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#FF5A62">
+<meta name="keywords" content="software centro de buceo, gestión centro de buceo, reservas buceo, check-in digital buceo, exención de responsabilidad buceo, cuestionario médico buceo, panel para centros de buceo, dive center software, dive center management, dive shop booking software">
+<link rel="canonical" href="https://divera.app/centros">
+<link rel="alternate" hreflang="es" href="https://divera.app/centros">
+<link rel="alternate" hreflang="en" href="https://divera.app/centros?lang=en">
+<link rel="alternate" hreflang="fr" href="https://divera.app/centros?lang=fr">
+<link rel="alternate" hreflang="ca" href="https://divera.app/centros?lang=ca">
+<link rel="alternate" hreflang="x-default" href="https://divera.app/centros">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://divera.app/centros">
+<meta property="og:site_name" content="Divera">
+<meta property="og:title" content="Divera para centros de buceo · El día a día de tu centro, en un panel">
+<meta property="og:description" content="Gratis para tu centro. Reservas, parte del día, cuestionario médico y exención firmada por enlace, personal, material y cobros. Y tu centro visible para los buceadores que planifican en tu zona.">
+<meta property="og:image" content="https://divera.app/og-image-v2.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@diveraapp">
+<meta name="twitter:title" content="Divera for dive centers · Run your day from one dashboard">
+<meta name="twitter:description" content="Bookings, today's manifest, medical form and signed waiver by link, staff, rental gear and payments. Plus your center in front of divers planning in your area.">
+<meta name="twitter:image" content="https://divera.app/og-image-v2.jpg">
+<meta name="description" content="Panel de gestión gratuito para centros de buceo: reservas, parte del día, cuestionario médico y exención firmada por enlace, fichas de buceador, personal, material y cobros. Reserva una demo de 30 minutos.">
+<title>Divera para centros de buceo · Gestiona tu centro sin papeles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Galano Grotesque';
+    src: url('../galano-grotesque-medium.otf') format('opentype');
+    font-weight: 500; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Galano Grotesque';
+    src: url('../galano-grotesque-alt-bold.otf') format('opentype');
+    font-weight: 700; font-style: normal; font-display: swap;
+  }
+  :root {
+    --bg: #050505; --surface: #111113; --surface-2: #1A1A1C;
+    --text-primary: #EBEBEB; --text-secondary: #7A7A7E; --text-dim: #444448;
+    --coral: #FF5A62; --coral-soft: rgba(255,90,98,0.12); --coral-glow: rgba(255,90,98,0.25);
+    --positive: #0FBA82;
+    --font-display: 'Galano Grotesque', 'DM Sans', sans-serif;
+    --font-body: 'Geist', 'Instrument Sans', sans-serif;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body {
+    font-family: var(--font-body); background: var(--bg); color: var(--text-primary);
+    overflow-x: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  }
+  body::after {
+    content: ''; position: fixed; inset: 0; z-index: 9998;
+    pointer-events: none; opacity: 0.25;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 256px;
+  }
+  .reveal {
+    opacity: 0; transform: translateY(40px); filter: blur(6px);
+    transition: opacity 1.1s var(--ease-out), transform 1.1s var(--ease-out), filter 1.2s var(--ease-out);
+    will-change: opacity, transform, filter;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+  .reveal-d1 { transition-delay: 0.12s; }
+  .reveal-d2 { transition-delay: 0.24s; }
+  .reveal-d3 { transition-delay: 0.38s; }
+  .reveal-d4 { transition-delay: 0.52s; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 48px; height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(5,5,5,0.6); backdrop-filter: blur(40px) saturate(1.5);
+    -webkit-backdrop-filter: blur(40px) saturate(1.5);
+    border-bottom: 0.5px solid rgba(255,255,255,0.04);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+  .nav-full-logo { height: 28px; width: auto; display: block; }
+  .nav-tag {
+    font-size: 11px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase;
+    color: var(--coral); border-left: 1px solid rgba(255,255,255,0.12); padding-left: 10px;
+  }
+  .nav-right { display: flex; align-items: center; gap: 28px; }
+  .nav-right a {
+    font-size: 13px; color: var(--text-secondary); text-decoration: none;
+    font-weight: 500; transition: color 0.3s; letter-spacing: -0.2px;
+  }
+  .nav-right a:hover { color: var(--text-primary); }
+  .nav-cta {
+    padding: 9px 22px; border-radius: 100px; background: var(--coral); color: #fff !important;
+    font-size: 13px; font-weight: 600; text-decoration: none;
+    border: 0.5px solid transparent; box-shadow: 0 4px 18px var(--coral-glow);
+    transition: all 0.3s var(--ease-out); letter-spacing: -0.2px;
+  }
+  .nav-cta:hover { opacity: 0.88; box-shadow: 0 6px 28px var(--coral-glow); transform: translateY(-1px); }
+  .lang-switcher { position: relative; }
+  .lang-btn {
+    display: flex; align-items: center; gap: 5px; padding: 6px 12px; border-radius: 100px;
+    background: rgba(255,255,255,0.04); border: 0.5px solid rgba(255,255,255,0.06);
+    color: var(--text-secondary); font-size: 12px; font-weight: 600;
+    font-family: var(--font-body); cursor: pointer; transition: all 0.3s var(--ease-out);
+    letter-spacing: 0.3px; text-transform: uppercase;
+  }
+  .lang-btn:hover { border-color: rgba(255,255,255,0.12); color: var(--text-primary); }
+  .lang-btn svg { width: 14px; height: 14px; opacity: 0.5; transition: transform 0.3s var(--ease-out); }
+  .lang-switcher.open .lang-btn svg { transform: rotate(180deg); }
+  .lang-dropdown {
+    position: absolute; top: calc(100% + 8px); right: 0; min-width: 140px;
+    background: var(--surface); border: 0.5px solid rgba(255,255,255,0.06);
+    border-radius: 14px; padding: 6px; opacity: 0; visibility: hidden;
+    transform: translateY(-6px); transition: all 0.25s var(--ease-out);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.5); z-index: 110;
+  }
+  .lang-switcher.open .lang-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+  .lang-option {
+    display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 10px;
+    font-size: 13px; font-weight: 500; color: var(--text-secondary);
+    cursor: pointer; transition: all 0.2s; border: none; background: none; width: 100%;
+    font-family: var(--font-body); text-align: left;
+  }
+  .lang-option:hover { background: rgba(255,255,255,0.04); color: var(--text-primary); }
+  .lang-option.active { color: var(--coral); }
+  .lang-option .lang-flag { font-size: 16px; line-height: 1; }
+  @media (max-width: 820px) {
+    nav { padding: 0 20px; }
+    .nav-right a:not(.nav-cta) { display: none; }
+    .nav-right { gap: 12px; }
+    .nav-tag { display: none; }
+  }
+
+  /* SHARED */
+  .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2.5px; color: var(--coral); margin-bottom: 20px; }
+  .section-title { font-family: var(--font-display); font-size: clamp(28px,4vw,44px); font-weight: 600; letter-spacing: -1.8px; line-height: 1.08; }
+  .section-sub { font-size: 17px; color: var(--text-secondary); line-height: 1.65; letter-spacing: -0.3px; margin-top: 16px; }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 48px; position: relative; z-index: 1; }
+  @media (max-width: 768px) { .wrap { padding: 0 20px; } }
+  .btn-primary {
+    display: inline-block; padding: 15px 34px; border-radius: 100px; background: var(--coral); color: #fff;
+    font-size: 15px; font-weight: 600; text-decoration: none; border: none; cursor: pointer;
+    font-family: var(--font-body); letter-spacing: -0.3px;
+    transition: all 0.4s var(--ease-out); box-shadow: 0 0 40px rgba(255,90,98,0.18);
+  }
+  .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 16px 48px var(--coral-glow); }
+  .btn-ghost {
+    display: inline-block; padding: 15px 34px; border-radius: 100px; background: transparent; color: var(--text-secondary);
+    font-size: 15px; font-weight: 500; text-decoration: none;
+    border: 0.5px solid rgba(255,255,255,0.1); transition: all 0.4s var(--ease-out);
+    font-family: var(--font-body); letter-spacing: -0.3px;
+  }
+  .btn-ghost:hover { color: var(--text-primary); border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.04); transform: translateY(-2px); }
+
+  /* HERO */
+  .hero { padding: 150px 0 90px; position: relative; overflow: hidden; }
+  .hero::before {
+    content: ''; position: absolute; top: -180px; left: 50%; transform: translateX(-50%);
+    width: 900px; height: 620px; pointer-events: none;
+    background: radial-gradient(circle, rgba(255,90,98,0.09) 0%, transparent 68%); filter: blur(90px);
+  }
+  .hero-grid { display: grid; grid-template-columns: 0.92fr 1.08fr; gap: 56px; align-items: center; }
+  .hero h1 { font-family: var(--font-display); font-size: clamp(34px,5vw,58px); font-weight: 600; letter-spacing: -2.4px; line-height: 1.06; margin-bottom: 22px; }
+  .hero h1 .accent { color: var(--coral); }
+  .hero-sub { font-size: 17px; color: var(--text-secondary); line-height: 1.7; letter-spacing: -0.3px; max-width: 520px; margin-bottom: 34px; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .hero-note { margin-top: 22px; font-size: 13px; color: var(--text-dim); letter-spacing: -0.1px; }
+  @media (max-width: 900px) {
+    .hero { padding: 110px 0 60px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+    .hero-actions .btn-primary, .hero-actions .btn-ghost { width: 100%; text-align: center; }
+  }
+
+  /* SCREENSHOTS */
+  .shot {
+    border-radius: 16px; overflow: hidden; margin: 0;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.55);
+    background: var(--surface);
+  }
+  .shot img { width: 100%; height: auto; display: block; }
+  .shot-hero { transform: perspective(1600px) rotateY(-2deg); }
+  .shot-caption { margin-top: 12px; font-size: 11.5px; color: var(--text-dim); letter-spacing: -0.1px; }
+  .showcase { display: grid; grid-template-columns: 1fr 1.15fr; gap: 64px; align-items: center; margin-bottom: 96px; }
+  .showcase:last-child { margin-bottom: 0; }
+  .showcase.flip .showcase-copy { order: 2; }
+  .showcase-copy h3 { font-family: var(--font-display); font-size: clamp(22px,2.6vw,30px); font-weight: 600; letter-spacing: -1.2px; line-height: 1.15; margin-bottom: 14px; }
+  .showcase-copy p { font-size: 15.5px; color: var(--text-secondary); line-height: 1.7; letter-spacing: -0.2px; }
+  .showcase-copy ul { list-style: none; margin-top: 22px; display: flex; flex-direction: column; gap: 12px; }
+  .showcase-copy li { font-size: 14px; color: var(--text-secondary); line-height: 1.55; letter-spacing: -0.2px; }
+  @media (max-width: 900px) {
+    .showcase { grid-template-columns: 1fr; gap: 32px; margin-bottom: 64px; }
+    .showcase.flip .showcase-copy { order: 0; }
+    .shot-hero { transform: none; }
+  }
+
+  /* PAIN STRIP */
+  .pain { border-top: 0.5px solid rgba(255,255,255,0.05); border-bottom: 0.5px solid rgba(255,255,255,0.05); padding: 48px 0; }
+  .pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .pain-item { padding-left: 18px; border-left: 1px solid rgba(255,90,98,0.35); }
+  .pain-item h3 { font-family: var(--font-display); font-size: 17px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .pain-item p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; letter-spacing: -0.2px; }
+  @media (max-width: 900px) { .pain-grid { grid-template-columns: 1fr; gap: 26px; } }
+  @media (max-width: 560px) { .pain-grid { grid-template-columns: 1fr; } }
+
+  /* FEATURE GRID */
+  .block { padding: 120px 0; }
+  @media (max-width: 768px) { .block { padding: 72px 0; } }
+  .block-head { max-width: 620px; margin-bottom: 56px; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .card {
+    background: var(--surface); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px; padding: 28px 26px; transition: border-color 0.4s, transform 0.4s var(--ease-out);
+  }
+  .card:hover { border-color: rgba(255,90,98,0.3); transform: translateY(-3px); }
+  .card-icon { color: var(--coral); line-height: 0; margin-bottom: 16px; }
+  .card-icon svg { width: 22px; height: 22px; }
+  .card h3 { font-family: var(--font-display); font-size: 17px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 10px; }
+  .card p { font-size: 14px; color: var(--text-secondary); line-height: 1.65; letter-spacing: -0.2px; }
+  @media (max-width: 980px) { .cards { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 640px) { .cards { grid-template-columns: 1fr; } }
+
+  /* APP CONNECTION */
+  .connect { background: linear-gradient(180deg, transparent, rgba(255,90,98,0.03), transparent); }
+  .connect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+  .connect-list { display: flex; flex-direction: column; gap: 26px; margin-top: 34px; }
+  .connect-item h3 { font-family: var(--font-display); font-size: 16px; font-weight: 700; letter-spacing: -0.4px; margin-bottom: 6px; }
+  .connect-item p { font-size: 14px; color: var(--text-secondary); line-height: 1.65; letter-spacing: -0.2px; }
+  .connect-visual { display: flex; justify-content: center; gap: 0; perspective: 1000px; }
+  .phone { width: 210px; border-radius: 20px; background: var(--surface-2); border: 1.5px solid rgba(255,255,255,0.06); overflow: hidden; box-shadow: 0 32px 64px rgba(0,0,0,0.4); }
+  .phone img { width: 100%; display: block; }
+  .phone.side { width: 170px; opacity: 0.45; }
+  .phone.side-left { transform: rotateY(10deg) translateX(16px) scale(0.9); }
+  @media (max-width: 900px) { .connect-grid { grid-template-columns: 1fr; gap: 44px; } .phone { width: 165px; } .phone.side { width: 135px; } }
+
+  /* STEPS */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .step { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 22px; }
+  .step-num { font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--coral); letter-spacing: 1px; margin-bottom: 12px; }
+  .step h3 { font-family: var(--font-display); font-size: 19px; font-weight: 700; letter-spacing: -0.6px; margin-bottom: 10px; }
+  .step p { font-size: 14px; color: var(--text-secondary); line-height: 1.65; letter-spacing: -0.2px; }
+  @media (max-width: 820px) { .steps { grid-template-columns: 1fr; gap: 32px; } }
+
+  /* DEMO */
+  .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .demo-checks { display: flex; flex-direction: column; gap: 12px; margin-top: 30px; }
+  .demo-checks li { list-style: none; font-size: 14.5px; color: var(--text-secondary); letter-spacing: -0.2px; line-height: 1.55; }
+  .demo-panel {
+    background: var(--surface); border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 24px; padding: 36px;
+  }
+  .demo-panel .btn-primary { width: 100%; text-align: center; margin-bottom: 10px; }
+  .demo-or { display: flex; align-items: center; gap: 14px; color: var(--text-dim); font-size: 12px; margin: 24px 0 20px; }
+  .demo-or::before, .demo-or::after { content: ''; flex: 1; height: 0.5px; background: rgba(255,255,255,0.08); }
+  .pf-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+  .pf-label { font-size: 11px; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.8px; text-transform: uppercase; }
+  .pf-input {
+    padding: 13px 18px; border-radius: 12px;
+    background: rgba(255,255,255,0.04); border: 0.5px solid rgba(255,255,255,0.1);
+    color: var(--text-primary); font-size: 14px; font-family: var(--font-body);
+    outline: none; transition: border-color 0.3s; letter-spacing: -0.2px; width: 100%;
+  }
+  .pf-input::placeholder { color: var(--text-dim); }
+  .pf-input:focus { border-color: rgba(255,90,98,0.4); }
+  .pf-submit {
+    width: 100%; padding: 14px 32px; border-radius: 100px;
+    background: rgba(255,255,255,0.08); border: 0.5px solid rgba(255,255,255,0.1);
+    color: var(--text-primary); font-size: 14px; font-weight: 600;
+    font-family: var(--font-body); cursor: pointer; transition: all 0.3s var(--ease-out); letter-spacing: -0.2px;
+  }
+  .pf-submit:hover { background: rgba(255,255,255,0.12); transform: translateY(-1px); }
+  .pf-fine { font-size: 12px; color: var(--text-dim); margin-top: 12px; text-align: center; }
+  .pf-success { display: none; }
+  .pf-success p { font-family: var(--font-display); font-size: clamp(20px,2.4vw,28px); font-weight: 600; color: var(--coral); letter-spacing: -1px; line-height: 1.25; }
+  @media (max-width: 900px) { .demo-grid { grid-template-columns: 1fr; gap: 40px; } .demo-panel { padding: 28px 22px; } }
+
+  /* FAQ */
+  .faq-list { max-width: none; }
+  .faq-item { border-bottom: 0.5px solid rgba(255,255,255,0.07); }
+  .faq-item summary {
+    list-style: none; cursor: pointer; padding: 22px 40px 22px 0; position: relative;
+    font-family: var(--font-display); font-size: 18px; font-weight: 600; letter-spacing: -0.5px; line-height: 1.4;
+    transition: color 0.3s;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary:hover { color: var(--coral); }
+  .faq-item summary::after {
+    content: '+'; position: absolute; right: 6px; top: 20px;
+    font-size: 22px; color: var(--coral); font-weight: 400; transition: transform 0.3s var(--ease-out);
+  }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { font-size: 15px; color: var(--text-secondary); line-height: 1.75; letter-spacing: -0.2px; padding: 0 40px 26px 0; max-width: 900px; }
+
+  /* FOOTER */
+  footer { padding: 32px 48px; border-top: 0.5px solid rgba(255,255,255,0.04); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .foot-center { font-size: 12px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .foot-center a { color: var(--text-dim); text-decoration: none; transition: color 0.3s; }
+  .foot-center a:hover { color: var(--coral); }
+  .foot-right { font-size: 12px; color: var(--text-dim); text-align: right; }
+  @media (max-width: 768px) { footer { padding: 24px 20px; flex-direction: column; text-align: center; } .foot-right { text-align: center; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="/" aria-label="Divera">
+    <img class="nav-full-logo" src="../logo-full.png" alt="Divera">
+    <span class="nav-tag" data-i18n="navTag">Centros</span>
+  </a>
+  <div class="nav-right">
+    <a href="#panel" data-i18n="navPanel">El panel</a>
+    <a href="#app" data-i18n="navApp">La app</a>
+    <a href="#faq" data-i18n="navFaq">Preguntas</a>
+    <a href="/" data-i18n="navDivers">Para buceadores</a>
+    <div class="lang-switcher" id="langSwitcher">
+      <button class="lang-btn" id="langBtn" aria-label="Change language">
+        <span id="langCurrent">ES</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <button class="lang-option" data-lang="en"><span class="lang-flag">🇬🇧</span> English</button>
+        <button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span> Español</button>
+        <button class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span> Français</button>
+        <button class="lang-option" data-lang="ca"><span class="lang-flag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" width="20" height="14" style="border-radius:2px;vertical-align:middle;display:inline-block"><rect width="3" height="2" fill="#FCDD09"/><rect y=".2222" width="3" height=".2222" fill="#DA121A"/><rect y=".6667" width="3" height=".2222" fill="#DA121A"/><rect y="1.1111" width="3" height=".2222" fill="#DA121A"/><rect y="1.5556" width="3" height=".2222" fill="#DA121A"/></svg></span> Català</button>
+      </div>
+    </div>
+    <a href="https://calendly.com/divera-app/30min" target="_blank" rel="noopener" class="nav-cta" data-i18n="navCta">Reservar demo</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="section-label reveal" data-i18n="heroLabel">DIVERA PARA CENTROS DE BUCEO</div>
+      <h1 class="reveal reveal-d1" data-i18n="heroTitle">El día a día de tu centro, <span class="accent">en una sola pantalla.</span></h1>
+      <p class="hero-sub reveal reveal-d2" data-i18n="heroSub">Reservas, quién bucea hoy, quién ha pagado, quién ha firmado la exención y quién ha entregado el cuestionario médico. Sin perseguir a nadie por WhatsApp y sin la hoja de cálculo de siempre.</p>
+      <div class="hero-actions reveal reveal-d3">
+        <a href="https://calendly.com/divera-app/30min" target="_blank" rel="noopener" class="btn-primary" data-i18n="heroCta">Reservar demo de 30 min</a>
+        <a href="#panel" class="btn-ghost" data-i18n="heroCta2">Ver qué incluye</a>
+      </div>
+      <p class="hero-note reveal reveal-d4" data-i18n="heroNote">Gratis para tu centro. El panel ya está en producción y damos de alta los centros uno a uno, acompañando la puesta en marcha.</p>
+    </div>
+    <div class="reveal reveal-d2">
+      <figure class="shot shot-hero">
+        <img src="panel-hoy.jpg" alt="Panel de Divera para centros de buceo: pantalla Hoy con las inmersiones del día y el estado de cada buceador" loading="eager" width="2000" height="1250">
+      </figure>
+      <p class="shot-caption" data-i18n="shotHoy">Pantalla Hoy del panel. Centro y buceadores de ejemplo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CLAIMS -->
+<div class="pain">
+  <div class="wrap pain-grid">
+    <div class="pain-item reveal">
+      <h3 data-i18n="p1t">Sin papeles</h3>
+      <p data-i18n="p1d">El cuestionario médico y la exención se firman en el móvil del buceador, antes de llegar, y se guardan con su ficha.</p>
+    </div>
+    <div class="pain-item reveal reveal-d1">
+      <h3 data-i18n="p2t">Sin hojas de cálculo</h3>
+      <p data-i18n="p2d">Inmersiones, plazas, pagos, material y clientes dejan de estar repartidos entre un Excel y un grupo de WhatsApp.</p>
+    </div>
+    <div class="pain-item reveal reveal-d2">
+      <h3 data-i18n="p3t">Y gratis para tu centro</h3>
+      <p data-i18n="p3d">Sin cuota mensual. Ni ahora ni cuando tengas veinte inmersiones a la semana.</p>
+    </div>
+  </div>
+</div>
+
+<!-- APP CONNECTION -->
+<section class="block connect" id="app">
+  <div class="wrap connect-grid">
+    <div>
+      <div class="section-label reveal" data-i18n="appLabel">EL PANEL Y LA APP</div>
+      <h2 class="section-title reveal reveal-d1" data-i18n="appTitle">El panel y la app son la misma cosa</h2>
+      <p class="section-sub reveal reveal-d2" data-i18n="appSub">Lo que programas en el panel sale en la app de buceadores, y lo que ellos hacen ahí vuelve a tu panel. Divera es una app donde los buzos registran inmersiones, identifican con IA lo que ven y eligen dónde bucear.</p>
+      <div class="connect-list">
+        <div class="connect-item reveal reveal-d2">
+          <h3 data-i18n="a1t">Tu ficha en la app, viva</h3>
+          <p data-i18n="a1d">Horarios, reseñas, tus próximas salidas y las inmersiones que la gente ha hecho contigo hace nada. Quien abre un punto de buceo de tu zona ve todo eso.</p>
+        </div>
+        <div class="connect-item reveal reveal-d3">
+          <h3 data-i18n="a2t">El buceador te pasa su perfil</h3>
+          <p data-i18n="a2d">En su perfil guarda la certificación, el seguro y las inmersiones que lleva hechas. Te lo comparte con un enlace, y si reserva por la app te llega con esos datos ya puestos.</p>
+        </div>
+        <div class="connect-item reveal reveal-d2">
+          <h3 data-i18n="a6t">Buscas a cualquier buceador de la app</h3>
+          <p data-i18n="a6d">Escribes su nombre o su usuario y lo añades a la salida. Si te ha compartido el perfil, ves sus certificaciones, su seguro, cuántas inmersiones lleva y las que ha hecho contigo.</p>
+        </div>
+        <div class="connect-item reveal reveal-d3">
+          <h3 data-i18n="a3t">Programas una salida y sale en la app</h3>
+          <p data-i18n="a3d">La inmersión que creas en el panel aparece en la app y los buceadores de la zona se apuntan. Ellos también montan las suyas y eligen con qué centro van. Las dos se comparten con un enlace.</p>
+        </div>
+        <div class="connect-item reveal reveal-d4">
+          <h3 data-i18n="a4t">La inmersión no se escribe dos veces</h3>
+          <p data-i18n="a4d">Si salió contigo, el buceador la registra a partir del plan: sitio, fecha y centro ya están puestos. Si lleva ordenador, sube el archivo y el resto se rellena solo. Luego identifica las especies de sus fotos y vídeos.</p>
+        </div>
+        <div class="connect-item reveal reveal-d4">
+          <h3 data-i18n="a7t">Te etiquetan en sus inmersiones</h3>
+          <p data-i18n="a7d">Al registrar la inmersión eligen el centro con el que salieron. Tu ficha va acumulando actividad reciente y reseñas, y otros buceadores la ven.</p>
+        </div>
+      </div>
+    </div>
+    <div class="connect-visual reveal-d2 reveal">
+      <div class="phone side side-left"><img src="../screen-dive-site-centers.png" alt="Centros de buceo cercanos a un punto de inmersión en la app Divera"></div>
+      <div class="phone"><img src="../screen-divecenter-detail.png" alt="Ficha de centro de buceo en la app Divera con horario, valoración y contacto"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PANEL FEATURES -->
+<section class="block" id="panel">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="section-label reveal" data-i18n="panelLabel">EL PANEL</div>
+      <h2 class="section-title reveal reveal-d1" data-i18n="panelTitle">Lo que necesitas para abrir el día</h2>
+      <p class="section-sub reveal reveal-d2" data-i18n="panelSub">Se abre en el ordenador del mostrador y en la tablet del pantalán. No hay que instalar nada.</p>
+    </div>
+    <div class="cards">
+      <div class="card reveal">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <h3 data-i18n="c1t">El parte del día</h3>
+        <p data-i18n="c1d">Cada inmersión de hoy con su hora, su punto, su ocupación y la lista de quién va. Por cada buceador, su nivel y tres estados de un vistazo: pago, exención y cuestionario médico.</p>
+      </div>
+      <div class="card reveal reveal-d1">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <h3 data-i18n="c2t">Inmersiones y reservas</h3>
+        <p data-i18n="c2d">Programa salidas con fecha, punto y plazas. El aforo se controla solo: no puedes sobrepasarlo por error. Añade clientes con cuenta o de paso, y cancela sin perder el histórico.</p>
+      </div>
+      <div class="card reveal reveal-d2">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15l2 2 4-4"/></svg></div>
+        <h3 data-i18n="c3t">Check-in digital por enlace</h3>
+        <p data-i18n="c3d">Envías un enlace por WhatsApp o email y el buceador completa sus datos, el cuestionario médico y la exención de responsabilidad: firma en la pantalla del móvil, con consentimiento RGPD. Si una respuesta médica requiere apto, lo ves marcado antes de que llegue.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <h3 data-i18n="c4t">Ficha de cada buceador</h3>
+        <p data-i18n="c4d">Certificaciones y nivel, seguro y su caducidad, contacto de emergencia, número de inmersiones e historial con tu centro.</p>
+      </div>
+      <div class="card reveal reveal-d1">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z"/></svg></div>
+        <h3 data-i18n="c5t">Equipo y material</h3>
+        <p data-i18n="c5d">Tu personal en una lista, asignado a cada inmersión. Y el material de alquiler con tallas y existencias, para saber qué sale del almacén antes de que salga el barco.</p>
+      </div>
+      <div class="card reveal reveal-d2">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+        <h3 data-i18n="c6t">Actividades y cobros</h3>
+        <p data-i18n="c6d">Define tus actividades y precios. Cobra online, en el mostrador o marca la salida como gratuita. El estado del pago queda en la reserva y en el histórico del cliente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SCREENSHOT SHOWCASES -->
+<section class="block" id="ver" style="padding-top:0;">
+  <div class="wrap">
+    <div class="showcase">
+      <div class="showcase-copy">
+        <div class="section-label reveal" data-i18n="sc1Label">RESERVAS</div>
+        <h3 class="reveal reveal-d1" data-i18n="sc1Title">Los buceadores reservan y la solicitud entra en el panel</h3>
+        <p class="reveal reveal-d2" data-i18n="sc1Desc">Tu centro tiene una página pública con el calendario de salidas y tus actividades. Cuando alguien reserva, la solicitud entra en el panel con las plazas que quedan y el importe. Tú confirmas o rechazas.</p>
+        <ul class="reveal reveal-d3">
+          <li data-i18n="sc1a">Pago online con tarjeta o al llegar al mostrador</li>
+          <li data-i18n="sc1b">Enlace de pago que puedes reenviar</li>
+          <li data-i18n="sc1c">Pestañas por estado: pendientes, confirmadas y por cobrar</li>
+        </ul>
+      </div>
+      <figure class="shot reveal reveal-d2">
+        <img src="panel-reservas.jpg" alt="Pantalla de reservas del panel de Divera con solicitudes pendientes y estado de pago" loading="lazy" width="2000" height="1250">
+      </figure>
+    </div>
+
+    <div class="showcase flip">
+      <div class="showcase-copy">
+        <div class="section-label reveal" data-i18n="sc2Label">LA INMERSIÓN</div>
+        <h3 class="reveal reveal-d1" data-i18n="sc2Title">Una salida abierta y todo lo que necesitas saber</h3>
+        <p class="reveal reveal-d2" data-i18n="sc2Desc">Briefing, precio, certificación mínima, plazas y la lista de participantes. De cada uno ves si cumple el nivel, si tiene los formularios, qué material alquila y si ha pagado.</p>
+        <ul class="reveal reveal-d3">
+          <li data-i18n="sc2a">Aviso cuando alguien no llega a la certificación mínima</li>
+          <li data-i18n="sc2b">Chat de grupo de la inmersión</li>
+          <li data-i18n="sc2c">Enlace de registro por buceador, para pedir papeles antes</li>
+        </ul>
+      </div>
+      <figure class="shot reveal reveal-d2">
+        <img src="panel-inmersion.jpg" alt="Detalle de una inmersión en el panel de Divera con participantes, formularios y alquileres" loading="lazy" width="2000" height="1250">
+      </figure>
+    </div>
+
+    <div class="showcase">
+      <div class="showcase-copy">
+        <div class="section-label reveal" data-i18n="sc3Label">ACTIVIDADES Y BUCEADORES</div>
+        <h3 class="reveal reveal-d1" data-i18n="sc3Title">Tu catálogo y tu gente, ordenados</h3>
+        <p class="reveal reveal-d2" data-i18n="sc3Desc">Agrupa lo que vendes por categorías: salidas, cursos, bautismos, packs. Cada actividad lleva precio, duración y nivel recomendado. Y cada buceador que pasa por tu centro se queda en tu lista, con sus certificaciones y su histórico.</p>
+        <ul class="reveal reveal-d3">
+          <li data-i18n="sc3a">Packs de varias inmersiones con las unidades consumidas</li>
+          <li data-i18n="sc3b">Buceadores con cuenta en la app y clientes de paso, juntos</li>
+          <li data-i18n="sc3c">Búsqueda por nombre y ficha completa de cada uno</li>
+        </ul>
+      </div>
+      <figure class="shot reveal reveal-d2">
+        <img src="panel-actividades.jpg" alt="Catálogo de actividades del centro en el panel de Divera con categorías y precios" loading="lazy" width="2000" height="1250">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="section-label reveal" data-i18n="stepsLabel">CÓMO EMPEZAMOS</div>
+      <h2 class="section-title reveal reveal-d1" data-i18n="stepsTitle">Cómo se pone en marcha</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h3 data-i18n="s1t">Demo de 30 minutos</h3>
+        <p data-i18n="s1d">Compartimos pantalla y recorremos el panel con la operativa de tu centro delante. Preguntas lo que quieras.</p>
+      </div>
+      <div class="step reveal reveal-d1">
+        <div class="step-num">02</div>
+        <h3 data-i18n="s2t">Damos de alta tu centro</h3>
+        <p data-i18n="s2d">Puntos de inmersión, personal, actividades, precios y material. Lo montamos contigo en una sesión.</p>
+      </div>
+      <div class="step reveal reveal-d2">
+        <div class="step-num">03</div>
+        <h3 data-i18n="s3t">Empiezas por la semana que viene</h3>
+        <p data-i18n="s3d">Metes las inmersiones de la semana, mandas los enlaces de check-in y el equipo trabaja desde la pantalla de Hoy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section class="block" id="demo" style="padding-top:0;">
+  <div class="wrap demo-grid">
+    <div>
+      <div class="section-label reveal" data-i18n="demoLabel">RESERVA TU DEMO</div>
+      <h2 class="section-title reveal reveal-d1" data-i18n="demoTitle">Media hora y te enseñamos el panel</h2>
+      <p class="section-sub reveal reveal-d2" data-i18n="demoSub">Elige un hueco en el calendario. Nos cuentas cómo trabajas ahora y te enseñamos el panel funcionando.</p>
+      <ul class="demo-checks reveal reveal-d3">
+        <li data-i18n="dc1">Recorrido en directo por el panel</li>
+        <li data-i18n="dc2">El parte del día de tu centro, con tus salidas</li>
+        <li data-i18n="dc3">Check-in digital: enlace, cuestionario médico y firma</li>
+        <li data-i18n="dc4">Qué ven de ti los buceadores en la app</li>
+      </ul>
+    </div>
+    <div class="demo-panel reveal">
+      <a href="https://calendly.com/divera-app/30min" target="_blank" rel="noopener" class="btn-primary" data-i18n="demoCta">Elegir hora en el calendario</a>
+      <p class="pf-fine" data-i18n="demoFine">30 minutos, online y sin compromiso.</p>
+      <div class="demo-or" data-i18n="demoOr">o escríbenos y te contactamos</div>
+      <form id="centerForm">
+        <div class="pf-group">
+          <label class="pf-label" data-i18n="pfName">Tu nombre</label>
+          <input type="text" name="name" class="pf-input" required placeholder="Nombre" data-i18n-placeholder="pfNamePh">
+        </div>
+        <div class="pf-group">
+          <label class="pf-label" data-i18n="pfCenter">Centro de buceo</label>
+          <input type="text" name="center" class="pf-input" required placeholder="Nombre del centro" data-i18n-placeholder="pfCenterPh">
+        </div>
+        <div class="pf-group">
+          <label class="pf-label" data-i18n="pfEmail">Email</label>
+          <input type="email" name="email" class="pf-input" required placeholder="tu@email.com" data-i18n-placeholder="pfEmailPh">
+        </div>
+        <div class="pf-group">
+          <label class="pf-label" data-i18n="pfLocation">Ubicación</label>
+          <input type="text" name="location" class="pf-input" placeholder="Ciudad o país" data-i18n-placeholder="pfLocationPh">
+        </div>
+        <button type="submit" class="pf-submit" data-i18n="pfSubmit">Que me escriban</button>
+        <p id="centerError" style="display:none; color:var(--coral); font-size:13px; margin-top:10px; text-align:center;"></p>
+      </form>
+      <div class="pf-success" id="centerSuccess">
+        <p data-i18n="pfSuccess">Recibido. Te escribimos en menos de 48 horas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="block" id="faq" style="padding-top:0;">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="section-label reveal" data-i18n="faqLabel">PREGUNTAS FRECUENTES</div>
+      <h2 class="section-title reveal reveal-d1" data-i18n="faqTitle">Lo que nos preguntan los centros</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item reveal">
+        <summary data-i18n="q1">¿Qué es exactamente Divera para centros?</summary>
+        <p data-i18n="a1">Un panel web para la operativa diaria de un centro de buceo: programar inmersiones con sus plazas, gestionar reservas, ver el parte del día, recoger cuestionario médico y exención firmada por enlace, llevar la ficha de cada buceador, asignar personal, controlar el material de alquiler y registrar los cobros. Sustituye a la mezcla habitual de Excel, WhatsApp y papel. Además, tu centro tiene una página pública donde los buceadores ven tu calendario y reservan, y aparece dentro de la app de Divera.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary data-i18n="q2">¿Puede sustituir a mi hoja de cálculo?</summary>
+        <p data-i18n="a2">Sí, y es el motivo por el que la mayoría empieza. La hoja de cálculo no controla el aforo, no sabe quién ha firmado, no guarda la certificación del cliente y solo la entiende quien la creó. El panel centraliza inmersiones, plazas, pagos y documentación, y lo ve todo el equipo desde cualquier dispositivo con el navegador.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary data-i18n="q3">¿Cómo funciona el check-in digital?</summary>
+        <p data-i18n="a3">Generas un enlace para cada buceador de una inmersión y se lo mandas por WhatsApp o email. Al abrirlo completa los datos que falten, responde el cuestionario médico y firma la exención de responsabilidad con el dedo en la pantalla, aceptando el consentimiento RGPD. Cuando envía, tú lo ves marcado en el panel. Si alguna respuesta médica requiere apto, aparece señalado en rojo para que lo trates antes de que se meta al agua.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary data-i18n="q4">¿Cómo reservan los buceadores?</summary>
+        <p data-i18n="a4">Tu centro tiene una página pública con tu calendario de salidas y tu catálogo de actividades. Desde ahí, cualquiera reserva una plaza: si tienes el cobro online activado paga con tarjeta en ese momento, y si no, queda marcado para cobrar en el mostrador. La solicitud entra en el panel y tú la confirmas o la rechazas. Tu centro aparece además en los puntos de inmersión de la app, con horarios, contacto y valoraciones.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary data-i18n="q5">¿Sirve para un centro pequeño?</summary>
+        <p data-i18n="a5">Especialmente. Cuando sois dos o tres, el tiempo administrativo lo pagáis vosotros: perseguir firmas, recordar quién pagó, rehacer la lista del día. Ese es exactamente el trabajo que quita el panel. No hay mínimo de tamaño ni de inmersiones.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary data-i18n="q6">¿Cuánto se tarda en ponerlo en marcha?</summary>
+        <p data-i18n="a6">La configuración inicial —puntos de inmersión, personal, actividades, precios y material— se hace en una sesión, y la hacemos contigo. A partir de ahí, meter la semana de inmersiones y mandar los enlaces de check-in lleva unos minutos al día. No hay que instalar nada.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary data-i18n="q7">¿Está en español?</summary>
+        <p data-i18n="a7">Sí. El panel está en español y en inglés, y cada persona del equipo elige su idioma. La página de registro que abre el buceador sale en el idioma de tu centro. Es una web, así que funciona igual en el ordenador del mostrador, en la tablet del barco y en el móvil.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary data-i18n="q8">¿Qué pasa con los datos de mis clientes?</summary>
+        <p data-i18n="a8">Los datos de tus buceadores son tuyos y los de cada centro están aislados de los demás. La exención se firma con consentimiento RGPD explícito y los documentos se guardan con acceso restringido. En la app, el buceador controla qué comparte de su perfil. Si te vas, te llevas tus datos.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary data-i18n="q9">¿Cuánto cuesta?</summary>
+        <p data-i18n="a9">Nada. El panel es gratis para tu centro: sin cuota mensual, sin límite de inmersiones y sin límite de buceadores. Lo único que no controlamos es la comisión que cobra Stripe por cada pago con tarjeta, si decides activar el cobro online; eso va directo a Stripe, no a nosotros. Estamos incorporando centros uno a uno porque queremos acompañar cada alta, no porque haya una tarifa detrás.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-left">
+    <a href="/"><img src="../logo-full.png" alt="Divera" style="height:20px;width:auto;display:block;opacity:0.7;"></a>
+  </div>
+  <div class="foot-center">
+    <a href="/" data-i18n="footDivers">Divera para buceadores</a>
+    <a href="https://www.instagram.com/divera.app/" target="_blank" rel="noopener">@divera.app</a>
+    <a href="/privacy" data-i18n="footPrivacy">Política de Privacidad</a>
+  </div>
+  <div class="foot-right">
+    <span data-i18n="footR">© 2026 Divera. Todos los derechos reservados.</span>
+  </div>
+</footer>
+
+<script>
+  // SCROLL REVEAL
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // i18n
+  const translations = {
+    es: {
+      navTag: 'Centros', navPanel: 'El panel', navApp: 'La app', navFaq: 'Preguntas',
+      navDivers: 'Para buceadores', navCta: 'Reservar demo',
+      heroLabel: 'DIVERA PARA CENTROS DE BUCEO',
+      heroTitle: 'El día a día de tu centro, <span class="accent">en una sola pantalla.</span>',
+      heroSub: 'Reservas, quién bucea hoy, quién ha pagado, quién ha firmado la exención y quién ha entregado el cuestionario médico. Sin perseguir a nadie por WhatsApp y sin la hoja de cálculo de siempre.',
+      heroCta: 'Reservar demo de 30 min', heroCta2: 'Ver qué incluye',
+      heroNote: 'Gratis para tu centro. El panel ya está en producción y damos de alta los centros uno a uno, acompañando la puesta en marcha.',
+      mockTitle: 'Hoy', mockMeta: '2 inmersiones · 7 buceadores',
+      mockDive1: 'Freu de Sa Dragonera · 4/6', mockDive2: 'El Sec · 4/8',
+      legendPaid: 'Pagado', legendWaiver: 'Exención firmada', legendMedical: 'Cuestionario médico', legendClearance: 'Requiere apto médico',
+      mockCaption: 'Representación del parte del día. Datos de ejemplo.',
+      panelLabel: 'EL PANEL',
+      panelTitle: 'Lo que necesitas para abrir el día',
+      panelSub: 'Se abre en el ordenador del mostrador y en la tablet del pantalán. No hay que instalar nada.',
+      c1t: 'El parte del día',
+      c1d: 'Cada inmersión de hoy con su hora, su punto, su ocupación y la lista de quién va. Por cada buceador, su nivel y tres estados de un vistazo: pago, exención y cuestionario médico.',
+      c2t: 'Inmersiones y reservas',
+      c2d: 'Programa salidas con fecha, punto y plazas. El aforo se controla solo: no puedes sobrepasarlo por error. Añade clientes con cuenta o de paso, y cancela sin perder el histórico.',
+      c3t: 'Check-in digital por enlace',
+      c3d: 'Envías un enlace por WhatsApp o email y el buceador completa sus datos, el cuestionario médico y la exención de responsabilidad: firma en la pantalla del móvil, con consentimiento RGPD. Si una respuesta médica requiere apto, lo ves marcado antes de que llegue.',
+      c4t: 'Ficha de cada buceador',
+      c4d: 'Certificaciones y nivel, seguro y su caducidad, contacto de emergencia, número de inmersiones e historial con tu centro.',
+      c5t: 'Equipo y material',
+      c5d: 'Tu personal en una lista, asignado a cada inmersión. Y el material de alquiler con tallas y existencias, para saber qué sale del almacén antes de que salga el barco.',
+      c6t: 'Actividades y cobros',
+      c6d: 'Define tus actividades y precios. Cobra online, en el mostrador o marca la salida como gratuita. El estado del pago queda en la reserva y en el histórico del cliente.',
+      appLabel: 'EL PANEL Y LA APP',
+      appTitle: 'El panel y la app son la misma cosa',
+      appSub: 'Lo que programas en el panel sale en la app de buceadores, y lo que ellos hacen ahí vuelve a tu panel. Divera es una app donde los buzos registran inmersiones, identifican con IA lo que ven y eligen dónde bucear.',
+      a1t: 'Tu ficha en la app, viva',
+      a1d: 'Horarios, reseñas, tus próximas salidas y las inmersiones que la gente ha hecho contigo hace nada. Quien abre un punto de buceo de tu zona ve todo eso.',
+      a2t: 'El buceador te pasa su perfil',
+      a2d: 'En su perfil guarda la certificación, el seguro y las inmersiones que lleva hechas. Te lo comparte con un enlace, y si reserva por la app te llega con esos datos ya puestos.',
+      a3t: 'Programas una salida y sale en la app',
+      a3d: 'La inmersión que creas en el panel aparece en la app y los buceadores de la zona se apuntan. Ellos también montan las suyas y eligen con qué centro van. Las dos se comparten con un enlace.',
+      a4t: 'La inmersión no se escribe dos veces',
+      a4d: 'Si salió contigo, el buceador la registra a partir del plan: sitio, fecha y centro ya están puestos. Si lleva ordenador, sube el archivo y el resto se rellena solo. Luego identifica las especies de sus fotos y vídeos.',
+      stepsLabel: 'CÓMO EMPEZAMOS',
+      stepsTitle: 'Cómo se pone en marcha',
+      s1t: 'Demo de 30 minutos',
+      s1d: 'Compartimos pantalla y recorremos el panel con la operativa de tu centro delante. Preguntas lo que quieras.',
+      s2t: 'Damos de alta tu centro',
+      s2d: 'Puntos de inmersión, personal, actividades, precios y material. Lo montamos contigo en una sesión.',
+      s3t: 'Empiezas por la semana que viene',
+      s3d: 'Metes las inmersiones de la semana, mandas los enlaces de check-in y el equipo trabaja desde la pantalla de Hoy.',
+      demoLabel: 'RESERVA TU DEMO',
+      demoTitle: 'Media hora y te enseñamos el panel',
+      demoSub: 'Elige un hueco en el calendario. Nos cuentas cómo trabajas ahora y te enseñamos el panel funcionando.',
+      dc1: 'Recorrido en directo por el panel',
+      dc2: 'El parte del día de tu centro, con tus salidas',
+      dc3: 'Check-in digital: enlace, cuestionario médico y firma',
+      dc4: 'Qué ven de ti los buceadores en la app',
+      demoCta: 'Elegir hora en el calendario',
+      demoFine: '30 minutos, online y sin compromiso.',
+      demoOr: 'o escríbenos y te contactamos',
+      pfName: 'Tu nombre', pfNamePh: 'Nombre',
+      pfCenter: 'Centro de buceo', pfCenterPh: 'Nombre del centro',
+      pfEmail: 'Email', pfEmailPh: 'tu@email.com',
+      pfLocation: 'Ubicación', pfLocationPh: 'Ciudad o país',
+      pfSubmit: 'Que me escriban',
+      pfSuccess: 'Recibido. Te escribimos en menos de 48 horas.',
+      formError: 'Algo salió mal. Inténtalo de nuevo.',
+      faqLabel: 'PREGUNTAS FRECUENTES',
+      faqTitle: 'Lo que nos preguntan los centros',
+      q1: '¿Qué es exactamente Divera para centros?',
+      a1: 'Un panel web para la operativa diaria de un centro de buceo: programar inmersiones con sus plazas, gestionar reservas, ver el parte del día, recoger cuestionario médico y exención firmada por enlace, llevar la ficha de cada buceador, asignar personal, controlar el material de alquiler y registrar los cobros. Sustituye a la mezcla habitual de Excel, WhatsApp y papel. Además, tu centro tiene una página pública donde los buceadores ven tu calendario y reservan, y aparece dentro de la app de Divera.',
+      q2: '¿Puede sustituir a mi hoja de cálculo?',
+      a2: 'Sí, y es el motivo por el que la mayoría empieza. La hoja de cálculo no controla el aforo, no sabe quién ha firmado, no guarda la certificación del cliente y solo la entiende quien la creó. El panel centraliza inmersiones, plazas, pagos y documentación, y lo ve todo el equipo desde cualquier dispositivo con el navegador.',
+      q3: '¿Cómo funciona el check-in digital?',
+      a3: 'Generas un enlace para cada buceador de una inmersión y se lo mandas por WhatsApp o email. Al abrirlo completa los datos que falten, responde el cuestionario médico y firma la exención de responsabilidad con el dedo en la pantalla, aceptando el consentimiento RGPD. Cuando envía, tú lo ves marcado en el panel. Si alguna respuesta médica requiere apto, aparece señalado en rojo para que lo trates antes de que se meta al agua.',
+      q4: '¿Cómo reservan los buceadores?',
+      a4: 'Tu centro tiene una página pública con tu calendario de salidas y tu catálogo de actividades. Desde ahí, cualquiera reserva una plaza: si tienes el cobro online activado paga con tarjeta en ese momento, y si no, queda marcado para cobrar en el mostrador. La solicitud entra en el panel y tú la confirmas o la rechazas. Tu centro aparece además en los puntos de inmersión de la app, con horarios, contacto y valoraciones.',
+      q5: '¿Sirve para un centro pequeño?',
+      a5: 'Especialmente. Cuando sois dos o tres, el tiempo administrativo lo pagáis vosotros: perseguir firmas, recordar quién pagó, rehacer la lista del día. Ese es exactamente el trabajo que quita el panel. No hay mínimo de tamaño ni de inmersiones.',
+      q6: '¿Cuánto se tarda en ponerlo en marcha?',
+      a6: 'La configuración inicial —puntos de inmersión, personal, actividades, precios y material— se hace en una sesión, y la hacemos contigo. A partir de ahí, meter la semana de inmersiones y mandar los enlaces de check-in lleva unos minutos al día. No hay que instalar nada.',
+      q7: '¿Está en español?',
+      a7: 'Sí. El panel está en español y en inglés, y cada persona del equipo elige su idioma. La página de registro que abre el buceador sale en el idioma de tu centro. Es una web, así que funciona igual en el ordenador del mostrador, en la tablet del barco y en el móvil.',
+      q8: '¿Qué pasa con los datos de mis clientes?',
+      a8: 'Los datos de tus buceadores son tuyos y los de cada centro están aislados de los demás. La exención se firma con consentimiento RGPD explícito y los documentos se guardan con acceso restringido. En la app, el buceador controla qué comparte de su perfil. Si te vas, te llevas tus datos.',
+      q9: '¿Cuánto cuesta?',
+      a9: 'Nada. El panel es gratis para tu centro: sin cuota mensual, sin límite de inmersiones y sin límite de buceadores. Lo único que no controlamos es la comisión que cobra Stripe por cada pago con tarjeta, si decides activar el cobro online; eso va directo a Stripe, no a nosotros. Estamos incorporando centros uno a uno porque queremos acompañar cada alta, no porque haya una tarifa detrás.',
+      footDivers: 'Divera para buceadores', footPrivacy: 'Política de Privacidad',
+      footR: '© 2026 Divera. Todos los derechos reservados.',
+      pageTitle: 'Divera para centros de buceo · Gestiona tu centro sin papeles',
+      pageDesc: 'Panel de gestión para centros de buceo: reservas, parte del día, cuestionario médico y exención firmada por enlace, fichas de buceador, personal, material y cobros. Reserva una demo de 30 minutos.',
+      shotHoy: 'Pantalla Hoy del panel. Centro y buceadores de ejemplo.',
+      sc1Label: 'RESERVAS',
+      sc1Title: 'Los buceadores reservan y la solicitud entra en el panel',
+      sc1Desc: 'Tu centro tiene una página pública con el calendario de salidas y tus actividades. Cuando alguien reserva, la solicitud entra en el panel con las plazas que quedan y el importe. Tú confirmas o rechazas.',
+      sc1a: 'Pago online con tarjeta o al llegar al mostrador',
+      sc1b: 'Enlace de pago que puedes reenviar',
+      sc1c: 'Pestañas por estado: pendientes, confirmadas y por cobrar',
+      sc2Label: 'LA INMERSIÓN',
+      sc2Title: 'Una salida abierta y todo lo que necesitas saber',
+      sc2Desc: 'Briefing, precio, certificación mínima, plazas y la lista de participantes. De cada uno ves si cumple el nivel, si tiene los formularios, qué material alquila y si ha pagado.',
+      sc2a: 'Aviso cuando alguien no llega a la certificación mínima',
+      sc2b: 'Chat de grupo de la inmersión',
+      sc2c: 'Enlace de registro por buceador, para pedir papeles antes',
+      sc3Label: 'ACTIVIDADES Y BUCEADORES',
+      sc3Title: 'Tu catálogo y tu gente, ordenados',
+      sc3Desc: 'Agrupa lo que vendes por categorías: salidas, cursos, bautismos, packs. Cada actividad lleva precio, duración y nivel recomendado. Y cada buceador que pasa por tu centro se queda en tu lista, con sus certificaciones y su histórico.',
+      sc3a: 'Packs de varias inmersiones con las unidades consumidas',
+      sc3b: 'Buceadores con cuenta en la app y clientes de paso, juntos',
+      sc3c: 'Búsqueda por nombre y ficha completa de cada uno',
+      a6t: 'Buscas a cualquier buceador de la app',
+      a6d: 'Escribes su nombre o su usuario y lo añades a la salida. Si te ha compartido el perfil, ves sus certificaciones, su seguro, cuántas inmersiones lleva y las que ha hecho contigo.',
+      p1t: 'Sin papeles',
+      p1d: 'El cuestionario médico y la exención se firman en el móvil del buceador, antes de llegar, y se guardan con su ficha.',
+      p2t: 'Sin hojas de cálculo',
+      p2d: 'Inmersiones, plazas, pagos, material y clientes dejan de estar repartidos entre un Excel y un grupo de WhatsApp.',
+      p3t: 'Y gratis para tu centro',
+      p3d: 'Sin cuota mensual. Ni ahora ni cuando tengas veinte inmersiones a la semana.',
+      a7t: 'Te etiquetan en sus inmersiones',
+      a7d: 'Al registrar la inmersión eligen el centro con el que salieron. Tu ficha va acumulando actividad reciente y reseñas, y otros buceadores la ven.',
+    },
+    en: {
+      navTag: 'Centers', navPanel: 'The dashboard', navApp: 'The app', navFaq: 'FAQ',
+      navDivers: 'For divers', navCta: 'Book a demo',
+      heroLabel: 'DIVERA FOR DIVE CENTERS',
+      heroTitle: 'Your center’s whole day, <span class="accent">on one screen.</span>',
+      heroSub: 'Bookings, who dives today, who paid, who signed the waiver and who filed the medical form. Without chasing people on WhatsApp or keeping the usual spreadsheet.',
+      heroCta: 'Book a 30-min demo', heroCta2: 'See what it covers',
+      heroNote: 'Free for your center. The dashboard is already in production and we onboard centers one at a time, setup included.',
+      mockTitle: 'Today', mockMeta: '2 dives · 7 divers',
+      mockDive1: 'Freu de Sa Dragonera · 4/6', mockDive2: 'El Sec · 4/8',
+      legendPaid: 'Paid', legendWaiver: 'Waiver signed', legendMedical: 'Medical form', legendClearance: 'Clearance required',
+      mockCaption: 'Illustration of the day’s manifest. Sample data.',
+      panelLabel: 'THE DASHBOARD',
+      panelTitle: 'What you need to open the day',
+      panelSub: 'It opens on the desk computer and on the tablet at the dock. Nothing to install.',
+      c1t: 'The day’s manifest',
+      c1d: 'Every dive today with its time, site, capacity and who’s on it. Per diver, their level and three states at a glance: payment, waiver and medical form.',
+      c2t: 'Dives and bookings',
+      c2d: 'Schedule dives with date, site and seats. Capacity enforces itself, so you can’t overbook by accident. Add clients with an account or walk-ins, and cancel without losing the record.',
+      c3t: 'Digital check-in by link',
+      c3d: 'You send a link over WhatsApp or email and the diver fills in their details, the medical questionnaire and the liability waiver: signed on their phone screen, with GDPR consent. If a medical answer needs clearance, you see it flagged before they show up.',
+      c4t: 'A record for every diver',
+      c4d: 'Certifications and level, insurance and its expiry, emergency contact, dive count and history with your center.',
+      c5t: 'Staff and gear',
+      c5d: 'Your team in one list, assigned per dive. And rental gear with sizes and stock, so you know what leaves the store before the boat leaves.',
+      c6t: 'Activities and payments',
+      c6d: 'Set your activities and prices. Charge online, at the desk, or mark the dive as free. Payment status stays on the booking and in the client’s history.',
+      appLabel: 'THE DASHBOARD AND THE APP',
+      appTitle: 'The dashboard and the app are one thing',
+      appSub: 'What you schedule in the dashboard shows up in the diver app, and what they do there comes back to your dashboard. Divera is an app where divers log dives, identify what they see with AI and pick where to dive.',
+      a1t: 'Your listing in the app, alive',
+      a1d: 'Hours, reviews, your upcoming dives and the dives people did with you days ago. Anyone opening a dive site in your area sees all of it.',
+      a2t: 'The diver hands you their profile',
+      a2d: 'Their profile holds their certification, insurance and dive count. They share it with a link, and if they book through the app it reaches you with those details already filled in.',
+      a3t: 'You schedule a dive and it shows up in the app',
+      a3d: 'The dive you create in the dashboard appears in the app and divers nearby join it. They also set up their own and pick which center they go with. Both are shareable with a link.',
+      a4t: 'The dive isn’t typed twice',
+      a4d: 'If the dive went out with you, the diver logs it from the plan: site, date and center are already there. With a dive computer, they upload the file and the rest fills itself in. Then they identify the species in their photos and videos.',
+      stepsLabel: 'HOW WE START',
+      stepsTitle: 'How it gets going',
+      s1t: '30-minute demo',
+      s1d: 'We share our screen and walk the dashboard with your center’s operation in front of us. Ask what you want.',
+      s2t: 'We set your center up',
+      s2d: 'Dive sites, staff, activities, prices and gear. We set it up with you in one session.',
+      s3t: 'You start with next week',
+      s3d: 'Load the week’s dives, send the check-in links, and the team works off the Today screen.',
+      demoLabel: 'BOOK YOUR DEMO',
+      demoTitle: 'Half an hour and we show you the dashboard',
+      demoSub: 'Pick a slot on the calendar. You tell us how you work now and we show you the dashboard running.',
+      dc1: 'Live walkthrough of the dashboard',
+      dc2: 'Your center’s day manifest, with your dives',
+      dc3: 'Digital check-in: link, medical form and signature',
+      dc4: 'What divers see about you in the app',
+      demoCta: 'Pick a time on the calendar',
+      demoFine: '30 minutes, online, no commitment.',
+      demoOr: 'or write to us and we’ll reach out',
+      pfName: 'Your name', pfNamePh: 'Name',
+      pfCenter: 'Dive center', pfCenterPh: 'Center name',
+      pfEmail: 'Email', pfEmailPh: 'your@email.com',
+      pfLocation: 'Location', pfLocationPh: 'City or country',
+      pfSubmit: 'Have them contact me',
+      pfSuccess: 'Received. We’ll write to you within 48 hours.',
+      formError: 'Something went wrong. Please try again.',
+      faqLabel: 'FAQ',
+      faqTitle: 'What dive centers ask us',
+      q1: 'What exactly is Divera for dive centers?',
+      a1: 'A web dashboard for the daily operation of a dive center: schedule dives with their seats, manage bookings, see the day’s manifest, collect the medical questionnaire and signed waiver by link, keep a record for every diver, assign staff, track rental gear and log payments. It replaces the usual mix of Excel, WhatsApp and paper. On top of that, your center gets a public page where divers see your schedule and book, and it shows up inside the Divera app.',
+      q2: 'Can it replace my spreadsheet?',
+      a2: 'Yes, and that is where most centers start. A spreadsheet doesn’t enforce capacity, doesn’t know who signed, doesn’t hold the client’s certification, and only its author really understands it. The dashboard centralizes dives, seats, payments and paperwork, and the whole team sees it from any device with a browser.',
+      q3: 'How does digital check-in work?',
+      a3: 'You generate a link for each diver on a dive and send it over WhatsApp or email. Opening it, they fill in the missing details, answer the medical questionnaire and sign the liability waiver with their finger, accepting GDPR consent. Once submitted, you see it marked in the dashboard. If a medical answer requires clearance, it is flagged in red so you handle it before they get in the water.',
+      q4: 'How do divers book?',
+      a4: 'Your center gets a public page with your dive schedule and activity catalog. From there anyone can book a seat: with online payment enabled they pay by card right then, otherwise it’s marked to collect at the desk. The request lands in the dashboard and you confirm or decline it. Your center also shows up on dive sites in the app, with hours, contact and ratings.',
+      q5: 'Does it work for a small center?',
+      a5: 'Especially. When you are two or three people, the admin time comes out of your own hours: chasing signatures, remembering who paid, redoing the day’s list. That is exactly the work the dashboard removes. There is no minimum size or dive count.',
+      q6: 'How long does setup take?',
+      a6: 'The initial setup — dive sites, staff, activities, prices and gear — takes one session, and we do it with you. After that, loading the week’s dives and sending check-in links takes a few minutes a day. Nothing to install.',
+      q7: 'Is it in Spanish?',
+      a7: 'Yes. The dashboard is in Spanish and English, and each person on the team picks their own. The registration page the diver opens comes up in your center’s language. It’s a web app, so it works the same on the desk computer, the boat tablet and a phone.',
+      q8: 'What happens to my clients’ data?',
+      a8: 'Your divers’ data is yours, and each center’s data is isolated from the others. The waiver is signed with explicit GDPR consent and documents are stored with restricted access. In the app, the diver controls what they share from their profile. If you leave, you take your data with you.',
+      q9: 'What does it cost?',
+      a9: 'Nothing. The dashboard is free for your center: no monthly fee, no cap on dives, no cap on divers. The only thing we don’t control is Stripe’s fee on each card payment, if you switch online payments on; that goes to Stripe, not to us. We onboard centers one at a time because we want to be there for each setup, not because there’s a price tag behind it.',
+      footDivers: 'Divera for divers', footPrivacy: 'Privacy Policy',
+      footR: '© 2026 Divera. All rights reserved.',
+      pageTitle: 'Divera for dive centers · Run your center without paperwork',
+      pageDesc: 'Dive center management dashboard: bookings, day manifest, medical form and waiver signed by link, diver records, staff, rental gear and payments. Book a 30-minute demo.',
+      shotHoy: 'The dashboard’s Today screen. Sample center and divers.',
+      sc1Label: 'BOOKINGS',
+      sc1Title: 'Divers book and the request lands in the dashboard',
+      sc1Desc: 'Your center gets a public page with the schedule and your activities. When somebody books, the request lands in the dashboard with the remaining seats and the amount. You confirm or decline.',
+      sc1a: 'Card payment online, or at the desk on arrival',
+      sc1b: 'A payment link you can resend',
+      sc1c: 'Tabs by state: pending, confirmed and unpaid',
+      sc2Label: 'THE DIVE',
+      sc2Title: 'One scheduled dive, everything you need to know',
+      sc2Desc: 'Briefing, price, minimum certification, seats and the participant list. For each one you see whether they meet the level, whether the forms are in, what gear they rent and whether they paid.',
+      sc2a: 'A flag when someone is below the minimum certification',
+      sc2b: 'Group chat for the dive',
+      sc2c: 'A registration link per diver, to collect paperwork beforehand',
+      sc3Label: 'ACTIVITIES AND DIVERS',
+      sc3Title: 'Your catalog and your people, in order',
+      sc3Desc: 'Group what you sell into categories: dives, courses, try-dives, packs. Each activity carries price, duration and recommended level. And every diver who comes through stays on your list, with their certifications and history.',
+      sc3a: 'Multi-dive packs with the units already used',
+      sc3b: 'App-account divers and walk-in clients, in one list',
+      sc3c: 'Search by name, full record for each one',
+      a6t: 'You can look up any diver on the app',
+      a6d: 'Type their name or handle and add them to the dive. If they shared their profile with you, you see their certifications, insurance, dive count and the dives they did with you.',
+      p1t: 'No paper',
+      p1d: 'The medical form and the waiver get signed on the diver’s phone before they arrive, and are filed with their record.',
+      p2t: 'No spreadsheets',
+      p2d: 'Dives, seats, payments, gear and clients stop living half in Excel and half in a WhatsApp group.',
+      p3t: 'And free for your center',
+      p3d: 'No monthly fee. Not now, and not when you’re running twenty dives a week.',
+      a7t: 'They tag you in their dives',
+      a7d: 'When they log the dive they pick the center they went out with. Your listing builds up recent activity and reviews, and other divers see it.',
+    },
+    fr: {
+      navTag: 'Centres', navPanel: 'Le tableau de bord', navApp: 'L’app', navFaq: 'Questions',
+      navDivers: 'Pour les plongeurs', navCta: 'Réserver une démo',
+      heroLabel: 'DIVERA POUR LES CENTRES DE PLONGÉE',
+      heroTitle: 'Toute la journée de votre centre, <span class="accent">sur un seul écran.</span>',
+      heroSub: 'Réservations, qui plonge aujourd’hui, qui a payé, qui a signé la décharge et qui a rendu le questionnaire médical. Sans courir après tout le monde sur WhatsApp ni tenir le tableur habituel.',
+      heroCta: 'Réserver une démo de 30 min', heroCta2: 'Voir ce que ça couvre',
+      heroNote: 'Gratuit pour votre centre. Le tableau de bord est déjà en production et nous intégrons les centres un par un, mise en route comprise.',
+      mockTitle: 'Aujourd’hui', mockMeta: '2 plongées · 7 plongeurs',
+      mockDive1: 'Freu de Sa Dragonera · 4/6', mockDive2: 'El Sec · 4/8',
+      legendPaid: 'Payé', legendWaiver: 'Décharge signée', legendMedical: 'Questionnaire médical', legendClearance: 'Certificat requis',
+      mockCaption: 'Représentation du programme du jour. Données d’exemple.',
+      panelLabel: 'LE TABLEAU DE BORD',
+      panelTitle: 'Ce qu’il faut pour ouvrir la journée',
+      panelSub: 'Il s’ouvre sur l’ordinateur du comptoir et sur la tablette du ponton. Rien à installer.',
+      c1t: 'Le programme du jour',
+      c1d: 'Chaque plongée du jour avec son heure, son site, son remplissage et la liste des participants. Par plongeur, son niveau et trois états d’un coup d’œil : paiement, décharge et questionnaire médical.',
+      c2t: 'Plongées et réservations',
+      c2d: 'Programmez des sorties avec date, site et places. La jauge se contrôle toute seule : impossible de surréserver par erreur. Ajoutez des clients avec compte ou de passage, et annulez sans perdre l’historique.',
+      c3t: 'Check-in numérique par lien',
+      c3d: 'Vous envoyez un lien par WhatsApp ou email et le plongeur complète ses données, le questionnaire médical et la décharge de responsabilité : signature sur l’écran du téléphone, avec consentement RGPD. Si une réponse médicale exige un certificat, vous le voyez signalé avant son arrivée.',
+      c4t: 'Une fiche par plongeur',
+      c4d: 'Certifications et niveau, assurance et échéance, contact d’urgence, nombre de plongées et historique avec votre centre.',
+      c5t: 'Équipe et matériel',
+      c5d: 'Votre personnel dans une liste, affecté à chaque plongée. Et le matériel de location avec tailles et stocks, pour savoir ce qui sort du local avant que le bateau ne parte.',
+      c6t: 'Activités et paiements',
+      c6d: 'Définissez vos activités et vos tarifs. Encaissez en ligne, au comptoir, ou marquez la sortie comme gratuite. L’état du paiement reste sur la réservation et dans l’historique du client.',
+      appLabel: 'LE TABLEAU DE BORD ET L’APP',
+      appTitle: 'Le tableau de bord et l’app ne font qu’un',
+      appSub: 'Ce que vous programmez dans le tableau de bord apparaît dans l’app des plongeurs, et ce qu’ils y font revient dans votre tableau de bord. Divera est une app où les plongeurs enregistrent leurs plongées, identifient avec l’IA ce qu’ils voient et choisissent où plonger.',
+      a1t: 'Votre fiche dans l’app, vivante',
+      a1d: 'Horaires, avis, vos prochaines sorties et les plongées faites chez vous il y a peu. Qui ouvre un site de plongée de votre zone voit tout ça.',
+      a2t: 'Le plongeur vous transmet son profil',
+      a2d: 'Son profil contient sa certification, son assurance et son nombre de plongées. Il le partage par un lien, et s’il réserve via l’app, tout arrive déjà rempli.',
+      a3t: 'Vous programmez une sortie et elle apparaît dans l’app',
+      a3d: 'La plongée que vous créez dans le tableau de bord apparaît dans l’app et les plongeurs du coin s’y inscrivent. Ils montent aussi les leurs et choisissent avec quel centre partir. Les deux se partagent par un lien.',
+      a4t: 'La plongée ne se saisit pas deux fois',
+      a4d: 'Si la plongée est partie avec vous, le plongeur l’enregistre depuis le plan : site, date et centre sont déjà là. Avec un ordinateur, il téléverse le fichier et le reste se remplit. Ensuite il identifie les espèces de ses photos et vidéos.',
+      stepsLabel: 'COMMENT ON DÉMARRE',
+      stepsTitle: 'Comment ça démarre',
+      s1t: 'Démo de 30 minutes',
+      s1d: 'Nous partageons l’écran et parcourons le tableau de bord avec votre organisation sous les yeux. Posez vos questions.',
+      s2t: 'Nous créons votre centre',
+      s2d: 'Sites de plongée, personnel, activités, tarifs et matériel. On le monte avec vous en une session.',
+      s3t: 'Vous commencez par la semaine prochaine',
+      s3d: 'Vous chargez les plongées de la semaine, envoyez les liens de check-in, et l’équipe travaille depuis l’écran Aujourd’hui.',
+      demoLabel: 'RÉSERVEZ VOTRE DÉMO',
+      demoTitle: 'Une demi-heure et on vous montre le tableau de bord',
+      demoSub: 'Choisissez un créneau. Vous nous racontez comment vous travaillez et on vous montre le tableau de bord en marche.',
+      dc1: 'Parcours en direct du tableau de bord',
+      dc2: 'Le programme du jour de votre centre, avec vos sorties',
+      dc3: 'Check-in numérique : lien, questionnaire médical et signature',
+      dc4: 'Ce que les plongeurs voient de vous dans l’app',
+      demoCta: 'Choisir un créneau',
+      demoFine: '30 minutes, en ligne et sans engagement.',
+      demoOr: 'ou écrivez-nous et nous vous contactons',
+      pfName: 'Votre nom', pfNamePh: 'Nom',
+      pfCenter: 'Centre de plongée', pfCenterPh: 'Nom du centre',
+      pfEmail: 'Email', pfEmailPh: 'votre@email.com',
+      pfLocation: 'Localisation', pfLocationPh: 'Ville ou pays',
+      pfSubmit: 'Qu’on me contacte',
+      pfSuccess: 'Reçu. Nous vous écrivons sous 48 heures.',
+      formError: 'Une erreur est survenue. Veuillez réessayer.',
+      faqLabel: 'QUESTIONS FRÉQUENTES',
+      faqTitle: 'Ce que les centres nous demandent',
+      q1: 'Qu’est-ce que Divera pour les centres, exactement ?',
+      a1: 'Un tableau de bord web pour l’exploitation quotidienne d’un centre : programmer les plongées et leurs places, gérer les réservations, voir le programme du jour, collecter le questionnaire médical et la décharge signée par lien, tenir une fiche par plongeur, affecter le personnel, suivre le matériel de location et enregistrer les paiements. Il remplace le mélange habituel d’Excel, WhatsApp et papier. En plus, votre centre a une page publique où les plongeurs voient votre calendrier et réservent, et il apparaît dans l’app Divera.',
+      q2: 'Peut-il remplacer mon tableur ?',
+      a2: 'Oui, et c’est par là que la plupart commencent. Un tableur ne contrôle pas la jauge, ne sait pas qui a signé, ne conserve pas la certification du client et n’est vraiment compris que par son auteur. Le tableau de bord centralise plongées, places, paiements et documents, et toute l’équipe y accède depuis n’importe quel appareil.',
+      q3: 'Comment fonctionne le check-in numérique ?',
+      a3: 'Vous générez un lien pour chaque plongeur d’une plongée et l’envoyez par WhatsApp ou email. En l’ouvrant, il complète ses données, répond au questionnaire médical et signe la décharge au doigt, avec consentement RGPD. Une fois envoyé, vous le voyez validé dans le tableau de bord. Si une réponse médicale exige un certificat, c’est signalé en rouge avant la mise à l’eau.',
+      q4: 'Comment les plongeurs réservent-ils ?',
+      a4: 'Votre centre a une page publique avec votre calendrier de sorties et votre catalogue d’activités. De là, n’importe qui réserve une place : avec le paiement en ligne activé, il paie par carte à ce moment-là, sinon c’est marqué à encaisser au comptoir. La demande arrive dans le tableau de bord et vous confirmez ou refusez. Votre centre apparaît aussi sur les sites de plongée dans l’app, avec horaires, contact et avis.',
+      q5: 'Est-ce adapté à un petit centre ?',
+      a5: 'Surtout. Quand vous êtes deux ou trois, le temps administratif sort de vos propres heures : courir après les signatures, se souvenir qui a payé, refaire la liste du jour. C’est exactement ce travail que le tableau de bord supprime. Aucun minimum de taille.',
+      q6: 'Combien de temps pour démarrer ?',
+      a6: 'La configuration initiale — sites, personnel, activités, tarifs et matériel — prend une session, et nous la faisons avec vous. Ensuite, charger la semaine et envoyer les liens de check-in prend quelques minutes par jour. Rien à installer.',
+      q7: 'Est-ce en français ?',
+      a7: 'Le tableau de bord est aujourd’hui en espagnol et en anglais, et chacun choisit sa langue. La page d’inscription qu’ouvre le plongeur s’affiche dans la langue de votre centre. C’est un site web : il fonctionne pareil sur l’ordinateur du comptoir, la tablette du bateau et le téléphone.',
+      q8: 'Que deviennent les données de mes clients ?',
+      a8: 'Les données de vos plongeurs sont les vôtres, et celles de chaque centre sont isolées des autres. La décharge est signée avec consentement RGPD explicite et les documents sont stockés en accès restreint. Dans l’app, le plongeur contrôle ce qu’il partage. Si vous partez, vous emportez vos données.',
+      q9: 'Combien ça coûte ?',
+      a9: 'Rien. Le tableau de bord est gratuit pour votre centre : sans abonnement, sans limite de plongées ni de plongeurs. La seule chose que nous ne contrôlons pas, c’est la commission de Stripe sur chaque paiement par carte, si vous activez le paiement en ligne ; elle va à Stripe, pas à nous. Nous intégrons les centres un par un parce que nous voulons accompagner chaque mise en route, pas parce qu’il y a un tarif derrière.',
+      footDivers: 'Divera pour les plongeurs', footPrivacy: 'Politique de confidentialité',
+      footR: '© 2026 Divera. Tous droits réservés.',
+      pageTitle: 'Divera pour les centres de plongée · Gérez votre centre sans paperasse',
+      pageDesc: 'Tableau de bord de gestion pour centres de plongée : réservations, programme du jour, questionnaire médical et décharge signée par lien, fiches plongeurs, personnel, matériel et paiements. Réservez une démo de 30 minutes.',
+      shotHoy: 'L’écran Aujourd’hui du tableau de bord. Centre et plongeurs d’exemple.',
+      sc1Label: 'RÉSERVATIONS',
+      sc1Title: 'Les plongeurs réservent et la demande arrive dans le tableau de bord',
+      sc1Desc: 'Votre centre a une page publique avec le calendrier des sorties et vos activités. Quand quelqu’un réserve, la demande arrive dans le tableau de bord avec les places restantes et le montant. Vous confirmez ou refusez.',
+      sc1a: 'Paiement en ligne par carte, ou au comptoir à l’arrivée',
+      sc1b: 'Un lien de paiement que vous pouvez renvoyer',
+      sc1c: 'Onglets par état : en attente, confirmées et à encaisser',
+      sc2Label: 'LA PLONGÉE',
+      sc2Title: 'Une sortie programmée et tout ce qu’il faut savoir',
+      sc2Desc: 'Briefing, tarif, certification minimale, places et liste des participants. Pour chacun, vous voyez s’il a le niveau, si les formulaires sont rendus, quel matériel il loue et s’il a payé.',
+      sc2a: 'Une alerte quand quelqu’un n’a pas la certification minimale',
+      sc2b: 'Chat de groupe de la plongée',
+      sc2c: 'Un lien d’inscription par plongeur, pour récupérer les documents en amont',
+      sc3Label: 'ACTIVITÉS ET PLONGEURS',
+      sc3Title: 'Votre catalogue et vos gens, en ordre',
+      sc3Desc: 'Regroupez ce que vous vendez par catégories : sorties, cours, baptêmes, forfaits. Chaque activité porte son tarif, sa durée et le niveau conseillé. Et chaque plongeur qui passe reste dans votre liste, avec ses certifications et son historique.',
+      sc3a: 'Forfaits de plusieurs plongées avec les unités déjà consommées',
+      sc3b: 'Plongeurs avec compte dans l’app et clients de passage, ensemble',
+      sc3c: 'Recherche par nom et fiche complète pour chacun',
+      a6t: 'Vous cherchez n’importe quel plongeur de l’app',
+      a6d: 'Tapez son nom ou son pseudo et ajoutez-le à la sortie. S’il vous a partagé son profil, vous voyez ses certifications, son assurance, son nombre de plongées et celles faites avec vous.',
+      p1t: 'Sans papier',
+      p1d: 'Le questionnaire médical et la décharge se signent sur le téléphone du plongeur, avant son arrivée, et sont classés avec sa fiche.',
+      p2t: 'Sans tableurs',
+      p2d: 'Plongées, places, paiements, matériel et clients cessent d’être répartis entre un Excel et un groupe WhatsApp.',
+      p3t: 'Et gratuit pour votre centre',
+      p3d: 'Sans abonnement mensuel. Ni maintenant, ni quand vous ferez vingt plongées par semaine.',
+      a7t: 'Ils vous taguent dans leurs plongées',
+      a7d: 'En enregistrant la plongée, ils choisissent le centre avec lequel ils sont sortis. Votre fiche accumule activité récente et avis, que d’autres plongeurs voient.',
+    },
+    ca: {
+      navTag: 'Centres', navPanel: 'El panell', navApp: 'L’app', navFaq: 'Preguntes',
+      navDivers: 'Per a bussejadors', navCta: 'Reservar demo',
+      heroLabel: 'DIVERA PER A CENTRES DE BUSSEIG',
+      heroTitle: 'El dia a dia del teu centre, <span class="accent">en una sola pantalla.</span>',
+      heroSub: 'Reserves, qui busseja avui, qui ha pagat, qui ha signat l’exempció i qui ha entregat el qüestionari mèdic. Sense perseguir ningú per WhatsApp ni el full de càlcul de sempre.',
+      heroCta: 'Reservar demo de 30 min', heroCta2: 'Veure què inclou',
+      heroNote: 'Gratis per al teu centre. El panell ja és en producció i donem d’alta els centres un a un, acompanyant la posada en marxa.',
+      mockTitle: 'Avui', mockMeta: '2 immersions · 7 bussejadors',
+      mockDive1: 'Freu de Sa Dragonera · 4/6', mockDive2: 'El Sec · 4/8',
+      legendPaid: 'Pagat', legendWaiver: 'Exempció signada', legendMedical: 'Qüestionari mèdic', legendClearance: 'Requereix apte mèdic',
+      mockCaption: 'Representació del comunicat del dia. Dades d’exemple.',
+      panelLabel: 'EL PANELL',
+      panelTitle: 'El que necessites per obrir el dia',
+      panelSub: 'S’obre a l’ordinador del taulell i a la tauleta del pantalà. No cal instal·lar res.',
+      c1t: 'El comunicat del dia',
+      c1d: 'Cada immersió d’avui amb la seva hora, el seu punt, l’ocupació i la llista de qui hi va. Per cada bussejador, el seu nivell i tres estats d’un cop d’ull: pagament, exempció i qüestionari mèdic.',
+      c2t: 'Immersions i reserves',
+      c2d: 'Programa sortides amb data, punt i places. L’aforament es controla sol: no el pots superar per error. Afegeix clients amb compte o de pas, i cancel·la sense perdre l’històric.',
+      c3t: 'Check-in digital per enllaç',
+      c3d: 'Envies un enllaç per WhatsApp o email i el bussejador completa les seves dades, el qüestionari mèdic i l’exempció de responsabilitat: signatura a la pantalla del mòbil, amb consentiment RGPD. Si una resposta mèdica requereix apte, ho veus marcat abans que arribi.',
+      c4t: 'Fitxa de cada bussejador',
+      c4d: 'Certificacions i nivell, assegurança i caducitat, contacte d’emergència, nombre d’immersions i historial amb el teu centre.',
+      c5t: 'Equip i material',
+      c5d: 'El teu personal en una llista, assignat a cada immersió. I el material de lloguer amb talles i existències, per saber què surt del magatzem abans que surti el vaixell.',
+      c6t: 'Activitats i cobraments',
+      c6d: 'Defineix les teves activitats i preus. Cobra en línia, al taulell o marca la sortida com a gratuïta. L’estat del pagament queda a la reserva i a l’històric del client.',
+      appLabel: 'EL PANELL I L’APP',
+      appTitle: 'El panell i l’app són la mateixa cosa',
+      appSub: 'El que programes al panell surt a l’app de bussejadors, i el que ells hi fan torna al teu panell. Divera és una app on els bussejadors registren immersions, identifiquen amb IA el que veuen i trien on bussejar.',
+      a1t: 'La teva fitxa a l’app, viva',
+      a1d: 'Horaris, ressenyes, les teves properes sortides i les immersions que la gent ha fet amb tu fa poc. Qui obre un punt de busseig de la teva zona ho veu tot.',
+      a2t: 'El bussejador et passa el seu perfil',
+      a2d: 'Al seu perfil hi desa la certificació, l’assegurança i les immersions que porta. T’ho comparteix amb un enllaç, i si reserva per l’app t’arriba amb aquestes dades ja posades.',
+      a3t: 'Programes una sortida i surt a l’app',
+      a3d: 'La immersió que crees al panell apareix a l’app i els bussejadors de la zona s’hi apunten. Ells també munten les seves i trien amb quin centre van. Totes dues es comparteixen amb un enllaç.',
+      a4t: 'La immersió no s’escriu dues vegades',
+      a4d: 'Si va sortir amb tu, el bussejador la registra a partir del pla: lloc, data i centre ja hi són. Si porta ordinador, puja l’arxiu i la resta s’omple sola. Després identifica les espècies de les seves fotos i vídeos.',
+      stepsLabel: 'COM COMENCEM',
+      stepsTitle: 'Com es posa en marxa',
+      s1t: 'Demo de 30 minuts',
+      s1d: 'Compartim pantalla i recorrem el panell amb l’operativa del teu centre al davant. Pregunta el que vulguis.',
+      s2t: 'Donem d’alta el teu centre',
+      s2d: 'Punts d’immersió, personal, activitats, preus i material. Ho muntem amb tu en una sessió.',
+      s3t: 'Comences per la setmana que ve',
+      s3d: 'Hi poses les immersions de la setmana, envies els enllaços de check-in i l’equip treballa des de la pantalla d’Avui.',
+      demoLabel: 'RESERVA LA TEVA DEMO',
+      demoTitle: 'Mitja hora i t’ensenyem el panell',
+      demoSub: 'Tria un forat al calendari. Ens expliques com treballes ara i t’ensenyem el panell funcionant.',
+      dc1: 'Recorregut en directe pel panell',
+      dc2: 'El comunicat del dia del teu centre, amb les teves sortides',
+      dc3: 'Check-in digital: enllaç, qüestionari mèdic i signatura',
+      dc4: 'Què veuen de tu els bussejadors a l’app',
+      demoCta: 'Triar hora al calendari',
+      demoFine: '30 minuts, en línia i sense compromís.',
+      demoOr: 'o escriu-nos i et contactem',
+      pfName: 'El teu nom', pfNamePh: 'Nom',
+      pfCenter: 'Centre de busseig', pfCenterPh: 'Nom del centre',
+      pfEmail: 'Correu electrònic', pfEmailPh: 'el-teu@email.com',
+      pfLocation: 'Ubicació', pfLocationPh: 'Ciutat o país',
+      pfSubmit: 'Que m’escriguin',
+      pfSuccess: 'Rebut. T’escrivim en menys de 48 hores.',
+      formError: 'Alguna cosa ha anat malament. Torna-ho a provar.',
+      faqLabel: 'PREGUNTES FREQÜENTS',
+      faqTitle: 'El que ens pregunten els centres',
+      q1: 'Què és exactament Divera per a centres?',
+      a1: 'Un panell web per a l’operativa diària d’un centre de busseig: programar immersions amb les seves places, gestionar reserves, veure el comunicat del dia, recollir qüestionari mèdic i exempció signada per enllaç, portar la fitxa de cada bussejador, assignar personal, controlar el material de lloguer i registrar els cobraments. Substitueix la barreja habitual d’Excel, WhatsApp i paper. A més, el teu centre té una pàgina pública on els bussejadors veuen el teu calendari i reserven, i apareix dins l’app de Divera.',
+      q2: 'Pot substituir el meu full de càlcul?',
+      a2: 'Sí, i és el motiu pel qual la majoria comencen. El full de càlcul no controla l’aforament, no sap qui ha signat, no desa la certificació del client i només l’entén qui el va crear. El panell centralitza immersions, places, pagaments i documentació, i ho veu tot l’equip des de qualsevol dispositiu amb navegador.',
+      q3: 'Com funciona el check-in digital?',
+      a3: 'Generes un enllaç per a cada bussejador d’una immersió i l’envies per WhatsApp o email. En obrir-lo completa les dades que falten, respon el qüestionari mèdic i signa l’exempció de responsabilitat amb el dit a la pantalla, acceptant el consentiment RGPD. Quan ho envia, tu ho veus marcat al panell. Si alguna resposta mèdica requereix apte, apareix assenyalat en vermell perquè ho tractis abans que es fiqui a l’aigua.',
+      q4: 'Com reserven els bussejadors?',
+      a4: 'El teu centre té una pàgina pública amb el teu calendari de sortides i el teu catàleg d’activitats. Des d’allà, qualsevol reserva una plaça: si tens el cobrament en línia activat paga amb targeta en aquell moment, i si no, queda marcat per cobrar al taulell. La sol·licitud entra al panell i tu la confirmes o la rebutges. El teu centre apareix també als punts d’immersió de l’app, amb horaris, contacte i valoracions.',
+      q5: 'Serveix per a un centre petit?',
+      a5: 'Especialment. Quan sou dos o tres, el temps administratiu el pagueu vosaltres: perseguir signatures, recordar qui va pagar, refer la llista del dia. Aquesta és exactament la feina que treu el panell. No hi ha mínim de mida ni d’immersions.',
+      q6: 'Quant es triga a posar-ho en marxa?',
+      a6: 'La configuració inicial —punts d’immersió, personal, activitats, preus i material— es fa en una sessió, i la fem amb tu. A partir d’aquí, posar la setmana d’immersions i enviar els enllaços de check-in porta uns minuts al dia. No cal instal·lar res.',
+      q7: 'És en català?',
+      a7: 'El panell és en castellà i en anglès, i cada persona de l’equip tria el seu idioma. La pàgina de registre que obre el bussejador surt en l’idioma del teu centre. És un web, així que funciona igual a l’ordinador del taulell, a la tauleta del vaixell i al mòbil.',
+      q8: 'Què passa amb les dades dels meus clients?',
+      a8: 'Les dades dels teus bussejadors són teves i les de cada centre estan aïllades de les altres. L’exempció se signa amb consentiment RGPD explícit i els documents es desen amb accés restringit. A l’app, el bussejador controla què comparteix del seu perfil. Si te’n vas, t’emportes les teves dades.',
+      q9: 'Quant costa?',
+      a9: 'Res. El panell és gratis per al teu centre: sense quota mensual, sense límit d’immersions ni de bussejadors. L’única cosa que no controlem és la comissió que cobra Stripe per cada pagament amb targeta, si actives el cobrament en línia; això va a Stripe, no a nosaltres. Incorporem centres un a un perquè volem acompanyar cada alta, no perquè hi hagi una tarifa al darrere.',
+      footDivers: 'Divera per a bussejadors', footPrivacy: 'Política de privadesa',
+      footR: '© 2026 Divera. Tots els drets reservats.',
+      pageTitle: 'Divera per a centres de busseig · Gestiona el teu centre sense papers',
+      pageDesc: 'Panell de gestió per a centres de busseig: reserves, comunicat del dia, qüestionari mèdic i exempció signada per enllaç, fitxes de bussejador, personal, material i cobraments. Reserva una demo de 30 minuts.',
+      shotHoy: 'Pantalla Avui del panell. Centre i bussejadors d’exemple.',
+      sc1Label: 'RESERVES',
+      sc1Title: 'Els bussejadors reserven i la sol·licitud entra al panell',
+      sc1Desc: 'El teu centre té una pàgina pública amb el calendari de sortides i les teves activitats. Quan algú reserva, la sol·licitud entra al panell amb les places que queden i l’import. Tu confirmes o rebutges.',
+      sc1a: 'Pagament en línia amb targeta o al taulell en arribar',
+      sc1b: 'Enllaç de pagament que pots reenviar',
+      sc1c: 'Pestanyes per estat: pendents, confirmades i per cobrar',
+      sc2Label: 'LA IMMERSIÓ',
+      sc2Title: 'Una sortida oberta i tot el que necessites saber',
+      sc2Desc: 'Briefing, preu, certificació mínima, places i la llista de participants. De cadascun veus si compleix el nivell, si té els formularis, quin material lloga i si ha pagat.',
+      sc2a: 'Avís quan algú no arriba a la certificació mínima',
+      sc2b: 'Xat de grup de la immersió',
+      sc2c: 'Enllaç de registre per bussejador, per demanar els papers abans',
+      sc3Label: 'ACTIVITATS I BUSSEJADORS',
+      sc3Title: 'El teu catàleg i la teva gent, endreçats',
+      sc3Desc: 'Agrupa el que vens per categories: sortides, cursos, bateigs, packs. Cada activitat porta preu, durada i nivell recomanat. I cada bussejador que passa pel teu centre es queda a la teva llista, amb les seves certificacions i el seu històric.',
+      sc3a: 'Packs de diverses immersions amb les unitats consumides',
+      sc3b: 'Bussejadors amb compte a l’app i clients de pas, junts',
+      sc3c: 'Cerca per nom i fitxa completa de cadascun',
+      a6t: 'Cerques qualsevol bussejador de l’app',
+      a6d: 'Escrius el seu nom o el seu usuari i l’afegeixes a la sortida. Si t’ha compartit el perfil, veus les seves certificacions, l’assegurança, quantes immersions porta i les que ha fet amb tu.',
+      p1t: 'Sense papers',
+      p1d: 'El qüestionari mèdic i l’exempció se signen al mòbil del bussejador, abans d’arribar, i es desen amb la seva fitxa.',
+      p2t: 'Sense fulls de càlcul',
+      p2d: 'Immersions, places, pagaments, material i clients deixen d’estar repartits entre un Excel i un grup de WhatsApp.',
+      p3t: 'I gratis per al teu centre',
+      p3d: 'Sense quota mensual. Ni ara ni quan tinguis vint immersions a la setmana.',
+      a7t: 'T’etiqueten a les seves immersions',
+      a7d: 'En registrar la immersió trien el centre amb qui van sortir. La teva fitxa va acumulant activitat recent i ressenyes, i altres bussejadors la veuen.',
+    }
+  };
+
+  const LANG_LABELS = { en: 'EN', es: 'ES', fr: 'FR', ca: 'CA' };
+  const SUPPORTED_LANGS = ['en', 'es', 'fr', 'ca'];
+
+  function getInitialLang() {
+    const q = new URLSearchParams(location.search).get('lang');
+    if (q && SUPPORTED_LANGS.includes(q)) return q;
+    const stored = localStorage.getItem('divera-lang');
+    if (stored && SUPPORTED_LANGS.includes(stored)) return stored;
+    const browser = (navigator.language || 'es').slice(0, 2);
+    return SUPPORTED_LANGS.includes(browser) ? browser : 'es';
+  }
+
+  let currentLang = getInitialLang();
+
+  function applyTranslations(lang) {
+    const tx = translations[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const k = el.getAttribute('data-i18n');
+      if (tx[k] !== undefined) el.innerHTML = tx[k];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const k = el.getAttribute('data-i18n-placeholder');
+      if (tx[k] !== undefined) el.placeholder = tx[k];
+    });
+    document.documentElement.lang = lang;
+    document.getElementById('langCurrent').textContent = LANG_LABELS[lang];
+    document.querySelectorAll('.lang-option').forEach(opt => {
+      opt.classList.toggle('active', opt.dataset.lang === lang);
+    });
+    if (tx.pageTitle) document.title = tx.pageTitle;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && tx.pageDesc) metaDesc.setAttribute('content', tx.pageDesc);
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle && tx.pageTitle) ogTitle.setAttribute('content', tx.pageTitle);
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc && tx.pageDesc) ogDesc.setAttribute('content', tx.pageDesc);
+  }
+
+  function setLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('divera-lang', lang);
+    applyTranslations(lang);
+  }
+
+  const langSwitcher = document.getElementById('langSwitcher');
+  const langBtn = document.getElementById('langBtn');
+  langBtn.addEventListener('click', (e) => { e.stopPropagation(); langSwitcher.classList.toggle('open'); });
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    opt.addEventListener('click', () => { setLang(opt.dataset.lang); langSwitcher.classList.remove('open'); });
+  });
+  document.addEventListener('click', () => langSwitcher.classList.remove('open'));
+  applyTranslations(currentLang);
+
+  // DIVE CENTER FORM — same endpoint as the landing forms
+  const centerForm = document.getElementById('centerForm');
+  const centerSuccess = document.getElementById('centerSuccess');
+  if (centerForm) {
+    centerForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(centerForm));
+      const btn = centerForm.querySelector('.pf-submit');
+      btn.disabled = true; btn.textContent = '...';
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/diveradevelopers@gmail.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ ...data, _subject: 'Divera Dive Center Demo Request', _captcha: 'false', _replyto: data.email })
+        });
+        if (!res.ok) throw new Error('Server error');
+        const json = await res.json();
+        if (!json.success) throw new Error('Submission failed');
+        centerForm.style.display = 'none';
+        centerSuccess.style.display = 'block';
+      } catch {
+        const errEl = document.getElementById('centerError');
+        if (errEl) { errEl.style.display = 'block'; errEl.textContent = translations[currentLang].formError; }
+        btn.disabled = false;
+        btn.textContent = translations[currentLang].pfSubmit;
+      }
+    });
+  }
+</script>
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://divera.app/centros#dashboard",
+      "name": "Divera para centros de buceo",
+      "url": "https://divera.app/centros",
+      "description": "Panel de gestión para centros de buceo: programación de inmersiones con control de aforo, reservas, parte del día, check-in digital con cuestionario médico y exención de responsabilidad firmada por enlace, fichas de buceador con certificaciones y seguro, asignación de personal, material de alquiler y cobros.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "inLanguage": [
+        "es",
+        "en",
+        "fr",
+        "ca"
+      ],
+      "audience": {
+        "@type": "BusinessAudience",
+        "audienceType": "Centros de buceo"
+      },
+      "featureList": [
+        "Programación de inmersiones con control de aforo",
+        "Gestión de reservas y cancelaciones",
+        "Parte del día para el mostrador y la tablet",
+        "Check-in digital por enlace con cuestionario médico",
+        "Exención de responsabilidad con firma en pantalla y consentimiento RGPD",
+        "Ficha de buceador con certificaciones, seguro y contacto de emergencia",
+        "Asignación de personal por inmersión",
+        "Catálogo de material de alquiler con existencias",
+        "Actividades, precios y cobros online o en mostrador",
+        "Ficha pública del centro dentro de la app de Divera"
+      ],
+      "provider": {
+        "@type": "Organization",
+        "@id": "https://divera.app/#org"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://divera.app/centros#faq",
+      "inLanguage": "es",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué es exactamente Divera para centros?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un panel web para la operativa diaria de un centro de buceo: programar inmersiones con sus plazas, gestionar reservas, ver el parte del día, recoger cuestionario médico y exención firmada por enlace, llevar la ficha de cada buceador, asignar personal, controlar el material de alquiler y registrar los cobros. Sustituye a la mezcla habitual de Excel, WhatsApp y papel. Además, tu centro tiene una página pública donde los buceadores ven tu calendario y reservan, y aparece dentro de la app de Divera."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puede sustituir a mi hoja de cálculo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, y es el motivo por el que la mayoría empieza. La hoja de cálculo no controla el aforo, no sabe quién ha firmado, no guarda la certificación del cliente y solo la entiende quien la creó. El panel centraliza inmersiones, plazas, pagos y documentación, y lo ve todo el equipo desde cualquier dispositivo con el navegador."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo funciona el check-in digital?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Generas un enlace para cada buceador de una inmersión y se lo mandas por WhatsApp o email. Al abrirlo completa los datos que falten, responde el cuestionario médico y firma la exención de responsabilidad con el dedo en la pantalla, aceptando el consentimiento RGPD. Cuando envía, tú lo ves marcado en el panel. Si alguna respuesta médica requiere apto, aparece señalado en rojo para que lo trates antes de que se meta al agua."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo reservan los buceadores?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tu centro tiene una página pública con tu calendario de salidas y tu catálogo de actividades. Desde ahí, cualquiera reserva una plaza: si tienes el cobro online activado paga con tarjeta en ese momento, y si no, queda marcado para cobrar en el mostrador. La solicitud entra en el panel y tú la confirmas o la rechazas. Tu centro aparece además en los puntos de inmersión de la app, con horarios, contacto y valoraciones."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Sirve para un centro pequeño?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Especialmente. Cuando sois dos o tres, el tiempo administrativo lo pagáis vosotros: perseguir firmas, recordar quién pagó, rehacer la lista del día. Ese es exactamente el trabajo que quita el panel. No hay mínimo de tamaño ni de inmersiones."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto se tarda en ponerlo en marcha?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La configuración inicial —puntos de inmersión, personal, actividades, precios y material— se hace en una sesión, y la hacemos contigo. A partir de ahí, meter la semana de inmersiones y mandar los enlaces de check-in lleva unos minutos al día. No hay que instalar nada."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Está en español?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. El panel está en español y en inglés, y cada persona del equipo elige su idioma. La página de registro que abre el buceador sale en el idioma de tu centro. Es una web, así que funciona igual en el ordenador del mostrador, en la tablet del barco y en el móvil."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué pasa con los datos de mis clientes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Los datos de tus buceadores son tuyos y los de cada centro están aislados de los demás. La exención se firma con consentimiento RGPD explícito y los documentos se guardan con acceso restringido. En la app, el buceador controla qué comparte de su perfil. Si te vas, te llevas tus datos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto cuesta?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nada. El panel es gratis para tu centro: sin cuota mensual, sin límite de inmersiones y sin límite de buceadores. Lo único que no controlamos es la comisión que cobra Stripe por cada pago con tarjeta, si decides activar el cobro online; eso va directo a Stripe, no a nosotros. Estamos incorporando centros uno a uno porque queremos acompañar cada alta, no porque haya una tarifa detrás."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://divera.app/#org",
+      "name": "Divera",
+      "url": "https://divera.app",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://divera.app/logo-full.png",
+        "width": 200,
+        "height": 60
+      },
+      "sameAs": [
+        "https://www.instagram.com/divera.app/"
+      ],
+      "foundingLocation": {
+        "@type": "Place",
+        "addressCountry": "ES"
+      }
+    }
+  ]
+}
+</script>
+</body>
+</html>
