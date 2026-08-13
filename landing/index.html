@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#FF5A62">
-<meta name="keywords" content="app buceo, identificación especies marinas, detección peces IA, fish detection app, marine species identification, dive log app, fish identifier app, underwater fish ID, scuba diving app iOS, identificar peces, fish ID app, dive journal, dive site app, species identification underwater, planificar inmersión, dive trip planner, dive center booking">
+<meta name="keywords" content="app buceo, identificación especies marinas, identificar peces en vídeo, detección peces IA, fish detection app, marine species identification, dive log app, fish identifier app, underwater fish ID, scuba diving app iOS Android, identificar peces, dive journal, importar ordenador de buceo, .fit .uddf, filtros fotos submarinas, áreas marinas protegidas, ciencia ciudadana marina, MINKA, planificar inmersión, dive trip planner, software centro de buceo">
 <link rel="canonical" href="https://divera.app/">
 <link rel="alternate" hreflang="es" href="https://divera.app/">
 <link rel="alternate" hreflang="en" href="https://divera.app/?lang=en">
@@ -15,8 +15,8 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://divera.app/">
 <meta property="og:site_name" content="Divera">
-<meta property="og:title" content="Divera · App de Buceo con IA | Identifica peces, planifica y conecta | iOS y Android">
-<meta property="og:description" content="App de buceo con IA para iOS y Android. Identifica 5500+ especies marinas, registra y planifica inmersiones, descubre 1600+ sitios y centros de buceo. Gratis en el App Store y Google Play.">
+<meta property="og:title" content="Divera · App de Buceo con IA | Identifica especies en foto y vídeo | iOS y Android">
+<meta property="og:description" content="App de buceo con IA para iOS y Android. Identifica 5500+ especies marinas en tus fotos y vídeos, importa tu ordenador de buceo y bucea sabiendo qué normativa aplica en cada área protegida. Gratis en el App Store y Google Play.">
 <meta property="og:image" content="https://divera.app/og-image-v2.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -26,13 +26,14 @@
 <meta property="og:locale:alternate" content="ca_ES">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@diveraapp">
-<meta name="twitter:title" content="Divera · AI Fish ID, Dive Log & Trip Planner | iOS & Android">
-<meta name="twitter:description" content="Identify 5500+ marine species with AI. Log dives, plan trips with your community, and discover 1600+ dive sites and centers. Free on the App Store and Google Play.">
+<meta name="twitter:title" content="Divera · AI Fish ID from photo and video | Dive Log & Trip Planner">
+<meta name="twitter:description" content="Identify 5500+ marine species from photos and video with AI. Import your dive computer, log dives and dive protected areas knowing the rules. Free on the App Store and Google Play.">
 <meta name="twitter:image" content="https://divera.app/og-image-v2.jpg">
-<meta name="description" content="App de buceo con IA para iOS y Android. Identifica 5500+ especies marinas, registra y planifica inmersiones, descubre 1600+ sitios y centros de buceo. Gratis en el App Store y Google Play.">
-<title>Divera · App de Buceo con IA | Identifica peces, planifica y conecta | iOS y Android</title>
+<meta name="description" content="App de buceo con IA para iOS y Android. Identifica 5500+ especies marinas en tus fotos y vídeos, importa tu ordenador de buceo y bucea sabiendo qué normativa aplica en cada área protegida. Gratis en el App Store y Google Play.">
+<title>Divera · App de Buceo con IA | Identifica especies en foto y vídeo | iOS y Android</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   @font-face {
     font-family: 'Galano Grotesque';
@@ -42,26 +43,6 @@
   @font-face {
     font-family: 'Galano Grotesque';
     src: url('galano-grotesque-alt-bold.otf') format('opentype');
-    font-weight: 700; font-style: normal; font-display: swap;
-  }
-  @font-face {
-    font-family: 'Geist';
-    src: url('https://cdn.jsdelivr.net/gh/nicholasgasior/geist-font@1.2.1/woff2/Geist-Regular.woff2') format('woff2');
-    font-weight: 400; font-style: normal; font-display: swap;
-  }
-  @font-face {
-    font-family: 'Geist';
-    src: url('https://cdn.jsdelivr.net/gh/nicholasgasior/geist-font@1.2.1/woff2/Geist-Medium.woff2') format('woff2');
-    font-weight: 500; font-style: normal; font-display: swap;
-  }
-  @font-face {
-    font-family: 'Geist';
-    src: url('https://cdn.jsdelivr.net/gh/nicholasgasior/geist-font@1.2.1/woff2/Geist-SemiBold.woff2') format('woff2');
-    font-weight: 600; font-style: normal; font-display: swap;
-  }
-  @font-face {
-    font-family: 'Geist';
-    src: url('https://cdn.jsdelivr.net/gh/nicholasgasior/geist-font@1.2.1/woff2/Geist-Bold.woff2') format('woff2');
     font-weight: 700; font-style: normal; font-display: swap;
   }
   :root {
@@ -335,8 +316,14 @@
   .ai-detection-photo img { width: 100%; display: block; }
   .ai-hero-visual .showcase-phone { position: absolute; right: -30px; bottom: -40px; width: 220px; z-index: 2; border-radius: 0; border: none; background: transparent; overflow: visible; box-shadow: none; }
   @media (max-width: 900px) { .ai-hero { padding: 60px 20px 40px; } .ai-hero-content { grid-template-columns: 1fr; gap: 48px; } .ai-hero-visual { display: flex; align-items: flex-end; justify-content: center; gap: 0; } .ai-detection-photo { width: 190px; flex-shrink: 0; position: relative; z-index: 2; } .ai-hero-visual .showcase-phone { display: block; position: relative; width: 140px; flex-shrink: 0; overflow: hidden; margin-left: -30px; transform: translateY(-60px); z-index: 1; } .ai-hero-visual .showcase-phone img { margin-top: -50px; } }
+  .ai-phones { display: flex; justify-content: center; align-items: flex-end; perspective: 1000px; }
+  .ai-phones .ai-phone { width: 250px; border-radius: 24px; overflow: hidden; background: var(--surface-2); border: 1.5px solid rgba(255,255,255,0.08); box-shadow: 0 32px 64px rgba(0,0,0,0.45); }
+  .ai-phones .ai-phone img { width: 100%; display: block; }
+  .ai-phones .ai-phone.side { width: 205px; opacity: 0.5; z-index: 1; transform: rotateY(12deg) translateX(20px) scale(0.92); }
+  .ai-phones .ai-phone.front { z-index: 3; }
+  @media (max-width: 900px) { .ai-phones .ai-phone { width: 185px; } .ai-phones .ai-phone.side { width: 150px; } }
   .showcase-centered { padding: 0 48px; max-width: 1200px; margin: 0 auto 140px; position: relative; z-index: 1; text-align: center; }
-  .showcase-centered .section-sub { margin: 16px auto 0; }
+  .showcase-centered .section-sub { margin: 16px auto 0; max-width: 720px; }
   .showcase-centered .showcase-metrics { display: flex; justify-content: center; gap: 32px; margin-top: 28px; }
   .showcase-centered .metric { border-left: none; padding-left: 0; text-align: center; }
   .showcase-centered .phones-fan { display: flex; align-items: flex-end; justify-content: center; gap: 0; perspective: 1000px; margin-top: 56px; }
@@ -435,6 +422,20 @@
     border-radius: 24px; padding: 40px;
     position: sticky; top: 100px;
   }
+  .partner-cta-panel {
+    background: var(--surface);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 24px; padding: 40px;
+    position: sticky; top: 100px;
+  }
+  .pc-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
+  .pc-list li {
+    font-size: 14px; color: var(--text-secondary); line-height: 1.55;
+    letter-spacing: -0.2px;
+  }
+  .pc-btn { display: block; width: 100%; text-align: center; text-decoration: none; margin-bottom: 12px; }
+  .partner-cta-panel .pf-fine { text-align: center; }
+  @media (max-width: 900px) { .partner-cta-panel { position: static; padding: 32px 24px; } }
   .partner-form { display: flex; flex-direction: column; gap: 16px; }
   .pf-group { display: flex; flex-direction: column; gap: 8px; }
   .pf-label { font-size: 11px; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.8px; text-transform: uppercase; }
@@ -514,7 +515,7 @@
     <img class="nav-full-logo" src="logo-full.png" alt="Divera">
   </a>
   <div class="nav-right">
-    <a href="#centros-fundadores" data-i18n="dcNavLink">Centros fundadores</a>
+    <a href="/centros" data-i18n="dcNavLink">Para centros</a>
     <a href="#contacto" data-i18n="navContact">Contacto</a>
     <div class="lang-switcher" id="langSwitcher">
       <button class="lang-btn" id="langBtn" aria-label="Change language">
@@ -545,7 +546,7 @@
     <p class="hero-sub reveal reveal-d2" data-i18n="heroSub">Registra inmersiones, identifica especies marinas con IA y descubre centros de buceo cerca de tus sitios favoritos.</p>
     <div class="hero-actions reveal reveal-d3">
       <a href="https://apps.apple.com/app/id6759156407" target="_blank" rel="noopener" class="btn-primary download-cta" data-download-cta><span data-i18n="dlCta">Descargar la app</span></a>
-      <a href="#centros-fundadores" class="btn-ghost" data-i18n="heroBtn2">Para centros de buceo</a>
+      <a href="/centros" class="btn-ghost" data-i18n="heroBtn2">Para centros de buceo</a>
     </div>
   </div>
   <div class="hero-phones reveal-scale reveal-d4">
@@ -578,25 +579,39 @@
     <div>
       <div class="section-label reveal" data-i18n="shAiLabel">RECONOCIMIENTO CON IA</div>
       <h2 class="ai-hero-title reveal reveal-d1" data-i18n="shAiTitle">Fotografíalo. <span class="accent">Descubre qué es.</span></h2>
-      <p class="ai-hero-desc reveal reveal-d2" data-i18n="shAiDesc">Después de tu inmersión, nuestra IA analiza tus fotos submarinas e identifica cada especie capturada. Sin experiencia previa. Solo fotografía lo que ves. La identificación básica también funciona sin internet.</p>
-      <p class="ai-hero-extra reveal reveal-d3" data-i18n="shAiExtra">Cada avistamiento alimenta tu colección y, con tu permiso, un registro colectivo. Millones de inmersiones se convierten en datos reales de biodiversidad. Útiles para la comunidad, los centros de buceo y los científicos que estudian el mar.</p>
+      <p class="ai-hero-desc reveal reveal-d2" data-i18n="shAiDesc">Después de tu inmersión, la IA analiza tus fotos y tus vídeos submarinos y propone qué especie es cada uno, con el fotograma exacto donde aparece. Sin experiencia previa: solo graba o fotografía lo que ves. Bajo el agua, la cámara encuadra el pez y dispara sola cuando lo tiene nítido.</p>
+      <p class="ai-hero-extra reveal reveal-d3" data-i18n="shAiExtra">Tú confirmas la identificación, siempre. Cada avistamiento confirmado alimenta tu colección y el historial del sitio donde bucea todo el mundo.</p>
       <div class="showcase-metrics reveal reveal-d4">
-        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div><div class="metric-label" data-i18n="ma1">Análisis de fotos</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div><div class="metric-label" data-i18n="ma1">Fotos y vídeos</div></div>
         <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="metric-label" data-i18n="ma2">Identificación IA</div></div>
         <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div><div class="metric-label" data-i18n="ma3">Post-inmersión</div></div>
         <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div><div class="metric-label" data-i18n="ma4">5500+ Especies</div></div>
       </div>
     </div>
     <div class="ai-hero-visual">
-      <div class="ai-detection-photo reveal reveal-d2">
-        <img src="ai-detection-underwater.png" alt="Detección de pez con IA. Divera identifica especies marinas en fotos submarinas">
-      </div>
-      <div class="showcase-phone reveal-right">
-        <img src="screen-ai-detection.png" alt="App de identificación de peces. Resultado de detección IA en Divera" style="width:100%;display:block;">
+      <div class="ai-phones reveal-right">
+        <div class="ai-phone side">
+          <img src="screen-ai-detection.png" alt="Resultado de identificación de especie con IA en la app Divera" loading="lazy">
+        </div>
+        <div class="ai-phone front">
+          <img src="screen-camera-detection.jpg" alt="Cámara de Divera bajo el agua reconociendo una castañuela, Chromis chromis" loading="lazy">
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- CITIZEN SCIENCE -->
+<div class="showcase-centered" id="ciencia">
+  <div class="section-label reveal" data-i18n="shSciLabel">CIENCIA CIUDADANA</div>
+  <h2 class="section-title reveal reveal-d1" data-i18n="shSciTitle">Tu inmersión también sirve al sitio donde buceas</h2>
+  <p class="section-sub reveal reveal-d2" data-i18n="shSciDesc">Lo que ves ahí abajo es un dato que casi nadie recoge. Si lo autorizas, tus avistamientos con foto viajan a MINKA, la plataforma de biodiversidad marina, bajo licencia abierta. Y si importas la inmersión desde tu ordenador, el perfil de temperatura y profundidad puede ir de forma anónima a BlueDOT (Universidad de Bremen / MARUM), que estudia cómo se está calentando el mar.</p>
+  <div class="showcase-metrics reveal reveal-d3">
+    <div class="metric"><div class="metric-label" data-i18n="msc1">MINKA · especies con foto</div></div>
+    <div class="metric"><div class="metric-label" data-i18n="msc2">BlueDOT · perfiles de temperatura</div></div>
+    <div class="metric"><div class="metric-label" data-i18n="msc4">Datos de temperatura anónimos</div></div>
+  </div>
+</div>
 
 <!-- FEATURES -->
 <section class="section" id="features">
@@ -612,7 +627,7 @@
     </div>
     <div class="f-row reveal reveal-d1">
       <h3 class="f-title" data-i18n="f2t">Identifica con IA</h3>
-      <p class="f-desc" data-i18n="f2d">Nuestra IA identifica cualquier especie a partir de tus fotos submarinas. Construye tu colección personal de avistamientos. Más de 5500 especies para descubrir.</p>
+      <p class="f-desc" data-i18n="f2d">La IA propone la especie a partir de tus fotos y vídeos submarinos; tú confirmas. Construye tu colección personal de avistamientos. Más de 5500 especies para descubrir.</p>
     </div>
     <div class="f-row reveal reveal-d2">
       <h3 class="f-title" data-i18n="f3t">Planifica con tu comunidad</h3>
@@ -621,6 +636,14 @@
     <div class="f-row reveal reveal-d3">
       <h3 class="f-title" data-i18n="f4t">Explora sitios y centros</h3>
       <p class="f-desc" data-i18n="f4d">Mapa de sitios y centros con condiciones, vida marina avistada y valoraciones. Mira qué están encontrando otros buceadores en tus spots favoritos.</p>
+    </div>
+    <div class="f-row reveal reveal-d4">
+      <h3 class="f-title" data-i18n="f5t">Sube la inmersión de tu ordenador</h3>
+      <p class="f-desc" data-i18n="f5d">Sube el archivo de la inmersión (.fit o .uddf) y Divera rellena los datos objetivos: tiempo de fondo, profundidad máxima y media, perfil de temperatura, mezcla y presión de botella. Tú solo añades lo que viste.</p>
+    </div>
+    <div class="f-row reveal reveal-d5">
+      <h3 class="f-title" data-i18n="f6t">Devuélvele el color al agua</h3>
+      <p class="f-desc" data-i18n="f6d">Editor con 7 filtros de corrección de color subacuático para fotos y vídeos. El agua se lleva el rojo a partir de los primeros metros; estos filtros lo devuelven sin repintar la escena.</p>
     </div>
   </div>
 </section>
@@ -689,12 +712,12 @@
 <div class="showcase-centered">
   <div class="section-label reveal" data-i18n="shSiteLabel">EXPLORA EL MUNDO SUBMARINO</div>
   <h2 class="section-title reveal reveal-d1" data-i18n="shSiteTitle">Sitios de buceo por descubrir</h2>
-  <p class="section-sub reveal reveal-d2" data-i18n="shSiteDesc">Explora sitios de buceo con descripciones, condiciones y actividad de la comunidad. Cada sitio muestra qué especies han avistado otros buceadores. Planifica, descubre y comparte desde un mismo lugar.</p>
+  <p class="section-sub reveal reveal-d2" data-i18n="shSiteDesc">Explora sitios de buceo con condiciones, mejor época y actividad de la comunidad. Y lo que casi ninguna app te cuenta: si el sitio está dentro de un área marina protegida, qué normativa aplica y qué especies amenazadas viven ahí, con su estado UICN.</p>
   <div class="showcase-metrics reveal reveal-d3">
     <div class="metric"><div class="metric-num">1.600+</div><div class="metric-label" data-i18n="ms1">Sitios de buceo</div></div>
     <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="metric-label" data-i18n="ms2">Vista mapa</div></div>
     <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="metric-label" data-i18n="ms3">Avistamientos</div></div>
-    <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><div class="metric-label" data-i18n="ms4">Detalles del sitio</div></div>
+    <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><div class="metric-label" data-i18n="ms4">Áreas protegidas y normativa</div></div>
   </div>
   <div class="phones-fan reveal-scale reveal-d4">
     <div class="showcase-phone side side-left">
@@ -707,7 +730,7 @@
       <img src="screen-divesite-life.png" alt="Especies protegidas y vida marina del sitio" style="width:100%;display:block;">
     </div>
   </div>
-  <p class="site-callout reveal reveal-d5" data-i18n="siteCallout">Cada sitio muestra también los centros de buceo más cercanos. <a href="#centros-fundadores" data-i18n="siteCalloutLink">¿Tienes un centro? Regístrate como fundador →</a></p>
+  <p class="site-callout reveal reveal-d5" data-i18n="siteCallout">Cada sitio muestra también los centros de buceo más cercanos. <a href="/centros" data-i18n="siteCalloutLink">¿Tienes un centro? Descubre Divera para centros →</a></p>
 </div>
 
 <!-- DIVE CENTERS -->
@@ -790,41 +813,25 @@
   </div>
 </div>
 
-<!-- FOUNDING PARTNER SECTION -->
+<!-- DIVE CENTER TEASER — full page lives at /centros -->
 <div class="partner-wrap" id="centros-fundadores">
   <div class="partner-content">
     <div class="partner-text">
-      <div class="section-label reveal" data-i18n="partnerLabel">CENTROS FUNDADORES</div>
+      <div class="section-label reveal" data-i18n="partnerLabel">PARA CENTROS DE BUCEO</div>
       <h2 class="section-title reveal reveal-d1" data-i18n="partnerTitle">Gestiona tu centro. Sin papeles, sin WhatsApp.</h2>
-      <p class="partner-lead reveal reveal-d2" data-i18n="partnerLead">Un panel web para tu día a día: la lista de inmersiones de hoy con quién va, qué equipo necesita, si pagó y si firmó. Cuestionario médico y exención de responsabilidad por enlace, con firma en pantalla y consentimiento RGPD. Catálogo de alquiler con stock, asignación de instructores y chat de grupo por inmersión. Tu centro aparece en cada sitio donde se bucea. Los buceadores te encuentran cuando planifican.</p>
-      <p class="partner-offer reveal reveal-d3" data-i18n="partnerOffer">La app para buceadores ya está disponible en el App Store. Los centros que se registren antes del lanzamiento del panel acceden a condiciones especiales como socios fundadores.</p>
+      <p class="partner-lead reveal reveal-d2" data-i18n="partnerLead">Un panel web para tu día a día: la lista de inmersiones de hoy con quién va, si pagó, si firmó y si entregó el cuestionario médico. Reservas, ficha de cada buceador, personal asignado y material de alquiler en un mismo sitio. Y tu centro visible en cada punto de inmersión de la app.</p>
+      <p class="partner-offer reveal reveal-d3" data-i18n="partnerOffer">El panel ya está funcionando en centros reales y es gratis para tu centro. Estamos incorporando a los siguientes con acompañamiento directo.</p>
       <p class="partner-terms reveal reveal-d4" data-i18n="partnerTerms">Buscamos centros que crean que bucear debería dejar el océano en mejor estado del que lo encontramos. Los primeros colaboradores ayudarán a dar forma a lo que Divera se convierte.</p>
     </div>
-    <div class="partner-form-panel reveal-left">
-      <form class="partner-form" id="partnerForm">
-        <div class="pf-group">
-          <label class="pf-label" data-i18n="pfName">Tu nombre</label>
-          <input type="text" name="name" class="pf-input" required placeholder="Nombre" data-i18n-placeholder="pfNamePh">
-        </div>
-        <div class="pf-group">
-          <label class="pf-label" data-i18n="pfCenter">Centro de buceo</label>
-          <input type="text" name="center" class="pf-input" required placeholder="Nombre del centro" data-i18n-placeholder="pfCenterPh">
-        </div>
-        <div class="pf-group">
-          <label class="pf-label" data-i18n="pfEmail">Email</label>
-          <input type="email" name="email" class="pf-input" required placeholder="tu@email.com" data-i18n-placeholder="pfEmailPh">
-        </div>
-        <div class="pf-group">
-          <label class="pf-label" data-i18n="pfLocation">Ubicación</label>
-          <input type="text" name="location" class="pf-input" placeholder="Ciudad o país" data-i18n-placeholder="pfLocationPh">
-        </div>
-        <button type="submit" class="pf-submit" data-i18n="pfSubmit">Solicitar acceso fundador</button>
-        <p class="pf-fine" data-i18n="pfFine">Sin compromiso. Te contactaremos antes del lanzamiento.</p>
-        <p id="partnerError" style="display:none; color:var(--coral); font-size:13px; margin-top:8px; text-align:center;"></p>
-      </form>
-      <div class="pf-success" id="partnerSuccess">
-        <p data-i18n="pfSuccess">Recibido. Nos ponemos en contacto contigo antes del lanzamiento.</p>
-      </div>
+    <div class="partner-cta-panel reveal-left">
+      <ul class="pc-list">
+        <li data-i18n="pcItem1">Parte del día: quién bucea, con qué equipo y en qué estado está cada reserva</li>
+        <li data-i18n="pcItem2">Cuestionario médico y exención firmada por enlace, antes de que lleguen</li>
+        <li data-i18n="pcItem3">Cobro online o en mostrador, y el histórico de cada cliente</li>
+        <li data-i18n="pcItem4">Tu ficha visible para los buceadores que planifican en tu zona</li>
+      </ul>
+      <a href="/centros" class="pf-submit pc-btn" data-i18n="pcCta">Ver Divera para centros</a>
+      <p class="pf-fine" data-i18n="pcFine">Demo de 30 minutos, sin compromiso.</p>
     </div>
   </div>
 </div>
@@ -944,7 +951,7 @@
   const translations = {
     en: {
       navCta: 'Download',
-      dcNavLink: 'Founding Partners',
+      dcNavLink: 'For dive centers',
       navContact: 'Contact',
       heroBadge: 'Available on the App Store',
       heroBadgeIos: 'iOS available',
@@ -961,11 +968,19 @@
       f1t: 'Log & Relive',
       f1d: 'Every dive is a complete record. Depth, conditions, photos, species spotted and buddies. A dive history that grows with every outing.',
       f2t: 'Identify with AI',
-      f2d: 'Our AI identifies any species from your underwater photos. Build your personal collection of marine encounters. 5500+ species to discover.',
+      f2d: 'The AI suggests the species from your underwater photos and videos; you confirm it. Build your personal collection of marine encounters. 5500+ species to discover.',
       f3t: 'Plan with your community',
       f3d: 'Find buddies for your next dive or post a group plan. Coordinate date, site, gear and dive center from the app. Logistics, sorted before you hit the water.',
       f4t: 'Explore sites & centers',
       f4d: 'Map of dive sites and centers with conditions, marine life sightings and ratings. See what other divers are finding at your favorite spots.',
+      f5t: 'Upload the dive from your computer',
+      f5d: 'Upload the dive file (.fit or .uddf) and Divera fills in the hard numbers: bottom time, max and average depth, temperature profile, gas mix and tank pressure. You only add what you saw.',
+      f6t: 'Give the water its color back',
+      f6d: 'An editor with 7 underwater color-correction filters for photos and video. Water eats red within the first few meters; these filters bring it back without repainting the scene.',
+      shSciLabel: 'CITIZEN SCIENCE',
+      shSciTitle: 'Your dive also works for the place you dive in',
+      shSciDesc: 'What you see down there is data almost nobody collects. If you allow it, your photo-backed sightings travel to MINKA, the marine biodiversity platform, under an open license. And if you import the dive from your computer, the temperature and depth profile can go anonymously to BlueDOT (University of Bremen / MARUM), which studies how the sea is warming.',
+      msc1: 'MINKA · species with photo', msc2: 'BlueDOT · temperature profiles', msc4: 'Temperature data anonymous',
       shLabel: 'LIFE BEYOND WHAT\'S VISIBLE',
       shTitle: 'Every species has a story',
       shDesc: 'Knowledge, beneath the surface. Conservation status, depth ranges, behavior, fun facts, and practical diver tips. Everything about every species you encounter, with IUCN data and real diver insights.',
@@ -976,15 +991,15 @@
       mf1: 'Likes & Comments', mf2: 'Follow Divers', mf3: 'Photo Sharing', mf4: 'Activity Feed',
       shAiLabel: 'AI-POWERED RECOGNITION',
       shAiTitle: 'Photograph it. <span class="accent">Know what it is.</span>',
-      shAiDesc: 'After your dive, our AI analyzes your underwater photos and identifies every species you captured. No expertise needed. Just photograph what you see. Basic identification also works offline.',
-      shAiExtra: 'Every sighting feeds your collection and, with your permission, a shared record. Millions of dives become real biodiversity data. Useful to the community, dive centers, and the scientists studying the sea.',
-      ma1: 'Photo Analysis', ma2: 'AI Identification', ma3: 'Post-Dive Tagging', ma4: '5500+ Species',
+      shAiDesc: 'After your dive, the AI analyzes your underwater photos and videos and suggests what each species is, pointing to the exact frame where it appears. No expertise needed: just shoot what you see. Underwater, the camera frames the fish and fires on its own once it has it sharp.',
+      shAiExtra: 'You confirm the identification, always. Every confirmed sighting feeds your collection and the record of the site everyone dives.',
+      ma1: 'Photos and video', ma2: 'AI Identification', ma3: 'Post-Dive Tagging', ma4: '5500+ Species',
       shSiteLabel: 'EXPLORE THE WORLD BELOW',
       shSiteTitle: 'Dive sites worth discovering',
-      shSiteDesc: 'Explore dive sites with descriptions, conditions, and community activity. Each site shows what species others have spotted. Plan, discover, and share from one place.',
-      ms1: 'Dive Sites', ms2: 'Map View', ms3: 'Community Sightings', ms4: 'Site Details',
+      shSiteDesc: 'Explore dive sites with conditions, best season and community activity. Plus what almost no app tells you: whether the site sits inside a marine protected area, which rules apply, and which threatened species live there, with their IUCN status.',
+      ms1: 'Dive Sites', ms2: 'Map View', ms3: 'Community Sightings', ms4: 'Protected areas & rules',
       siteCallout: 'Each site also shows the nearest dive centers.',
-      siteCalloutLink: 'Have a center? Register as a founding partner \u2192',
+      siteCalloutLink: 'Run a center? See Divera for dive centers \u2192',
       shCenterLabel: 'DIVE CENTERS',
       shCenterTitle: 'Find dive centers near every site',
       shCenterDesc: 'Every dive site shows nearby dive centers with ratings, contact info, and opening hours. Switch between dive sites and centers on the map. Everything you need to plan your next immersion.',
@@ -997,18 +1012,17 @@
       shTrustTitle: 'Your profile, one tap away',
       shTrustDesc: 'Keep photos of your certification and dive insurance, contact info, dive count and experience. When a center asks for documents before a dive, you\'ve got them ready. What you used to send over WhatsApp, in your profile.',
       mt1: 'Cert at hand', mt2: 'Insurance at hand', mt4: 'Granular privacy',
-      partnerLabel: 'FOUNDING PARTNERS',
+      partnerLabel: 'FOR DIVE CENTERS',
       partnerTitle: 'Run your center. No paperwork, no WhatsApp.',
-      partnerLead: 'A web dashboard for your day-to-day: today\'s dive list with who\'s coming, what gear they need, who paid and who signed. Medical questionnaire and liability waiver via link, with on-screen signature and GDPR consent. Rental catalog with stock, instructor assignment, and a group chat per dive. Your center shows up on every dive site. Divers find you when they plan.',
-      partnerOffer: 'The diver app is live on the App Store. Centers that register before the dashboard launches get special founding-partner terms.',
+      partnerLead: 'A web dashboard for your day-to-day: today\'s dive list with who\'s coming, who paid, who signed and who filed the medical form. Bookings, every diver\'s record, staff assignment and rental gear in one place. And your center visible on every dive site in the app.',
+      partnerOffer: 'The dashboard is already running in real dive centers, and it\'s free for your center. We\'re onboarding the next ones hands-on.',
       partnerTerms: 'We\'re looking for centers that believe diving should leave the ocean in better shape than we found it. Early partners will help shape what Divera becomes.',
-      pfName: 'Your name', pfNamePh: 'Your name',
-      pfCenter: 'Dive center', pfCenterPh: 'Center name',
-      pfEmail: 'Email', pfEmailPh: 'your@email.com',
-      pfLocation: 'Location', pfLocationPh: 'City or country',
-      pfSubmit: 'Request founding access',
-      pfFine: 'No commitment. We\'ll reach out before the dashboard launches.',
-      pfSuccess: 'Received. We\'ll be in touch before the dashboard launches.',
+      pcItem1: 'The day\'s manifest: who dives, with what gear, and where each booking stands',
+      pcItem2: 'Medical form and signed waiver by link, before they arrive',
+      pcItem3: 'Online or at-the-desk payment, and every client\'s history',
+      pcItem4: 'Your listing in front of divers planning in your area',
+      pcCta: 'See Divera for dive centers',
+      pcFine: '30-minute demo, no commitment.',
       betaLabel: 'AVAILABLE NOW',
       ctaTitle: 'A more conscious way to learn the ocean',
       ctaSub: 'Download Divera free and start logging your dives today.',
@@ -1036,12 +1050,12 @@
       footerPrivacy: 'Privacy Policy',
       footerAccountDeletion: 'Delete Account',
       footerR: '\u00a9 2026 Divera. All rights reserved.',
-      pageTitle: 'Divera · AI Fish ID, Dive Log & Trip Planner | iOS',
-      pageDesc: 'AI-powered dive app for iOS. Identify 5500+ marine species, log and plan dives, discover 1600+ sites and centers. Free on the App Store.',
+      pageTitle: 'Divera · AI Fish ID, Dive Log & Trip Planner | iOS & Android',
+      pageDesc: 'AI-powered dive app for iOS and Android. Identify 5500+ marine species from photos and video, import your dive computer, and dive inside protected areas knowing the rules. Free on the App Store and Google Play.',
     },
     es: {
       navCta: 'Descargar',
-      dcNavLink: 'Centros fundadores',
+      dcNavLink: 'Para centros',
       navContact: 'Contacto',
       heroBadge: 'Disponible en el App Store',
       heroBadgeIos: 'iOS disponible',
@@ -1058,11 +1072,19 @@
       f1t: 'Registra y revive',
       f1d: 'Cada inmersi\u00f3n es un registro completo. Profundidad, condiciones, fotos, especies avistadas y compa\u00f1eros. Un historial que crece con cada salida.',
       f2t: 'Identifica con IA',
-      f2d: 'Nuestra IA identifica cualquier especie a partir de tus fotos submarinas. Construye tu colecci\u00f3n personal de avistamientos. M\u00e1s de 5500 especies para descubrir.',
+      f2d: 'La IA propone la especie a partir de tus fotos y v\u00eddeos submarinos; t\u00fa confirmas. Construye tu colecci\u00f3n personal de avistamientos. M\u00e1s de 5500 especies para descubrir.',
       f3t: 'Planifica con tu comunidad',
       f3d: 'Busca compa\u00f1eros para tu pr\u00f3xima inmersi\u00f3n o publica un plan en grupo. Coordina fecha, sitio, equipo y centro desde la app. La log\u00edstica, resuelta antes de tocar el agua.',
       f4t: 'Explora sitios y centros',
       f4d: 'Mapa de sitios y centros con condiciones, vida marina avistada y valoraciones. Mira qu\u00e9 est\u00e1n encontrando otros buceadores en tus spots favoritos.',
+      f5t: 'Sube la inmersión de tu ordenador',
+      f5d: 'Sube el archivo de la inmersi\u00f3n (.fit o .uddf) y Divera rellena los datos objetivos: tiempo de fondo, profundidad m\u00e1xima y media, perfil de temperatura, mezcla y presi\u00f3n de botella. T\u00fa solo a\u00f1ades lo que viste.',
+      f6t: 'Devu\u00e9lvele el color al agua',
+      f6d: 'Editor con 7 filtros de correcci\u00f3n de color subacu\u00e1tico para fotos y v\u00eddeos. El agua se lleva el rojo a partir de los primeros metros; estos filtros lo devuelven sin repintar la escena.',
+      shSciLabel: 'CIENCIA CIUDADANA',
+      shSciTitle: 'Tu inmersi\u00f3n tambi\u00e9n sirve al sitio donde buceas',
+      shSciDesc: 'Lo que ves ah\u00ed abajo es un dato que casi nadie recoge. Si lo autorizas, tus avistamientos con foto viajan a MINKA, la plataforma de biodiversidad marina, bajo licencia abierta. Y si importas la inmersi\u00f3n desde tu ordenador, el perfil de temperatura y profundidad puede ir de forma an\u00f3nima a BlueDOT (Universidad de Bremen / MARUM), que estudia c\u00f3mo se est\u00e1 calentando el mar.',
+      msc1: 'MINKA \u00b7 especies con foto', msc2: 'BlueDOT \u00b7 perfiles de temperatura', msc4: 'Datos de temperatura an\u00f3nimos',
       shLabel: 'VIDA M\u00c1S ALL\u00c1 DE LO VISIBLE',
       shTitle: 'Cada especie tiene una historia',
       shDesc: 'Conocimiento bajo la superficie. Estado de conservaci\u00f3n, rangos de profundidad, comportamiento, datos curiosos y consejos pr\u00e1cticos para buceadores. Todo para cada especie que encuentres, con datos de la UICN y consejos reales de buceadores.',
@@ -1073,15 +1095,15 @@
       mf1: 'Me gusta y comentarios', mf2: 'Seguir buceadores', mf3: 'Compartir fotos', mf4: 'Feed de actividad',
       shAiLabel: 'RECONOCIMIENTO CON IA',
       shAiTitle: 'Fotograf\u00edalo. <span class="accent">Descubre qu\u00e9 es.</span>',
-      shAiDesc: 'Despu\u00e9s de tu inmersi\u00f3n, nuestra IA analiza tus fotos submarinas e identifica cada especie capturada. Sin experiencia previa. Solo fotograf\u00eda lo que ves. La identificaci\u00f3n b\u00e1sica tambi\u00e9n funciona sin internet.',
-      shAiExtra: 'Cada avistamiento alimenta tu colección y, con tu permiso, un registro colectivo. Millones de inmersiones se convierten en datos reales de biodiversidad. Útiles para la comunidad, los centros de buceo y los científicos que estudian el mar.',
-      ma1: 'An\u00e1lisis de fotos', ma2: 'Identificaci\u00f3n IA', ma3: 'Post-inmersi\u00f3n', ma4: '5500+ Especies',
+      shAiDesc: 'Despu\u00e9s de tu inmersi\u00f3n, la IA analiza tus fotos y tus v\u00eddeos submarinos y propone qu\u00e9 especie es cada uno, con el fotograma exacto donde aparece. Sin experiencia previa: solo graba o fotograf\u00eda lo que ves. Bajo el agua, la c\u00e1mara encuadra el pez y dispara sola cuando lo tiene n\u00edtido.',
+      shAiExtra: 'T\u00fa confirmas la identificaci\u00f3n, siempre. Cada avistamiento confirmado alimenta tu colecci\u00f3n y el historial del sitio donde bucea todo el mundo.',
+      ma1: 'Fotos y v\u00eddeos', ma2: 'Identificaci\u00f3n IA', ma3: 'Post-inmersi\u00f3n', ma4: '5500+ Especies',
       shSiteLabel: 'EXPLORA EL MUNDO SUBMARINO',
       shSiteTitle: 'Sitios de buceo por descubrir',
-      shSiteDesc: 'Explora sitios de buceo con descripciones, condiciones y actividad de la comunidad. Cada sitio muestra qu\u00e9 especies han avistado otros buceadores. Planifica, descubre y comparte desde un mismo lugar.',
-      ms1: 'Sitios de buceo', ms2: 'Vista mapa', ms3: 'Avistamientos', ms4: 'Detalles del sitio',
+      shSiteDesc: 'Explora sitios de buceo con condiciones, mejor \u00e9poca y actividad de la comunidad. Y lo que casi ninguna app te cuenta: si el sitio est\u00e1 dentro de un \u00e1rea marina protegida, qu\u00e9 normativa aplica y qu\u00e9 especies amenazadas viven ah\u00ed, con su estado UICN.',
+      ms1: 'Sitios de buceo', ms2: 'Vista mapa', ms3: 'Avistamientos', ms4: '\u00c1reas protegidas y normativa',
       siteCallout: 'Cada sitio muestra tambi\u00e9n los centros de buceo m\u00e1s cercanos.',
-      siteCalloutLink: '\u00bfTienes un centro? Reg\u00edstrate como fundador \u2192',
+      siteCalloutLink: '\u00bfTienes un centro? Descubre Divera para centros \u2192',
       shCenterLabel: 'CENTROS DE BUCEO',
       shCenterTitle: 'Encuentra centros de buceo en cada sitio',
       shCenterDesc: 'Cada sitio de buceo muestra los centros cercanos con valoraciones, datos de contacto y horarios. Alterna entre sitios y centros en el mapa. Todo lo que necesitas para planificar tu pr\u00f3xima inmersi\u00f3n.',
@@ -1094,18 +1116,17 @@
       shTrustTitle: 'Tu perfil, en un toque',
       shTrustDesc: 'Guarda fotos de tu certificación y seguro, datos de contacto, número de inmersiones y experiencia. Cuando un centro te pide papeles antes de bucear, los tienes a mano. Lo que mandabas por WhatsApp, ya en tu perfil.',
       mt1: 'Certificación a mano', mt2: 'Seguro a mano', mt4: 'Privacidad granular',
-      partnerLabel: 'CENTROS FUNDADORES',
+      partnerLabel: 'PARA CENTROS DE BUCEO',
       partnerTitle: 'Gestiona tu centro. Sin papeles, sin WhatsApp.',
-      partnerLead: 'Un panel web para tu d\u00eda a d\u00eda: la lista de inmersiones de hoy con qui\u00e9n va, qu\u00e9 equipo necesita, si pag\u00f3 y si firm\u00f3. Cuestionario m\u00e9dico y exenci\u00f3n de responsabilidad por enlace, con firma en pantalla y consentimiento RGPD. Cat\u00e1logo de alquiler con stock, asignaci\u00f3n de instructores y chat de grupo por inmersi\u00f3n. Tu centro aparece en cada sitio donde se bucea \u2014 los buceadores te encuentran cuando planifican.',
-      partnerOffer: 'La app para buceadores ya est\u00e1 disponible en el App Store. Los centros que se registren antes del lanzamiento del panel acceden a condiciones especiales como socios fundadores.',
+      partnerLead: 'Un panel web para tu d\u00eda a d\u00eda: la lista de inmersiones de hoy con qui\u00e9n va, si pag\u00f3, si firm\u00f3 y si entreg\u00f3 el cuestionario m\u00e9dico. Reservas, ficha de cada buceador, personal asignado y material de alquiler en un mismo sitio. Y tu centro visible en cada punto de inmersi\u00f3n de la app.',
+      partnerOffer: 'El panel ya est\u00e1 funcionando en centros reales y es gratis para tu centro. Estamos incorporando a los siguientes con acompa\u00f1amiento directo.',
       partnerTerms: 'Buscamos centros que crean que bucear deber\u00eda dejar el oc\u00e9ano en mejor estado del que lo encontramos. Los primeros colaboradores ayudar\u00e1n a dar forma a lo que Divera se convierte.',
-      pfName: 'Tu nombre', pfNamePh: 'Nombre',
-      pfCenter: 'Centro de buceo', pfCenterPh: 'Nombre del centro',
-      pfEmail: 'Email', pfEmailPh: 'tu@email.com',
-      pfLocation: 'Ubicaci\u00f3n', pfLocationPh: 'Ciudad o pa\u00eds',
-      pfSubmit: 'Solicitar acceso fundador',
-      pfFine: 'Sin compromiso. Te contactaremos antes del lanzamiento del panel.',
-      pfSuccess: 'Recibido. Nos ponemos en contacto contigo antes del lanzamiento del panel.',
+      pcItem1: 'El parte del d\u00eda: qui\u00e9n bucea, con qu\u00e9 equipo y en qu\u00e9 estado est\u00e1 cada reserva',
+      pcItem2: 'Cuestionario m\u00e9dico y exenci\u00f3n firmada por enlace, antes de que lleguen',
+      pcItem3: 'Cobro online o en mostrador, y el hist\u00f3rico de cada cliente',
+      pcItem4: 'Tu ficha visible para los buceadores que planifican en tu zona',
+      pcCta: 'Ver Divera para centros',
+      pcFine: 'Demo de 30 minutos, sin compromiso.',
       betaLabel: 'YA DISPONIBLE',
       ctaTitle: 'Una forma m\u00e1s consciente de conocer el oc\u00e9ano',
       ctaSub: 'Descarga Divera gratis y empieza a registrar tus inmersiones hoy.',
@@ -1133,12 +1154,12 @@
       footerPrivacy: 'Pol\u00edtica de Privacidad',
       footerAccountDeletion: 'Eliminar cuenta',
       footerR: '\u00a9 2026 Divera. Todos los derechos reservados.',
-      pageTitle: 'Divera · App de Buceo con IA | Identifica peces, planifica y conecta | iOS',
-      pageDesc: 'App de buceo con IA para iOS. Identifica 5500+ especies marinas, registra y planifica inmersiones, descubre 1600+ sitios y centros de buceo. Descárgala gratis en el App Store.',
+      pageTitle: 'Divera · App de Buceo con IA | Identifica especies en foto y vídeo | iOS y Android',
+      pageDesc: 'App de buceo con IA para iOS y Android. Identifica 5500+ especies marinas en tus fotos y vídeos, importa tu ordenador de buceo y bucea sabiendo qué normativa aplica en cada área protegida. Gratis en el App Store y Google Play.',
     },
     fr: {
       navCta: 'T\u00e9l\u00e9charger',
-      dcNavLink: 'Partenaires fondateurs',
+      dcNavLink: 'Pour les centres',
       navContact: 'Contact',
       heroBadge: 'Disponible sur l\u2019App Store',
       heroBadgeIos: 'iOS disponible',
@@ -1155,11 +1176,19 @@
       f1t: 'Enregistrez et revivez',
       f1d: 'Chaque plong\u00e9e est un registre complet. Profondeur, conditions, photos, esp\u00e8ces observ\u00e9es et bin\u00f4mes. Un historique qui s\u2019enrichit \u00e0 chaque sortie.',
       f2t: 'Identifiez avec l\u2019IA',
-      f2d: 'Notre IA identifie n\u2019importe quelle esp\u00e8ce \u00e0 partir de vos photos sous-marines. Construisez votre collection personnelle. 5500+ esp\u00e8ces \u00e0 d\u00e9couvrir.',
+      f2d: 'L\u2019IA propose l\u2019esp\u00e8ce \u00e0 partir de vos photos et vid\u00e9os sous-marines\u00a0; vous confirmez. Construisez votre collection personnelle. 5500+ esp\u00e8ces \u00e0 d\u00e9couvrir.',
       f3t: 'Planifiez avec votre communaut\u00e9',
       f3d: 'Trouvez des bin\u00f4mes pour votre prochaine plong\u00e9e ou publiez un plan de groupe. Coordonnez date, site, mat\u00e9riel et centre depuis l\u2019app. La logistique, r\u00e9gl\u00e9e avant de toucher l\u2019eau.',
       f4t: 'Explorez sites et centres',
       f4d: 'Carte des sites et centres avec conditions, observations marines et avis. Voyez ce que d\u2019autres plongeurs d\u00e9couvrent dans vos spots favoris.',
+      f5t: 'Importez la plong\u00e9e de votre ordinateur',
+      f5d: 'T\u00e9l\u00e9versez le fichier de la plong\u00e9e (.fit ou .uddf) et Divera remplit les donn\u00e9es objectives\u00a0: temps au fond, profondeur max et moyenne, profil de temp\u00e9rature, m\u00e9lange et pression de bloc. Vous n\u2019ajoutez que ce que vous avez vu.',
+      f6t: 'Rendez sa couleur \u00e0 l\u2019eau',
+      f6d: '\u00c9diteur avec 7 filtres de correction colorim\u00e9trique sous-marine pour photos et vid\u00e9os. L\u2019eau avale le rouge d\u00e8s les premiers m\u00e8tres\u00a0; ces filtres le restituent sans repeindre la sc\u00e8ne.',
+      shSciLabel: 'SCIENCE PARTICIPATIVE',
+      shSciTitle: 'Votre plong\u00e9e sert aussi au lieu o\u00f9 vous plongez',
+      shSciDesc: 'Ce que vous voyez l\u00e0-dessous est une donn\u00e9e que presque personne ne collecte. Si vous l\u2019autorisez, vos observations avec photo rejoignent MINKA, la plateforme de biodiversit\u00e9 marine, sous licence ouverte. Et si vous importez la plong\u00e9e depuis votre ordinateur, le profil de temp\u00e9rature et de profondeur peut \u00eatre transmis anonymement \u00e0 BlueDOT (Universit\u00e9 de Br\u00eame / MARUM), qui \u00e9tudie le r\u00e9chauffement de la mer.',
+      msc1: 'MINKA \u00b7 esp\u00e8ces avec photo', msc2: 'BlueDOT \u00b7 profils de temp\u00e9rature', msc4: 'Donn\u00e9es de temp\u00e9rature anonymes',
       shLabel: 'LA VIE AU-DEL\u00c0 DU VISIBLE',
       shTitle: 'Chaque esp\u00e8ce a une histoire',
       shDesc: 'Le savoir, sous la surface. Statut de conservation, profondeurs, comportement, anecdotes et conseils pratiques. Tout sur chaque esp\u00e8ce que vous rencontrez, avec donn\u00e9es UICN et conseils de plongeurs.',
@@ -1170,15 +1199,15 @@
       mf1: 'Likes et commentaires', mf2: 'Suivre des plongeurs', mf3: 'Partage de photos', mf4: 'Fil d\u2019activit\u00e9',
       shAiLabel: 'RECONNAISSANCE PAR IA',
       shAiTitle: 'Photographiez-le. <span class="accent">Identifiez-le.</span>',
-      shAiDesc: 'Apr\u00e8s votre plong\u00e9e, notre IA analyse vos photos sous-marines et identifie chaque esp\u00e8ce captur\u00e9e. Aucune expertise n\u00e9cessaire. L\u2019identification de base fonctionne aussi hors ligne.',
-      shAiExtra: 'Chaque observation alimente votre collection et, avec votre accord, un registre collectif. Des millions de plongées deviennent de véritables données de biodiversité. Utiles à la communauté, aux centres et aux scientifiques qui étudient la mer.',
-      ma1: 'Analyse de photos', ma2: 'Identification IA', ma3: 'Post-plong\u00e9e', ma4: '5500+ Esp\u00e8ces',
+      shAiDesc: 'Apr\u00e8s votre plong\u00e9e, l\u2019IA analyse vos photos et vid\u00e9os sous-marines et propose l\u2019esp\u00e8ce de chacune, en pointant l\u2019image exacte o\u00f9 elle appara\u00eet. Aucune expertise n\u00e9cessaire\u00a0: filmez ou photographiez ce que vous voyez. Sous l\u2019eau, la cam\u00e9ra cadre le poisson et d\u00e9clenche seule d\u00e8s qu\u2019il est net.',
+      shAiExtra: 'C\u2019est vous qui confirmez l\u2019identification, toujours. Chaque observation confirm\u00e9e alimente votre collection et l\u2019historique du site o\u00f9 tout le monde plonge.',
+      ma1: 'Photos et vid\u00e9os', ma2: 'Identification IA', ma3: 'Post-plong\u00e9e', ma4: '5500+ Esp\u00e8ces',
       shSiteLabel: 'EXPLOREZ LE MONDE SOUS-MARIN',
       shSiteTitle: 'Des sites de plong\u00e9e \u00e0 d\u00e9couvrir',
-      shSiteDesc: 'Explorez des sites avec descriptions, conditions et activit\u00e9 communautaire. Chaque site montre les esp\u00e8ces observ\u00e9es par d\u2019autres plongeurs. Planifiez, d\u00e9couvrez et partagez depuis un seul endroit.',
-      ms1: 'Sites de plong\u00e9e', ms2: 'Vue carte', ms3: 'Observations', ms4: 'D\u00e9tails du site',
+      shSiteDesc: 'Explorez des sites avec conditions, meilleure saison et activit\u00e9 communautaire. Et ce que presque aucune app ne dit\u00a0: si le site se trouve dans une aire marine prot\u00e9g\u00e9e, quelle r\u00e9glementation s\u2019applique et quelles esp\u00e8ces menac\u00e9es y vivent, avec leur statut UICN.',
+      ms1: 'Sites de plong\u00e9e', ms2: 'Vue carte', ms3: 'Observations', ms4: 'Aires prot\u00e9g\u00e9es et r\u00e8gles',
       siteCallout: 'Chaque site affiche \u00e9galement les centres de plong\u00e9e les plus proches.',
-      siteCalloutLink: 'Vous \u00eates un centre\u00a0? Rejoignez-nous comme partenaire fondateur \u2192',
+      siteCalloutLink: 'Vous g\u00e9rez un centre\u00a0? D\u00e9couvrez Divera pour les centres \u2192',
       shCenterLabel: 'CENTRES DE PLONG\u00c9E',
       shCenterTitle: 'Trouvez des centres pr\u00e8s de chaque site',
       shCenterDesc: 'Chaque site affiche les centres de plong\u00e9e \u00e0 proximit\u00e9 avec avis, coordonn\u00e9es et horaires. Basculez entre sites et centres sur la carte.',
@@ -1191,18 +1220,17 @@
       shTrustTitle: 'Votre profil, en un geste',
       shTrustDesc: 'Gardez les photos de votre certification et de votre assurance, vos coordonnées, votre nombre de plongées et votre expérience. Quand un centre demande des documents avant la plongée, ils sont prêts. Ce que vous envoyiez sur WhatsApp, dans votre profil.',
       mt1: 'Certif à portée', mt2: 'Assurance à portée', mt4: 'Confidentialité granulaire',
-      partnerLabel: 'PARTENAIRES FONDATEURS',
+      partnerLabel: 'POUR LES CENTRES DE PLONG\u00c9E',
       partnerTitle: 'G\u00e9rez votre centre. Sans paperasse, sans WhatsApp.',
-      partnerLead: 'Un tableau de bord web pour votre quotidien\u00a0: la liste des plong\u00e9es du jour avec qui vient, quel mat\u00e9riel il faut, qui a pay\u00e9 et qui a sign\u00e9. Questionnaire m\u00e9dical et d\u00e9charge par lien, avec signature \u00e0 l\u2019\u00e9cran et consentement RGPD. Catalogue de location avec stocks, affectation des moniteurs et chat de groupe par plong\u00e9e. Votre centre appara\u00eet sur chaque site de plong\u00e9e \u2014 les plongeurs vous trouvent quand ils planifient.',
-      partnerOffer: 'L\u2019app pour plongeurs est disponible sur l\u2019App Store. Les centres qui s\u2019inscrivent avant le lancement du tableau de bord b\u00e9n\u00e9ficient de conditions privil\u00e9gi\u00e9es en tant que partenaires fondateurs.',
+      partnerLead: 'Un tableau de bord web pour votre quotidien\u00a0: la liste des plong\u00e9es du jour avec qui vient, qui a pay\u00e9, qui a sign\u00e9 et qui a rendu le questionnaire m\u00e9dical. R\u00e9servations, fiche de chaque plongeur, personnel affect\u00e9 et mat\u00e9riel de location au m\u00eame endroit. Et votre centre visible sur chaque site de plong\u00e9e de l\u2019app.',
+      partnerOffer: 'Le tableau de bord tourne d\u00e9j\u00e0 dans de vrais centres, et il est gratuit pour votre centre. Nous accompagnons les suivants un par un.',
       partnerTerms: 'Nous cherchons des centres qui croient que la plong\u00e9e doit laisser l\u2019oc\u00e9an en meilleur \u00e9tat. Les premiers partenaires aideront \u00e0 fa\u00e7onner ce que Divera devient.',
-      pfName: 'Votre nom', pfNamePh: 'Votre nom',
-      pfCenter: 'Centre de plong\u00e9e', pfCenterPh: 'Nom du centre',
-      pfEmail: 'Email', pfEmailPh: 'votre@email.com',
-      pfLocation: 'Localisation', pfLocationPh: 'Ville ou pays',
-      pfSubmit: 'Demander l\u2019acc\u00e8s fondateur',
-      pfFine: 'Sans engagement. Nous vous contacterons avant le lancement du tableau de bord.',
-      pfSuccess: 'Re\u00e7u. Nous vous contacterons avant le lancement du tableau de bord.',
+      pcItem1: 'Le programme du jour\u00a0: qui plonge, avec quel mat\u00e9riel et o\u00f9 en est chaque r\u00e9servation',
+      pcItem2: 'Questionnaire m\u00e9dical et d\u00e9charge sign\u00e9e par lien, avant leur arriv\u00e9e',
+      pcItem3: 'Paiement en ligne ou au comptoir, et l\u2019historique de chaque client',
+      pcItem4: 'Votre fiche devant les plongeurs qui planifient dans votre zone',
+      pcCta: 'Voir Divera pour les centres',
+      pcFine: 'D\u00e9mo de 30 minutes, sans engagement.',
       betaLabel: 'DISPONIBLE',
       ctaTitle: 'Une fa\u00e7on plus consciente de conna\u00eetre l\u2019oc\u00e9an',
       ctaSub: 'T\u00e9l\u00e9chargez Divera gratuitement et commencez \u00e0 enregistrer vos plong\u00e9es d\u00e8s aujourd\u2019hui.',
@@ -1230,12 +1258,12 @@
       footerPrivacy: 'Politique de confidentialit\u00e9',
       footerAccountDeletion: 'Supprimer le compte',
       footerR: '\u00a9 2026 Divera. Tous droits r\u00e9serv\u00e9s.',
-      pageTitle: 'Divera · App de Plongée IA | Identification d’Espèces et Planification | iOS',
-      pageDesc: 'App de plongée avec IA pour iOS. Identifiez 5500+ espèces marines, enregistrez et planifiez vos plongées, découvrez 1600+ sites et centres. Disponible gratuitement sur l’App Store.',
+      pageTitle: 'Divera · App de Plongée IA | Identification d’espèces en photo et vidéo | iOS et Android',
+      pageDesc: 'App de plongée avec IA pour iOS et Android. Identifiez 5500+ espèces marines sur vos photos et vidéos, importez votre ordinateur de plongée et plongez en connaissant les règles des aires marines protégées. Gratuit sur l’App Store et Google Play.',
     },
     ca: {
       navCta: 'Descarregar',
-      dcNavLink: 'Centres fundadors',
+      dcNavLink: 'Per a centres',
       navContact: 'Contacte',
       heroBadge: 'Disponible a l’App Store',
       heroBadgeIos: 'iOS disponible',
@@ -1252,11 +1280,19 @@
       f1t: 'Registra i reviu',
       f1d: 'Cada immersió és un registre complet. Profunditat, condicions, fotos, espècies avistades i companys. Un historial que creix amb cada sortida.',
       f2t: 'Identifica amb IA',
-      f2d: 'La nostra IA identifica qualsevol esp\u00e8cie a partir de les teves fotos submarines. Construeix la teva col\u00b7lecci\u00f3 personal d\u2019avistaments. 5500+ esp\u00e8cies per descobrir.',
+      f2d: 'La IA proposa l\u2019esp\u00e8cie a partir de les teves fotos i v\u00eddeos submarins; tu confirmes. Construeix la teva col\u00b7lecci\u00f3 personal d\u2019avistaments. 5500+ esp\u00e8cies per descobrir.',
       f3t: 'Planifica amb la teva comunitat',
       f3d: 'Busca companys per a la teva pròxima immersió o publica un pla en grup. Coordina data, lloc, equip i centre des de l’app. La logística, resolta abans de tocar l’aigua.',
       f4t: 'Explora llocs i centres',
       f4d: 'Mapa de llocs i centres amb condicions, vida marina avistada i valoracions. Mira què estan trobant altres bussejadors als teus spots favorits.',
+      f5t: 'Puja la immersió del teu ordinador',
+      f5d: 'Puja l’arxiu de la immersió (.fit o .uddf) i Divera omple les dades objectives: temps de fons, profunditat màxima i mitjana, perfil de temperatura, mescla i pressió d’ampolla. Tu només hi afegeixes el que vas veure.',
+      f6t: 'Torna-li el color a l’aigua',
+      f6d: 'Editor amb 7 filtres de correcció de color subaquàtic per a fotos i vídeos. L’aigua s’empassa el vermell des dels primers metres; aquests filtres el retornen sense repintar l’escena.',
+      shSciLabel: 'CIÈNCIA CIUTADANA',
+      shSciTitle: 'La teva immersió també serveix al lloc on busseges',
+      shSciDesc: 'El que veus là sota és una dada que gairebé ningú recull. Si ho autoritzes, els teus avistaments amb foto viatgen a MINKA, la plataforma de biodiversitat marina, amb llicència oberta. I si importes la immersió des del teu ordinador, el perfil de temperatura i profunditat pot anar de manera anònima a BlueDOT (Universitat de Bremen / MARUM), que estudia com s’escalfa el mar.',
+      msc1: 'MINKA · espècies amb foto', msc2: 'BlueDOT · perfils de temperatura', msc4: 'Dades de temperatura anònimes',
       shLabel: 'VIDA M\u00c9S ENLL\u00c0 DEL VISIBLE',
       shTitle: 'Cada esp\u00e8cie t\u00e9 una hist\u00f2ria',
       shDesc: 'Coneixement sota la superf\u00edcie. Estat de conservaci\u00f3, profunditats, comportament, dades curioses i consells pr\u00e0ctics. Tot sobre cada esp\u00e8cie que trobis, amb dades de la UICN.',
@@ -1267,15 +1303,15 @@
       mf1: 'M\u2019agrada i comentaris', mf2: 'Seguir bussejadors', mf3: 'Compartir fotos', mf4: 'Feed d\u2019activitat',
       shAiLabel: 'RECONEIXEMENT AMB IA',
       shAiTitle: 'Fotografia-ho. <span class="accent">Descobreix qu\u00e8 \u00e9s.</span>',
-      shAiDesc: 'Despr\u00e9s de la teva immersi\u00f3, la nostra IA analitza les teves fotos submarines i identifica cada esp\u00e8cie capturada. Sense experi\u00e8ncia pr\u00e8via. La identificaci\u00f3 b\u00e0sica tamb\u00e9 funciona sense internet.',
-      shAiExtra: 'Cada avistament alimenta la teva col·lecció i, amb el teu permís, un registre col·lectiu. Milions d’immersions es converteixen en dades reals de biodiversitat. Útils per a la comunitat, els centres de busseig i els científics que estudien el mar.',
-      ma1: 'An\u00e0lisi de fotos', ma2: 'Identificaci\u00f3 IA', ma3: 'Post-immersi\u00f3', ma4: '5500+ Esp\u00e8cies',
+      shAiDesc: 'Despr\u00e9s de la teva immersi\u00f3, la IA analitza les teves fotos i els teus vídeos submarins i proposa quina espècie és cadascun, amb el fotograma exacte on apareix. Sense experiència prèvia: només grava o fotografia el que veus. Sota l’aigua, la càmera enquadra el peix i dispara sola quan el té nítid.',
+      shAiExtra: 'Tu confirmes la identificació, sempre. Cada avistament confirmat alimenta la teva col·lecció i l’historial del lloc on busseja tothom.',
+      ma1: 'Fotos i vídeos', ma2: 'Identificaci\u00f3 IA', ma3: 'Post-immersi\u00f3', ma4: '5500+ Esp\u00e8cies',
       shSiteLabel: 'EXPLORA EL M\u00d3N SUBMAR\u00cd',
       shSiteTitle: 'Llocs de busseig per descobrir',
-      shSiteDesc: 'Explora llocs de busseig amb descripcions, condicions i activitat de la comunitat. Cada lloc mostra qu\u00e8 han avistat altres bussejadors. Planifica, descobreix i comparteix des d\u2019un sol lloc.',
-      ms1: 'Llocs de busseig', ms2: 'Vista mapa', ms3: 'Avistaments', ms4: 'Detalls del lloc',
+      shSiteDesc: 'Explora llocs de busseig amb condicions, millor època i activitat de la comunitat. I el que gairebé cap app t’explica: si el lloc és dins d’una àrea marina protegida, quina normativa s’hi aplica i quines espècies amenaçades hi viuen, amb el seu estat UICN.',
+      ms1: 'Llocs de busseig', ms2: 'Vista mapa', ms3: 'Avistaments', ms4: 'Àrees protegides i normativa',
       siteCallout: 'Cada lloc mostra tamb\u00e9 els centres de busseig m\u00e9s propers.',
-      siteCalloutLink: 'Tens un centre? Registra\u2019t com a fundador \u2192',
+      siteCalloutLink: 'Tens un centre? Descobreix Divera per a centres \u2192',
       shCenterLabel: 'CENTRES DE BUSSEIG',
       shCenterTitle: 'Troba centres de busseig a cada lloc',
       shCenterDesc: 'Cada lloc de busseig mostra els centres propers amb valoracions, dades de contacte i horaris. Alterna entre llocs i centres al mapa.',
@@ -1288,18 +1324,17 @@
       shTrustTitle: 'El teu perfil, en un toc',
       shTrustDesc: 'Desa fotos de la teva certificació i assegurança de busseig, dades de contacte, nombre d’immersions i experiència. Quan un centre et demana documents abans de bussejar, els tens a mà. El que enviaves per WhatsApp, al teu perfil.',
       mt1: 'Certificació a mà', mt2: 'Assegurança a mà', mt4: 'Privadesa granular',
-      partnerLabel: 'CENTRES FUNDADORS',
+      partnerLabel: 'PER A CENTRES DE BUSSEIG',
       partnerTitle: 'Gestiona el teu centre. Sense papers, sense WhatsApp.',
-      partnerLead: 'Un panell web per al teu dia a dia: la llista d’immersions d’avui amb qui hi va, quin equip necessita, si ha pagat i si ha signat. Qüestionari mèdic i exempció de responsabilitat per enllaç, amb signatura en pantalla i consentiment RGPD. Catàleg de lloguer amb estoc, assignació d’instructors i xat de grup per immersió. El teu centre apareix a cada lloc on es bussega. Els bussejadors et troben quan planifiquen.',
-      partnerOffer: 'L’app per a bussejadors ja és disponible a l’App Store. Els centres que es registrin abans del llançament del panell accedeixen a condicions especials com a socis fundadors.',
+      partnerLead: 'Un panell web per al teu dia a dia: la llista d’immersions d’avui amb qui hi va, si ha pagat, si ha signat i si ha entregat el qüestionari mèdic. Reserves, fitxa de cada bussejador, personal assignat i material de lloguer al mateix lloc. I el teu centre visible a cada punt d’immersió de l’app.',
+      partnerOffer: 'El panell ja funciona en centres reals i és gratis per al teu centre. Estem incorporant els següents amb acompanyament directe.',
       partnerTerms: 'Busquem centres que creguin que bussejar hauria de deixar l\u2019oce\u00e0 en millor estat del que el vam trobar. Els primers col\u00b7laboradors ajudaran a donar forma al que Divera es convertir\u00e0.',
-      pfName: 'El teu nom', pfNamePh: 'El teu nom',
-      pfCenter: 'Centre de busseig', pfCenterPh: 'Nom del centre',
-      pfEmail: 'Correu electr\u00f2nic', pfEmailPh: 'el-teu@email.com',
-      pfLocation: 'Ubicaci\u00f3', pfLocationPh: 'Ciutat o pa\u00eds',
-      pfSubmit: 'Sol\u00b7licitar acc\u00e9s fundador',
-      pfFine: 'Sense com\u00eds. Ens posarem en contacte abans del llan\u00e7ament del panell.',
-      pfSuccess: 'Rebut. Ens posarem en contacte abans del llan\u00e7ament del panell.',
+      pcItem1: 'El comunicat del dia: qui busseja, amb quin equip i en quin estat és cada reserva',
+      pcItem2: 'Qüestionari mèdic i exempció signada per enllaç, abans que arribin',
+      pcItem3: 'Cobrament en línia o al taulell, i l’històric de cada client',
+      pcItem4: 'La teva fitxa visible per als bussejadors que planifiquen a la teva zona',
+      pcCta: 'Veure Divera per a centres',
+      pcFine: 'Demo de 30 minuts, sense compromís.',
       betaLabel: 'JA DISPONIBLE',
       ctaTitle: 'Una manera m\u00e9s conscient de con\u00e8ixer l\u2019oce\u00e0',
       ctaSub: 'Descarrega Divera gratis i comen\u00e7a a registrar les teves immersions avui.',
@@ -1327,8 +1362,8 @@
       footerPrivacy: 'Pol\u00edtica de privadesa',
       footerAccountDeletion: 'Eliminar compte',
       footerR: '\u00a9 2026 Divera. Tots els drets reservats.',
-      pageTitle: 'Divera · App de Busseig amb IA | Identifica espècies, planifica i connecta | iOS',
-      pageDesc: 'App de busseig amb IA per a iOS. Identifica 5500+ espècies marines, registra i planifica immersions, descobreix 1600+ llocs i centres. Descarrega-la gratis a l’App Store.',
+      pageTitle: 'Divera · App de Busseig amb IA | Identifica espècies en foto i vídeo | iOS i Android',
+      pageDesc: 'App de busseig amb IA per a iOS i Android. Identifica 5500+ espècies marines a les teves fotos i vídeos, importa el teu ordinador de busseig i busseja sabent quina normativa s’aplica a cada àrea protegida. Gratis a l’App Store i Google Play.',
     }
   };
 
@@ -1336,6 +1371,8 @@
   const SUPPORTED_LANGS = ['en', 'es', 'fr', 'ca'];
 
   function getInitialLang() {
+    const q = new URLSearchParams(location.search).get('lang');
+    if (q && SUPPORTED_LANGS.includes(q)) return q;
     const stored = localStorage.getItem('divera-lang');
     if (stored && SUPPORTED_LANGS.includes(stored)) return stored;
     const browser = (navigator.language || 'es').slice(0, 2);
@@ -1445,35 +1482,6 @@
     }));
   }
 
-  // PARTNER FORM
-  const partnerForm = document.getElementById('partnerForm');
-  const partnerSuccess = document.getElementById('partnerSuccess');
-  if (partnerForm) {
-    partnerForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const data = Object.fromEntries(new FormData(partnerForm));
-      const btn = partnerForm.querySelector('.pf-submit');
-      btn.disabled = true; btn.textContent = '...';
-      try {
-        const res = await fetch('https://formsubmit.co/ajax/diveradevelopers@gmail.com', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({ ...data, _subject: 'Divera Founding Partner Request', _captcha: 'false' })
-        });
-        if (!res.ok) throw new Error('Server error');
-        const json = await res.json();
-        if (!json.success) throw new Error('Submission failed');
-        partnerForm.style.display = 'none';
-        partnerSuccess.style.display = 'block';
-      } catch {
-        const errEl = document.getElementById('partnerError');
-        if (errEl) { errEl.style.display = 'block'; errEl.textContent = translations[currentLang].formError || 'Something went wrong. Please try again.'; }
-        btn.disabled = false;
-        btn.textContent = translations[currentLang].pfSubmit || 'Submit';
-      }
-    });
-  }
-
   // CONTACT FORM
   const contactForm = document.getElementById('contactForm');
   const contactSuccess = document.getElementById('contactSuccess');
@@ -1529,15 +1537,18 @@
         "url": "https://apps.apple.com/app/id6759156407"
       },
       "featureList": [
-        "AI fish identification from underwater photos",
+        "AI fish identification from underwater photos and video",
         "Marine species detection and recognition",
-        "Offline fish identification",
-        "Dive log and dive journal",
+        "Underwater color-correction filters for photos and video",
+        "Dive computer import from .fit and .uddf dive files",
+        "Dive log and dive journal for scuba and snorkeling",
         "Group dive planning and trip coordination",
         "Direct messaging and group chat per dive",
         "Diver profile with certifications and dive insurance",
         "5500+ marine species database with IUCN conservation data",
         "1600+ curated dive sites worldwide",
+        "Marine protected area info, local rules and threatened species per dive site",
+        "Citizen science contributions to MINKA biodiversity data and BlueDOT ocean temperature profiles",
         "Dive center directory with ratings, hours and contact",
         "Personal species collection",
         "Community dive feed and sightings"
