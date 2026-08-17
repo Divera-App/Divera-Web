@@ -318,7 +318,7 @@
   @media (max-width: 900px) { .ai-hero { padding: 60px 20px 40px; } .ai-hero-content { grid-template-columns: 1fr; gap: 48px; } .ai-hero-visual { display: flex; align-items: flex-end; justify-content: center; gap: 0; } .ai-detection-photo { width: 190px; flex-shrink: 0; position: relative; z-index: 2; } .ai-hero-visual .showcase-phone { display: block; position: relative; width: 140px; flex-shrink: 0; overflow: hidden; margin-left: -30px; transform: translateY(-60px); z-index: 1; } .ai-hero-visual .showcase-phone img { margin-top: -50px; } }
   .ai-phones { display: flex; justify-content: center; align-items: flex-end; perspective: 1000px; }
   .ai-phones .ai-phone { width: 250px; border-radius: 24px; overflow: hidden; background: var(--surface-2); border: 1.5px solid rgba(255,255,255,0.08); box-shadow: 0 32px 64px rgba(0,0,0,0.45); }
-  .ai-phones .ai-phone img { width: 100%; display: block; }
+  .ai-phones .ai-phone img, .ai-phones .ai-phone video { width: 100%; display: block; }
   .ai-phones .ai-phone.side { width: 205px; opacity: 0.5; z-index: 1; transform: rotateY(12deg) translateX(20px) scale(0.92); }
   .ai-phones .ai-phone.front { z-index: 3; }
   @media (max-width: 900px) { .ai-phones .ai-phone { width: 185px; } .ai-phones .ai-phone.side { width: 150px; } }
@@ -594,7 +594,7 @@
           <img src="screen-ai-detection.png" alt="Resultado de identificación de especie con IA en la app Divera" loading="lazy">
         </div>
         <div class="ai-phone front">
-          <img src="screen-camera-detection.jpg" alt="Cámara de Divera bajo el agua reconociendo una castañuela, Chromis chromis" loading="lazy">
+          <video src="camera-detection.mp4" poster="camera-detection-poster.jpg" autoplay loop muted playsinline preload="metadata" disablepictureinpicture aria-label="Cámara de Divera bajo el agua reconociendo peces en tiempo real"></video>
         </div>
       </div>
     </div>
