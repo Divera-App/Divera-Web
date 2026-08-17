@@ -321,7 +321,7 @@
   .ai-phones .ai-phone img, .ai-phones .ai-phone video { width: 100%; display: block; }
   .ai-phones .ai-phone.side { width: 205px; opacity: 0.5; z-index: 1; transform: rotateY(12deg) translateX(20px) scale(0.92); }
   .ai-phones .ai-phone.front { z-index: 3; }
-  @media (max-width: 900px) { .ai-phones .ai-phone { width: 185px; } .ai-phones .ai-phone.side { width: 150px; } }
+  @media (max-width: 900px) { .ai-phones { perspective: none; } .ai-phones .ai-phone { width: 185px; } .ai-phones .ai-phone.side { width: 150px; opacity: 0.6; transform: translateX(14px) scale(0.92); } }
   .showcase-centered { padding: 0 48px; max-width: 1200px; margin: 0 auto 140px; position: relative; z-index: 1; text-align: center; }
   .showcase-centered .section-sub { margin: 16px auto 0; max-width: 720px; }
   .showcase-centered .showcase-metrics { display: flex; justify-content: center; gap: 32px; margin-top: 28px; }
