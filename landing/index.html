@@ -303,12 +303,12 @@
   .showcase-phones-row .showcase-phone.center { z-index: 3; }
   @media (max-width: 900px) { .showcase-phones-row .showcase-phone { width: 150px; } .showcase-phones-row .showcase-phone.side { width: 120px; } }
   .dc-devices { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; margin-top: 72px; }
-  .dc-group { padding-left: 16px; border-left: 2px solid rgba(255,90,98,0.25); }
-  .dc-head { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--coral); margin-bottom: 10px; }
+  .dc-group { padding-left: 16px; border-left: 1px solid rgba(255,255,255,0.12); }
+  .dc-head { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-secondary); margin-bottom: 10px; }
   .dc-head svg { width: 16px; height: 16px; flex-shrink: 0; }
   .dc-list { list-style: none; display: grid; gap: 8px; }
   .dc-list li { font-size: 13px; color: var(--text-secondary); line-height: 1.5; letter-spacing: -0.1px; }
-  .dc-brand { display: inline-block; padding: 2px 10px; margin-right: 6px; border-radius: 100px; background: var(--coral-soft); color: var(--text-primary); font-size: 12px; font-weight: 600; }
+  .dc-brand { display: inline-block; padding: 2px 10px; margin-right: 6px; border-radius: 100px; background: var(--surface-2); border: 1px solid rgba(255,255,255,0.08); color: var(--text-primary); font-size: 12px; font-weight: 500; }
   .dc-brands { display: flex; flex-wrap: wrap; gap: 6px; }
   .dc-brands .dc-brand { margin-right: 0; }
   .dc-note { font-size: 12px; color: var(--text-secondary); opacity: 0.75; margin-top: 28px; }
@@ -621,8 +621,13 @@
       <p class="reveal-right reveal-d2" data-i18n="dcDesc">Pon tu ordenador de buceo en modo enviar y Divera lee tus inmersiones directamente por Bluetooth: fecha, profundidad, tiempo de fondo, temperatura y el perfil completo. Elige la inmersión y el registro se rellena solo; tú solo añades lo que viste. ¿Tu ordenador no tiene Bluetooth o usas Garmin? Importa el archivo .fit o .uddf que exporta su app o tu programa de escritorio. Y si buceas con Apple Watch Ultra, tus inmersiones llegan desde Apple Health.</p>
     </div>
     <div class="showcase-visual">
-      <div class="showcase-phone reveal-left">
-        <img src="screen-dc-import.png" alt="Lista de inmersiones sin importar de un Mares Puck 4 con fecha, profundidad y duración" loading="lazy" style="width:100%;display:block;">
+      <div class="showcase-phones-row reveal-left">
+        <div class="showcase-phone side side-left">
+          <img src="screen-dc-import.png" alt="Lista de inmersiones sin importar de un Mares Puck 4 con fecha, profundidad y duración" loading="lazy" style="width:100%;display:block;">
+        </div>
+        <div class="showcase-phone center">
+          <img src="screen-dc-reading.png" alt="Divera leyendo las inmersiones de un Mares Puck 4 por Bluetooth" loading="lazy" style="width:100%;display:block;">
+        </div>
       </div>
     </div>
   </div>
@@ -630,29 +635,19 @@
     <div class="dc-group">
       <div class="dc-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6.5 6.5 17.5 17.5 12 23 12 1 17.5 6.5 6.5 17.5"/></svg><span data-i18n="dcBtHead">Por Bluetooth</span></div>
       <ul class="dc-list">
-        <li><span class="dc-brand">Mares</span>Puck Lite, Puck 4, Puck Pro, Quad Ci, Sirius, Genius, Smart Air</li>
-        <li><span class="dc-brand">Shearwater</span>Perdix, Perdix 2, Perdix AI, Petrel 2/3, Teric, Peregrine, Peregrine TX, Tern, NERD 2</li>
-        <li><span class="dc-brand">Suunto</span>EON Steel, EON Core, D5, Ocean</li>
-        <li><span class="dc-brand">Scubapro</span>G2, G2 HUD, G3, HUD, Aladin, Luna 2.0, Galileo 2/3</li>
-        <li><span class="dc-brand">Oceanic / Aqualung</span>i770R, i330R, i300C, i550C, i200C, Geo 4.0, DSX</li>
-        <li><span class="dc-brand">Cressi</span>Cartesio, Goa, Leonardo, Donatello, Michelangelo</li>
-        <li><span class="dc-brand">Divesoft</span>Freedom, Liberty</li>
-        <li class="dc-brands"><span class="dc-brand">Seac</span><span class="dc-brand">Halcyon</span><span class="dc-brand">Heinrichs Weikamp (OSTC)</span><span class="dc-brand">Deepblu</span><span class="dc-brand">Oceans</span><span class="dc-brand">McLean</span></li>
+        <li class="dc-brands"><span class="dc-brand">Mares</span><span class="dc-brand">Shearwater</span><span class="dc-brand">Suunto</span><span class="dc-brand">Scubapro</span><span class="dc-brand">Oceanic</span><span class="dc-brand">Aqualung</span><span class="dc-brand">Cressi</span><span class="dc-brand">Divesoft</span><span class="dc-brand">Seac</span><span class="dc-brand">Halcyon</span><span class="dc-brand">OSTC</span><span class="dc-brand">Deepblu</span><span class="dc-brand">Oceans</span><span class="dc-brand">McLean</span></li>
       </ul>
     </div>
     <div class="dc-group">
       <div class="dc-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg><span data-i18n="dcFileHead">Por archivo (.fit / .uddf)</span></div>
       <ul class="dc-list">
-        <li><span class="dc-brand">Garmin Descent</span>Mk1–Mk3i, G1, G2</li>
-        <li><span class="dc-brand">Suunto</span>FIT</li>
-        <li class="dc-brands"><span class="dc-brand">Ratio iX3M</span></li>
-        <li><span class="dc-brand" data-i18n="dcFileAny">Cualquier exportación UDDF</span>Subsurface, MacDive, Shearwater Cloud…</li>
+        <li class="dc-brands"><span class="dc-brand">Garmin</span><span class="dc-brand">Suunto</span><span class="dc-brand">Ratio</span><span class="dc-brand" data-i18n="dcFileAny">Cualquier exportación UDDF</span></li>
       </ul>
     </div>
     <div class="dc-group">
       <div class="dc-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="3"/><polyline points="12 9.5 12 12 13.5 13.5"/><path d="M8.5 6l.6-3.3A1 1 0 0 1 10.1 2h3.8a1 1 0 0 1 1 .7l.6 3.3"/><path d="M8.5 18l.6 3.3a1 1 0 0 0 1 .7h3.8a1 1 0 0 0 1-.7l.6-3.3"/></svg><span data-i18n="dcWatchHead">Apple Watch</span></div>
       <ul class="dc-list">
-        <li><span class="dc-brand">Ultra · Ultra 2 · Ultra 3</span><span data-i18n="dcWatchVia">vía Apple Health (iPhone)</span></li>
+        <li><span class="dc-brand">Apple Watch Ultra</span><span data-i18n="dcWatchVia">vía Apple Health (iPhone)</span></li>
       </ul>
     </div>
   </div>
