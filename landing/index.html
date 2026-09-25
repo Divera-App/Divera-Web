@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#FF5A62">
-<meta name="keywords" content="app buceo, identificación especies marinas, identificar peces sin conexión, reconocimiento de peces en la cámara, identificar peces en vídeo, detección peces IA, fish detection app, marine species identification, dive log app, fish identifier app, underwater fish ID, scuba diving app iOS Android, identificar peces, dive journal, importar ordenador de buceo, .fit .uddf, filtros fotos submarinas, áreas marinas protegidas, ciencia ciudadana marina, MINKA, planificar inmersión, dive trip planner, software centro de buceo">
+<meta name="keywords" content="app buceo, identificación especies marinas, identificar peces sin conexión, reconocimiento de peces en la cámara, identificar peces en vídeo, detección peces IA, fish detection app, marine species identification, dive log app, fish identifier app, underwater fish ID, scuba diving app iOS Android, identificar peces, dive journal, importar ordenador de buceo, bluetooth ordenador de buceo, .fit .uddf, filtros fotos submarinas, áreas marinas protegidas, ciencia ciudadana marina, MINKA, planificar inmersión, dive trip planner, software centro de buceo">
 <link rel="canonical" href="https://divera.app/">
 <link rel="alternate" hreflang="es" href="https://divera.app/">
 <link rel="alternate" hreflang="en" href="https://divera.app/?lang=en">
@@ -302,6 +302,17 @@
   .showcase-phones-row .showcase-phone.side-right { transform: rotateY(-10deg) translateX(-14px) scale(0.9); }
   .showcase-phones-row .showcase-phone.center { z-index: 3; }
   @media (max-width: 900px) { .showcase-phones-row .showcase-phone { width: 150px; } .showcase-phones-row .showcase-phone.side { width: 120px; } }
+  .dc-devices { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; margin-top: 72px; }
+  .dc-group { padding-left: 16px; border-left: 1px solid rgba(255,255,255,0.12); }
+  .dc-head { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-secondary); margin-bottom: 10px; }
+  .dc-head svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .dc-list { list-style: none; display: grid; gap: 8px; }
+  .dc-list li { font-size: 13px; color: var(--text-secondary); line-height: 1.5; letter-spacing: -0.1px; }
+  .dc-brand { display: inline-block; padding: 2px 10px; margin-right: 6px; border-radius: 100px; background: var(--surface-2); border: 1px solid rgba(255,255,255,0.08); color: var(--text-primary); font-size: 12px; font-weight: 500; }
+  .dc-brands { display: flex; flex-wrap: wrap; gap: 6px; }
+  .dc-brands .dc-brand { margin-right: 0; }
+  .dc-note { font-size: 12px; color: var(--text-secondary); opacity: 0.75; margin-top: 28px; }
+  @media (max-width: 900px) { .dc-devices { grid-template-columns: 1fr; gap: 28px; margin-top: 48px; } }
   .ai-hero { position: relative; padding: 100px 48px 64px; }
   .ai-hero-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 800px; height: 500px; background: radial-gradient(circle, rgba(255,90,98,0.05) 0%, transparent 70%); border-radius: 50%; filter: blur(100px); pointer-events: none; }
   .ai-hero-content { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
@@ -601,6 +612,48 @@
   </div>
 </section>
 
+<!-- SHOWCASE: DIVE COMPUTER IMPORT -->
+<div class="showcase-wrap" id="ordenador">
+  <div class="showcase showcase-reverse">
+    <div class="showcase-text">
+      <div class="section-label reveal-right" data-i18n="dcLabel">IMPORTA TUS INMERSIONES DESDE EL ORDENADOR</div>
+      <h2 class="section-title reveal-right reveal-d1" data-i18n="dcTitle">Conéctalo por Bluetooth, sin pasar por el PC ni por otra app</h2>
+      <p class="reveal-right reveal-d2" data-i18n="dcDesc">Pon tu ordenador de buceo en modo enviar y Divera lee tus inmersiones directamente por Bluetooth: fecha, profundidad, tiempo de fondo, temperatura y el perfil completo. Elige la inmersión y el registro se rellena solo; tú solo añades lo que viste. ¿Tu ordenador no tiene Bluetooth o usas Garmin? Importa el archivo .fit o .uddf que exporta su app o tu programa de escritorio. Y si buceas con Apple Watch Ultra, tus inmersiones llegan desde Apple Health.</p>
+    </div>
+    <div class="showcase-visual">
+      <div class="showcase-phones-row reveal-left">
+        <div class="showcase-phone side side-left">
+          <img src="screen-dc-import.png" alt="Lista de inmersiones sin importar de un Mares Puck 4 con fecha, profundidad y duración" loading="lazy" style="width:100%;display:block;">
+        </div>
+        <div class="showcase-phone center">
+          <img src="screen-dc-reading.png" alt="Divera leyendo las inmersiones de un Mares Puck 4 por Bluetooth" loading="lazy" style="width:100%;display:block;">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dc-devices reveal reveal-d1">
+    <div class="dc-group">
+      <div class="dc-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6.5 6.5 17.5 17.5 12 23 12 1 17.5 6.5 6.5 17.5"/></svg><span data-i18n="dcBtHead">Por Bluetooth</span></div>
+      <ul class="dc-list">
+        <li class="dc-brands"><span class="dc-brand">Mares</span><span class="dc-brand">Shearwater</span><span class="dc-brand">Suunto</span><span class="dc-brand">Scubapro</span><span class="dc-brand">Oceanic</span><span class="dc-brand">Aqualung</span><span class="dc-brand">Cressi</span><span class="dc-brand">Divesoft</span><span class="dc-brand">Seac</span><span class="dc-brand">Halcyon</span><span class="dc-brand">OSTC</span><span class="dc-brand">Deepblu</span><span class="dc-brand">Oceans</span><span class="dc-brand">McLean</span></li>
+      </ul>
+    </div>
+    <div class="dc-group">
+      <div class="dc-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg><span data-i18n="dcFileHead">Por archivo (.fit / .uddf)</span></div>
+      <ul class="dc-list">
+        <li class="dc-brands"><span class="dc-brand">Garmin</span><span class="dc-brand">Suunto</span><span class="dc-brand">Ratio</span><span class="dc-brand" data-i18n="dcFileAny">Cualquier exportación UDDF</span></li>
+      </ul>
+    </div>
+    <div class="dc-group">
+      <div class="dc-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="3"/><polyline points="12 9.5 12 12 13.5 13.5"/><path d="M8.5 6l.6-3.3A1 1 0 0 1 10.1 2h3.8a1 1 0 0 1 1 .7l.6 3.3"/><path d="M8.5 18l.6 3.3a1 1 0 0 0 1 .7h3.8a1 1 0 0 0 1-.7l.6-3.3"/></svg><span data-i18n="dcWatchHead">Apple Watch</span></div>
+      <ul class="dc-list">
+        <li><span class="dc-brand">Apple Watch Ultra</span><span data-i18n="dcWatchVia">vía Apple Health (iPhone)</span></li>
+      </ul>
+    </div>
+  </div>
+  <p class="dc-note reveal reveal-d2" data-i18n="dcNote">Bluetooth disponible en iOS. Android, muy pronto.</p>
+</div>
+
 <!-- CITIZEN SCIENCE -->
 <div class="showcase-centered" id="ciencia">
   <div class="section-label reveal" data-i18n="shSciLabel">CIENCIA CIUDADANA</div>
@@ -638,8 +691,8 @@
       <p class="f-desc" data-i18n="f4d">Mapa de sitios y centros con condiciones, vida marina avistada y valoraciones. Mira qué están encontrando otros buceadores en tus spots favoritos.</p>
     </div>
     <div class="f-row reveal reveal-d4">
-      <h3 class="f-title" data-i18n="f5t">Sube la inmersión de tu ordenador</h3>
-      <p class="f-desc" data-i18n="f5d">Sube el archivo de la inmersión (.fit o .uddf) y Divera rellena los datos objetivos: tiempo de fondo, profundidad máxima y media, perfil de temperatura, mezcla y presión de botella. Tú solo añades lo que viste.</p>
+      <h3 class="f-title" data-i18n="f5t">Importa desde tu ordenador de buceo</h3>
+      <p class="f-desc" data-i18n="f5d">Conéctalo por Bluetooth o sube el archivo de la inmersión (.fit o .uddf) y Divera rellena los datos objetivos: tiempo de fondo, profundidad máxima y media, perfil de temperatura, mezcla y presión de botella. Tú solo añades lo que viste. <a class="center-cta-link" href="#ordenador">Ver ordenadores compatibles</a></p>
     </div>
     <div class="f-row reveal reveal-d5">
       <h3 class="f-title" data-i18n="f6t">Devuélvele el color al agua</h3>
@@ -973,8 +1026,17 @@
       f3d: 'Find buddies for your next dive or post a group plan. Coordinate date, site, gear and dive center from the app. Logistics, sorted before you hit the water.',
       f4t: 'Explore sites & centers',
       f4d: 'Map of dive sites and centers with conditions, marine life sightings and ratings. See what other divers are finding at your favorite spots.',
-      f5t: 'Upload the dive from your computer',
-      f5d: 'Upload the dive file (.fit or .uddf) and Divera fills in the hard numbers: bottom time, max and average depth, temperature profile, gas mix and tank pressure. You only add what you saw.',
+      f5t: 'Import from your dive computer',
+      f5d: 'Connect it over Bluetooth or upload the dive file (.fit or .uddf) and Divera fills in the hard numbers: bottom time, max and average depth, temperature profile, gas mix and tank pressure. You only add what you saw. <a class="center-cta-link" href="#ordenador">See compatible computers</a>',
+      dcLabel: 'IMPORT YOUR DIVES FROM YOUR DIVE COMPUTER',
+      dcTitle: 'Connect it over Bluetooth, no PC or extra app needed',
+      dcDesc: 'Put your dive computer in transfer mode and Divera reads your dives straight over Bluetooth: date, depth, bottom time, temperature and the full profile. Pick the dive and the log fills itself in; you only add what you saw. No Bluetooth on your computer, or diving with Garmin? Import the .fit or .uddf file exported by its app or your desktop software. And if you dive with an Apple Watch Ultra, your dives come in from Apple Health.',
+      dcBtHead: 'Over Bluetooth',
+      dcFileHead: 'From a file (.fit / .uddf)',
+      dcWatchHead: 'Apple Watch',
+      dcFileAny: 'Any UDDF export',
+      dcWatchVia: 'via Apple Health (iPhone)',
+      dcNote: 'Bluetooth available on iOS. Android coming soon.',
       f6t: 'Give the water its color back',
       f6d: 'An editor with 7 underwater color-correction filters for photos and video. Water eats red within the first few meters; these filters bring it back without repainting the scene.',
       shSciLabel: 'CITIZEN SCIENCE',
@@ -1083,8 +1145,17 @@
       f3d: 'Busca compa\u00f1eros para tu pr\u00f3xima inmersi\u00f3n o publica un plan en grupo. Coordina fecha, sitio, equipo y centro desde la app. La log\u00edstica, resuelta antes de tocar el agua.',
       f4t: 'Explora sitios y centros',
       f4d: 'Mapa de sitios y centros con condiciones, vida marina avistada y valoraciones. Mira qu\u00e9 est\u00e1n encontrando otros buceadores en tus spots favoritos.',
-      f5t: 'Sube la inmersión de tu ordenador',
-      f5d: 'Sube el archivo de la inmersi\u00f3n (.fit o .uddf) y Divera rellena los datos objetivos: tiempo de fondo, profundidad m\u00e1xima y media, perfil de temperatura, mezcla y presi\u00f3n de botella. T\u00fa solo a\u00f1ades lo que viste.',
+      f5t: 'Importa desde tu ordenador de buceo',
+      f5d: 'Conéctalo por Bluetooth o sube el archivo de la inmersión (.fit o .uddf) y Divera rellena los datos objetivos: tiempo de fondo, profundidad máxima y media, perfil de temperatura, mezcla y presión de botella. Tú solo añades lo que viste. <a class="center-cta-link" href="#ordenador">Ver ordenadores compatibles</a>',
+      dcLabel: 'IMPORTA TUS INMERSIONES DESDE EL ORDENADOR',
+      dcTitle: 'Conéctalo por Bluetooth, sin pasar por el PC ni por otra app',
+      dcDesc: 'Pon tu ordenador de buceo en modo enviar y Divera lee tus inmersiones directamente por Bluetooth: fecha, profundidad, tiempo de fondo, temperatura y el perfil completo. Elige la inmersión y el registro se rellena solo; tú solo añades lo que viste. ¿Tu ordenador no tiene Bluetooth o usas Garmin? Importa el archivo .fit o .uddf que exporta su app o tu programa de escritorio. Y si buceas con Apple Watch Ultra, tus inmersiones llegan desde Apple Health.',
+      dcBtHead: 'Por Bluetooth',
+      dcFileHead: 'Por archivo (.fit / .uddf)',
+      dcWatchHead: 'Apple Watch',
+      dcFileAny: 'Cualquier exportación UDDF',
+      dcWatchVia: 'vía Apple Health (iPhone)',
+      dcNote: 'Bluetooth disponible en iOS. Android, muy pronto.',
       f6t: 'Devu\u00e9lvele el color al agua',
       f6d: 'Editor con 7 filtros de correcci\u00f3n de color subacu\u00e1tico para fotos y v\u00eddeos. El agua se lleva el rojo a partir de los primeros metros; estos filtros lo devuelven sin repintar la escena.',
       shSciLabel: 'CIENCIA CIUDADANA',
@@ -1193,8 +1264,17 @@
       f3d: 'Trouvez des bin\u00f4mes pour votre prochaine plong\u00e9e ou publiez un plan de groupe. Coordonnez date, site, mat\u00e9riel et centre depuis l\u2019app. La logistique, r\u00e9gl\u00e9e avant de toucher l\u2019eau.',
       f4t: 'Explorez sites et centres',
       f4d: 'Carte des sites et centres avec conditions, observations marines et avis. Voyez ce que d\u2019autres plongeurs d\u00e9couvrent dans vos spots favoris.',
-      f5t: 'Importez la plong\u00e9e de votre ordinateur',
-      f5d: 'T\u00e9l\u00e9versez le fichier de la plong\u00e9e (.fit ou .uddf) et Divera remplit les donn\u00e9es objectives\u00a0: temps au fond, profondeur max et moyenne, profil de temp\u00e9rature, m\u00e9lange et pression de bloc. Vous n\u2019ajoutez que ce que vous avez vu.',
+      f5t: 'Importez depuis votre ordinateur de plongée',
+      f5d: 'Connectez-le en Bluetooth ou téléversez le fichier de la plongée (.fit ou .uddf) et Divera remplit les données objectives : temps au fond, profondeur max et moyenne, profil de température, mélange et pression de bloc. Vous n’ajoutez que ce que vous avez vu. <a class="center-cta-link" href="#ordenador">Voir les ordinateurs compatibles</a>',
+      dcLabel: 'IMPORTEZ VOS PLONGÉES DEPUIS VOTRE ORDINATEUR',
+      dcTitle: 'Connectez-le en Bluetooth, sans passer par le PC ni par une autre app',
+      dcDesc: 'Mettez votre ordinateur de plongée en mode transfert et Divera lit vos plongées directement en Bluetooth : date, profondeur, temps au fond, température et le profil complet. Choisissez la plongée et le carnet se remplit tout seul ; vous n’ajoutez que ce que vous avez vu. Votre ordinateur n’a pas le Bluetooth ou vous plongez avec Garmin ? Importez le fichier .fit ou .uddf exporté par son app ou votre logiciel de bureau. Et si vous plongez avec une Apple Watch Ultra, vos plongées arrivent depuis Apple Health.',
+      dcBtHead: 'En Bluetooth',
+      dcFileHead: 'Par fichier (.fit / .uddf)',
+      dcWatchHead: 'Apple Watch',
+      dcFileAny: 'Tout export UDDF',
+      dcWatchVia: 'via Apple Health (iPhone)',
+      dcNote: 'Bluetooth disponible sur iOS. Android très bientôt.',
       f6t: 'Rendez sa couleur \u00e0 l\u2019eau',
       f6d: '\u00c9diteur avec 7 filtres de correction colorim\u00e9trique sous-marine pour photos et vid\u00e9os. L\u2019eau avale le rouge d\u00e8s les premiers m\u00e8tres\u00a0; ces filtres le restituent sans repeindre la sc\u00e8ne.',
       shSciLabel: 'SCIENCE PARTICIPATIVE',
@@ -1303,8 +1383,17 @@
       f3d: 'Busca companys per a la teva pròxima immersió o publica un pla en grup. Coordina data, lloc, equip i centre des de l’app. La logística, resolta abans de tocar l’aigua.',
       f4t: 'Explora llocs i centres',
       f4d: 'Mapa de llocs i centres amb condicions, vida marina avistada i valoracions. Mira què estan trobant altres bussejadors als teus spots favorits.',
-      f5t: 'Puja la immersió del teu ordinador',
-      f5d: 'Puja l’arxiu de la immersió (.fit o .uddf) i Divera omple les dades objectives: temps de fons, profunditat màxima i mitjana, perfil de temperatura, mescla i pressió d’ampolla. Tu només hi afegeixes el que vas veure.',
+      f5t: 'Importa des del teu ordinador de busseig',
+      f5d: 'Connecta’l per Bluetooth o puja l’arxiu de la immersió (.fit o .uddf) i Divera omple les dades objectives: temps de fons, profunditat màxima i mitjana, perfil de temperatura, mescla i pressió d’ampolla. Tu només hi afegeixes el que vas veure. <a class="center-cta-link" href="#ordenador">Mira els ordinadors compatibles</a>',
+      dcLabel: 'IMPORTA LES TEVES IMMERSIONS DES DE L’ORDINADOR',
+      dcTitle: 'Connecta’l per Bluetooth, sense passar pel PC ni per una altra app',
+      dcDesc: 'Posa el teu ordinador de busseig en mode enviar i Divera llegeix les teves immersions directament per Bluetooth: data, profunditat, temps de fons, temperatura i el perfil complet. Tria la immersió i el registre s’omple sol; tu només hi afegeixes el que vas veure. El teu ordinador no té Bluetooth o fas servir Garmin? Importa l’arxiu .fit o .uddf que exporta la seva app o el teu programa d’escriptori. I si busseges amb Apple Watch Ultra, les teves immersions arriben des d’Apple Health.',
+      dcBtHead: 'Per Bluetooth',
+      dcFileHead: 'Per arxiu (.fit / .uddf)',
+      dcWatchHead: 'Apple Watch',
+      dcFileAny: 'Qualsevol exportació UDDF',
+      dcWatchVia: 'via Apple Health (iPhone)',
+      dcNote: 'Bluetooth disponible a iOS. Android, molt aviat.',
       f6t: 'Torna-li el color a l’aigua',
       f6d: 'Editor amb 7 filtres de correcció de color subaquàtic per a fotos i vídeos. L’aigua s’empassa el vermell des dels primers metres; aquests filtres el retornen sense repintar l’escena.',
       shSciLabel: 'CIÈNCIA CIUTADANA',
