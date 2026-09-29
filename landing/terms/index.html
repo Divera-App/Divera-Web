@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<title>Terms of Service — Divera</title>
+<meta name="description" content="Terms of Service for Divera, the diving logbook and community app for iOS and Android.">
+<link rel="canonical" href="https://divera.app/terms">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Galano Grotesque';
+    src: url('../galano-grotesque-medium.otf') format('opentype');
+    font-weight: 500; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Galano Grotesque';
+    src: url('../galano-grotesque-alt-bold.otf') format('opentype');
+    font-weight: 700; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Geist';
+    src: url('https://cdn.jsdelivr.net/gh/nicholasgasior/geist-font@1.2.1/woff2/Geist-Regular.woff2') format('woff2');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Geist';
+    src: url('https://cdn.jsdelivr.net/gh/nicholasgasior/geist-font@1.2.1/woff2/Geist-Medium.woff2') format('woff2');
+    font-weight: 500; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Geist';
+    src: url('https://cdn.jsdelivr.net/gh/nicholasgasior/geist-font@1.2.1/woff2/Geist-SemiBold.woff2') format('woff2');
+    font-weight: 600; font-style: normal; font-display: swap;
+  }
+  :root {
+    --bg: #050505; --surface: #111113; --surface-2: #1A1A1C;
+    --text-primary: #EBEBEB; --text-secondary: #7A7A7E; --text-dim: #444448;
+    --coral: #FF5A62; --coral-soft: rgba(255,90,98,0.12); --coral-glow: rgba(255,90,98,0.25);
+    --font-display: 'Galano Grotesque', 'DM Sans', sans-serif;
+    --font-body: 'Geist', 'Instrument Sans', sans-serif;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body); background: var(--bg); color: var(--text-primary);
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 48px; height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(5,5,5,0.6); backdrop-filter: blur(40px) saturate(1.5);
+    -webkit-backdrop-filter: blur(40px) saturate(1.5);
+    border-bottom: 0.5px solid rgba(255,255,255,0.04);
+  }
+  .nav-logo { display: flex; align-items: center; text-decoration: none; }
+  .nav-full-logo { height: 28px; width: auto; display: block; }
+  @media (max-width: 768px) { nav { padding: 0 20px; } }
+  .content {
+    max-width: 720px; margin: 0 auto; padding: 120px 24px 80px;
+    line-height: 1.7;
+  }
+  h1 {
+    font-family: var(--font-display); font-size: 36px; font-weight: 700;
+    letter-spacing: -1px; margin-bottom: 8px;
+  }
+  .last-updated {
+    font-size: 13px; color: var(--text-dim); margin-bottom: 48px;
+  }
+  h2 {
+    font-family: var(--font-display); font-size: 20px; font-weight: 700;
+    letter-spacing: -0.5px; margin-top: 40px; margin-bottom: 12px;
+    color: var(--text-primary);
+  }
+  p, li {
+    font-size: 15px; color: var(--text-secondary); margin-bottom: 12px;
+    letter-spacing: -0.2px;
+  }
+  ul { padding-left: 20px; margin-bottom: 16px; }
+  li { margin-bottom: 6px; }
+  a { color: var(--coral); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  strong { color: var(--text-primary); font-weight: 600; }
+  footer {
+    padding: 32px 48px; border-top: 0.5px solid rgba(255,255,255,0.04);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .foot-left { display: flex; align-items: center; gap: 8px; }
+  .foot-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; text-align: right; }
+  .foot-right span { font-size: 12px; color: var(--text-dim); letter-spacing: -0.2px; }
+  .foot-tagline { font-size: 11px; color: rgba(255,255,255,0.28); letter-spacing: -0.1px; }
+  @media (max-width: 768px) {
+    footer { padding: 24px 20px; flex-direction: column; text-align: center; }
+    .foot-right { align-items: center; }
+    h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="../divera-logo.png" alt="Divera" class="nav-full-logo">
+  </a>
+</nav>
+
+<main class="content">
+  <h1>Terms of Service</h1>
+  <p class="last-updated">Last updated: September 24, 2026</p>
+
+  <p>These Terms of Service ("Terms") govern your use of the Divera mobile application for iOS and Android and the website at divera.app (together, "Divera" or the "service"), provided by Divera ("we", "us", or "our"). How we handle your personal data is explained in our <a href="/privacy">Privacy Policy</a>.</p>
+
+  <h2>1. Acceptance of Terms</h2>
+  <p>By accessing or using Divera, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
+
+  <h2>2. User Accounts</h2>
+  <p>You must be at least 13 years old to create an account. You are responsible for maintaining the security of your account and password. You agree to provide accurate and complete information.</p>
+
+  <h2>3. User Content</h2>
+  <p>You retain ownership of the content you post on Divera. By posting content, you grant us a worldwide, non-exclusive license to use, display, and distribute your content as part of the service. If you opt in to share a fish sighting with MINKA, you also grant that the shared data (photo, species, location, date and dive details) may be published by MINKA under an open license for scientific research, on a worldwide, royalty-free and irrevocable basis; such published copies cannot be withdrawn. Unless you switch it off, anonymous temperature and depth data from your dives that have a location (and, only for dives published as public, your dive notes with @mentions and email addresses removed) is also shared with BlueDOT, coordinated by MARUM – University of Bremen, for scientific research on ocean warming; you can switch this off for a single dive or for all future dives, as described in our <a href="/privacy">Privacy Policy</a>, and records already delivered to BlueDOT become part of a scientific dataset and cannot be withdrawn afterwards. Once shared, each partner decides independently how that data is used, published and kept under its own terms, and Divera is not responsible for the partner's use of it. You are responsible for the content you post.</p>
+
+  <h2>4. Acceptable Use</h2>
+  <p>You agree not to use Divera to post illegal content, harass others, impersonate others, spam, or violate any applicable laws. We reserve the right to remove content and suspend accounts that violate these terms.</p>
+
+  <h2>5. Intellectual Property</h2>
+  <p>Divera and its original content, features, and functionality are owned by Divera and are protected by international copyright, trademark, and other intellectual property laws. Species photos, names and other reference data shown in Divera may come from third parties; they remain the property of their respective authors and are used under their own licenses.</p>
+
+  <h2>6. Termination</h2>
+  <p>We may terminate or suspend your account immediately, without prior notice, for any reason, including if you breach the Terms of Service. You may also delete your account at any time from the settings, or as described on our <a href="/account-deletion">account deletion page</a>. Sections that by their nature should survive termination (intellectual property, disclaimers, limitation of liability and governing law) remain in effect.</p>
+
+  <h2>7. Dive Centers, Bookings and Payments</h2>
+  <p>Dive centers listed on Divera are independent businesses. When you book a dive, course or other activity through Divera, your agreement is with the dive center, not with Divera. The dive center sets its prices, taxes, schedules, and cancellation and refund policies, and is solely responsible for providing the activity. Depending on the dive center, you may pay at the center or online; online payments are handled by a third-party payment provider and Divera does not store your card details. Requests to cancel a booking or to obtain a refund must be made to the dive center under its own policy. Divera is free to use; if we ever introduce paid features, their price and conditions will be shown before you pay.</p>
+
+  <h2>8. Diving Safety and AI Identification</h2>
+  <p>Diving carries inherent risks. Divera is a logbook and community app: it is not a dive operator, does not provide training or supervision, is not a dive computer and does not calculate decompression or gas limits. Dive logs, depth profiles, dive-site details, conditions, protected-area information and dive plans shown in Divera, including content posted by other users, are for reference only and may be incomplete, inaccurate or out of date. Always dive within your training and certification, follow your dive computer, your dive center's briefing and local regulations, and never rely on Divera for decisions that affect your safety.</p>
+  <p>Species identification is performed by artificial intelligence and can be wrong; do not rely on it to decide whether a species is dangerous, protected, or safe to touch or eat.</p>
+
+  <h2>9. Disclaimers and Limitation of Liability</h2>
+  <p>Divera is provided "as is" and "as available", without warranties of any kind, to the fullest extent permitted by law. We do not guarantee that the service will be uninterrupted, error-free, or that your data will never be lost; keep your own copy of any dive data that matters to you.</p>
+  <p>To the fullest extent permitted by law, Divera is not liable for any indirect, incidental, special or consequential damages, or for loss of data, profits or revenue, arising from your use of the service, from content posted by other users, or from activities provided by dive centers. Nothing in these Terms limits liability that cannot be limited by law, including liability for gross negligence, wilful misconduct, or death or personal injury caused by negligence, or your mandatory rights as a consumer.</p>
+
+  <h2>10. Governing Law and Jurisdiction</h2>
+  <p>These Terms are governed by the laws of Spain. Any dispute will be submitted to the competent courts of Spain, without prejudice to any mandatory consumer-protection rights you have under the law of your country of residence, including the right to bring proceedings in the courts of that country.</p>
+
+  <h2>11. Changes to These Terms</h2>
+  <p>We may update these Terms from time to time. The "Last updated" date at the top shows the latest revision. We will notify you of material changes in the app or by email before they take effect. If you keep using Divera after that, you accept the updated Terms; if you do not agree, you can stop using Divera and delete your account.</p>
+
+  <h2>12. Contact Us</h2>
+  <p>If you have questions about these Terms, contact us at:</p>
+  <p>
+    Divera<br>
+    Email: <a href="mailto:divera.app@gmail.com">divera.app@gmail.com</a><br>
+    Website: <a href="https://divera.app">https://divera.app</a>
+  </p>
+</main>
+
+<footer>
+  <div class="foot-left">
+    <img src="../logo-full.png" alt="Divera" style="height:20px;width:auto;display:block;opacity:0.7;">
+  </div>
+  <div class="foot-right">
+    <p class="foot-tagline">From Spain. Built by divers, for divers.</p>
+    <span>&copy; 2026 Divera. All rights reserved.</span>
+  </div>
+</footer>
+
+</body>
+</html>
