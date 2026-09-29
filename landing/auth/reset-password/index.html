@@ -155,21 +155,45 @@
 <script type="module">
   import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
-  // Public Supabase config (production project). ANON / publishable key only —
-  // it is designed to be exposed in browsers. NEVER put a service-role key here.
-  const SUPABASE_URL = 'https://agatpmqbrpdhlfeinkmv.supabase.co';
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnYXRwbXFicnBkaGxmZWlua212Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyODAzOTQsImV4cCI6MjA4OTg1NjM5NH0.fZAV62zYtZ2FnVQOqy_0X4EjcSskFBMPOd-D6ZuTGws';
+  // Public Supabase config. ANON / publishable keys only — they are designed to be
+  // exposed in browsers. NEVER put a service-role key here.
+  // Production and staging share this page (divera.app is the only verified recovery
+  // link), so the project is picked from the recovery token's `iss` claim. Only the
+  // projects listed here are ever used; anything else falls back to production.
+  const PROJECTS = {
+    agatpmqbrpdhlfeinkmv: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnYXRwbXFicnBkaGxmZWlua212Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyODAzOTQsImV4cCI6MjA4OTg1NjM5NH0.fZAV62zYtZ2FnVQOqy_0X4EjcSskFBMPOd-D6ZuTGws', // production
+    xxineqfeqtscfhmmofen: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4aW5lcWZlcXRzY2ZobW1vZmVuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzMjcyOTQsImV4cCI6MjA4NTkwMzI5NH0.na-a7IwCmgShO28rRHfj-BBiI9a97ij6XiC9EmegBgM', // staging
+  };
+  const DEFAULT_REF = 'agatpmqbrpdhlfeinkmv';
 
   const MIN_LEN = 8;
 
-  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-    auth: {
-      flowType: 'implicit',      // recovery token arrives in the URL fragment (#access_token=...)
-      detectSessionInUrl: false, // we parse it manually below for deterministic control
-      persistSession: false,
-      autoRefreshToken: false,
-    },
-  });
+  // Reads the project ref from the access token's issuer
+  // (https://<ref>.supabase.co/auth/v1). Unverified decode is fine: it only selects
+  // which whitelisted project validates the token.
+  function projectRefFromToken(token) {
+    try {
+      const payload = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+      const { iss } = JSON.parse(atob(payload));
+      const ref = new URL(iss).hostname.split('.')[0];
+      return ref in PROJECTS ? ref : DEFAULT_REF;
+    } catch {
+      return DEFAULT_REF;
+    }
+  }
+
+  function clientFor(ref) {
+    return createClient(`https://${ref}.supabase.co`, PROJECTS[ref], {
+      auth: {
+        flowType: 'implicit',      // recovery token arrives in the URL fragment (#access_token=...)
+        detectSessionInUrl: false, // we parse it manually below for deterministic control
+        persistSession: false,
+        autoRefreshToken: false,
+      },
+    });
+  }
+
+  let supabase = clientFor(DEFAULT_REF);
 
   const $ = (id) => document.getElementById(id);
   const show = (id) => $(id).classList.remove('hidden');
@@ -193,6 +217,7 @@
     const accessToken = hash.get('access_token');
     const refreshToken = hash.get('refresh_token');
     if (accessToken && refreshToken) {
+      supabase = clientFor(projectRefFromToken(accessToken));
       const { error } = await supabase.auth.setSession({
         access_token: accessToken,
         refresh_token: refreshToken,
