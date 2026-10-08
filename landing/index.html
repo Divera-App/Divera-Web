@@ -46,12 +46,13 @@
     font-weight: 700; font-style: normal; font-display: swap;
   }
   :root {
-    /* Backgrounds mirror iOS AppColor.Theme (DiveraDesign/DiveraColor.swift) */
-    --bg-primary: #0D0D0D;   /* primaryBackground: page */
-    --bg-secondary: #1F1F21; /* secondaryBackground: content sections, cards */
-    --bg-tertiary: #2A2A2E;  /* tertiaryBackground: items elevated on secondary */
+    /* Backgrounds mirror iOS DiveraColor / AppColor.Theme */
+    --bg-primary: #0D0D0D;   /* primaryBackground (DiveraColor.background): page */
+    --bg-surface: #161618;   /* surfaceBackground (DiveraColor.surface): informational sections */
+    --bg-secondary: #1F1F21; /* secondaryBackground (DiveraColor.card): sections, cards */
+    --bg-tertiary: #2A2A2E;  /* tertiaryBackground (DiveraColor.cardNested): nested on secondary */
     --bg: var(--bg-primary); --surface: var(--bg-secondary); --surface-2: var(--bg-tertiary);
-    --text-primary: #EBEBEB; --text-secondary: #7A7A7E; --text-dim: #444448;
+    --text-primary: #EBEBEB; --text-secondary: #8D8D93; --text-dim: #8D8D93; /* DiveraColor.textCaption */
     --coral: #FF5A62; --coral-soft: rgba(255,90,98,0.12); --coral-glow: rgba(255,90,98,0.25);
     --positive: #0FBA82;
     --font-display: 'Galano Grotesque', 'DM Sans', sans-serif;
@@ -129,6 +130,8 @@
   }
   .nav-right a:hover { color: var(--text-primary); }
   .nav-right a.nav-cta, .nav-right a.nav-cta:hover { color: #fff; }
+  .nav-right a.nav-login { color: var(--text-primary); font-weight: 600; padding: 9px 14px; margin-right: -14px; border-radius: 100px; transition: background 0.3s var(--ease-out); }
+  .nav-right a.nav-login:hover { background: rgba(255,255,255,0.06); }
   .nav-cta {
     padding: 9px 22px; border-radius: 100px; background: var(--coral); color: #fff;
     font-size: 13px; font-weight: 600; text-decoration: none;
@@ -166,10 +169,19 @@
   .lang-option .lang-flag { font-size: 16px; line-height: 1; }
   @media (max-width: 768px) {
     nav { padding: 0 20px; }
-    .nav-right a:not(.nav-cta) { display: none; }
+    .nav-right a:not(.nav-cta):not(.nav-login) { display: none; }
+    .nav-right a.nav-login { margin: 0 2px 0 4px; padding: 8px 8px; white-space: nowrap; }
+    .nav-cta { white-space: nowrap; }
     .nav-right { gap: 0; }
     .lang-switcher { order: -1; }
     .lang-dropdown { right: auto; left: 0; }
+  }
+  @media (max-width: 420px) {
+    nav { padding: 0 14px; }
+    .nav-full-logo { height: 22px; }
+    .lang-btn { padding: 6px 8px; gap: 3px; }
+    .nav-right a.nav-login, .nav-right a.nav-cta { font-size: 12px; }
+    .nav-right a.nav-cta { padding: 8px 14px; }
   }
   .hero {
     min-height: 100vh; display: flex; flex-direction: column;
@@ -271,15 +283,14 @@
     .stat { padding: 0 12px; justify-content: center; flex-direction: column; align-items: center; gap: 6px; min-width: 0; }
     .stat:nth-child(odd) { border-left: none; }
   }
-  /* Alternating section bands, like the apps: content on secondaryBackground, primary gaps between */
-  .band { background: var(--bg-secondary); padding: 120px 0; margin-bottom: 140px; position: relative; --surface: var(--bg-tertiary);
-    /* lift grey text for contrast on #1F1F21: iOS DiveraColor.textCaption / textInactive */
-    --text-secondary: #8D8D93; --text-dim: #767676; }
+  /* Section bands cycle through the app background tones (surface -> primary -> secondary) */
+  .band { padding: 120px 0; position: relative; }
+  .band-surface { background: var(--bg-surface); }
+  .band-primary { background: var(--bg-primary); }
+  .band-secondary { background: var(--bg-secondary); --surface: var(--bg-tertiary); }
   .band > * { margin-bottom: 0 !important; }
   .band > .ai-hero, .band > .section, .band > .contact-section, .band > .manifesto { padding-top: 0; padding-bottom: 0; }
-  .band + .section, .band + .manifesto { padding-top: 0; }
-  .band.band-last { margin-bottom: 0; }
-  @media (max-width: 900px) { .band { padding: 72px 0; margin-bottom: 80px; } }
+  @media (max-width: 900px) { .band { padding: 72px 0; } }
   .section { padding: 140px 48px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
   @media (max-width: 768px) { .section { padding: 80px 20px; } .features-header { text-align: left; } .features-header .section-sub { margin: 16px 0 0; } }
   .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2.5px; color: var(--coral); margin-bottom: 20px; }
@@ -564,6 +575,7 @@
         <button class="lang-option" data-lang="ca"><span class="lang-flag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" width="20" height="14" style="border-radius:2px;vertical-align:middle;display:inline-block"><rect width="3" height="2" fill="#FCDD09"/><rect y=".2222" width="3" height=".2222" fill="#DA121A"/><rect y=".6667" width="3" height=".2222" fill="#DA121A"/><rect y="1.1111" width="3" height=".2222" fill="#DA121A"/><rect y="1.5556" width="3" height=".2222" fill="#DA121A"/></svg></span> Català</button>
       </div>
     </div>
+    <a href="https://center.divera.app/" class="nav-login" data-i18n="navLogin">Iniciar sesión</a>
     <a href="https://apps.apple.com/app/id6759156407" target="_blank" rel="noopener" class="nav-cta" data-download-cta data-i18n="navCta">Descargar</a>
   </div>
 </nav>
@@ -608,7 +620,7 @@
 </div>
 
 <!-- AI RECOGNITION -->
-<div class="band">
+<div class="band band-surface">
 <section class="ai-hero">
   <div class="ai-hero-glow"></div>
   <div class="ai-hero-content">
@@ -639,6 +651,7 @@
 </div>
 
 <!-- SHOWCASE: DIVE COMPUTER IMPORT -->
+<div class="band band-primary">
 <div class="showcase-wrap" id="ordenador">
   <div class="showcase showcase-reverse">
     <div class="showcase-text">
@@ -679,24 +692,25 @@
   </div>
   <p class="dc-note reveal reveal-d2" data-i18n="dcNote">Bluetooth disponible en iOS. Android, muy pronto.</p>
 </div>
+</div>
 
 <!-- CITIZEN SCIENCE -->
-<div class="band">
+<div class="band band-secondary">
 <div class="showcase-centered" id="ciencia">
   <div class="section-label reveal" data-i18n="shSciLabel">CIENCIA CIUDADANA</div>
   <h2 class="section-title reveal reveal-d1" data-i18n="shSciTitle">Colaboramos con proyectos que estudian y protegen el mar</h2>
   <p class="section-sub reveal reveal-d2" data-i18n="shSciDesc">Lo que ves ahí abajo es un dato que casi nadie recoge. Si lo autorizas, tus avistamientos con foto viajan a MINKA, la plataforma de biodiversidad marina, bajo licencia abierta. Y cada inmersión con ubicación puede aportar, sin tu nombre, a BlueDOT (Universidad de Bremen / MARUM), que estudia cómo se está calentando el mar: el perfil completo de temperatura y profundidad si la importas desde tu ordenador, o la temperatura del fondo si la registras a mano, y las fotos de las inmersiones públicas.</p>
   <div class="partners reveal reveal-d3">
     <div class="sci-partner">
-      <a class="sci-partner-logo" href="https://minka-sdg.org" target="_blank" rel="noopener"><img src="partner-minka.png" alt="MINKA" class="partner-logo-minka" width="196" height="96" loading="lazy"></a>
+      <a class="sci-partner-logo" href="https://minka-sdg.org" target="_blank" rel="noopener"><img src="partner-minka.png" alt="MINKA" class="partner-logo-minka" width="393" height="192" loading="lazy"></a>
       <span class="metric-label" data-i18n="msc1">Observatorio ciudadano de biodiversidad: tus avistamientos</span>
     </div>
     <div class="sci-partner">
-      <a class="sci-partner-logo" href="https://www.marum.de/en/BlueDOT-2.html" target="_blank" rel="noopener"><img src="partner-bluedot.png" alt="BlueDOT" class="partner-logo-bluedot" width="310" height="96" loading="lazy"></a>
+      <a class="sci-partner-logo" href="https://www.marum.de/en/BlueDOT-2.html" target="_blank" rel="noopener"><img src="partner-bluedot.png" alt="BlueDOT" class="partner-logo-bluedot" width="620" height="192" loading="lazy"></a>
       <span class="metric-label" data-i18n="msc2">Mediciones de temperatura del mar en la costa</span>
     </div>
     <div class="sci-partner">
-      <a class="sci-partner-logo" href="https://www.lifepinnacare.com/" target="_blank" rel="noopener"><img src="partner-lifepinnacare.png" alt="LIFE PinnaCare" class="partner-logo-pinna" width="218" height="96" loading="lazy"></a>
+      <a class="sci-partner-logo" href="https://www.lifepinnacare.com/" target="_blank" rel="noopener"><img src="partner-lifepinnacare.png" alt="LIFE PinnaCare" class="partner-logo-pinna" width="236" height="104" loading="lazy"></a>
       <span class="metric-label" data-i18n="msc3">Proyecto LIFE de la UE para salvar la nacra (<em>Pinna nobilis</em>)</span>
     </div>
   </div>
@@ -704,6 +718,7 @@
 </div>
 
 <!-- FEATURES -->
+<div class="band band-surface">
 <section class="section" id="features">
   <div class="features-header">
     <div class="section-label reveal" data-i18n="fLabel">FUNCIONES</div>
@@ -737,9 +752,10 @@
     </div>
   </div>
 </section>
+</div>
 
 <!-- SHOWCASE: SOCIAL FEED -->
-<div class="band">
+<div class="band band-primary">
 <div class="showcase-wrap">
   <div class="showcase showcase-reverse">
     <div class="showcase-text">
@@ -771,6 +787,7 @@
 </div>
 
 <!-- SHOWCASE: SPECIES -->
+<div class="band band-secondary">
 <div class="showcase-wrap" id="species">
   <div class="showcase">
     <div class="showcase-text">
@@ -799,9 +816,10 @@
     </div>
   </div>
 </div>
+</div>
 
 <!-- DIVE SITES -->
-<div class="band">
+<div class="band band-surface">
 <div class="showcase-centered">
   <div class="section-label reveal" data-i18n="shSiteLabel">EXPLORA EL MUNDO SUBMARINO</div>
   <h2 class="section-title reveal reveal-d1" data-i18n="shSiteTitle">Sitios de buceo por descubrir</h2>
@@ -828,6 +846,7 @@
 </div>
 
 <!-- DIVE CENTERS -->
+<div class="band band-primary">
 <div class="showcase-wrap" id="dive-centers">
   <div class="showcase showcase-reverse">
     <div class="showcase-text">
@@ -853,9 +872,10 @@
     </div>
   </div>
 </div>
+</div>
 
 <!-- SHOWCASE: PLANNED DIVES -->
-<div class="band">
+<div class="band band-secondary">
 <div class="showcase-centered" id="planned-dives">
   <div class="section-label reveal" data-i18n="shPlanLabel">PLANIFICA TU PRÓXIMA INMERSIÓN</div>
   <h2 class="section-title reveal reveal-d1" data-i18n="shPlanTitle">Coordina con tu comunidad, antes de tocar el agua</h2>
@@ -881,6 +901,7 @@
 </div>
 
 <!-- SHOWCASE: TRUST / CERTIFICATIONS -->
+<div class="band band-surface">
 <div class="showcase-wrap" id="profile-trust">
   <div class="showcase">
     <div class="showcase-text">
@@ -908,9 +929,10 @@
     </div>
   </div>
 </div>
+</div>
 
 <!-- DIVE CENTER TEASER — full page lives at /centros -->
-<div class="band">
+<div class="band band-primary">
 <div class="partner-wrap" id="centros-fundadores">
   <div class="partner-content">
     <div class="partner-text">
@@ -935,11 +957,14 @@
 </div>
 
 <!-- MANIFESTO -->
+<div class="band band-secondary">
 <div class="manifesto">
   <p class="reveal" data-i18n="manifesto">Creemos que la comunidad de buceo guarda algo extraordinario: millones de ojos bajo la superficie, cada semana, en todo el mundo. Ahora mismo, la mayor parte de esa observación desaparece después de cada inmersión. Estamos construyendo Divera para cambiar eso. Un lugar donde cada inmersión alimenta el conocimiento, y el conocimiento alimenta la protección. Todavía no hemos llegado. Pero con la comunidad adecuada, lo haremos.</p>
 </div>
+</div>
 
 <!-- BETA JOIN CARD -->
+<div class="band band-surface">
 <div class="beta-card-wrap" id="cta">
   <div class="beta-card reveal">
     <div class="beta-card-visual">
@@ -964,9 +989,10 @@
     </div>
   </div>
 </div>
+</div>
 
 <!-- CONTACT SECTION -->
-<div class="band band-last">
+<div class="band band-primary">
 <div class="contact-section" id="contacto">
   <div class="section-label reveal" data-i18n="contactLabel">CONTACTO</div>
   <h2 class="section-title reveal reveal-d1" data-i18n="contactTitle">¿Tienes alguna pregunta?</h2>
@@ -1052,6 +1078,7 @@
   const translations = {
     en: {
       navCta: 'Download',
+      navLogin: 'Log in',
       dcNavLink: 'For dive centers',
       navContact: 'Contact',
       heroBadge: 'Available on the App Store',
@@ -1173,6 +1200,7 @@
     },
     es: {
       navCta: 'Descargar',
+      navLogin: 'Iniciar sesi\u00f3n',
       dcNavLink: 'Para centros',
       navContact: 'Contacto',
       heroBadge: 'Disponible en el App Store',
@@ -1294,6 +1322,7 @@
     },
     fr: {
       navCta: 'T\u00e9l\u00e9charger',
+      navLogin: 'Se connecter',
       dcNavLink: 'Pour les centres',
       navContact: 'Contact',
       heroBadge: 'Disponible sur l\u2019App Store',
@@ -1415,6 +1444,7 @@
     },
     ca: {
       navCta: 'Descarregar',
+      navLogin: 'Inicia sessi\u00f3',
       dcNavLink: 'Per a centres',
       navContact: 'Contacte',
       heroBadge: 'Disponible a l’App Store',
