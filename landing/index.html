@@ -16,7 +16,7 @@
 <meta property="og:url" content="https://divera.app/">
 <meta property="og:site_name" content="Divera">
 <meta property="og:title" content="Divera · App de Buceo con IA | Apunta con la cámara y te decimos qué pez es">
-<meta property="og:description" content="App de buceo con IA para iOS y Android. Apunta con la cámara bajo el agua y te decimos qué pez es: 46 especies del Mediterráneo, sin cobertura. Fuera del agua, identifica tus fotos y vídeos con un catálogo de 5500+ especies. Gratis en el App Store y Google Play.">
+<meta property="og:description" content="App de buceo con IA para iOS y Android. Apunta con la cámara bajo el agua y te decimos qué pez es: más de 60 especies del Mediterráneo, sin cobertura. Fuera del agua, identifica tus fotos y vídeos con un catálogo de más de 9.000 especies. Gratis en el App Store y Google Play.">
 <meta property="og:image" content="https://divera.app/og-image-v2.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -27,9 +27,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@diveraapp">
 <meta name="twitter:title" content="Divera · Point the camera, we tell you what fish it is">
-<meta name="twitter:description" content="Point the camera underwater and we tell you what fish it is: 46 Mediterranean species, no signal. Out of the water, AI identifies your photos and video against a 5500+ species catalog. Free on the App Store and Google Play.">
+<meta name="twitter:description" content="Point the camera underwater and we tell you what fish it is: more than 60 Mediterranean species, no signal. Out of the water, AI identifies your photos and video against a catalog of more than 9,000 species. Free on the App Store and Google Play.">
 <meta name="twitter:image" content="https://divera.app/og-image-v2.jpg">
-<meta name="description" content="App de buceo con IA para iOS y Android. Apunta con la cámara bajo el agua y te decimos qué pez es: 46 especies del Mediterráneo, sin cobertura. Fuera del agua, identifica tus fotos y vídeos con un catálogo de 5500+ especies. Gratis en el App Store y Google Play.">
+<meta name="description" content="App de buceo con IA para iOS y Android. Apunta con la cámara bajo el agua y te decimos qué pez es: más de 60 especies del Mediterráneo, sin cobertura. Fuera del agua, identifica tus fotos y vídeos con un catálogo de más de 9.000 especies. Gratis en el App Store y Google Play.">
 <title>Divera · App de Buceo con IA | Apunta con la cámara y te decimos qué pez es</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -264,7 +264,7 @@
   .stat-label { font-size: 13px; color: var(--text-dim); font-weight: 500; letter-spacing: 0.3px; text-transform: uppercase; }
   @media (max-width: 768px) {
     .stats { gap: 28px 0; padding: 48px 24px; display: grid; grid-template-columns: 1fr 1fr; }
-    .stat { padding: 0 20px; justify-content: center; }
+    .stat { padding: 0 12px; justify-content: center; flex-direction: column; align-items: center; gap: 6px; min-width: 0; }
     .stat:nth-child(odd) { border-left: none; }
   }
   .section { padding: 140px 48px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
@@ -337,6 +337,17 @@
   .showcase-centered .section-sub { margin: 16px auto 0; max-width: 720px; }
   .showcase-centered .showcase-metrics { display: flex; justify-content: center; gap: 32px; margin-top: 28px; }
   .showcase-centered .metric { border-left: none; padding-left: 0; text-align: center; }
+  .partners { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; max-width: 880px; margin: 36px auto 0; }
+  .partner { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 28px 20px 24px; background: var(--surface); border: 0.5px solid rgba(255,255,255,0.06); border-radius: 20px; text-decoration: none; transition: border-color 0.3s var(--ease-out), transform 0.3s var(--ease-out); }
+  .partner:hover, .partner:focus-visible { border-color: rgba(255,90,98,0.35); transform: translateY(-2px); }
+  .partner:focus-visible { outline: 2px solid var(--coral); outline-offset: 3px; }
+  .partner-logo { height: 44px; display: flex; align-items: center; justify-content: center; }
+  .partner-logo img { height: 100%; width: auto; max-width: 100%; object-fit: contain; display: block; }
+  .partner .metric-label { max-width: 240px; }
+  .partner-logo img.partner-logo-minka { height: 116%; }
+  .partner-logo img.partner-logo-bluedot { height: 86%; }
+  .partner-logo img.partner-logo-pinna { height: 132%; }
+  @media (max-width: 700px) { .partners { grid-template-columns: 1fr; max-width: 360px; gap: 12px; } .partner { padding: 22px 18px 20px; } }
   .showcase-centered .phones-fan { display: flex; align-items: flex-end; justify-content: center; gap: 0; perspective: 1000px; margin-top: 56px; }
   .phones-fan .showcase-phone { width: 280px; }
   .phones-fan .showcase-phone.side { width: 230px; opacity: 0.5; z-index: 1; }
@@ -577,9 +588,9 @@
 
 <!-- STATS -->
 <div class="stats">
-  <div class="stat reveal"><div class="stat-num">5500<span class="stat-accent">+</span></div><div class="stat-label" data-i18n="s1l">Especies en el catálogo</div></div>
+  <div class="stat reveal"><div class="stat-num" data-i18n="s1n">9.000<span class="stat-accent">+</span></div><div class="stat-label" data-i18n="s1l">Especies en el catálogo</div></div>
   <div class="stat reveal reveal-d1"><div class="stat-num">1600<span class="stat-accent">+</span></div><div class="stat-label" data-i18n="s2l">Sitios de buceo</div></div>
-  <div class="stat reveal reveal-d2"><div class="stat-num">46</div><div class="stat-label" data-i18n="s3l">Especies en la cámara</div></div>
+  <div class="stat reveal reveal-d2"><div class="stat-num">60<span class="stat-accent">+</span></div><div class="stat-label" data-i18n="s3l">Especies en la cámara</div></div>
   <div class="stat reveal reveal-d3"><div class="stat-num stat-num-sm">iOS<span class="stat-accent"> · </span>Android</div><div class="stat-label" data-i18n="s4l">Nativa</div></div>
 </div>
 
@@ -590,13 +601,13 @@
     <div>
       <div class="section-label reveal" data-i18n="shAiLabel">RECONOCIMIENTO CON IA</div>
       <h2 class="ai-hero-title reveal reveal-d1" data-i18n="shAiTitle">Apunta con la cámara, <span class="accent">te decimos qué es.</span></span></span></h2>
-      <p class="ai-hero-desc reveal reveal-d2" data-i18n="shAiDesc">Junto con MINKA estamos entrenando nuestro propio modelo de IA, enfocado en reconocer peces del Mediterráneo. Ya detectamos 46 especies, entre ellas sargos, lábridos, meros, escórporas, blenios, gobios, lenguados, lisas, morena, barracuda y lubina.</p>
+      <p class="ai-hero-desc reveal reveal-d2" data-i18n="shAiDesc">Junto con MINKA estamos entrenando nuestro propio modelo de IA, enfocado en reconocer peces del Mediterráneo. Ya detectamos más de 60 especies, entre ellas sargos, lábridos, meros, escórporas, blenios, gobios, lenguados, lisas, morena, barracuda y lubina.</p>
       <p class="ai-hero-extra reveal reveal-d3" data-i18n="shAiExtra">Seguimos sumando especies y mejorando el algoritmo cada semana con las aportaciones de los buceadores. Fuera del agua puedes repasar las especies avistadas e identificar las que falten en las fotos y los vídeos que sacaste.</p>
       <div class="showcase-metrics reveal reveal-d4">
-        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div><div class="metric-label" data-i18n="ma1">46 especies</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div><div class="metric-label" data-i18n="ma1">Más de 60 especies</div></div>
         <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="metric-label" data-i18n="ma2">Funciona sin cobertura</div></div>
         <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div><div class="metric-label" data-i18n="ma3">Se calla si no lo sabe</div></div>
-        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div><div class="metric-label" data-i18n="ma4">5500+ al salir del agua</div></div>
+        <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div><div class="metric-label" data-i18n="ma4">Más de 9.000 al salir del agua</div></div>
       </div>
     </div>
     <div class="ai-hero-visual">
@@ -657,12 +668,21 @@
 <!-- CITIZEN SCIENCE -->
 <div class="showcase-centered" id="ciencia">
   <div class="section-label reveal" data-i18n="shSciLabel">CIENCIA CIUDADANA</div>
-  <h2 class="section-title reveal reveal-d1" data-i18n="shSciTitle">Tu inmersión también sirve al sitio donde buceas</h2>
+  <h2 class="section-title reveal reveal-d1" data-i18n="shSciTitle">Colaboramos con proyectos que estudian y protegen el mar</h2>
   <p class="section-sub reveal reveal-d2" data-i18n="shSciDesc">Lo que ves ahí abajo es un dato que casi nadie recoge. Si lo autorizas, tus avistamientos con foto viajan a MINKA, la plataforma de biodiversidad marina, bajo licencia abierta. Y cada inmersión con ubicación puede aportar, sin tu nombre, a BlueDOT (Universidad de Bremen / MARUM), que estudia cómo se está calentando el mar: el perfil completo de temperatura y profundidad si la importas desde tu ordenador, o la temperatura del fondo si la registras a mano, y las fotos de las inmersiones públicas.</p>
-  <div class="showcase-metrics reveal reveal-d3">
-    <div class="metric"><div class="metric-label" data-i18n="msc1">MINKA · especies con foto</div></div>
-    <div class="metric"><div class="metric-label" data-i18n="msc2">BlueDOT · perfiles de temperatura</div></div>
-    <div class="metric"><div class="metric-label" data-i18n="msc4">Datos de temperatura anónimos</div></div>
+  <div class="partners reveal reveal-d3">
+    <a class="partner" href="https://minka-sdg.org" target="_blank" rel="noopener">
+      <span class="partner-logo"><img src="partner-minka.png" alt="MINKA" class="partner-logo-minka" width="196" height="96" loading="lazy"></span>
+      <span class="metric-label" data-i18n="msc1">Observatorio ciudadano de biodiversidad: tus avistamientos</span>
+    </a>
+    <a class="partner" href="https://www.marum.de/en/BlueDOT-2.html" target="_blank" rel="noopener">
+      <span class="partner-logo"><img src="partner-bluedot.png" alt="BlueDOT" class="partner-logo-bluedot" width="310" height="96" loading="lazy"></span>
+      <span class="metric-label" data-i18n="msc2">Mediciones de temperatura del mar en la costa</span>
+    </a>
+    <a class="partner" href="https://www.lifepinnacare.com/" target="_blank" rel="noopener">
+      <span class="partner-logo"><img src="partner-lifepinnacare.png" alt="LIFE PinnaCare" class="partner-logo-pinna" width="218" height="96" loading="lazy"></span>
+      <span class="metric-label" data-i18n="msc3">Proyecto LIFE de la UE para salvar la nacra (<em>Pinna nobilis</em>)</span>
+    </a>
   </div>
 </div>
 
@@ -680,7 +700,7 @@
     </div>
     <div class="f-row reveal reveal-d1">
       <h3 class="f-title" data-i18n="f2t">Identifica bajo el agua</h3>
-      <p class="f-desc" data-i18n="f2d">Apuntas con la cámara y te decimos qué es: 46 especies del Mediterráneo, sin cobertura y sin subir nada. Fuera del agua repasas lo avistado e identificas lo que falte en tus fotos y vídeos, con el catálogo completo de 5500+ especies.</p>
+      <p class="f-desc" data-i18n="f2d">Apuntas con la cámara y te decimos qué es: más de 60 especies del Mediterráneo, sin cobertura y sin subir nada. Fuera del agua repasas lo avistado e identificas lo que falte en tus fotos y vídeos, con el catálogo completo de más de 9.000 especies.</p>
     </div>
     <div class="f-row reveal reveal-d2">
       <h3 class="f-title" data-i18n="f3t">Planifica con tu comunidad</h3>
@@ -739,7 +759,7 @@
       <h2 class="section-title reveal-left reveal-d1" data-i18n="shTitle">Cada especie tiene una historia</h2>
       <p class="reveal-left reveal-d2" data-i18n="shDesc">Conocimiento bajo la superficie. Estado de conservación, rangos de profundidad, comportamiento, datos curiosos y consejos prácticos para buceadores. Todo para cada especie que encuentres, con datos de la UICN y consejos reales de buceadores.</p>
       <div class="showcase-metrics reveal-left reveal-d3">
-        <div class="metric"><div class="metric-num">5500+</div><div class="metric-label" data-i18n="m1">Especies</div></div>
+        <div class="metric"><div class="metric-num" data-i18n="m1n">9.000+</div><div class="metric-label" data-i18n="m1">Especies</div></div>
         <div class="metric"><div class="metric-num">7</div><div class="metric-label" data-i18n="m2">Categorías UICN</div></div>
         <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><div class="metric-label" data-i18n="m3">Datos curiosos</div></div>
         <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="16 12 12 8 8 12"/><line x1="12" y1="16" x2="12" y2="8"/></svg></div><div class="metric-label" data-i18n="m4">Consejos</div></div>
@@ -1022,7 +1042,7 @@
       f1t: 'Log & Relive',
       f1d: 'Every dive is a complete record. Depth, conditions, photos, species spotted and buddies. A dive history that grows with every outing.',
       f2t: 'Identify underwater',
-      f2d: 'Point the camera and we tell you what it is: 46 Mediterranean species, no signal needed, nothing uploaded. Out of the water you go over what you saw and identify whatever is missing from your photos and videos, against the full 5500+ species catalog.',
+      f2d: 'Point the camera and we tell you what it is: more than 60 Mediterranean species, no signal needed, nothing uploaded. Out of the water you go over what you saw and identify whatever is missing from your photos and videos, against the full catalog of more than 9,000 species.',
       f3t: 'Plan with your community',
       f3d: 'Find buddies for your next dive or post a group plan. Coordinate date, site, gear and dive center from the app. Logistics, sorted before you hit the water.',
       f4t: 'Explore sites & centers',
@@ -1041,9 +1061,9 @@
       f6t: 'Give the water its color back',
       f6d: 'An editor with 7 underwater color-correction filters for photos and video. Water eats red within the first few meters; these filters bring it back without repainting the scene.',
       shSciLabel: 'CITIZEN SCIENCE',
-      shSciTitle: 'Your dive also works for the place you dive in',
+      shSciTitle: 'Collaborating with projects that study and protect the sea',
       shSciDesc: 'What you see down there is data almost nobody collects. If you allow it, your photo-backed sightings travel to MINKA, the marine biodiversity platform, under an open license. And every dive with a location can contribute, without your name, to BlueDOT (University of Bremen / MARUM), which studies how the sea is warming: the full temperature and depth profile if you import it from your computer, or the bottom temperature if you log it by hand, and photos of public dives.',
-      msc1: 'MINKA · species with photo', msc2: 'BlueDOT · temperature profiles', msc4: 'Temperature data anonymous',
+      msc1: 'Citizen biodiversity observatory: your sightings', msc2: 'Coastal sea-temperature measurements', msc3: 'EU LIFE project saving the Mediterranean fan mussel (<em>Pinna nobilis</em>)',
       shLabel: 'LIFE BEYOND WHAT\'S VISIBLE',
       shTitle: 'Every species has a story',
       shDesc: 'Knowledge, beneath the surface. Conservation status, depth ranges, behavior, fun facts, and practical diver tips. Everything about every species you encounter, with IUCN data and real diver insights.',
@@ -1054,9 +1074,9 @@
       mf1: 'Likes & Comments', mf2: 'Follow Divers', mf3: 'Photo Sharing', mf4: 'Activity Feed',
       shAiLabel: 'AI-POWERED RECOGNITION',
       shAiTitle: 'Point the camera, <span class="accent">we tell you what it is.</span>',
-      shAiDesc: 'Together with MINKA we’re training our own AI model, focused on recognising Mediterranean fish. We already detect 46 species, among them seabreams, wrasses, groupers, scorpionfish, blennies, gobies, flounder, mullet, moray, barracuda and seabass.',
+      shAiDesc: 'Together with MINKA we’re training our own AI model, focused on recognising Mediterranean fish. We already detect more than 60 species, among them seabreams, wrasses, groupers, scorpionfish, blennies, gobies, flounder, mullet, moray, barracuda and seabass.',
       shAiExtra: 'We keep adding species and improving the algorithm every week with what divers send in. Out of the water you can go over the species you saw and identify the ones missing from the photos and videos you took.',
-      ma1: 'Photos and video', ma2: 'AI Identification', ma3: 'Post-Dive Tagging', ma4: '5500+ Species',
+      ma1: 'Photos and video', ma2: 'AI Identification', ma3: 'Post-Dive Tagging', ma4: 'More than 9,000 species',
       shSiteLabel: 'EXPLORE THE WORLD BELOW',
       shSiteTitle: 'Dive sites worth discovering',
       shSiteDesc: 'Explore dive sites with conditions, best season and community activity. Plus what almost no app tells you: whether the site sits inside a marine protected area, which rules apply, and which threatened species live there, with their IUCN status.',
@@ -1115,13 +1135,14 @@
       footerAccountDeletion: 'Delete Account',
       footerR: '\u00a9 2026 Divera. All rights reserved.',
       pageTitle: 'Divera · AI Dive App | Point the camera and we tell you what fish it is',
-      pageDesc: 'AI dive app for iOS and Android. Point the camera underwater and we tell you what fish it is: 46 Mediterranean species, no signal needed. Out of the water, identify your photos and videos against a 5500+ species catalog. Free on the App Store and Google Play.',
+      pageDesc: 'AI dive app for iOS and Android. Point the camera underwater and we tell you what fish it is: more than 60 Mediterranean species, no signal needed. Out of the water, identify your photos and videos against a catalog of more than 9,000 species. Free on the App Store and Google Play.',
       s1l: 'Species in the catalog',
+      s1n: '9,000<span class="stat-accent">+</span>', m1n: '9,000+',
       s3l: 'Species in the camera',
-      ma1: '46 species',
+      ma1: 'More than 60 species',
       ma2: 'Works with no signal',
       ma3: 'Silent when unsure',
-      ma4: '5500+ out of the water',
+      ma4: 'More than 9,000 out of the water',
     },
     es: {
       navCta: 'Descargar',
@@ -1142,7 +1163,7 @@
       f1t: 'Registra y revive',
       f1d: 'Cada inmersi\u00f3n es un registro completo. Profundidad, condiciones, fotos, especies avistadas y compa\u00f1eros. Un historial que crece con cada salida.',
       f2t: 'Identifica bajo el agua',
-      f2d: 'Apuntas con la cámara y te decimos qué es: 46 especies del Mediterráneo, sin cobertura y sin subir nada. Fuera del agua repasas lo avistado e identificas lo que falte en tus fotos y vídeos, con el catálogo completo de 5500+ especies.',
+      f2d: 'Apuntas con la cámara y te decimos qué es: más de 60 especies del Mediterráneo, sin cobertura y sin subir nada. Fuera del agua repasas lo avistado e identificas lo que falte en tus fotos y vídeos, con el catálogo completo de más de 9.000 especies.',
       f3t: 'Planifica con tu comunidad',
       f3d: 'Busca compa\u00f1eros para tu pr\u00f3xima inmersi\u00f3n o publica un plan en grupo. Coordina fecha, sitio, equipo y centro desde la app. La log\u00edstica, resuelta antes de tocar el agua.',
       f4t: 'Explora sitios y centros',
@@ -1161,9 +1182,9 @@
       f6t: 'Devu\u00e9lvele el color al agua',
       f6d: 'Editor con 7 filtros de correcci\u00f3n de color subacu\u00e1tico para fotos y v\u00eddeos. El agua se lleva el rojo a partir de los primeros metros; estos filtros lo devuelven sin repintar la escena.',
       shSciLabel: 'CIENCIA CIUDADANA',
-      shSciTitle: 'Tu inmersi\u00f3n tambi\u00e9n sirve al sitio donde buceas',
+      shSciTitle: 'Colaboramos con proyectos que estudian y protegen el mar',
       shSciDesc: 'Lo que ves ah\u00ed abajo es un dato que casi nadie recoge. Si lo autorizas, tus avistamientos con foto viajan a MINKA, la plataforma de biodiversidad marina, bajo licencia abierta. Y cada inmersi\u00f3n con ubicaci\u00f3n puede aportar, sin tu nombre, a BlueDOT (Universidad de Bremen / MARUM), que estudia c\u00f3mo se est\u00e1 calentando el mar: el perfil completo de temperatura y profundidad si la importas desde tu ordenador, o la temperatura del fondo si la registras a mano, y las fotos de las inmersiones p\u00fablicas.',
-      msc1: 'MINKA \u00b7 especies con foto', msc2: 'BlueDOT \u00b7 perfiles de temperatura', msc4: 'Datos de temperatura an\u00f3nimos',
+      msc1: 'Observatorio ciudadano de biodiversidad: tus avistamientos', msc2: 'Mediciones de temperatura del mar en la costa', msc3: 'Proyecto LIFE de la UE para salvar la nacra (<em>Pinna nobilis</em>)',
       shLabel: 'VIDA M\u00c1S ALL\u00c1 DE LO VISIBLE',
       shTitle: 'Cada especie tiene una historia',
       shDesc: 'Conocimiento bajo la superficie. Estado de conservaci\u00f3n, rangos de profundidad, comportamiento, datos curiosos y consejos pr\u00e1cticos para buceadores. Todo para cada especie que encuentres, con datos de la UICN y consejos reales de buceadores.',
@@ -1174,9 +1195,9 @@
       mf1: 'Me gusta y comentarios', mf2: 'Seguir buceadores', mf3: 'Compartir fotos', mf4: 'Feed de actividad',
       shAiLabel: 'RECONOCIMIENTO CON IA',
       shAiTitle: 'Apunta con la cámara, <span class="accent">te decimos qué es.</span>',
-      shAiDesc: 'Junto con MINKA estamos entrenando nuestro propio modelo de IA, enfocado en reconocer peces del Mediterráneo. Ya detectamos 46 especies, entre ellas sargos, lábridos, meros, escórporas, blenios, gobios, lenguados, lisas, morena, barracuda y lubina.',
+      shAiDesc: 'Junto con MINKA estamos entrenando nuestro propio modelo de IA, enfocado en reconocer peces del Mediterráneo. Ya detectamos más de 60 especies, entre ellas sargos, lábridos, meros, escórporas, blenios, gobios, lenguados, lisas, morena, barracuda y lubina.',
       shAiExtra: 'Seguimos sumando especies y mejorando el algoritmo cada semana con las aportaciones de los buceadores. Fuera del agua puedes repasar las especies avistadas e identificar las que falten en las fotos y los vídeos que sacaste.',
-      ma1: 'Fotos y v\u00eddeos', ma2: 'Identificaci\u00f3n IA', ma3: 'Post-inmersi\u00f3n', ma4: '5500+ Especies',
+      ma1: 'Fotos y v\u00eddeos', ma2: 'Identificaci\u00f3n IA', ma3: 'Post-inmersi\u00f3n', ma4: 'Más de 9.000 especies',
       shSiteLabel: 'EXPLORA EL MUNDO SUBMARINO',
       shSiteTitle: 'Sitios de buceo por descubrir',
       shSiteDesc: 'Explora sitios de buceo con condiciones, mejor \u00e9poca y actividad de la comunidad. Y lo que casi ninguna app te cuenta: si el sitio est\u00e1 dentro de un \u00e1rea marina protegida, qu\u00e9 normativa aplica y qu\u00e9 especies amenazadas viven ah\u00ed, con su estado UICN.',
@@ -1235,13 +1256,14 @@
       footerAccountDeletion: 'Eliminar cuenta',
       footerR: '\u00a9 2026 Divera. Todos los derechos reservados.',
       pageTitle: 'Divera · App de Buceo con IA | Apunta con la cámara y te decimos qué pez es | iOS y Android',
-      pageDesc: 'App de buceo con IA para iOS y Android. Apunta con la cámara bajo el agua y te decimos qué pez es: 46 especies del Mediterráneo, sin cobertura. Fuera del agua identifica tus fotos y vídeos con un catálogo de 5500+ especies. Gratis en el App Store y Google Play.',
+      pageDesc: 'App de buceo con IA para iOS y Android. Apunta con la cámara bajo el agua y te decimos qué pez es: más de 60 especies del Mediterráneo, sin cobertura. Fuera del agua identifica tus fotos y vídeos con un catálogo de más de 9.000 especies. Gratis en el App Store y Google Play.',
       s1l: 'Especies en el catálogo',
+      s1n: '9.000<span class="stat-accent">+</span>', m1n: '9.000+',
       s3l: 'Especies en la cámara',
-      ma1: '46 especies',
+      ma1: 'Más de 60 especies',
       ma2: 'Funciona sin cobertura',
       ma3: 'Se calla si no lo sabe',
-      ma4: '5500+ al salir del agua',
+      ma4: 'Más de 9.000 al salir del agua',
     },
     fr: {
       navCta: 'T\u00e9l\u00e9charger',
@@ -1262,7 +1284,7 @@
       f1t: 'Enregistrez et revivez',
       f1d: 'Chaque plong\u00e9e est un registre complet. Profondeur, conditions, photos, esp\u00e8ces observ\u00e9es et bin\u00f4mes. Un historique qui s\u2019enrichit \u00e0 chaque sortie.',
       f2t: 'Identifiez sous l’eau',
-      f2d: 'Pointez la caméra et on vous dit ce que c’est : plus de 30 espèces de Méditerranée, sans réseau et sans rien envoyer. Hors de l’eau, vous revoyez vos observations et identifiez ce qui manque sur vos photos et vidéos, avec le catalogue complet de 5500+ espèces.',
+      f2d: 'Pointez la caméra et on vous dit ce que c’est : plus de 60 espèces de Méditerranée, sans réseau et sans rien envoyer. Hors de l’eau, vous revoyez vos observations et identifiez ce qui manque sur vos photos et vidéos, avec le catalogue complet de plus de 9 000 espèces.',
       f3t: 'Planifiez avec votre communaut\u00e9',
       f3d: 'Trouvez des bin\u00f4mes pour votre prochaine plong\u00e9e ou publiez un plan de groupe. Coordonnez date, site, mat\u00e9riel et centre depuis l\u2019app. La logistique, r\u00e9gl\u00e9e avant de toucher l\u2019eau.',
       f4t: 'Explorez sites et centres',
@@ -1281,9 +1303,9 @@
       f6t: 'Rendez sa couleur \u00e0 l\u2019eau',
       f6d: '\u00c9diteur avec 7 filtres de correction colorim\u00e9trique sous-marine pour photos et vid\u00e9os. L\u2019eau avale le rouge d\u00e8s les premiers m\u00e8tres\u00a0; ces filtres le restituent sans repeindre la sc\u00e8ne.',
       shSciLabel: 'SCIENCE PARTICIPATIVE',
-      shSciTitle: 'Votre plong\u00e9e sert aussi au lieu o\u00f9 vous plongez',
+      shSciTitle: 'Nous collaborons avec des projets qui \u00e9tudient et prot\u00e8gent la mer',
       shSciDesc: 'Ce que vous voyez l\u00e0-dessous est une donn\u00e9e que presque personne ne collecte. Si vous l\u2019autorisez, vos observations avec photo rejoignent MINKA, la plateforme de biodiversit\u00e9 marine, sous licence ouverte. Et chaque plong\u00e9e localis\u00e9e peut contribuer, sans votre nom, \u00e0 BlueDOT (Universit\u00e9 de Br\u00eame / MARUM), qui \u00e9tudie le r\u00e9chauffement de la mer : le profil complet de temp\u00e9rature et de profondeur si vous l\u2019importez depuis votre ordinateur, ou la temp\u00e9rature au fond si vous la saisissez \u00e0 la main, ainsi que les photos des plong\u00e9es publiques.',
-      msc1: 'MINKA \u00b7 esp\u00e8ces avec photo', msc2: 'BlueDOT \u00b7 profils de temp\u00e9rature', msc4: 'Donn\u00e9es de temp\u00e9rature anonymes',
+      msc1: 'Observatoire citoyen de la biodiversit\u00e9 : vos observations', msc2: 'Mesures de temp\u00e9rature de la mer sur la c\u00f4te', msc3: 'Projet LIFE de l\u2019UE pour sauver la grande nacre (<em>Pinna nobilis</em>)',
       shLabel: 'LA VIE AU-DEL\u00c0 DU VISIBLE',
       shTitle: 'Chaque esp\u00e8ce a une histoire',
       shDesc: 'Le savoir, sous la surface. Statut de conservation, profondeurs, comportement, anecdotes et conseils pratiques. Tout sur chaque esp\u00e8ce que vous rencontrez, avec donn\u00e9es UICN et conseils de plongeurs.',
@@ -1294,9 +1316,9 @@
       mf1: 'Likes et commentaires', mf2: 'Suivre des plongeurs', mf3: 'Partage de photos', mf4: 'Fil d\u2019activit\u00e9',
       shAiLabel: 'RECONNAISSANCE PAR IA',
       shAiTitle: 'Pointez la caméra, <span class="accent">on vous dit ce que c’est.</span>',
-      shAiDesc: 'Avec MINKA, nous entraînons notre propre modèle d’IA, axé sur la reconnaissance des poissons de Méditerranée. Nous détectons déjà plus de 30 espèces, dont sars, labres, mérous, rascasses, blennies, gobies, murène, barracuda et bar.',
+      shAiDesc: 'Avec MINKA, nous entraînons notre propre modèle d’IA, axé sur la reconnaissance des poissons de Méditerranée. Nous détectons déjà plus de 60 espèces, dont sars, labres, mérous, rascasses, blennies, gobies, murène, barracuda et bar.',
       shAiExtra: 'Nous ajoutons des espèces et améliorons l’algorithme chaque semaine grâce aux contributions des plongeurs. Hors de l’eau, vous pouvez revoir les espèces observées et identifier celles qui manquent sur vos photos et vidéos.',
-      ma1: 'Photos et vid\u00e9os', ma2: 'Identification IA', ma3: 'Post-plong\u00e9e', ma4: '5500+ Esp\u00e8ces',
+      ma1: 'Photos et vid\u00e9os', ma2: 'Identification IA', ma3: 'Post-plong\u00e9e', ma4: 'Plus de 9 000 esp\u00e8ces',
       shSiteLabel: 'EXPLOREZ LE MONDE SOUS-MARIN',
       shSiteTitle: 'Des sites de plong\u00e9e \u00e0 d\u00e9couvrir',
       shSiteDesc: 'Explorez des sites avec conditions, meilleure saison et activit\u00e9 communautaire. Et ce que presque aucune app ne dit\u00a0: si le site se trouve dans une aire marine prot\u00e9g\u00e9e, quelle r\u00e9glementation s\u2019applique et quelles esp\u00e8ces menac\u00e9es y vivent, avec leur statut UICN.',
@@ -1355,13 +1377,14 @@
       footerAccountDeletion: 'Supprimer le compte',
       footerR: '\u00a9 2026 Divera. Tous droits r\u00e9serv\u00e9s.',
       pageTitle: 'Divera · App de Plongée IA | Pointez la caméra et on vous dit quel poisson c’est',
-      pageDesc: 'App de plongée avec IA pour iOS et Android. Pointez la caméra sous l’eau et on vous dit quel poisson c’est : plus de 30 espèces de Méditerranée, sans réseau. Hors de l’eau, identifiez vos photos et vidéos avec un catalogue de 5500+ espèces. Gratuit sur l’App Store et Google Play.',
+      pageDesc: 'App de plongée avec IA pour iOS et Android. Pointez la caméra sous l’eau et on vous dit quel poisson c’est : plus de 60 espèces de Méditerranée, sans réseau. Hors de l’eau, identifiez vos photos et vidéos avec un catalogue de plus de 9 000 espèces. Gratuit sur l’App Store et Google Play.',
       s1l: 'Espèces au catalogue',
+      s1n: '9 000<span class="stat-accent">+</span>', m1n: '9 000+',
       s3l: 'Espèces dans la caméra',
-      ma1: 'Plus de 30 espèces',
+      ma1: 'Plus de 60 espèces',
       ma2: 'Fonctionne sans réseau',
       ma3: 'Silencieuse si elle doute',
-      ma4: '5500+ hors de l’eau',
+      ma4: 'Plus de 9 000 hors de l’eau',
     },
     ca: {
       navCta: 'Descarregar',
@@ -1382,7 +1405,7 @@
       f1t: 'Registra i reviu',
       f1d: 'Cada immersió és un registre complet. Profunditat, condicions, fotos, espècies avistades i companys. Un historial que creix amb cada sortida.',
       f2t: 'Identifica sota l’aigua',
-      f2d: 'Apuntes amb la càmera i et diem què és: més de 30 espècies de la Mediterrània, sense cobertura i sense pujar res. Fora de l’aigua repasses el que has avistat i identifiques el que falti a les teves fotos i vídeos, amb el catàleg complet de 5500+ espècies.',
+      f2d: 'Apuntes amb la càmera i et diem què és: més de 60 espècies de la Mediterrània, sense cobertura i sense pujar res. Fora de l’aigua repasses el que has avistat i identifiques el que falti a les teves fotos i vídeos, amb el catàleg complet de més de 9.000 espècies.',
       f3t: 'Planifica amb la teva comunitat',
       f3d: 'Busca companys per a la teva pròxima immersió o publica un pla en grup. Coordina data, lloc, equip i centre des de l’app. La logística, resolta abans de tocar l’aigua.',
       f4t: 'Explora llocs i centres',
@@ -1401,9 +1424,9 @@
       f6t: 'Torna-li el color a l’aigua',
       f6d: 'Editor amb 7 filtres de correcció de color subaquàtic per a fotos i vídeos. L’aigua s’empassa el vermell des dels primers metres; aquests filtres el retornen sense repintar l’escena.',
       shSciLabel: 'CIÈNCIA CIUTADANA',
-      shSciTitle: 'La teva immersió també serveix al lloc on busseges',
+      shSciTitle: 'Col·laborem amb projectes que estudien i protegeixen el mar',
       shSciDesc: 'El que veus là sota és una dada que gairebé ningú recull. Si ho autoritzes, els teus avistaments amb foto viatgen a MINKA, la plataforma de biodiversitat marina, amb llicència oberta. I cada immersió amb ubicació pot contribuir, sense el teu nom, a BlueDOT (Universitat de Bremen / MARUM), que estudia com s’escalfa el mar: el perfil complet de temperatura i profunditat si la importes des del teu ordinador, o la temperatura del fons si la registres a mà, i les fotos de les immersions públiques.',
-      msc1: 'MINKA · espècies amb foto', msc2: 'BlueDOT · perfils de temperatura', msc4: 'Dades de temperatura anònimes',
+      msc1: 'Observatori ciutadà de biodiversitat: els teus avistaments', msc2: 'Mesures de temperatura del mar a la costa', msc3: 'Projecte LIFE de la UE per salvar la nacra (<em>Pinna nobilis</em>)',
       shLabel: 'VIDA M\u00c9S ENLL\u00c0 DEL VISIBLE',
       shTitle: 'Cada esp\u00e8cie t\u00e9 una hist\u00f2ria',
       shDesc: 'Coneixement sota la superf\u00edcie. Estat de conservaci\u00f3, profunditats, comportament, dades curioses i consells pr\u00e0ctics. Tot sobre cada esp\u00e8cie que trobis, amb dades de la UICN.',
@@ -1414,9 +1437,9 @@
       mf1: 'M\u2019agrada i comentaris', mf2: 'Seguir bussejadors', mf3: 'Compartir fotos', mf4: 'Feed d\u2019activitat',
       shAiLabel: 'RECONEIXEMENT AMB IA',
       shAiTitle: 'Apunta amb la càmera, <span class="accent">et diem què és.</span>',
-      shAiDesc: 'Juntament amb MINKA estem entrenant el nostre propi model d’IA, enfocat a reconèixer peixos de la Mediterrània. Ja en detectem més de 30 espècies, entre elles sargs, làbrids, meros, escòrpores, bavoses, gòbits, morena, barracuda i llobarro.',
+      shAiDesc: 'Juntament amb MINKA estem entrenant el nostre propi model d’IA, enfocat a reconèixer peixos de la Mediterrània. Ja en detectem més de 60 espècies, entre elles sargs, làbrids, meros, escòrpores, bavoses, gòbits, morena, barracuda i llobarro.',
       shAiExtra: 'Continuem sumant espècies i millorant l’algorisme cada setmana amb les aportacions dels bussejadors. Fora de l’aigua pots repassar les espècies avistades i identificar les que faltin a les fotos i els vídeos que vas fer.',
-      ma1: 'Fotos i vídeos', ma2: 'Identificaci\u00f3 IA', ma3: 'Post-immersi\u00f3', ma4: '5500+ Esp\u00e8cies',
+      ma1: 'Fotos i vídeos', ma2: 'Identificaci\u00f3 IA', ma3: 'Post-immersi\u00f3', ma4: 'Més de 9.000 esp\u00e8cies',
       shSiteLabel: 'EXPLORA EL M\u00d3N SUBMAR\u00cd',
       shSiteTitle: 'Llocs de busseig per descobrir',
       shSiteDesc: 'Explora llocs de busseig amb condicions, millor època i activitat de la comunitat. I el que gairebé cap app t’explica: si el lloc és dins d’una àrea marina protegida, quina normativa s’hi aplica i quines espècies amenaçades hi viuen, amb el seu estat UICN.',
@@ -1475,13 +1498,14 @@
       footerAccountDeletion: 'Eliminar compte',
       footerR: '\u00a9 2026 Divera. Tots els drets reservats.',
       pageTitle: 'Divera · App de Busseig amb IA | Apunta amb la càmera i et diem quin peix és',
-      pageDesc: 'App de busseig amb IA per a iOS i Android. Apunta amb la càmera sota l’aigua i et diem quin peix és: més de 30 espècies de la Mediterrània, sense cobertura. Fora de l’aigua identifica les teves fotos i vídeos amb un catàleg de 5500+ espècies. Gratis a l’App Store i Google Play.',
+      pageDesc: 'App de busseig amb IA per a iOS i Android. Apunta amb la càmera sota l’aigua i et diem quin peix és: més de 60 espècies de la Mediterrània, sense cobertura. Fora de l’aigua identifica les teves fotos i vídeos amb un catàleg de més de 9.000 espècies. Gratis a l’App Store i Google Play.',
       s1l: 'Espècies al catàleg',
+      s1n: '9.000<span class="stat-accent">+</span>', m1n: '9.000+',
       s3l: 'Espècies a la càmera',
-      ma1: 'Més de 30 espècies',
+      ma1: 'Més de 60 espècies',
       ma2: 'Funciona sense cobertura',
       ma3: 'Calla si no ho sap',
-      ma4: '5500+ en sortir de l’aigua',
+      ma4: 'Més de 9.000 en sortir de l’aigua',
     }
   };
 
@@ -1640,7 +1664,7 @@
       "@id": "https://divera.app/#app",
       "name": "Divera",
       "url": "https://divera.app",
-      "description": "Dive companion app with AI-powered fish identification, dive logging, group dive planning, and a directory of dive sites and centers. Identify 5500+ species, plan trips with your community, and discover 1600+ dive sites worldwide.",
+      "description": "Dive companion app with AI-powered fish identification, dive logging, group dive planning, and a directory of dive sites and centers. Identify more than 9,000 species, plan trips with your community, and discover 1600+ dive sites worldwide.",
       "applicationCategory": "SportsApplication",
       "applicationSubCategory": "Diving",
       "operatingSystem": "iOS, Android",
@@ -1655,8 +1679,8 @@
         "url": "https://apps.apple.com/app/id6759156407"
       },
       "featureList": [
-        "On-device fish identification: 46 Mediterranean species named live in the camera, offline",
-        "AI species identification from underwater photos and video against a 5500+ species catalog (online)",
+        "On-device fish identification: more than 60 Mediterranean species named live in the camera, offline",
+        "AI species identification from underwater photos and video against a catalog of more than 9,000 species (online)",
         "Abstains when uncertain: answers at species, genus or family level, or stays silent",
         "Common names sourced from the MINKA citizen-science database",
         "Underwater color-correction filters for photos and video",
@@ -1665,7 +1689,7 @@
         "Group dive planning and trip coordination",
         "Direct messaging and group chat per dive",
         "Diver profile with certifications and dive insurance",
-        "5500+ marine species database with IUCN conservation data",
+        "Database of more than 9,000 marine species with IUCN conservation data",
         "1600+ curated dive sites worldwide",
         "Marine protected area info, local rules and threatened species per dive site",
         "Citizen science contributions to MINKA biodiversity data and BlueDOT ocean temperature profiles",
