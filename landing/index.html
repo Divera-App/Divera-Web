@@ -16,7 +16,9 @@
 <meta property="og:url" content="https://divera.app/">
 <meta property="og:site_name" content="Divera">
 <meta property="og:title" content="Divera · App de Buceo con IA | Apunta con la cámara y te decimos qué pez es">
-<meta property="og:description" content="App de buceo con IA para iOS y Android. Apunta con la cámara bajo el agua y te decimos qué pez es: más de 60 especies del Mediterráneo, sin cobertura. Fuera del agua, identifica tus fotos y vídeos con un catálogo de más de 9.000 especies. Gratis en el App Store y Google Play.">
+<!-- REC_COUNT: og:description, twitter:description and description below repeat the camera count ("60"). -->
+<!-- REC_V17: in these three descriptions, add "y Canarias" / "and the Canary Islands" after "Mediterráneo" / "Mediterranean". -->
+<meta property="og:description" content="App de buceo con IA para iOS y Android. Apunta con la cámara bajo el agua y te decimos qué pez es: más de 60 especies del Mediterráneo, sin cobertura. Fuera del agua, identifica tus fotos y vídeos con un catálogo de más de 9.000 especies. Gratis en el App Store y Google Play. También en la web.">
 <meta property="og:image" content="https://divera.app/og-image-v2.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -27,9 +29,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@diveraapp">
 <meta name="twitter:title" content="Divera · Point the camera, we tell you what fish it is">
-<meta name="twitter:description" content="Point the camera underwater and we tell you what fish it is: more than 60 Mediterranean species, no signal. Out of the water, AI identifies your photos and video against a catalog of more than 9,000 species. Free on the App Store and Google Play.">
+<meta name="twitter:description" content="Point the camera underwater and we tell you what fish it is: more than 60 Mediterranean species, no signal. Out of the water, AI identifies your photos and video against a catalog of more than 9,000 species. Free on the App Store and Google Play. Also on the web.">
 <meta name="twitter:image" content="https://divera.app/og-image-v2.jpg">
-<meta name="description" content="App de buceo con IA para iOS y Android. Apunta con la cámara bajo el agua y te decimos qué pez es: más de 60 especies del Mediterráneo, sin cobertura. Fuera del agua, identifica tus fotos y vídeos con un catálogo de más de 9.000 especies. Gratis en el App Store y Google Play.">
+<meta name="description" content="App de buceo con IA para iOS y Android. Apunta con la cámara bajo el agua y te decimos qué pez es: más de 60 especies del Mediterráneo, sin cobertura. Fuera del agua, identifica tus fotos y vídeos con un catálogo de más de 9.000 especies. Gratis en el App Store y Google Play. También en la web.">
 <title>Divera · App de Buceo con IA | Apunta con la cámara y te decimos qué pez es</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -222,7 +224,7 @@
   .btn-secondary:hover { border-color: var(--coral); background: rgba(255,90,98,0.08); transform: translateY(-3px) scale(1.02); }
   /* Platform chooser (shown when the OS can't be detected, e.g. desktop) */
   .pm-options { display: flex; flex-direction: column; gap: 12px; margin-top: 6px; }
-  .pm-options .btn-primary, .pm-options .btn-secondary { width: 100%; box-sizing: border-box; }
+  .pm-options .btn-primary, .pm-options .btn-secondary, .pm-options .btn-ghost { width: 100%; box-sizing: border-box; }
   /* Modal shell — used by the desktop platform chooser */
   .ab-overlay { position: fixed; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px; background: rgba(13,13,13,0.8); backdrop-filter: blur(8px); }
   .ab-overlay.open { display: flex; }
@@ -282,6 +284,8 @@
     .stats { gap: 28px 0; padding: 48px 24px; display: grid; grid-template-columns: 1fr 1fr; }
     .stat { padding: 0 12px; justify-content: center; flex-direction: column; align-items: center; gap: 6px; min-width: 0; }
     .stat:nth-child(odd) { border-left: none; }
+    /* 4 stats on 2 columns: the 3rd and the platforms stat (widest) each take a full row, so no grid cell stays empty */
+    .stat:nth-child(3), .stat:last-child { grid-column: 1 / -1; border-left: none; }
   }
   /* Section bands cycle through the app background tones (surface -> primary -> secondary) */
   .band { padding: 120px 0; position: relative; }
@@ -380,6 +384,32 @@
   .phones-fan .showcase-phone.side-right { transform: rotateY(-12deg) translateX(-20px) scale(0.92); }
   @media (max-width: 900px) { .phones-fan .showcase-phone { width: 180px; } .phones-fan .showcase-phone.side { width: 140px; } }
   @media (max-width: 900px) { .showcase-centered { padding: 0 20px; margin-bottom: 80px; overflow: hidden; } .showcase-centered .showcase-metrics { gap: 20px; flex-wrap: wrap; justify-content: center; } }
+  /* WHAT DIVERA RECOGNISES — centred festival-poster line-up */
+  .rec { padding: 0 48px; max-width: 1200px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+  .rec .section-sub { margin: 16px auto 0; max-width: 560px; }
+  .rec-lineup { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 40px; max-width: 1040px; margin: 64px auto 0; }
+  .rec-lineup li { position: relative; font-family: var(--font-display); font-size: clamp(22px, 2.6vw, 32px); font-weight: 600; letter-spacing: -0.9px; line-height: 1.25; color: var(--text-primary); transition: color 0.3s; }
+  .rec-lineup li:hover { color: var(--coral); }
+  /* coral dot centred in the 40px gap: right = -(gap/2 + dot/2) */
+  .rec-lineup li::after { content: ''; position: absolute; top: 50%; right: -23px; width: 6px; height: 6px; border-radius: 50%; background: var(--coral); transform: translateY(-50%); pointer-events: none; }
+  .rec-lineup li:last-child::after, .rec-lineup li.rec-eol::after { display: none; }
+  .rec-stat { margin-top: 64px; }
+  .rec-stat .stat-label { margin-top: 6px; }
+  .rec-region { font-size: 13px; color: var(--text-secondary); margin-top: 6px; letter-spacing: -0.1px; }
+  .rec-free { font-size: 16px; color: var(--text-secondary); line-height: 1.65; letter-spacing: -0.2px; max-width: 540px; margin: 64px auto 0; }
+  .rec-free-cta { display: inline-block; margin-top: 24px; }
+  .rec-notes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; max-width: 960px; margin: 64px auto 0; text-align: left; }
+  .rec-notes p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; letter-spacing: -0.1px; }
+  @media (max-width: 900px) { .rec { padding: 0 20px; } .rec-notes { grid-template-columns: 1fr; gap: 16px; } }
+  @media (max-width: 768px) {
+    .rec-lineup { gap: 10px 28px; margin-top: 48px; }
+    .rec-lineup li::after { width: 5px; height: 5px; right: -16.5px; }
+    .rec-stat, .rec-free, .rec-notes { margin-top: 48px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rec .reveal { opacity: 1; transform: none; filter: none; transition: none; }
+    .rec-lineup li { transition: none; }
+  }
   .showcase.showcase-reverse { direction: rtl; }
   .showcase.showcase-reverse > * { direction: ltr; }
   @media (max-width: 900px) { .showcase.showcase-reverse { direction: ltr; } }
@@ -588,9 +618,10 @@
     <div class="launch-badges reveal">
       <a href="https://apps.apple.com/app/id6759156407" target="_blank" rel="noopener" class="launch-badge"><span data-i18n="heroBadgeIos">iOS disponible</span></a>
       <a href="https://play.google.com/store/apps/details?id=com.divera" target="_blank" rel="noopener" class="launch-badge"><span data-i18n="heroBadgeAndroid">Android disponible</span></a>
+      <a href="https://center.divera.app/" class="launch-badge"><span data-i18n="heroBadgeWeb">Web disponible</span></a>
     </div>
     <h1 class="reveal reveal-d1" data-i18n="heroTitle"><span class="accent">La vida,</span> comprendida bajo el agua.</h1>
-    <p class="hero-sub reveal reveal-d2" data-i18n="heroSub">Registra inmersiones, apunta con la cámara para saber qué pez es, planifica salidas con tu comunidad y descubre centros de buceo cerca.</p>
+    <p class="hero-sub reveal reveal-d2" data-i18n="heroSub">Registra inmersiones, apunta con la cámara para saber qué pez es, planifica salidas con tu comunidad y descubre centros de buceo cerca. En el móvil y en la web.</p>
     <div class="hero-actions reveal reveal-d3">
       <a href="https://apps.apple.com/app/id6759156407" target="_blank" rel="noopener" class="btn-primary download-cta" data-download-cta><span data-i18n="dlCta">Descargar la app</span></a>
       <a href="/centros/" class="btn-ghost" data-i18n="heroBtn2">Para centros de buceo</a>
@@ -615,8 +646,9 @@
 <div class="stats">
   <div class="stat reveal"><div class="stat-num" data-i18n="s1n">9.000<span class="stat-accent">+</span></div><div class="stat-label" data-i18n="s1l">Especies en el catálogo</div></div>
   <div class="stat reveal reveal-d1"><div class="stat-num">1600<span class="stat-accent">+</span></div><div class="stat-label" data-i18n="s2l">Sitios de buceo</div></div>
+  <!-- REC_COUNT -->
   <div class="stat reveal reveal-d2"><div class="stat-num">60<span class="stat-accent">+</span></div><div class="stat-label" data-i18n="s3l">Especies en la cámara</div></div>
-  <div class="stat reveal reveal-d3"><div class="stat-num stat-num-sm">iOS<span class="stat-accent"> · </span>Android</div><div class="stat-label" data-i18n="s4l">Nativa</div></div>
+  <div class="stat reveal reveal-d3"><div class="stat-num stat-num-sm">iOS<span class="stat-accent"> · </span>Android<span class="stat-accent"> · </span>Web</div><div class="stat-label" data-i18n="s4l">Móvil y web</div></div>
 </div>
 
 <!-- AI RECOGNITION -->
@@ -627,8 +659,9 @@
     <div>
       <div class="section-label reveal" data-i18n="shAiLabel">RECONOCIMIENTO CON IA</div>
       <h2 class="ai-hero-title reveal reveal-d1" data-i18n="shAiTitle">Apunta con la cámara, <span class="accent">te decimos qué es.</span></span></span></h2>
+      <!-- REC_COUNT: shAiDesc and ma1 repeat the camera count -->
       <p class="ai-hero-desc reveal reveal-d2" data-i18n="shAiDesc">Junto con MINKA estamos entrenando nuestro propio modelo de IA, enfocado en reconocer peces del Mediterráneo. Ya detectamos más de 60 especies, entre ellas sargos, lábridos, meros, escórporas, blenios, gobios, lenguados, lisas, morena, barracuda y lubina.</p>
-      <p class="ai-hero-extra reveal reveal-d3" data-i18n="shAiExtra">Seguimos sumando especies y mejorando el algoritmo cada semana con las aportaciones de los buceadores. Fuera del agua puedes repasar las especies avistadas e identificar las que falten en las fotos y los vídeos que sacaste.</p>
+      <p class="ai-hero-extra reveal reveal-d3" data-i18n="shAiExtra">Seguimos sumando especies y mejorando el algoritmo cada semana con las aportaciones de los buceadores. Fuera del agua puedes repasar las especies avistadas e identificar las que falten en las fotos y los vídeos que sacaste. Y desde la web, sube tus fotos, elige las mejores y mira qué peces reconoce Divera en ellas desde el ordenador.</p>
       <div class="showcase-metrics reveal reveal-d4">
         <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div><div class="metric-label" data-i18n="ma1">Más de 60 especies</div></div>
         <div class="metric"><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="metric-label" data-i18n="ma2">Funciona sin cobertura</div></div>
@@ -646,6 +679,42 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+</div>
+
+<!-- WHAT DIVERA RECOGNISES — groups must match the shipped camera model (cls_v16) -->
+<div class="band band-secondary">
+<section class="rec" id="reconoce">
+  <div class="section-label reveal" data-i18n="recLabel">ESPECIES EN LA CÁMARA</div>
+  <h2 class="section-title reveal reveal-d1" data-i18n="recTitle">Qué reconoce Divera</h2>
+  <!-- REC_V17: add "y Canarias" / "and the Canary Islands" / "et des Canaries" to recSub -->
+  <p class="section-sub reveal reveal-d2" data-i18n="recSub">La cámara de Divera reconoce especies del Mediterráneo, en cinco tipos de animal. Desde la web también puedes ver qué peces reconoce en tus fotos.</p>
+  <ul class="rec-lineup reveal reveal-d3">
+    <!-- REC_V17: recG1 becomes "Peces, rayas y tiburones" when the angel shark class ships -->
+    <li data-i18n="recG1">Peces y rayas</li>
+    <li data-i18n="recG2">Pulpos y sepias</li>
+    <li data-i18n="recG3">Nudibranquios, estrellas, erizos, holoturias y langostas</li>
+    <!-- REC_V17: recG4 becomes "Gorgonias y corales" -->
+    <li data-i18n="recG4">Gorgonias</li>
+    <!-- REC_V17: recG5 becomes "Esponjas, anémonas y gusanos tubícolas" -->
+    <li data-i18n="recG5">Anémonas y ascidias</li>
+  </ul>
+  <div class="rec-stat reveal reveal-d4">
+    <!-- REC_COUNT: single editable count token -->
+    <div class="stat-num"><span data-rec-count>60</span><span class="stat-accent">+</span></div>
+    <div class="stat-label" data-i18n="recCountLabel">Especies y grupos</div>
+    <!-- REC_V17: add "y Canarias" / "and the Canary Islands" / "et des Canaries" to recRegion -->
+    <p class="rec-region" data-i18n="recRegion">Mediterráneo</p>
+  </div>
+  <div class="reveal reveal-d5">
+    <p class="rec-free" data-i18n="recFreeText">El modelo es gratuito. Queremos que llegue a más proyectos de ciencia y conservación marina: si quieres usarlo, saber más o colaborar, escríbenos.</p>
+    <a href="#contacto" class="btn-ghost rec-free-cta" data-i18n="recFreeCta">Contactar</a>
+  </div>
+  <div class="rec-notes reveal reveal-d5">
+    <p data-i18n="recNoteGroups">Algunas respuestas nombran un grupo, no una especie —por ejemplo, la barracuda (<em>Sphyraena</em>) o la lisa (<em>Mugilidae</em>)— cuando la foto no permite distinguirlas.</p>
+    <p data-i18n="recNoteSafety">La detección en directo funciona en tu móvil. La IA puede equivocarse: no la uses nunca para decidir si un animal es peligroso o si se puede tocar.</p>
+    <p data-i18n="recNoteMinka">Los avistamientos confirmados se pueden compartir con MINKA para la ciencia.</p>
   </div>
 </section>
 </div>
@@ -732,7 +801,12 @@
     </div>
     <div class="f-row reveal reveal-d1">
       <h3 class="f-title" data-i18n="f2t">Identifica bajo el agua</h3>
+      <!-- REC_COUNT -->
       <p class="f-desc" data-i18n="f2d">Apuntas con la cámara y te decimos qué es: más de 60 especies del Mediterráneo, sin cobertura y sin subir nada. Fuera del agua repasas lo avistado e identificas lo que falte en tus fotos y vídeos, con el catálogo completo de más de 9.000 especies.</p>
+    </div>
+    <div class="f-row reveal reveal-d1">
+      <h3 class="f-title" data-i18n="f7t">También en la web</h3>
+      <p class="f-desc" data-i18n="f7d">Entra con tu cuenta desde el ordenador: sube tus inmersiones y tus fotos, elige las mejores y mira qué peces reconoce Divera en ellas, en pantalla grande. <a class="center-cta-link" href="https://center.divera.app/">Abrir Divera web</a></p>
     </div>
     <div class="f-row reveal reveal-d2">
       <h3 class="f-title" data-i18n="f3t">Planifica con tu comunidad</h3>
@@ -977,6 +1051,7 @@
       <h2 class="beta-title" data-i18n="ctaTitle">Una forma más consciente de conocer el océano</h2>
       <p class="beta-desc" data-i18n="ctaSub">Descarga Divera gratis y empieza a registrar tus inmersiones hoy.</p>
       <a href="https://apps.apple.com/app/id6759156407" target="_blank" rel="noopener" class="torch-btn download-cta" data-download-cta><span data-i18n="dlCta">Descargar la app</span></a>
+      <p class="site-callout"><a href="https://center.divera.app/" data-i18n="ctaWebLink">O abre Divera en la web →</a></p>
       <div class="cta-divider beta-divider"><span data-i18n="ctaDivider">o suscríbete a las novedades</span></div>
       <form class="email-form" id="waitlistForm">
         <input type="email" name="email" class="email-input" placeholder="tu@email.com" required data-i18n-placeholder="emailPlaceholder">
@@ -1040,10 +1115,11 @@
   <div class="ab-modal" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
     <button class="ab-close" id="pmClose" aria-label="Cerrar">&times;</button>
     <h3 class="ab-title" id="pmTitle" data-i18n="pmTitle">Elige tu plataforma</h3>
-    <p class="ab-sub" data-i18n="pmSub">Divera está disponible en iOS y Android.</p>
+    <p class="ab-sub" data-i18n="pmSub">Divera está disponible en iOS, Android y en la web.</p>
     <div class="pm-options">
       <a href="https://apps.apple.com/app/id6759156407" target="_blank" rel="noopener" class="btn-primary"><span class="btn-apple-icon"><svg viewBox="0 0 24 24"><path d="M17.5 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2.1-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.4 1-4.3 2.6-1.8 3.2-.5 7.9 1.3 10.4.9 1.3 1.9 2.6 3.3 2.6 1.3 0 1.8-.9 3.4-.9 1.6 0 2.1.9 3.4.8 1.4 0 2.3-1.3 3.2-2.6 1-1.5 1.4-2.9 1.4-3-.1 0-2.7-1-2.9-3.9zM15 4.8c.7-.9 1.2-2.1 1.1-3.3-1 0-2.3.7-3.1 1.5-.7.8-1.3 2-1.1 3.2 1.1.1 2.3-.6 3.1-1.4z"/></svg></span><span data-i18n="heroBtn1">Descargar en App Store</span></a>
       <a href="https://play.google.com/store/apps/details?id=com.divera" target="_blank" rel="noopener" class="btn-secondary" id="pmAndroid"><span class="btn-google-icon"><svg viewBox="0 0 24 24"><path d="M3.6 2.3c-.3.3-.5.7-.5 1.3v16.8c0 .6.2 1 .5 1.3l.1.1L13 12.1v-.2L3.7 2.2l-.1.1zm12.6 13l-3.1-3.1v-.2l3.1-3.1.1.1 3.7 2.1c1 .6 1 1.6 0 2.2l-3.7 2.1-.1-.1zM15.9 15.6l-3.2-3.2-9.1 9.1c.4.4 1 .4 1.6.1l10.7-6zM15.9 8.4 5.2 2.4c-.6-.3-1.2-.3-1.6.1l9.1 9.1 3.2-3.2z"/></svg></span><span data-i18n="heroBtnAndroid">Descargar en Google Play</span></a>
+      <a href="https://center.divera.app/" class="btn-ghost" data-i18n="pmWeb">Abrir Divera en la web</a>
     </div>
   </div>
 </div>
@@ -1084,12 +1160,13 @@
       heroBadge: 'Available on the App Store',
       heroBadgeIos: 'iOS available',
       heroBadgeAndroid: 'Android available',
+      heroBadgeWeb: 'Web available',
       heroTitle: '<span class="accent">Life,</span> understood underwater.',
-      heroSub: 'Log dives, point the camera to know what fish it is, plan trips with your community, and find dive centers nearby.',
+      heroSub: 'Log dives, point the camera to know what fish it is, plan trips with your community, and find dive centers nearby. On your phone and on the web.',
       heroBtn1: 'Download on App Store',
       heroBtnAndroid: 'Download on Google Play',
       heroBtn2: 'For Dive Centers',
-      s1l: 'Species', s2l: 'Dive Sites', s3l: 'Identification', s4l: 'Native',
+      s1l: 'Species', s2l: 'Dive Sites', s3l: 'Identification', s4l: 'Mobile and web',
       fLabel: 'FEATURES',
       fTitle: 'Turn observation into understanding',
       fSub: 'Built by divers, for those who want to look closer and learn deeper.',
@@ -1129,7 +1206,7 @@
       shAiLabel: 'AI-POWERED RECOGNITION',
       shAiTitle: 'Point the camera, <span class="accent">we tell you what it is.</span>',
       shAiDesc: 'Together with MINKA we’re training our own AI model, focused on recognising Mediterranean fish. We already detect more than 60 species, among them seabreams, wrasses, groupers, scorpionfish, blennies, gobies, flounder, mullet, moray, barracuda and seabass.',
-      shAiExtra: 'We keep adding species and improving the algorithm every week with what divers send in. Out of the water you can go over the species you saw and identify the ones missing from the photos and videos you took.',
+      shAiExtra: 'We keep adding species and improving the algorithm every week with what divers send in. Out of the water you can go over the species you saw and identify the ones missing from the photos and videos you took. And on the web, upload your photos, pick the best ones and see which fish Divera recognises in them, from your computer.',
       ma1: 'Photos and video', ma2: 'AI Identification', ma3: 'Post-Dive Tagging', ma4: 'More than 9,000 species',
       shSiteLabel: 'EXPLORE THE WORLD BELOW',
       shSiteTitle: 'Dive sites worth discovering',
@@ -1167,7 +1244,9 @@
       ctaAndroid: 'Download on Google Play',
       dlCta: 'Download the app',
       pmTitle: 'Choose your platform',
-      pmSub: 'Divera is available on iOS and Android.',
+      pmSub: 'Divera is available on iOS, Android and on the web.',
+      pmWeb: 'Open Divera on the web',
+      ctaWebLink: 'Or open Divera on the web \u2192',
       ctaDivider: 'or subscribe for updates',
       emailBtn: 'Subscribe',
       emailNote: 'No spam. Only meaningful updates.',
@@ -1189,11 +1268,31 @@
       footerAccountDeletion: 'Delete Account',
       footerR: '\u00a9 2026 Divera. All rights reserved.',
       pageTitle: 'Divera · AI Dive App | Point the camera and we tell you what fish it is',
-      pageDesc: 'AI dive app for iOS and Android. Point the camera underwater and we tell you what fish it is: more than 60 Mediterranean species, no signal needed. Out of the water, identify your photos and videos against a catalog of more than 9,000 species. Free on the App Store and Google Play.',
+      pageDesc: 'AI dive app for iOS and Android. Point the camera underwater and we tell you what fish it is: more than 60 Mediterranean species, no signal needed. Out of the water, identify your photos and videos against a catalog of more than 9,000 species. Free on the App Store and Google Play. Also on the web.',
       s1l: 'Species in the catalog',
       s1n: '9,000<span class="stat-accent">+</span>', m1n: '9,000+',
       s3l: 'Species in the camera',
+      // REC_COUNT: shAiDesc, f2d, ma1 and pageDesc repeat the camera count
       ma1: 'More than 60 species',
+      recLabel: 'SPECIES IN THE CAMERA',
+      recTitle: 'What Divera recognises',
+      // REC_V17: recSub + recRegion add "and the Canary Islands"
+      recSub: 'Divera\'s camera recognises Mediterranean species across five kinds of animal. On the web, you can also see which fish it recognises in your photos.',
+      // REC_V17: recG1 "Fish, rays and sharks"; recG4 "Gorgonians and corals"; recG5 "Sponges, anemones and tube worms"
+      recG1: 'Fish and rays',
+      recG2: 'Octopus and cuttlefish',
+      recG3: 'Nudibranchs, sea stars, urchins, sea cucumbers and lobsters',
+      recG4: 'Gorgonians',
+      recG5: 'Anemones and sea squirts',
+      recCountLabel: 'Species and groups',
+      recRegion: 'Mediterranean',
+      recFreeText: 'The model is free. We want it to reach more marine science and conservation projects: if you\'d like to use it, learn more or collaborate, get in touch.',
+      recFreeCta: 'Get in touch',
+      recNoteGroups: 'Some answers name a group, not a species \u2014 for example barracuda (<em>Sphyraena</em>) or mullet (<em>Mugilidae</em>) \u2014 when the photo can\'t tell them apart.',
+      recNoteSafety: 'Live detection runs on your phone. The AI can be wrong: never use it to decide whether an animal is dangerous or whether you can touch it.',
+      recNoteMinka: 'Confirmed sightings can be shared with MINKA for science.',
+      f7t: 'Also on the web',
+      f7d: 'Sign in with your account from your computer: upload your dives and photos, pick the best ones and see which fish Divera recognises in them, on a big screen. <a class="center-cta-link" href="https://center.divera.app/">Open Divera web</a>',
       ma2: 'Works with no signal',
       ma3: 'Silent when unsure',
       ma4: 'More than 9,000 out of the water',
@@ -1206,12 +1305,13 @@
       heroBadge: 'Disponible en el App Store',
       heroBadgeIos: 'iOS disponible',
       heroBadgeAndroid: 'Android disponible',
+      heroBadgeWeb: 'Web disponible',
       heroTitle: '<span class="accent">La vida,</span> comprendida bajo el agua.',
-      heroSub: 'Registra inmersiones, apunta con la cámara para saber qué pez es, planifica salidas con tu comunidad y descubre centros de buceo cerca.',
+      heroSub: 'Registra inmersiones, apunta con la cámara para saber qué pez es, planifica salidas con tu comunidad y descubre centros de buceo cerca. En el móvil y en la web.',
       heroBtn1: 'Descargar en App Store',
       heroBtnAndroid: 'Descargar en Google Play',
       heroBtn2: 'Para centros de buceo',
-      s1l: 'Especies', s2l: 'Sitios de buceo', s3l: 'Identificaci\u00f3n', s4l: 'Nativa',
+      s1l: 'Especies', s2l: 'Sitios de buceo', s3l: 'Identificaci\u00f3n', s4l: 'Móvil y web',
       fLabel: 'FUNCIONES',
       fTitle: 'De la observaci\u00f3n a la comprensi\u00f3n',
       fSub: 'Creada por buceadores, para quienes quieren mirar m\u00e1s de cerca y aprender en profundidad.',
@@ -1251,7 +1351,7 @@
       shAiLabel: 'RECONOCIMIENTO CON IA',
       shAiTitle: 'Apunta con la cámara, <span class="accent">te decimos qué es.</span>',
       shAiDesc: 'Junto con MINKA estamos entrenando nuestro propio modelo de IA, enfocado en reconocer peces del Mediterráneo. Ya detectamos más de 60 especies, entre ellas sargos, lábridos, meros, escórporas, blenios, gobios, lenguados, lisas, morena, barracuda y lubina.',
-      shAiExtra: 'Seguimos sumando especies y mejorando el algoritmo cada semana con las aportaciones de los buceadores. Fuera del agua puedes repasar las especies avistadas e identificar las que falten en las fotos y los vídeos que sacaste.',
+      shAiExtra: 'Seguimos sumando especies y mejorando el algoritmo cada semana con las aportaciones de los buceadores. Fuera del agua puedes repasar las especies avistadas e identificar las que falten en las fotos y los vídeos que sacaste. Y desde la web, sube tus fotos, elige las mejores y mira qué peces reconoce Divera en ellas desde el ordenador.',
       ma1: 'Fotos y v\u00eddeos', ma2: 'Identificaci\u00f3n IA', ma3: 'Post-inmersi\u00f3n', ma4: 'Más de 9.000 especies',
       shSiteLabel: 'EXPLORA EL MUNDO SUBMARINO',
       shSiteTitle: 'Sitios de buceo por descubrir',
@@ -1289,7 +1389,9 @@
       ctaAndroid: 'Descargar en Google Play',
       dlCta: 'Descargar la app',
       pmTitle: 'Elige tu plataforma',
-      pmSub: 'Divera está disponible en iOS y Android.',
+      pmSub: 'Divera está disponible en iOS, Android y en la web.',
+      pmWeb: 'Abrir Divera en la web',
+      ctaWebLink: 'O abre Divera en la web \u2192',
       ctaDivider: 'o suscr\u00edbete a las novedades',
       emailBtn: 'Suscribirme',
       emailNote: 'Sin spam. Solo novedades importantes.',
@@ -1311,12 +1413,32 @@
       footerAccountDeletion: 'Eliminar cuenta',
       footerR: '\u00a9 2026 Divera. Todos los derechos reservados.',
       pageTitle: 'Divera · App de Buceo con IA | Apunta con la cámara y te decimos qué pez es | iOS y Android',
-      pageDesc: 'App de buceo con IA para iOS y Android. Apunta con la cámara bajo el agua y te decimos qué pez es: más de 60 especies del Mediterráneo, sin cobertura. Fuera del agua identifica tus fotos y vídeos con un catálogo de más de 9.000 especies. Gratis en el App Store y Google Play.',
+      pageDesc: 'App de buceo con IA para iOS y Android. Apunta con la cámara bajo el agua y te decimos qué pez es: más de 60 especies del Mediterráneo, sin cobertura. Fuera del agua identifica tus fotos y vídeos con un catálogo de más de 9.000 especies. Gratis en el App Store y Google Play. También en la web.',
       s1l: 'Especies en el catálogo',
       s1n: '9.000<span class="stat-accent">+</span>', m1n: '9.000+',
       s3l: 'Especies en la cámara',
+      // REC_COUNT: shAiDesc, f2d, ma1 and pageDesc repeat the camera count
       ma1: 'Más de 60 especies',
       ma2: 'Funciona sin cobertura',
+      recLabel: 'ESPECIES EN LA CÁMARA',
+      recTitle: 'Qué reconoce Divera',
+      // REC_V17: recSub + recRegion add "y Canarias" (recSub: "especies del Mediterráneo y de Canarias")
+      recSub: 'La cámara de Divera reconoce especies del Mediterráneo, en cinco tipos de animal. Desde la web también puedes ver qué peces reconoce en tus fotos.',
+      // REC_V17: recG1 "Peces, rayas y tiburones"; recG4 "Gorgonias y corales"; recG5 "Esponjas, anémonas y gusanos tubícolas"
+      recG1: 'Peces y rayas',
+      recG2: 'Pulpos y sepias',
+      recG3: 'Nudibranquios, estrellas, erizos, holoturias y langostas',
+      recG4: 'Gorgonias',
+      recG5: 'Anémonas y ascidias',
+      recCountLabel: 'Especies y grupos',
+      recRegion: 'Mediterráneo',
+      recFreeText: 'El modelo es gratuito. Queremos que llegue a más proyectos de ciencia y conservación marina: si quieres usarlo, saber más o colaborar, escríbenos.',
+      recFreeCta: 'Contactar',
+      recNoteGroups: 'Algunas respuestas nombran un grupo, no una especie \u2014por ejemplo, la barracuda (<em>Sphyraena</em>) o la lisa (<em>Mugilidae</em>)\u2014 cuando la foto no permite distinguirlas.',
+      recNoteSafety: 'La detección en directo funciona en tu móvil. La IA puede equivocarse: no la uses nunca para decidir si un animal es peligroso o si se puede tocar.',
+      recNoteMinka: 'Los avistamientos confirmados se pueden compartir con MINKA para la ciencia.',
+      f7t: 'También en la web',
+      f7d: 'Entra con tu cuenta desde el ordenador: sube tus inmersiones y tus fotos, elige las mejores y mira qué peces reconoce Divera en ellas, en pantalla grande. <a class="center-cta-link" href="https://center.divera.app/">Abrir Divera web</a>',
       ma3: 'Se calla si no lo sabe',
       ma4: 'Más de 9.000 al salir del agua',
     },
@@ -1328,12 +1450,13 @@
       heroBadge: 'Disponible sur l\u2019App Store',
       heroBadgeIos: 'iOS disponible',
       heroBadgeAndroid: 'Android disponible',
+      heroBadgeWeb: 'Web disponible',
       heroTitle: '<span class="accent">La vie,</span> comprise sous l\u2019eau.',
-      heroSub: 'Enregistrez vos plongées, pointez la caméra pour savoir quel poisson c’est, planifiez vos sorties avec votre communauté et trouvez des centres de plongée à proximité.',
+      heroSub: 'Enregistrez vos plongées, pointez la caméra pour savoir quel poisson c’est, planifiez vos sorties avec votre communauté et trouvez des centres de plongée à proximité. Sur mobile et sur le web.',
       heroBtn1: 'T\u00e9l\u00e9charger sur l\u2019App Store',
       heroBtnAndroid: 'T\u00e9l\u00e9charger sur Google Play',
       heroBtn2: 'Pour les centres de plong\u00e9e',
-      s1l: 'Esp\u00e8ces', s2l: 'Sites de plong\u00e9e', s3l: 'Identification', s4l: 'Native',
+      s1l: 'Esp\u00e8ces', s2l: 'Sites de plong\u00e9e', s3l: 'Identification', s4l: 'Mobile et web',
       fLabel: 'FONCTIONNALIT\u00c9S',
       fTitle: 'De l\u2019observation \u00e0 la compr\u00e9hension',
       fSub: 'Con\u00e7ue par des plongeurs, pour ceux qui veulent regarder de plus pr\u00e8s et apprendre en profondeur.',
@@ -1373,7 +1496,7 @@
       shAiLabel: 'RECONNAISSANCE PAR IA',
       shAiTitle: 'Pointez la caméra, <span class="accent">on vous dit ce que c’est.</span>',
       shAiDesc: 'Avec MINKA, nous entraînons notre propre modèle d’IA, axé sur la reconnaissance des poissons de Méditerranée. Nous détectons déjà plus de 60 espèces, dont sars, labres, mérous, rascasses, blennies, gobies, murène, barracuda et bar.',
-      shAiExtra: 'Nous ajoutons des espèces et améliorons l’algorithme chaque semaine grâce aux contributions des plongeurs. Hors de l’eau, vous pouvez revoir les espèces observées et identifier celles qui manquent sur vos photos et vidéos.',
+      shAiExtra: 'Nous ajoutons des espèces et améliorons l’algorithme chaque semaine grâce aux contributions des plongeurs. Hors de l’eau, vous pouvez revoir les espèces observées et identifier celles qui manquent sur vos photos et vidéos. Et sur le web, importez vos photos, choisissez les meilleures et voyez quels poissons Divera y reconnaît, depuis votre ordinateur.',
       ma1: 'Photos et vid\u00e9os', ma2: 'Identification IA', ma3: 'Post-plong\u00e9e', ma4: 'Plus de 9 000 esp\u00e8ces',
       shSiteLabel: 'EXPLOREZ LE MONDE SOUS-MARIN',
       shSiteTitle: 'Des sites de plong\u00e9e \u00e0 d\u00e9couvrir',
@@ -1411,7 +1534,9 @@
       ctaAndroid: 'T\u00e9l\u00e9charger sur Google Play',
       dlCta: 'Télécharger l’app',
       pmTitle: 'Choisissez votre plateforme',
-      pmSub: 'Divera est disponible sur iOS et Android.',
+      pmSub: 'Divera est disponible sur iOS, Android et sur le web.',
+      pmWeb: 'Ouvrir Divera sur le web',
+      ctaWebLink: 'Ou ouvrez Divera sur le web \u2192',
       ctaDivider: 'ou inscrivez-vous aux actualit\u00e9s',
       emailBtn: 'S\u2019abonner',
       emailNote: 'Pas de spam. Uniquement des nouvelles importantes.',
@@ -1433,11 +1558,31 @@
       footerAccountDeletion: 'Supprimer le compte',
       footerR: '\u00a9 2026 Divera. Tous droits r\u00e9serv\u00e9s.',
       pageTitle: 'Divera · App de Plongée IA | Pointez la caméra et on vous dit quel poisson c’est',
-      pageDesc: 'App de plongée avec IA pour iOS et Android. Pointez la caméra sous l’eau et on vous dit quel poisson c’est : plus de 60 espèces de Méditerranée, sans réseau. Hors de l’eau, identifiez vos photos et vidéos avec un catalogue de plus de 9 000 espèces. Gratuit sur l’App Store et Google Play.',
+      pageDesc: 'App de plongée avec IA pour iOS et Android. Pointez la caméra sous l’eau et on vous dit quel poisson c’est : plus de 60 espèces de Méditerranée, sans réseau. Hors de l’eau, identifiez vos photos et vidéos avec un catalogue de plus de 9 000 espèces. Gratuit sur l’App Store et Google Play. Aussi sur le web.',
       s1l: 'Espèces au catalogue',
       s1n: '9 000<span class="stat-accent">+</span>', m1n: '9 000+',
       s3l: 'Espèces dans la caméra',
+      // REC_COUNT: shAiDesc, f2d, ma1 and pageDesc repeat the camera count
       ma1: 'Plus de 60 espèces',
+      recLabel: 'ESPÈCES DANS LA CAMÉRA',
+      recTitle: 'Ce que Divera reconnaît',
+      // REC_V17: recSub + recRegion add "et des Canaries"
+      recSub: 'La caméra de Divera reconnaît des espèces de Méditerranée, réparties en cinq types d’animaux. Sur le web, vous pouvez aussi voir quels poissons elle reconnaît sur vos photos.',
+      // REC_V17: recG1 "Poissons, raies et requins"; recG4 "Gorgones et coraux"; recG5 "Éponges, anémones et vers tubicoles"
+      recG1: 'Poissons et raies',
+      recG2: 'Poulpes et seiches',
+      recG3: 'Nudibranches, étoiles de mer, oursins, holothuries et langoustes',
+      recG4: 'Gorgones',
+      recG5: 'Anémones et ascidies',
+      recCountLabel: 'Espèces et groupes',
+      recRegion: 'Méditerranée',
+      recFreeText: 'Le modèle est gratuit. Nous voulons qu’il serve à davantage de projets de science et de conservation marines\u00a0: si vous souhaitez l’utiliser, en savoir plus ou collaborer, écrivez-nous.',
+      recFreeCta: 'Nous écrire',
+      recNoteGroups: 'Certaines réponses nomment un groupe, pas une espèce \u2014 par exemple le barracuda (<em>Sphyraena</em>) ou le mulet (<em>Mugilidae</em>) \u2014 quand la photo ne permet pas de les distinguer.',
+      recNoteSafety: 'La détection en direct fonctionne sur votre téléphone. L’IA peut se tromper\u00a0: ne l’utilisez jamais pour décider si un animal est dangereux ou si on peut le toucher.',
+      recNoteMinka: 'Les observations confirmées peuvent être partagées avec MINKA pour la science.',
+      f7t: 'Aussi sur le web',
+      f7d: 'Connectez-vous avec votre compte depuis l’ordinateur : importez vos plongées et vos photos, choisissez les meilleures et voyez quels poissons Divera y reconnaît, sur grand écran. <a class="center-cta-link" href="https://center.divera.app/">Ouvrir Divera web</a>',
       ma2: 'Fonctionne sans réseau',
       ma3: 'Silencieuse si elle doute',
       ma4: 'Plus de 9 000 hors de l’eau',
@@ -1613,7 +1758,26 @@
     if (ogTitle && tx.pageTitle) ogTitle.setAttribute('content', tx.pageTitle);
     const ogDesc = document.querySelector('meta[property="og:description"]');
     if (ogDesc && tx.pageDesc) ogDesc.setAttribute('content', tx.pageDesc);
+    markLineupEnds();
   }
+
+  // REC LINE-UP: hide the coral dot after the last item of each wrapped line.
+  // offsetTop is layout-only, so the .reveal transform does not affect it.
+  function markLineupEnds() {
+    document.querySelectorAll('.rec-lineup').forEach(ul => {
+      const items = Array.from(ul.children);
+      items.forEach((li, i) => {
+        const next = items[i + 1];
+        li.classList.toggle('rec-eol', !next || next.offsetTop > li.offsetTop + 2);
+      });
+    });
+  }
+  let lineupRaf = 0;
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(lineupRaf);
+    lineupRaf = requestAnimationFrame(markLineupEnds);
+  });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(markLineupEnds);
 
   function setLang(lang) {
     currentLang = lang;
@@ -1724,7 +1888,7 @@
       "description": "Dive companion app with AI-powered fish identification, dive logging, group dive planning, and a directory of dive sites and centers. Identify more than 9,000 species, plan trips with your community, and discover 1600+ dive sites worldwide.",
       "applicationCategory": "SportsApplication",
       "applicationSubCategory": "Diving",
-      "operatingSystem": "iOS, Android",
+      "operatingSystem": "iOS, Android, Web",
       "inLanguage": ["es", "en", "fr", "ca"],
       "installUrl": ["https://apps.apple.com/app/id6759156407", "https://play.google.com/store/apps/details?id=com.divera"],
       "downloadUrl": ["https://apps.apple.com/app/id6759156407", "https://play.google.com/store/apps/details?id=com.divera"],
@@ -1741,6 +1905,7 @@
         "Abstains when uncertain: answers at species, genus or family level, or stays silent",
         "Common names sourced from the MINKA citizen-science database",
         "Underwater color-correction filters for photos and video",
+        "Web app: upload dives and photos from the browser, pick the best shots and see the fish species Divera recognises in them",
         "Dive computer import from .fit and .uddf dive files",
         "Dive log and dive journal for scuba and snorkeling",
         "Group dive planning and trip coordination",
