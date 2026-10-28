@@ -111,9 +111,9 @@
 
 <main class="content">
   <h1>Privacy Policy</h1>
-  <p class="last-updated">Last updated: October 1, 2026</p>
+  <p class="last-updated">Last updated: October 27, 2026</p>
 
-  <p>Divera ("we", "us", or "our") operates the Divera mobile application for iOS and Android (the "App") and the website divera.app. This Privacy Policy explains what personal data we collect, how we use it, who we share it with, and the choices you have. Your use of Divera is also governed by our <a href="/terms">Terms of Service</a>.</p>
+  <p>Divera ("we", "us", or "our") operates the Divera mobile application for iOS and Android (the "App"), the web dashboard at center.divera.app (the "Dashboard") and the website divera.app. This Privacy Policy explains what personal data we collect, how we use it, who we share it with, and the choices you have. Your use of Divera is also governed by our <a href="/terms">Terms of Service</a>.</p>
 
   <h2>1. Information We Collect</h2>
   <p>We collect the information you give us: your name, email address, profile picture, certifications and insurance details you add, dive logs, photos and other content you share.</p>
@@ -123,6 +123,9 @@
   <p>If you import dives from a dive computer or a file, we store the dive data it contains, such as depth, temperature, time and location.</p>
   <p><strong>Analytics and crash reports</strong></p>
   <p>If you accept analytics, we also collect app usage events and crash reports together with basic device information (model, operating system and app version). You can turn this off at any time in the App settings.</p>
+  <p>On the Dashboard, analytics runs only if you click Accept on the consent banner; if you reject it, no analytics is loaded. If you accept, we collect the pages you visit as general page types (never booking, dive or other IDs), the actions you take (for example, signing in or logging a dive) and a pseudonymous user ID (your account ID, never your name or email). We also collect error reports from the Dashboard, with technical details of the error, browser information and your account ID.</p>
+  <p><strong>Cookies</strong></p>
+  <p>The Dashboard stores your analytics choice in your browser's local storage. Analytics cookies (<code>_ga</code>, <code>_ga_*</code>) are set only after you accept analytics. We do not use advertising cookies.</p>
 
   <h2>2. How We Use Your Information</h2>
   <ul>
@@ -132,6 +135,9 @@
     <li>To manage bookings you make with dive centers</li>
     <li>To send you service communications (e.g., account verification)</li>
     <li>With your consent, to analyze usage and fix crashes</li>
+    <li>To find and fix errors in the Dashboard, based on our legitimate interest in keeping it working (GDPR Art. 6(1)(f))</li>
+    <li>If you accept analytics on the Dashboard, to understand how it is used and improve it, based on your consent (GDPR Art. 6(1)(a))</li>
+    <li>We never use analytics or error data for advertising</li>
     <li>To send dive temperature records, and the photos of your public dives, to BlueDOT for scientific research, without your name, based on our legitimate interest in supporting scientific research (GDPR Art. 6(1)(f)); you can object by switching it off, as described in section 5</li>
   </ul>
 
@@ -152,13 +158,14 @@
     <li><strong>Railway:</strong> hosts our API servers.</li>
     <li><strong>Google Gemini:</strong> when you ask Divera to identify species in a photo or video, the image is sent to our servers and to Google's Gemini API to return an identification. Live species detection in the camera runs on your device and sends no images. We do not use your photos to train AI models without your explicit consent.</li>
     <li><strong>Firebase Analytics and Crashlytics (Google):</strong> usage analytics and crash reports, only if you accept them.</li>
-    <li><strong>Sentry:</strong> error monitoring on our servers.</li>
+    <li><strong>Firebase Analytics (Google Analytics 4), by Google Ireland Limited and Google LLC:</strong> Dashboard usage analytics, only if you accept them. Advertising features and ad signals are off.</li>
+    <li><strong>Sentry (Functional Software, Inc.):</strong> error monitoring on our servers and on the Dashboard. Sentry receives no analytics.</li>
     <li><strong>Resend:</strong> sends account and service emails.</li>
     <li><strong>Stripe:</strong> online payments to dive centers that accept them. Card details are entered with Stripe and never reach Divera.</li>
     <li><strong>Apple Maps and Google Maps:</strong> display maps; the map provider receives your IP address and the map area you view.</li>
     <li><strong>Sign in with Apple and Google Sign-In:</strong> only if you choose to sign in with them.</li>
   </ul>
-  <p>Some providers may process data outside the European Economic Area. When they do, the transfer is covered by appropriate safeguards, such as the EU Standard Contractual Clauses.</p>
+  <p>Some providers may process data outside the European Economic Area. When they do, the transfer is covered by appropriate safeguards, such as the EU Standard Contractual Clauses. Google LLC and Functional Software, Inc. may process data in the United States; these transfers rely on the EU-US Data Privacy Framework or the EU Standard Contractual Clauses.</p>
 
   <h2>5. Citizen Science and Research Partners</h2>
   <p>Divera lets you contribute to marine citizen-science projects. We currently work with two partners:</p>
@@ -177,11 +184,11 @@
   <p>We implement industry-standard security measures, including encryption in transit and at rest, to protect your information from unauthorized access, alteration, or destruction. However, no method of electronic transmission or storage is 100% secure.</p>
 
   <h2>8. Your Rights</h2>
-  <p>You can access, correct, obtain a copy of, or delete your personal data, object to or restrict certain processing (for example, you can switch off sharing with BlueDOT in the App), and withdraw any consent at any time, including analytics, which you can turn off in the App settings. You can delete your account from the App settings or on our <a href="/account-deletion">account deletion page</a>. To exercise any other right, contact us at the address below.</p>
+  <p>You can access, correct, obtain a copy of, or delete your personal data, object to or restrict certain processing (for example, you can switch off sharing with BlueDOT in the App), and withdraw any consent at any time, including analytics, which you can turn off in the App settings and, on the Dashboard, with the "Analytics settings" link at the bottom of the Dashboard. You can delete your account from the App settings or on our <a href="/account-deletion">account deletion page</a>. To exercise any other right, contact us at the address below.</p>
   <p>If you are in the EU, you can also lodge a complaint with your data protection authority; in Spain, the Agencia Española de Protección de Datos (<a href="https://www.aepd.es" rel="noopener">aepd.es</a>).</p>
 
   <h2>9. Data Retention</h2>
-  <p>We keep your data while your account is active. When you delete your account, we delete your personal data within 30 days, except data we are required by law to keep and data already shared with citizen-science partners (see section 5). Analytics and crash data are kept by Firebase for a limited period under its retention settings.</p>
+  <p>We keep your data while your account is active. When you delete your account, we delete your personal data within 30 days, except data we are required by law to keep and data already shared with citizen-science partners (see section 5). Analytics and crash data are kept by Firebase for a limited period under its retention settings. Dashboard analytics and error data are kept by Google (Firebase Analytics) and Sentry for a limited period under their retention settings.</p>
 
   <h2>10. Children's Privacy</h2>
   <p>The App is not intended for children under 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal data, please contact us and we will delete it.</p>
