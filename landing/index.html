@@ -34,7 +34,7 @@
 <title>Divera · App de Buceo con IA | Apunta con la cámara y te decimos qué pez es</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&family=Quicksand:wght@500;600&display=swap" rel="stylesheet">
 <style>
   @font-face {
     font-family: 'Galano Grotesque';
@@ -364,7 +364,8 @@
   .showcase-centered .section-sub { margin: 16px auto 0; max-width: 720px; }
   .showcase-centered .showcase-metrics { display: flex; justify-content: center; gap: 32px; margin-top: 28px; }
   .showcase-centered .metric { border-left: none; padding-left: 0; text-align: center; }
-  .partners { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px; max-width: 1120px; margin: 48px auto 0; }
+  .partners { display: flex; flex-wrap: wrap; justify-content: center; gap: 48px 40px; max-width: 1000px; margin: 48px auto 0; }
+  .partners > .sci-partner { flex: 0 1 280px; min-width: 0; }
   .sci-partner { display: flex; flex-direction: column; align-items: center; gap: 18px; }
   .sci-partner-logo { height: 72px; display: flex; align-items: center; justify-content: center; border-radius: 12px; transition: transform 0.3s var(--ease-out), opacity 0.3s; }
   .sci-partner-logo:hover { transform: translateY(-2px); opacity: 0.85; }
@@ -376,9 +377,11 @@
   .sci-partner-logo-wordmark { gap: 10px; color: var(--text-primary); text-decoration: none; }
   .sci-partner-logo img.partner-logo-seaslug { height: 100%; width: auto; flex: none; }
   .partner-wordmark { font-family: var(--font-display); font-weight: 800; font-size: 17px; letter-spacing: 0.04em; white-space: nowrap; }
+  .sci-partner-logo img.partner-logo-innoceana { height: 92%; width: auto; flex: none; }
+  .partner-wordmark-innoceana { display: flex; flex-direction: column; align-items: center; font-family: 'Quicksand', var(--font-display); font-weight: 500; font-size: 30px; line-height: 1; letter-spacing: 0.01em; white-space: nowrap; }
+  .partner-wordmark-innoceana small { font-weight: 600; font-size: 10px; letter-spacing: 0.42em; margin: 4px -0.42em 0 0; }
   .sci-partner .metric-label { max-width: 260px; }
-  @media (max-width: 1000px) { .partners { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 700px) { .partners { grid-template-columns: 1fr; gap: 40px; margin-top: 40px; } .sci-partner-logo { height: 60px; } }
+  @media (max-width: 700px) { .partners { gap: 40px; margin-top: 40px; } .partners > .sci-partner { flex-basis: 100%; } .sci-partner-logo { height: 60px; } .partner-wordmark-innoceana { font-size: 26px; } }
   .showcase-centered .phones-fan { display: flex; align-items: flex-end; justify-content: center; gap: 0; perspective: 1000px; margin-top: 56px; }
   .phones-fan .showcase-phone { width: 280px; }
   .phones-fan .showcase-phone.side { width: 230px; opacity: 0.5; z-index: 1; }
@@ -759,7 +762,7 @@
 <div class="showcase-centered" id="ciencia">
   <div class="section-label reveal" data-i18n="shSciLabel">CIENCIA CIUDADANA</div>
   <h2 class="section-title reveal reveal-d1" data-i18n="shSciTitle">Colaboramos con proyectos que estudian y protegen el mar</h2>
-  <p class="section-sub reveal reveal-d2" data-i18n="shSciDesc">Lo que ves ahí abajo es un dato que casi nadie recoge. Si lo autorizas, tus avistamientos con foto viajan a MINKA, la plataforma de biodiversidad marina, bajo licencia abierta. Y cada inmersión con ubicación puede aportar, sin tu nombre, a BlueDOT (Universidad de Bremen / MARUM), que estudia cómo se está calentando el mar: el perfil completo de temperatura y profundidad si la importas desde tu ordenador, o la temperatura del fondo si la registras a mano, y las fotos de las inmersiones públicas. Los avistamientos de babosas marinas con foto también pueden ir a SEASLUG.WORLD, la base de datos mundial de fotos de babosas marinas revisada por Nobuhiko Kimoto: Divera prepara la foto y los datos, y tú los publicas desde tu propia cuenta. Divera no envía nada.</p>
+  <p class="section-sub reveal reveal-d2" data-i18n="shSciDesc">Lo que ves ahí abajo es un dato que casi nadie recoge. Si lo autorizas, tus avistamientos con foto viajan a MINKA, la plataforma de biodiversidad marina, bajo licencia abierta. Y cada inmersión con ubicación puede aportar, sin tu nombre, a BlueDOT (Universidad de Bremen / MARUM), que estudia cómo se está calentando el mar: el perfil completo de temperatura y profundidad si la importas desde tu ordenador, o la temperatura del fondo si la registras a mano, y las fotos de las inmersiones públicas. Los avistamientos de babosas marinas con foto también pueden ir a SEASLUG.WORLD, la base de datos mundial de fotos de babosas marinas revisada por Nobuhiko Kimoto: Divera prepara la foto y los datos, y tú los publicas desde tu propia cuenta. Divera no envía nada. Y estamos trabajando con Innoceana, en Tenerife, para mostrar en el mapa los sebadales de la isla.</p>
   <div class="partners reveal reveal-d3">
     <div class="sci-partner">
       <a class="sci-partner-logo" href="https://minka-sdg.org" target="_blank" rel="noopener"><img src="partner-minka.png" alt="MINKA" class="partner-logo-minka" width="393" height="192" loading="lazy"></a>
@@ -776,6 +779,10 @@
     <div class="sci-partner">
       <a class="sci-partner-logo sci-partner-logo-wordmark" href="https://seaslug.world/" target="_blank" rel="noopener"><img src="partner-seaslugworld.png" alt="SEASLUG.WORLD" class="partner-logo-seaslug" width="192" height="192" loading="lazy"><span class="partner-wordmark" aria-hidden="true">SEASLUG.WORLD</span></a>
       <span class="metric-label" data-i18n="msc4">Base de datos mundial de fotos de babosas marinas, revisada</span>
+    </div>
+    <div class="sci-partner">
+      <a class="sci-partner-logo sci-partner-logo-wordmark" href="https://innoceana.org/" target="_blank" rel="noopener"><img src="partner-innoceana.png" alt="Innoceana Tenerife" class="partner-logo-innoceana" width="225" height="192" loading="lazy"><span class="partner-wordmark-innoceana" aria-hidden="true">innoceana<small>TENERIFE</small></span></a>
+      <span class="metric-label" data-i18n="msc5">Conservación marina en Tenerife</span>
     </div>
   </div>
 </div>
@@ -1188,8 +1195,8 @@
       f6d: 'An editor with 7 underwater color-correction filters for photos and video. Water eats red within the first few meters; these filters bring it back without repainting the scene.',
       shSciLabel: 'CITIZEN SCIENCE',
       shSciTitle: 'Collaborating with projects that study and protect the sea',
-      shSciDesc: 'What you see down there is data almost nobody collects. If you allow it, your photo-backed sightings travel to MINKA, the marine biodiversity platform, under an open license. And every dive with a location can contribute, without your name, to BlueDOT (University of Bremen / MARUM), which studies how the sea is warming: the full temperature and depth profile if you import it from your computer, or the bottom temperature if you log it by hand, and photos of public dives. Sea-slug sightings with a photo can also go to SEASLUG.WORLD, Nobuhiko Kimoto’s reviewed worldwide sea-slug photo database: Divera prepares the photo and data, and you post them yourself from your own account. Divera sends nothing.',
-      msc1: 'Citizen biodiversity observatory: your sightings', msc2: 'Coastal sea-temperature measurements', msc3: 'EU LIFE project saving the Mediterranean fan mussel (<em>Pinna nobilis</em>)', msc4: 'Reviewed worldwide sea-slug photo database',
+      shSciDesc: 'What you see down there is data almost nobody collects. If you allow it, your photo-backed sightings travel to MINKA, the marine biodiversity platform, under an open license. And every dive with a location can contribute, without your name, to BlueDOT (University of Bremen / MARUM), which studies how the sea is warming: the full temperature and depth profile if you import it from your computer, or the bottom temperature if you log it by hand, and photos of public dives. Sea-slug sightings with a photo can also go to SEASLUG.WORLD, Nobuhiko Kimoto’s reviewed worldwide sea-slug photo database: Divera prepares the photo and data, and you post them yourself from your own account. Divera sends nothing. We’re also working with Innoceana in Tenerife to show the island’s seagrass meadows (sebadales) on the map.',
+      msc1: 'Citizen biodiversity observatory: your sightings', msc2: 'Coastal sea-temperature measurements', msc3: 'EU LIFE project saving the Mediterranean fan mussel (<em>Pinna nobilis</em>)', msc4: 'Reviewed worldwide sea-slug photo database', msc5: 'Marine conservation in Tenerife',
       shLabel: 'LIFE BEYOND WHAT\'S VISIBLE',
       shTitle: 'Every species has a story',
       shDesc: 'Knowledge, beneath the surface. Conservation status, depth ranges, behavior, fun facts, and practical diver tips. Everything about every species you encounter, with IUCN data and real diver insights.',
@@ -1328,8 +1335,8 @@
       f6d: 'Editor con 7 filtros de correcci\u00f3n de color subacu\u00e1tico para fotos y v\u00eddeos. El agua se lleva el rojo a partir de los primeros metros; estos filtros lo devuelven sin repintar la escena.',
       shSciLabel: 'CIENCIA CIUDADANA',
       shSciTitle: 'Colaboramos con proyectos que estudian y protegen el mar',
-      shSciDesc: 'Lo que ves ah\u00ed abajo es un dato que casi nadie recoge. Si lo autorizas, tus avistamientos con foto viajan a MINKA, la plataforma de biodiversidad marina, bajo licencia abierta. Y cada inmersi\u00f3n con ubicaci\u00f3n puede aportar, sin tu nombre, a BlueDOT (Universidad de Bremen / MARUM), que estudia c\u00f3mo se est\u00e1 calentando el mar: el perfil completo de temperatura y profundidad si la importas desde tu ordenador, o la temperatura del fondo si la registras a mano, y las fotos de las inmersiones p\u00fablicas. Los avistamientos de babosas marinas con foto también pueden ir a SEASLUG.WORLD, la base de datos mundial de fotos de babosas marinas revisada por Nobuhiko Kimoto: Divera prepara la foto y los datos, y tú los publicas desde tu propia cuenta. Divera no envía nada.',
-      msc1: 'Observatorio ciudadano de biodiversidad: tus avistamientos', msc2: 'Mediciones de temperatura del mar en la costa', msc3: 'Proyecto LIFE de la UE para salvar la nacra (<em>Pinna nobilis</em>)', msc4: 'Base de datos mundial de fotos de babosas marinas, revisada',
+      shSciDesc: 'Lo que ves ah\u00ed abajo es un dato que casi nadie recoge. Si lo autorizas, tus avistamientos con foto viajan a MINKA, la plataforma de biodiversidad marina, bajo licencia abierta. Y cada inmersi\u00f3n con ubicaci\u00f3n puede aportar, sin tu nombre, a BlueDOT (Universidad de Bremen / MARUM), que estudia c\u00f3mo se est\u00e1 calentando el mar: el perfil completo de temperatura y profundidad si la importas desde tu ordenador, o la temperatura del fondo si la registras a mano, y las fotos de las inmersiones p\u00fablicas. Los avistamientos de babosas marinas con foto también pueden ir a SEASLUG.WORLD, la base de datos mundial de fotos de babosas marinas revisada por Nobuhiko Kimoto: Divera prepara la foto y los datos, y tú los publicas desde tu propia cuenta. Divera no envía nada. Y estamos trabajando con Innoceana, en Tenerife, para mostrar en el mapa los sebadales de la isla.',
+      msc1: 'Observatorio ciudadano de biodiversidad: tus avistamientos', msc2: 'Mediciones de temperatura del mar en la costa', msc3: 'Proyecto LIFE de la UE para salvar la nacra (<em>Pinna nobilis</em>)', msc4: 'Base de datos mundial de fotos de babosas marinas, revisada', msc5: 'Conservación marina en Tenerife',
       shLabel: 'VIDA M\u00c1S ALL\u00c1 DE LO VISIBLE',
       shTitle: 'Cada especie tiene una historia',
       shDesc: 'Conocimiento bajo la superficie. Estado de conservaci\u00f3n, rangos de profundidad, comportamiento, datos curiosos y consejos pr\u00e1cticos para buceadores. Todo para cada especie que encuentres, con datos de la UICN y consejos reales de buceadores.',
@@ -1468,8 +1475,8 @@
       f6d: '\u00c9diteur avec 7 filtres de correction colorim\u00e9trique sous-marine pour photos et vid\u00e9os. L\u2019eau avale le rouge d\u00e8s les premiers m\u00e8tres\u00a0; ces filtres le restituent sans repeindre la sc\u00e8ne.',
       shSciLabel: 'SCIENCE PARTICIPATIVE',
       shSciTitle: 'Nous collaborons avec des projets qui \u00e9tudient et prot\u00e8gent la mer',
-      shSciDesc: 'Ce que vous voyez l\u00e0-dessous est une donn\u00e9e que presque personne ne collecte. Si vous l\u2019autorisez, vos observations avec photo rejoignent MINKA, la plateforme de biodiversit\u00e9 marine, sous licence ouverte. Et chaque plong\u00e9e localis\u00e9e peut contribuer, sans votre nom, \u00e0 BlueDOT (Universit\u00e9 de Br\u00eame / MARUM), qui \u00e9tudie le r\u00e9chauffement de la mer : le profil complet de temp\u00e9rature et de profondeur si vous l\u2019importez depuis votre ordinateur, ou la temp\u00e9rature au fond si vous la saisissez \u00e0 la main, ainsi que les photos des plong\u00e9es publiques. Les observations de limaces de mer avec photo peuvent aussi aller sur SEASLUG.WORLD, la base mondiale de photos de limaces de mer vérifiée par Nobuhiko Kimoto : Divera prépare la photo et les données, et vous les publiez vous-même depuis votre propre compte. Divera n’envoie rien.',
-      msc1: 'Observatoire citoyen de la biodiversit\u00e9 : vos observations', msc2: 'Mesures de temp\u00e9rature de la mer sur la c\u00f4te', msc3: 'Projet LIFE de l\u2019UE pour sauver la grande nacre (<em>Pinna nobilis</em>)', msc4: 'Base mondiale de photos de limaces de mer, vérifiée',
+      shSciDesc: 'Ce que vous voyez l\u00e0-dessous est une donn\u00e9e que presque personne ne collecte. Si vous l\u2019autorisez, vos observations avec photo rejoignent MINKA, la plateforme de biodiversit\u00e9 marine, sous licence ouverte. Et chaque plong\u00e9e localis\u00e9e peut contribuer, sans votre nom, \u00e0 BlueDOT (Universit\u00e9 de Br\u00eame / MARUM), qui \u00e9tudie le r\u00e9chauffement de la mer : le profil complet de temp\u00e9rature et de profondeur si vous l\u2019importez depuis votre ordinateur, ou la temp\u00e9rature au fond si vous la saisissez \u00e0 la main, ainsi que les photos des plong\u00e9es publiques. Les observations de limaces de mer avec photo peuvent aussi aller sur SEASLUG.WORLD, la base mondiale de photos de limaces de mer vérifiée par Nobuhiko Kimoto : Divera prépare la photo et les données, et vous les publiez vous-même depuis votre propre compte. Divera n’envoie rien. Nous travaillons aussi avec Innoceana, à Tenerife, pour afficher sur la carte les herbiers marins (sebadales) de l’île.',
+      msc1: 'Observatoire citoyen de la biodiversit\u00e9 : vos observations', msc2: 'Mesures de temp\u00e9rature de la mer sur la c\u00f4te', msc3: 'Projet LIFE de l\u2019UE pour sauver la grande nacre (<em>Pinna nobilis</em>)', msc4: 'Base mondiale de photos de limaces de mer, vérifiée', msc5: 'Conservation marine à Tenerife',
       shLabel: 'LA VIE AU-DEL\u00c0 DU VISIBLE',
       shTitle: 'Chaque esp\u00e8ce a une histoire',
       shDesc: 'Le savoir, sous la surface. Statut de conservation, profondeurs, comportement, anecdotes et conseils pratiques. Tout sur chaque esp\u00e8ce que vous rencontrez, avec donn\u00e9es UICN et conseils de plongeurs.',
@@ -1608,8 +1615,8 @@
       f6d: 'Editor amb 7 filtres de correcció de color subaquàtic per a fotos i vídeos. L’aigua s’empassa el vermell des dels primers metres; aquests filtres el retornen sense repintar l’escena.',
       shSciLabel: 'CIÈNCIA CIUTADANA',
       shSciTitle: 'Col·laborem amb projectes que estudien i protegeixen el mar',
-      shSciDesc: 'El que veus là sota és una dada que gairebé ningú recull. Si ho autoritzes, els teus avistaments amb foto viatgen a MINKA, la plataforma de biodiversitat marina, amb llicència oberta. I cada immersió amb ubicació pot contribuir, sense el teu nom, a BlueDOT (Universitat de Bremen / MARUM), que estudia com s’escalfa el mar: el perfil complet de temperatura i profunditat si la importes des del teu ordinador, o la temperatura del fons si la registres a mà, i les fotos de les immersions públiques. Els avistaments de llimacs de mar amb foto també poden anar a SEASLUG.WORLD, la base de dades mundial de fotos de llimacs de mar revisada per Nobuhiko Kimoto: Divera prepara la foto i les dades, i tu les publiques des del teu propi compte. Divera no envia res.',
-      msc1: 'Observatori ciutadà de biodiversitat: els teus avistaments', msc2: 'Mesures de temperatura del mar a la costa', msc3: 'Projecte LIFE de la UE per salvar la nacra (<em>Pinna nobilis</em>)', msc4: 'Base de dades mundial de fotos de llimacs de mar, revisada',
+      shSciDesc: 'El que veus là sota és una dada que gairebé ningú recull. Si ho autoritzes, els teus avistaments amb foto viatgen a MINKA, la plataforma de biodiversitat marina, amb llicència oberta. I cada immersió amb ubicació pot contribuir, sense el teu nom, a BlueDOT (Universitat de Bremen / MARUM), que estudia com s’escalfa el mar: el perfil complet de temperatura i profunditat si la importes des del teu ordinador, o la temperatura del fons si la registres a mà, i les fotos de les immersions públiques. Els avistaments de llimacs de mar amb foto també poden anar a SEASLUG.WORLD, la base de dades mundial de fotos de llimacs de mar revisada per Nobuhiko Kimoto: Divera prepara la foto i les dades, i tu les publiques des del teu propi compte. Divera no envia res. També estem treballant amb Innoceana, a Tenerife, per mostrar al mapa els prats marins (sebadales) de l’illa.',
+      msc1: 'Observatori ciutadà de biodiversitat: els teus avistaments', msc2: 'Mesures de temperatura del mar a la costa', msc3: 'Projecte LIFE de la UE per salvar la nacra (<em>Pinna nobilis</em>)', msc4: 'Base de dades mundial de fotos de llimacs de mar, revisada', msc5: 'Conservació marina a Tenerife',
       shLabel: 'VIDA M\u00c9S ENLL\u00c0 DEL VISIBLE',
       shTitle: 'Cada esp\u00e8cie t\u00e9 una hist\u00f2ria',
       shDesc: 'Coneixement sota la superf\u00edcie. Estat de conservaci\u00f3, profunditats, comportament, dades curioses i consells pr\u00e0ctics. Tot sobre cada esp\u00e8cie que trobis, amb dades de la UICN.',
