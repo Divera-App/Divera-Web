@@ -35,6 +35,16 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://divera.app/credits</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://divera.app/credits"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://divera.app/credits?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://divera.app/credits?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://divera.app/credits?lang=ca"/>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
     <loc>https://divera.app/account-deletion</loc>
     <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
