@@ -2,6 +2,25 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<script>
+  // OLD HOME ANCHORS: sections moved to /app/, /ciencia/ and /centros/. Runs in <head>
+  // so the home never paints before the redirect. Single source of the map.
+  (function () {
+    var moved = {
+      '#ordenador': '/app/#registro', '#features': '/app/', '#species': '/app/#especies',
+      '#dive-centers': '/app/#sitios', '#planned-dives': '/app/#planificar', '#profile-trust': '/app/#perfil',
+      '#ciencia': '/ciencia/', '#reconoce': '/ciencia/#reconoce', '#centros-fundadores': '/centros/'
+    };
+    function go() {
+      var to = moved[location.hash];
+      if (!to) return;
+      var i = to.indexOf('#');
+      location.replace((i < 0 ? to : to.slice(0, i)) + location.search + (i < 0 ? '' : to.slice(i)));
+    }
+    go();
+    window.addEventListener('hashchange', go);
+  })();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#FF5A62">
@@ -56,10 +75,13 @@
     <img class="nav-full-logo" src="/logo-full.png" alt="Divera">
   </a>
   <div class="nav-right">
-    <a href="/app/" data-i18n="navAppLink">App</a>
-    <a href="/ciencia/" data-i18n="navScience">Ciencia</a>
-    <a href="/centros/" data-i18n="dcNavLink">Centros</a>
-    <a href="#contacto" data-i18n="navContact">Contacto</a>
+    <div class="nav-links" id="navLinks">
+      <a href="/app/" data-i18n="navAppLink">App</a>
+      <a href="/ciencia/" data-i18n="navScience">Ciencia</a>
+      <a href="/centros/" data-i18n="dcNavLink">Centros</a>
+      <a href="#contacto" data-i18n="navContact">Contacto</a>
+      <a href="https://center.divera.app/" class="nav-menu-login" data-i18n="navLogin">Iniciar sesión</a>
+    </div>
     <div class="lang-switcher" id="langSwitcher">
       <button class="lang-btn" id="langBtn" aria-label="Change language">
         <span id="langCurrent">ES</span>
@@ -74,6 +96,10 @@
     </div>
     <a href="https://center.divera.app/" class="nav-login" data-i18n="navLogin">Iniciar sesión</a>
     <a href="https://apps.apple.com/app/id6759156407" target="_blank" rel="noopener" class="nav-cta" data-download-cta data-i18n="navCta">Descargar</a>
+    <button class="nav-menu-btn" id="navMenuBtn" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Menú" data-i18n-aria="navMenu">
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+    </button>
   </div>
 </nav>
 
@@ -298,6 +324,7 @@
 
 <script src="/i18n.js"></script>
 <script src="/site.js"></script>
+<script src="/nav.js"></script>
 
 <!-- Structured Data -->
 <!-- Structured Data -->

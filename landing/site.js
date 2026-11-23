@@ -1,21 +1,6 @@
 // Shared behaviour for divera.app pages (/, /app/, /ciencia/).
 // Load after i18n.js. Each block is a no-op when its elements are absent.
 (function () {
-  // OLD HOME ANCHORS: sections moved to /app/ and /ciencia/; keep shared links working.
-  if (document.body.dataset.page === 'home' && location.hash) {
-    const moved = {
-      '#ordenador': '/app/#registro', '#features': '/app/', '#species': '/app/#especies',
-      '#dive-centers': '/app/#sitios', '#planned-dives': '/app/#planificar', '#profile-trust': '/app/#perfil',
-      '#ciencia': '/ciencia/', '#reconoce': '/ciencia/#reconoce', '#centros-fundadores': '/centros/'
-    };
-    const to = moved[location.hash];
-    if (to) {
-      const [path, hash] = to.split('#');
-      location.replace(path + location.search + (hash ? '#' + hash : ''));
-      return;
-    }
-  }
-
   // DEPTH METER
   const depthMeter = document.getElementById('depthMeter');
   if (depthMeter) {
@@ -82,6 +67,10 @@
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
       const k = el.getAttribute('data-i18n-placeholder');
       if (tx[k] !== undefined) el.placeholder = tx[k];
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+      const k = el.getAttribute('data-i18n-aria');
+      if (tx[k] !== undefined) el.setAttribute('aria-label', tx[k]);
     });
     document.documentElement.lang = lang;
     document.getElementById('langCurrent').textContent = LANG_LABELS[lang];
