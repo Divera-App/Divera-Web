@@ -18,6 +18,7 @@ landing/
   centros/            # Dive-centre pitch (own dictionary + shared nav keys)
   site.css            # Shared styles for /, /app/, /ciencia/
   site.js             # Shared nav, lang switcher, reveal, per-page title/description
+  nav.js              # Mobile nav menu (all 4 pages, incl. /centros/)
   i18n.js             # Shared es/en/fr/ca dictionary (one key per text)
   privacy/            # Privacy policy
   *.png / *.jpg       # Hero images, app screenshots, logos
@@ -33,8 +34,9 @@ wrangler.jsonc        # Cloudflare config
 ## Conventions
 
 - **Short home, topic pages.** The home stays short (~6 desktop screens); feature detail goes in `/app/`, science in `/ciencia/`, dive centres in `/centros/`. Tell each topic once: link to the page that owns it instead of repeating it. A new page needs a sitemap entry, canonical, hreflang and og tags, and the shared nav/footer.
+- **Mobile nav.** Every page's nav links sit in `#navLinks`; at ≤768px they collapse behind `#navMenuBtn` (`/nav.js`), and at ≤560px "Iniciar sesión" moves into that menu. /centros/ keeps its own inline nav CSS, so mirror nav changes there.
 - **Shared CSS/JS.** Put styles in `site.css` and texts in `i18n.js` (all 4 languages); never copy the dictionary or styles inline into a page.
-- **Old anchors redirect.** Old home anchors (`/#ordenador`, `#species`, …) are mapped to the new pages in `site.js`; keep the map when renaming anchors.
+- **Old anchors redirect.** Old home anchors (`/#ordenador`, `#species`, …) are mapped to the new pages by the inline script in the `<head>` of `landing/index.html` (runs before paint, also on `hashchange`); keep the map when renaming anchors.
 - **Reuse existing assets** in `landing/` (logos, screenshots, fonts) before adding new ones. Inventory: hero backgrounds (`hero-*.jpg`), app screenshots (`screen-*.png/PNG`), brand logos (`divera-logo*.png`, `logo-full.png`, `diver-icon*.png`), Galano Grotesque OTF family.
 - **Brand voice:** "Life, understood underwater." Match the existing tone in `index.html`.
 - **Visual language:** coral-on-dark monochromatic (matches iOS app and Dashboard).
