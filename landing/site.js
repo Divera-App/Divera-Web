@@ -1,4 +1,5 @@
 // Shared behaviour for divera.app pages (/, /app/, /ciencia/).
+// The old home-anchor redirect is not here: it lives inline in the home <head> (landing/index.html).
 // Load after i18n.js. Each block is a no-op when its elements are absent.
 (function () {
   // DEPTH METER

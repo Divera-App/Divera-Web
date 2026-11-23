@@ -94,6 +94,7 @@
     font-size: 13px; color: var(--text-secondary); text-decoration: none;
     font-weight: 500; transition: color 0.3s; letter-spacing: -0.2px;
   }
+  .nav-right a { white-space: nowrap; }
   .nav-right a:hover { color: var(--text-primary); }
   .nav-right a.nav-login { color: var(--text-primary); font-weight: 600; padding: 9px 14px; margin-right: -14px; border-radius: 100px; transition: background 0.3s var(--ease-out); }
   .nav-right a.nav-login:hover { background: rgba(255,255,255,0.06); }
@@ -102,7 +103,15 @@
   /* In-page shortcuts first, then a hairline, then the shared site links. */
   .nav-links a.nav-inpage-last { padding-right: 28px; border-right: 1px solid rgba(255,255,255,0.12); }
   .nav-links a.nav-self { display: none; }
-  @media (max-width: 1120px) { .nav-links a.nav-inpage { display: none; } }
+  @media (max-width: 1200px) { .nav-links a.nav-inpage { display: none; } }
+  @media (max-width: 900px) { .nav-tag { display: none; } }
+  .nav-logo { flex-shrink: 0; }
+  /* Narrow desktop: tighter spacing so the nav stays on one line in every language. */
+  @media (min-width: 769px) and (max-width: 960px) {
+    nav { padding: 0 24px; }
+    .nav-right, .nav-links { gap: 18px; }
+    .nav-right a.nav-login { margin-right: -6px; }
+  }
   .nav-menu-btn {
     display: none; align-items: center; justify-content: center; width: 36px; height: 36px;
     margin-left: 6px; padding: 0; border-radius: 100px; cursor: pointer;
@@ -151,7 +160,7 @@
     nav { padding: 0 20px; }
     .nav-tag { display: none; }
     .nav-right a.nav-login { margin: 0 2px 0 4px; padding: 8px 8px; white-space: nowrap; }
-    .nav-cta { white-space: nowrap; }
+    .nav-cta { white-space: nowrap; margin-left: 6px; }
     .nav-right { gap: 0; }
     .lang-switcher { order: -1; }
     .lang-dropdown { right: auto; left: 0; }

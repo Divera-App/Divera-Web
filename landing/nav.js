@@ -7,19 +7,24 @@
   if (!btn || !links) return;
   var nav = btn.closest('nav');
   var isOpen = function () { return nav.classList.contains('menu-open'); };
-  function setOpen(open, focusBtn) {
+  var lang = document.getElementById('langSwitcher');
+  function setOpen(open) {
+    var focusWasInside = links.contains(document.activeElement);
     nav.classList.toggle('menu-open', open);
     btn.setAttribute('aria-expanded', String(open));
     if (open) {
+      if (lang) lang.classList.remove('open'); // never stack the two panels
       var first = Array.prototype.find.call(links.querySelectorAll('a'), function (a) { return a.offsetParent !== null; });
       if (first) first.focus();
-    } else if (focusBtn) {
-      btn.focus();
+    } else if (focusWasInside) {
+      btn.focus(); // the links are about to be hidden; keep focus visible
     }
   }
   btn.addEventListener('click', function (e) { e.stopPropagation(); setOpen(!isOpen()); });
   links.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
   document.addEventListener('click', function (e) { if (isOpen() && !nav.contains(e.target)) setOpen(false); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && isOpen()) setOpen(false, true); });
+  // The language button stops propagation, so listen in the capture phase.
+  if (lang) lang.addEventListener('click', function () { if (isOpen()) setOpen(false); }, true);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && isOpen()) setOpen(false); });
   window.matchMedia('(min-width: 769px)').addEventListener('change', function (m) { if (m.matches) setOpen(false); });
 })();
