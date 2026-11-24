@@ -656,3 +656,14 @@ footer { padding: 32px 48px; border-top: 0.5px solid rgba(255,255,255,0.04); dis
   .moments .stage-proof { display: none; }
   .moments .stage-screen, .moment-word { transition: none; }
 }
+/* Moments, mobile and no-JS: one wide crop of each screen under its text (design: "text, then the screen"),
+   framed on the part that proves the line, not a full phone. */
+@media (max-width: 899px) {
+  .moment { padding-top: 64px; }
+  .moment-phone { width: 100%; max-width: 520px; aspect-ratio: 4 / 3; margin-top: 32px; border-radius: 22px; border: none; box-shadow: none; }
+  .moment-phone img, .moment-phone video { width: 100%; height: 100%; object-fit: cover; object-position: 50% var(--focus, 50%); }
+  .moment[data-moment="0"] .moment-phone { --focus: 28%; }
+  .moment[data-moment="1"] .moment-phone { --focus: 50%; }
+  .moment[data-moment="2"] .moment-phone { --focus: 79%; }
+  .moment[data-moment="3"] .moment-phone { --focus: 44%; }
+}
