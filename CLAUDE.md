@@ -12,7 +12,7 @@ Marketing landing page (`divera.app`) and Supabase auth-callback pages.
 
 ```
 landing/
-  index.html          # Home: hero, AI block, partner strip, feature cards → /app/, CTA, contact
+  index.html          # Home: hero, AI block, partner strip, four dive moments (sticky phone) → /app/, CTA, contact
   app/                # App features: one showcase per feature (#registro, #comunidad, #especies, #sitios, #planificar, #perfil, #web)
   ciencia/            # Citizen science: partners, "Qué reconoce Divera", manifesto
   centros/            # Dive-centre pitch (own dictionary + shared nav keys)
