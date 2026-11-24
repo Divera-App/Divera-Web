@@ -162,7 +162,7 @@ window.DIVERA_I18N = {
     sciStripLink: "Ver los proyectos",
     appPageTitle: "Divera · La app de buceo: registro, especies, sitios y planificación",
     appPageDesc: "Importa inmersiones desde tu ordenador de buceo, conoce cada especie, explora sitios y centros, planifica con tu comunidad y lleva tu perfil de buceador a mano. En iOS, Android y la web.",
-    sciPageTitle: "Divera · Ciencia ciudadana: MINKA, BlueDOT, LIFE PinnaCare",
+    sciPageTitle: "Divera · Ciencia ciudadana: MINKA, BlueDOT, LIFE PinnaCare, RedPROMAR",
     sciPageDesc: "Los proyectos de ciencia y conservación marina con los que colabora Divera, y qué reconoce la cámara de Divera bajo el agua.",
   },
   en: {
@@ -324,7 +324,7 @@ window.DIVERA_I18N = {
     sciStripLink: "See the projects",
     appPageTitle: "Divera · The dive app: log, species, sites and planning",
     appPageDesc: "Import dives from your dive computer, get to know every species, explore sites and centers, plan with your community and keep your diver profile at hand. On iOS, Android and the web.",
-    sciPageTitle: "Divera · Citizen science: MINKA, BlueDOT, LIFE PinnaCare",
+    sciPageTitle: "Divera · Citizen science: MINKA, BlueDOT, LIFE PinnaCare, RedPROMAR",
     sciPageDesc: "The marine science and conservation projects Divera works with, and what the Divera camera recognises underwater.",
   },
   fr: {
@@ -486,7 +486,7 @@ window.DIVERA_I18N = {
     sciStripLink: "Voir les projets",
     appPageTitle: "Divera · L’app de plongée : carnet, espèces, sites et planification",
     appPageDesc: "Importez vos plongées depuis votre ordinateur de plongée, découvrez chaque espèce, explorez sites et centres, planifiez avec votre communauté et gardez votre profil de plongeur à portée de main. Sur iOS, Android et le web.",
-    sciPageTitle: "Divera · Science participative : MINKA, BlueDOT, LIFE PinnaCare",
+    sciPageTitle: "Divera · Science participative : MINKA, BlueDOT, LIFE PinnaCare, RedPROMAR",
     sciPageDesc: "Les projets de science et de conservation marines avec lesquels Divera collabore, et ce que la caméra de Divera reconnaît sous l’eau.",
   },
   ca: {
@@ -648,7 +648,7 @@ window.DIVERA_I18N = {
     sciStripLink: "Veure els projectes",
     appPageTitle: "Divera · L’app de busseig: registre, espècies, llocs i planificació",
     appPageDesc: "Importa immersions des del teu ordinador de busseig, coneix cada espècie, explora llocs i centres, planifica amb la teva comunitat i porta el teu perfil de bussejador a mà. A iOS, Android i el web.",
-    sciPageTitle: "Divera · Ciència ciutadana: MINKA, BlueDOT, LIFE PinnaCare",
+    sciPageTitle: "Divera · Ciència ciutadana: MINKA, BlueDOT, LIFE PinnaCare, RedPROMAR",
     sciPageDesc: "Els projectes de ciència i conservació marina amb què col·labora Divera, i què reconeix la càmera de Divera sota l’aigua.",
   },
 };
