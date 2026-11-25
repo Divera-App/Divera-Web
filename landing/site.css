@@ -667,5 +667,5 @@ footer { padding: 32px 48px; border-top: 0.5px solid rgba(255,255,255,0.04); dis
   .moment[data-moment="0"] .moment-phone { --focus: 36%; }
   .moment[data-moment="1"] .moment-phone { --focus: 50%; }
   .moment[data-moment="2"] .moment-phone { --focus: 52%; }
-  .moment[data-moment="3"] .moment-phone { --focus: 36%; }
+  .moment[data-moment="3"] .moment-phone { --focus: 22%; }
 }
