@@ -73,6 +73,12 @@
       const k = el.getAttribute('data-i18n-aria');
       if (tx[k] !== undefined) el.setAttribute('aria-label', tx[k]);
     });
+    // App screenshots: src is the Spanish image; data-src-en holds the English one (used for en and fr).
+    document.querySelectorAll('img[data-src-en]').forEach(el => {
+      if (!el.dataset.srcEs) el.dataset.srcEs = el.getAttribute('src');
+      const want = (lang === 'en' || lang === 'fr') ? el.dataset.srcEn : el.dataset.srcEs;
+      if (el.getAttribute('src') !== want) el.setAttribute('src', want);
+    });
     document.documentElement.lang = lang;
     document.getElementById('langCurrent').textContent = LANG_LABELS[lang];
     document.querySelectorAll('.lang-option').forEach(opt => {
