@@ -370,6 +370,7 @@ a.launch-badge:hover { color: var(--text-primary); border-color: rgba(255,255,25
 .sci-partner-logo img.partner-logo-pinna { height: 132%; }
 .sci-partner-logo-wordmark { gap: 10px; color: var(--text-primary); text-decoration: none; }
 .sci-partner-logo img.partner-logo-seaslug { height: 100%; width: auto; flex: none; }
+.sci-partner-logo img.partner-logo-redpromar { height: 100%; width: auto; flex: none; }
 .partner-wordmark { font-family: var(--font-display); font-weight: 700; font-size: 17px; letter-spacing: 0.04em; white-space: nowrap; }
 .sci-partner-logo img.partner-logo-innoceana { height: 92%; width: auto; flex: none; }
 .partner-wordmark-innoceana { display: flex; flex-direction: column; align-items: center; font-family: 'Quicksand', var(--font-display); font-weight: 500; font-size: 30px; line-height: 1; letter-spacing: 0.01em; white-space: nowrap; }
@@ -600,13 +601,18 @@ footer { padding: 32px 48px; border-top: 0.5px solid rgba(255,255,255,0.04); dis
 .ai-more { margin-top: 28px; font-size: 14px; }
 .ai-more a { color: var(--coral); text-decoration: underline; text-underline-offset: 3px; font-weight: 600; transition: opacity 0.2s; }
 .ai-more a:hover { opacity: 0.7; }
-/* Home: citizen-science strip (logos only) */
-.partners.partners-strip { gap: 28px 44px; margin-top: 36px; align-items: center; }
-.partners-strip > .sci-partner { flex: 0 0 auto; }
-.partners-strip .sci-partner-logo { height: 52px; }
-.partners-strip .partner-wordmark { font-size: 14px; }
-.partners-strip .partner-wordmark-innoceana { font-size: 22px; }
-@media (max-width: 700px) { .partners-strip > .sci-partner { flex-basis: auto; } .partners-strip .sci-partner-logo { height: 44px; } }
+/* Home: citizen-science strip — one line of logos moving right to left (two copies of the set, track moves -50%) */
+.partners-marquee { overflow: hidden; margin-top: 36px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.partners-track { display: flex; width: max-content; animation: partners-scroll 40s linear infinite; }
+.partners-marquee:hover .partners-track, .partners-marquee:focus-within .partners-track { animation-play-state: paused; }
+.partners-set { display: flex; align-items: center; justify-content: space-around; flex: none; min-width: 100vw; }
+.partners-set > .sci-partner { flex: none; margin-right: 64px; }
+.partners-marquee .sci-partner-logo { height: 52px; }
+.partners-marquee .partner-wordmark { font-size: 14px; }
+.partners-marquee .partner-wordmark-innoceana { font-size: 22px; }
+@keyframes partners-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (max-width: 700px) { .partners-marquee .sci-partner-logo { height: 44px; } .partners-set > .sci-partner { margin-right: 44px; } .partners-track { animation-duration: 30s; } }
+@media (prefers-reduced-motion: reduce) { .partners-marquee { -webkit-mask-image: none; mask-image: none; } .partners-track { animation: none; width: auto; justify-content: center; } .partners-set { flex-wrap: wrap; justify-content: center; gap: 28px 0; min-width: 0; } .partners-set[aria-hidden="true"] { display: none; } }
 /* Home: one-line dive-centre strip */
 .dc-strip { display: flex; align-items: center; justify-content: space-between; gap: 24px 40px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; padding: 0 48px; position: relative; z-index: 1; }
 .dc-strip .section-label { margin-bottom: 10px; }
