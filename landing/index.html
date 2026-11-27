@@ -137,7 +137,7 @@
 
 <!-- AI RECOGNITION -->
 <div class="band band-surface">
-<section class="ai-hero">
+<section class="ai-hero" id="reconocimiento">
   <div class="ai-hero-glow"></div>
   <div class="ai-hero-content">
     <div>
@@ -197,39 +197,75 @@
 </div>
 </div>
 
-<!-- WHAT DIVERA DOES — each card links to its section on /app/ -->
+<!-- WHAT DIVERA DOES — four moments of a dive; each links to its section on /app/.
+     Without JS (and below 900px) each moment shows its own screen. With JS on desktop,
+     .moments-stage holds one sticky phone that cross-fades to the active moment. -->
 <div class="band band-primary">
-<section class="section" id="funciones">
-  <div class="features-header">
-    <div class="section-label reveal" data-i18n="fLabel">FUNCIONES</div>
-    <h2 class="section-title reveal reveal-d1" data-i18n="homeFeatTitle">Lo que hace Divera</h2>
+<section class="section moments" id="funciones">
+  <h2 class="section-title moments-title reveal" data-i18n="momTitle">Antes, durante y después de cada inmersión</h2>
+  <div class="moments-grid">
+    <div class="moments-profile" aria-hidden="true">
+      <svg focusable="false">
+        <path class="moments-profile-track" d="M8 0"/>
+        <path class="moments-profile-line" d="M8 0"/>
+      </svg>
+      <span class="moments-profile-dot"></span>
+    </div>
+    <ol class="moments-list">
+      <li class="moment" data-moment="0">
+        <div class="moment-text">
+          <p class="moment-word" data-i18n="mom1w">Antes</p>
+          <h3 class="moment-title" data-i18n="mom1t">Prepara una inmersión responsable.</h3>
+          <p class="moment-desc" data-i18n="mom1d">Antes de entrar al agua, conoce el sitio: el estado del mar, si es zona protegida y qué especies viven allí, también las que necesitan más cuidado. Compártelo con tu grupo en el plan.</p>
+          <a class="moment-link" href="/app/#sitios" data-i18n="mom1l">Explorar sitios</a>
+        </div>
+        <div class="moment-phone"><img loading="lazy" src="/screen-site-guidelines.png" data-src-en="/screen-site-guidelines-en.png" width="1206" height="2622" alt="Sitio de buceo en Divera con las especies protegidas del lugar y cómo cuidarlas"></div>
+      </li>
+      <li class="moment" data-moment="1">
+        <div class="moment-text">
+          <p class="moment-word" data-i18n="mom2w">Durante</p>
+          <h3 class="moment-title" data-i18n="mom2t">Reconoce lo que ves.</h3>
+          <p class="moment-desc" data-i18n="mom2d">La cámara reconoce especies en tiempo real y te avisa si son venenosas, peligrosas o invasoras en esa zona. También funciona con las fotos y vídeos de tu propia cámara: súbelos y Divera te dice qué especies aparecen.</p>
+          <a class="moment-link" href="#reconocimiento" data-i18n="mom2l">Ver el reconocimiento</a>
+        </div>
+        <div class="moment-phone"><video class="moment-video" src="/camera-detection.mp4" poster="/camera-detection-poster.jpg" width="560" height="1212" loop muted playsinline preload="none" disablepictureinpicture aria-label="Cámara de Divera bajo el agua reconociendo peces en tiempo real"></video></div>
+      </li>
+      <li class="moment" data-moment="2">
+        <div class="moment-text">
+          <p class="moment-word" data-i18n="mom3w">Después</p>
+          <h3 class="moment-title" data-i18n="mom3t">Guarda la inmersión y llévala a la ciencia.</h3>
+          <p class="moment-desc" data-i18n="mom3d">Importa los datos de tu ordenador de buceo, añade fotos y especies, y comparte tus avistamientos con proyectos científicos reales de tu zona, que los revisan y los usan. No con un mapa más.</p>
+          <a class="moment-link" href="/ciencia/" data-i18n="mom3l">Ver los proyectos</a>
+        </div>
+        <div class="moment-phone"><img loading="lazy" src="/screen-science-share.png" data-src-en="/screen-science-share-en.png" width="1206" height="2622" alt="Avistamiento en Divera listo para compartir con un proyecto científico"></div>
+      </li>
+      <li class="moment" data-moment="3">
+        <div class="moment-text">
+          <p class="moment-word" data-i18n="mom4w">Juntos</p>
+          <h3 class="moment-title" data-i18n="mom4t">Bucea con tu gente.</h3>
+          <p class="moment-desc" data-i18n="mom4d">Planes de grupo, compañeros y centros de buceo, con tu certificación y seguro a mano.</p>
+          <a class="moment-link" href="/app/#planificar" data-i18n="mom4l">Ver los planes de grupo</a>
+        </div>
+        <div class="moment-phone"><img loading="lazy" src="/screen-plan-briefing.png" data-src-en="/screen-plan-briefing-en.png" width="1206" height="2622" alt="Inmersión en grupo en Divera con fecha, briefing y sitio"></div>
+      </li>
+    </ol>
+    <div class="moments-stage">
+      <div class="moments-sticky">
+        <div class="stage-device">
+          <div class="stage-phone">
+            <img class="stage-screen" data-moment="0" loading="lazy" src="/screen-site-guidelines.png" data-src-en="/screen-site-guidelines-en.png" alt="Sitio de buceo en Divera con las especies protegidas del lugar y cómo cuidarlas">
+            <video class="stage-screen moment-video" data-moment="1" src="/camera-detection.mp4" poster="/camera-detection-poster.jpg" loop muted playsinline preload="none" disablepictureinpicture aria-label="Cámara de Divera bajo el agua reconociendo peces en tiempo real"></video>
+            <img class="stage-screen" data-moment="2" loading="lazy" src="/screen-science-share.png" data-src-en="/screen-science-share-en.png" alt="Avistamiento en Divera listo para compartir con un proyecto científico">
+            <img class="stage-screen" data-moment="3" loading="lazy" src="/screen-plan-briefing.png" data-src-en="/screen-plan-briefing-en.png" alt="Inmersión en grupo en Divera con fecha, briefing y sitio">
+          </div>
+          <img class="stage-proof proof-site" data-moment="0" loading="lazy" src="/proof-site-guidelines.png" data-src-en="/proof-site-guidelines-en.png" width="1078" height="239" alt="" aria-hidden="true">
+          <img class="stage-proof proof-dive" data-moment="2" loading="lazy" src="/proof-science-share.png" data-src-en="/proof-science-share-en.png" width="1113" height="370" alt="" aria-hidden="true">
+          <img class="stage-proof proof-plan" data-moment="3" loading="lazy" src="/proof-plan-briefing.png" data-src-en="/proof-plan-briefing-en.png" width="1166" height="393" alt="" aria-hidden="true">
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="f-cards">
-    <div class="f-card reveal">
-      <h3 class="f-title"><a class="f-card-link" href="/app/#registro"><span data-i18n="f1t">Registra y revive</span></a><span class="f-card-arrow" aria-hidden="true">→</span></h3>
-      <p class="f-desc" data-i18n="f1d">Cada inmersión es un registro completo. Profundidad, condiciones, fotos, especies avistadas y compañeros. Un historial que crece con cada salida.</p>
-    </div>
-    <div class="f-card reveal">
-      <h3 class="f-title"><a class="f-card-link" href="/app/#especies"><span data-i18n="shTitle">Cada especie tiene una historia</span></a><span class="f-card-arrow" aria-hidden="true">→</span></h3>
-      <p class="f-desc" data-i18n="cardSpeciesD">Estado de conservación UICN, rangos de profundidad, comportamiento y consejos para cada especie.</p>
-    </div>
-    <div class="f-card reveal">
-      <h3 class="f-title"><a class="f-card-link" href="/app/#sitios"><span data-i18n="f4t">Explora sitios y centros</span></a><span class="f-card-arrow" aria-hidden="true">→</span></h3>
-      <p class="f-desc" data-i18n="f4d">Mapa de sitios y centros con condiciones, vida marina avistada y valoraciones. Mira qué están encontrando otros buceadores en tus spots favoritos.</p>
-    </div>
-    <div class="f-card reveal">
-      <h3 class="f-title"><a class="f-card-link" href="/app/#planificar"><span data-i18n="f3t">Planifica con tu comunidad</span></a><span class="f-card-arrow" aria-hidden="true">→</span></h3>
-      <p class="f-desc" data-i18n="f3d">Busca compañeros para tu próxima inmersión o publica un plan en grupo. Coordina fecha, sitio, equipo y centro desde la app. La logística, resuelta antes de tocar el agua.</p>
-    </div>
-    <div class="f-card reveal">
-      <h3 class="f-title"><a class="f-card-link" href="/app/#perfil"><span data-i18n="shTrustTitle">Tu perfil, en un toque</span></a><span class="f-card-arrow" aria-hidden="true">→</span></h3>
-      <p class="f-desc" data-i18n="cardProfileD">Certificación, seguro y experiencia en tu perfil, a mano cuando un centro te los pide.</p>
-    </div>
-    <div class="f-card reveal">
-      <h3 class="f-title"><a class="f-card-link" href="/app/#web"><span data-i18n="f7t">También en la web</span></a><span class="f-card-arrow" aria-hidden="true">→</span></h3>
-      <p class="f-desc" data-i18n="f7d">Entra con tu cuenta desde el ordenador: sube tus inmersiones y tus fotos, elige las mejores y mira qué peces reconoce Divera en ellas, en pantalla grande. <a class="center-cta-link" href="https://center.divera.app/">Abrir Divera web</a></p>
-    </div>
-  </div>
+  <p class="moments-foot"><span data-i18n="momFoot">En iPhone, Android y en la web.</span> <a class="moment-link" href="https://center.divera.app/" data-i18n="momWebLink">Abrir Divera web</a></p>
 </section>
 </div>
 

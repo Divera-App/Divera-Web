@@ -73,6 +73,12 @@
       const k = el.getAttribute('data-i18n-aria');
       if (tx[k] !== undefined) el.setAttribute('aria-label', tx[k]);
     });
+    // App screenshots: src is the Spanish image; data-src-en holds the English one (used for en and fr).
+    document.querySelectorAll('img[data-src-en]').forEach(el => {
+      if (!el.dataset.srcEs) el.dataset.srcEs = el.getAttribute('src');
+      const want = (lang === 'en' || lang === 'fr') ? el.dataset.srcEn : el.dataset.srcEs;
+      if (el.getAttribute('src') !== want) el.setAttribute('src', want);
+    });
     document.documentElement.lang = lang;
     document.getElementById('langCurrent').textContent = LANG_LABELS[lang];
     document.querySelectorAll('.lang-option').forEach(opt => {
@@ -120,6 +126,85 @@
   });
   document.addEventListener('click', () => langSwitcher.classList.remove('open'));
   applyTranslations(currentLang);
+
+  // DIVE MOMENTS (home #funciones): the moment crossing mid-viewport becomes active
+  // (data-active on the section drives the sticky phone in CSS), the coral dive-profile
+  // line grows with scroll, and videos play only while in view. Without JS the section
+  // keeps its stacked layout with one screen per moment.
+  const moments = document.querySelector('.moments');
+  if (moments && 'IntersectionObserver' in window) {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const desktop = window.matchMedia('(min-width: 900px)');
+    const items = Array.from(moments.querySelectorAll('.moment'));
+    const videos = Array.from(moments.querySelectorAll('.moment-video'));
+    const videosInView = new Set();
+    moments.classList.add('is-enhanced');
+
+    const syncVideos = () => {
+      const active = moments.dataset.active;
+      videos.forEach(v => {
+        const onStage = v.classList.contains('stage-screen');
+        const play = !reduceMotion.matches && videosInView.has(v) && (!onStage || active === '1');
+        if (play && v.paused) v.play().catch(() => {});
+        else if (!play && !v.paused) v.pause();
+      });
+    };
+    const setActive = (i) => {
+      if (i < 0 || moments.dataset.active === String(i)) return;
+      moments.dataset.active = String(i);
+      items.forEach((el, j) => el.classList.toggle('is-active', j === i));
+      syncVideos();
+    };
+    const activeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) setActive(items.indexOf(e.target)); });
+    }, { rootMargin: '-50% 0px -50% 0px' });
+    items.forEach(el => activeObserver.observe(el));
+    setActive(0);
+
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) videosInView.add(e.target); else videosInView.delete(e.target); });
+      syncVideos();
+    }, { threshold: 0.25 });
+    videos.forEach(v => videoObserver.observe(v));
+    if (reduceMotion.addEventListener) reduceMotion.addEventListener('change', syncVideos);
+
+    // Dive profile: surface (x=8) for Before, descend to the bottom (x=32) for During,
+    // ascend for After, surface again for Together. Built in pixels from the moment offsets.
+    const profile = moments.querySelector('.moments-profile');
+    const svg = profile && profile.querySelector('svg');
+    const track = profile && profile.querySelector('.moments-profile-track');
+    const line = profile && profile.querySelector('.moments-profile-line');
+    const dot = profile && profile.querySelector('.moments-profile-dot');
+    const list = moments.querySelector('.moments-list');
+    let total = 0, raf = 0;
+    const build = () => {
+      if (!profile || !desktop.matches || items.length < 4) return;
+      const h = list.offsetHeight;
+      const b1 = items[1].offsetTop, b2 = items[2].offsetTop;
+      const c = 90;
+      const d = 'M8 0 V' + (b1 - c) + ' C8 ' + b1 + ' 32 ' + (b1 - c / 2) + ' 32 ' + (b1 + c / 2) +
+        ' V' + (b2 - c) + ' C32 ' + b2 + ' 8 ' + (b2 - c / 2) + ' 8 ' + (b2 + c / 2) + ' V' + h;
+      svg.setAttribute('viewBox', '0 0 40 ' + h);
+      track.setAttribute('d', d);
+      line.setAttribute('d', d);
+      total = line.getTotalLength();
+      line.style.strokeDasharray = total + ' ' + total;
+      draw();
+    };
+    const draw = () => {
+      raf = 0;
+      if (!total || !desktop.matches || reduceMotion.matches) return;
+      const r = list.getBoundingClientRect();
+      const p = Math.max(0, Math.min(1, (window.innerHeight / 2 - r.top) / r.height));
+      line.style.strokeDashoffset = String(total * (1 - p));
+      const pt = line.getPointAtLength(total * p);
+      dot.style.transform = 'translate(' + pt.x + 'px,' + pt.y + 'px)';
+    };
+    window.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(draw); }, { passive: true });
+    if ('ResizeObserver' in window) new ResizeObserver(build).observe(list);
+    if (desktop.addEventListener) desktop.addEventListener('change', build);
+    build();
+  }
 
   // EMAIL WAITLIST FORM
   const waitlistForm = document.getElementById('waitlistForm');
